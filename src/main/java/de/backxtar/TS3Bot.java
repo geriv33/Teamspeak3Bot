@@ -19,8 +19,19 @@ public class TS3Bot {
     public final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
     public static Logger logger = LoggerFactory.getLogger(TS3Bot.class);
     public static TS3Bot ts3Bot;
+    public ConfigData configData;
     public TS3Query query;
     public TS3Api api;
+
+    public static class ConfigData {
+        public String host;
+        public String username;
+        public String password;
+        public String nickname;
+        public int afkChannelID = 0;
+        public int infoChannelID = 0;
+        public int welcomeMessage = 0;
+    }
 
     public TS3Bot() throws IOException, TS3Exception {
         ts3Bot = this;
@@ -36,31 +47,37 @@ public class TS3Bot {
         }
         cfg.load(new FileInputStream("config.cfg"));
         Enumeration<Object> en = cfg.keys();
-        String host = "", username = "", password = "", nickname = "";
+        configData = new ConfigData();
 
         while (en.hasMoreElements()) {
             String key = (String) en.nextElement();
 
             if (key.equalsIgnoreCase("host"))
-                host = (String) cfg.get(key);
+                configData.host = (String) cfg.get(key);
             if (key.equalsIgnoreCase("username"))
-                username = (String) cfg.get(key);
+                configData.username = (String) cfg.get(key);
             if (key.equalsIgnoreCase("password"))
-                password = (String) cfg.get(key);
+                configData.password = (String) cfg.get(key);
             if (key.equalsIgnoreCase("nickname"))
-                nickname = (String) cfg.get(key);
+                configData.nickname = (String) cfg.get(key);
+            if (key.equalsIgnoreCase("afkChannelID"))
+                configData.afkChannelID = (int) cfg.get(key);
+            if (key.equalsIgnoreCase("infoChannelID"))
+                configData.infoChannelID = (int) cfg.get(key);
+            if (key.equalsIgnoreCase("welcomeMessage"))
+                configData.welcomeMessage = (int) cfg.get(key);
         }
         logger.info("Config loaded.");
-        config.setHost(host);
+        config.setHost(configData.host);
         config.setEnableCommunicationsLogging(true);
         config.setFloodRate(TS3Query.FloodRate.UNLIMITED);
 
         query = new TS3Query(config);
         query.connect();
         api = query.getApi();
-        api.login(username, password);
+        api.login(configData.username, configData.password);
         api.selectVirtualServerById(1);
-        api.setNickname(nickname);
+        api.setNickname(configData.nickname);
 
         EventDistributor.loadEvents();
         scheduler.schedule(TS3Bot::initShutdown, 1, TimeUnit.SECONDS);

@@ -89,11 +89,16 @@ Your config.cfg will look like this:
 ```java
 # Bot configuration
 # Comments will automatically be excluded
-        
+
 host=77.777.777.77
 username=YourQueryUser
 password=YourQueryPassword
 nickname=TS3Bot
+
+# Optional systems can be deactivated with 0 and activated with 1 or higher IDs
+welcomeMessage=1
+afkChannelID=1
+infoChannelID=2
 ```
 Change the values to your server settings!
 ## Run the bot
@@ -108,4 +113,13 @@ screen -S "Screenname"
 **Step 3:** _Execute the .jar_
 ```java
 java -jar Teamspeak3Bot.jar
+```
+## Shutdown the bot
+**Step 1:** _Open the screen session_
+```java
+screen -r "Screenname"
+```
+**Step 2:** _Turn the bot offline_
+```java
+exit
 ```
