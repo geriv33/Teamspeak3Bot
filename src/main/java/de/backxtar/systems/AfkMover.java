@@ -16,11 +16,7 @@ public class AfkMover
         public int channelID;
     }
 
-    public static void loadAfkMover() {
-        TS3Bot.ts3Bot.scheduler.scheduleAtFixedRate(AfkMover::checkAfk, 1, 5, TimeUnit.SECONDS);
-    }
-
-    private static void checkAfk()
+    public static void checkAfk()
     {
         TS3Api api = TS3Bot.ts3Bot.api;
         api.getClients().parallelStream().forEach(client -> {

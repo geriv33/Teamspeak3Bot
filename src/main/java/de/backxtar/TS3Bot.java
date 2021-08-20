@@ -8,19 +8,19 @@ import de.backxtar.systems.AfkMover;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.Enumeration;
 import java.util.Properties;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class TS3Bot
 {
-    public final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+    public final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
     public static Logger logger = LoggerFactory.getLogger(TS3Bot.class);
     public static TS3Bot ts3Bot;
+    public TS3Query query;
     public TS3Api api;
 
     public TS3Bot() throws IOException, TS3Exception
@@ -59,27 +59,46 @@ public class TS3Bot
         config.setEnableCommunicationsLogging(true);
         config.setFloodRate(TS3Query.FloodRate.UNLIMITED);
 
-        final TS3Query query = new TS3Query(config);
+        query = new TS3Query(config);
         query.connect();
-
         api = query.getApi();
         api.login(username, password);
         api.selectVirtualServerById(1);
         api.setNickname(nickname);
 
         EventDistributor.loadEvents();
-        AfkMover.loadAfkMover();
+        scheduler.schedule(TS3Bot::initShutdown, 1, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(AfkMover::checkAfk, 1, 5, TimeUnit.SECONDS);
     }
 
     public static void main(String[] args)
     {
         try {
             new TS3Bot();
-            logger.info("Configuration successful!");
-            logger.info("Bot online!");
+            logger.info("Configuration successful.");
+            logger.info("Bot online - connected to " + TS3Bot.ts3Bot.api.getServerInfo().getName() + ".");
         } catch (IOException | TS3Exception e) {
             logger.info("Configuration failed!");
             logger.info("Please check config.cfg");
+        }
+    }
+
+    private static void initShutdown() {
+        String line;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            while ((line = reader.readLine()) != null) {
+                if (line.equalsIgnoreCase("exit")) {
+                    if (TS3Bot.ts3Bot.query.isConnected() && !TS3Bot.ts3Bot.scheduler.isShutdown()) {
+                        TS3Bot.ts3Bot.scheduler.shutdown();
+                        TS3Bot.ts3Bot.query.exit();
+                        logger.info("Bot offline.");
+                        System.exit(0);
+                    } else logger.info("Can not shutdown! Please terminate the screen.");
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
