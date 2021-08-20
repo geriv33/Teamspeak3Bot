@@ -11,11 +11,14 @@ I do only support my own software! This software is free to use.
 
 1. [Minimum System Requirements](#mininum-system-requirements)
 2. [Install Java on Debian or Ubuntu Systems](#installing-java-on-debian-or-ubuntu-systems)
+3. [Install Screen on Debian or Ubuntu Systems](#installing-screen-on-debian-or-ubuntu-systems)
 
 ## Mininum System Requirements
 * **RAM:** 4Gb
 * **CPU:** 1 Core
 * **Internet:** 100mbit/s
+* **Java 1.8.0_282**
+* **Screen**
 
 [Java 1.8.0_282](https://www.oracle.com/de/java/technologies/javase/javase-jdk8-downloads.html) or above is needed.
 ## Installing Java on Debian or Ubuntu Systems
@@ -66,4 +69,38 @@ java -version
 openjdk version "1.8.0_292"
 OpenJDK Runtime Environment (build 1.8.0_292-8u292-b10-0ubuntu1~18.04-b10)
 OpenJDK 64-Bit Server VM (build 25.292-b10, mixed mode)
+```
+## Installing Screen on Debian or Ubuntu Systems
+**Step 1:** _Update the repositories:_
+```java
+sudo apt-get update
+```
+**Step 2:** _Install Screen_
+```java
+sudo apt-get install screen
+```
+## Edit config.cfg
+Your config.cfg will look like this:
+```java
+# Bot configuration
+# Comments will automatically be excluded
+        
+host=77.777.777.77
+username=YourQueryUser
+password=YourQueryPassword
+nickname=TS3Bot
+```
+Change the values to your server settings!
+## Run the bot
+**Step 1:** _Navigate to your folder the .jar is in_
+```java
+cd folder/folder/...
+```
+**Step 2:** _Make a screen instance_
+```java
+screen -S "Screenname"
+```
+**Step 3:** _Execute the .jar_
+```java
+java -jar Teamspeak3Bot.jar
 ```
