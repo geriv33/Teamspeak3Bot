@@ -4,6 +4,7 @@
 [![GitHub all releases](https://img.shields.io/github/downloads/Backxtar/Teamspeak3Bot/total?color=%233aa63a&label=download)](https://github.com/Backxtar/Teamspeak3Bot/releases)
 
 <img align="right" src="https://mlpfyvpfyq69.i.optimole.com/cZ9PPCo-D60oTdJD/w:auto/h:auto/q:auto/https://gameserververgleich.info/wp-content/uploads/TeamSpeak-Server-mieten.png" height="200" width="200">
+
 # Teamspeak 3 Bot
 Quick manual for setting up the TS3Bot on Linux servers. Make sure your server has enough RAM and a good connection.
 ## Summary
