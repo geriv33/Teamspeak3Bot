@@ -7,6 +7,7 @@ import com.github.theholywaffle.teamspeak3.api.exception.TS3Exception;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Enumeration;
@@ -27,6 +28,12 @@ public class TS3Bot
         ts3Bot = this;
         
         Properties cfg = new Properties();
+        File file = new File("config.cfg");
+
+        if (file.createNewFile())
+            logger.info("New config created.");
+        else logger.info("Config loaded.");
+
         cfg.load(new FileInputStream("config.cfg"));
         Enumeration<Object> en = cfg.keys();
         String host = "", username = "", password = "", nickname = "";
