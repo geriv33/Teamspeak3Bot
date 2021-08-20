@@ -12,6 +12,8 @@ I do only support my own software! This software is free to use.
 1. [Minimum System Requirements](#mininum-system-requirements)
 2. [Install Java on Debian or Ubuntu Systems](#installing-java-on-debian-or-ubuntu-systems)
 3. [Install Screen on Debian or Ubuntu Systems](#installing-screen-on-debian-or-ubuntu-systems)
+4. [Edit config.cfg](#edit-configcfg)
+5. [Run the bot](#run-the-bot)
 
 ## Mininum System Requirements
 * **RAM:** 4Gb
