@@ -7,6 +7,8 @@
 
 # Teamspeak 3 Bot
 Quick manual for setting up the TS3Bot on Linux servers. Make sure your server has enough RAM and a good connection.
+
+[Check Virus Total Scan!](https://www.virustotal.com/gui/file/5c94d45ba57f32ffc090f8ac73810ef365935f7956c18cc6420c58eb28692577/detection)
 ## Summary
 I do only support my own software! This software is free to use.
 

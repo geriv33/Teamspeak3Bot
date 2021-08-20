@@ -12,9 +12,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Properties;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class TS3Bot
 {
+    public final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
     public static Logger logger = LoggerFactory.getLogger(TS3Bot.class);
     public static TS3Bot ts3Bot;
     public TS3Api api;

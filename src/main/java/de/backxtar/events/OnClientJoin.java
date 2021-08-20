@@ -10,7 +10,7 @@ public class OnClientJoin
     public static void changeInfo(TS3Api api)
     {
         api.editChannel(1, ChannelProperty.CHANNEL_NAME,
-                "Users online: " + api.getClients().size() + "/" + api.getServerInfo().getMaxClients());
+                "Users online: " + api.getClients().size() + "/" + api.getServerInfo().getMaxClients()); //TODO channelID anpassen!
     }
 
     public static void sendWelcome(TS3Api api, ClientJoinEvent e)
