@@ -4,6 +4,7 @@ import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.TS3Config;
 import com.github.theholywaffle.teamspeak3.TS3Query;
 import com.github.theholywaffle.teamspeak3.api.exception.TS3Exception;
+import de.backxtar.systems.AfkMover;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -67,6 +68,7 @@ public class TS3Bot
         api.setNickname(nickname);
 
         EventDistributor.loadEvents();
+        AfkMover.loadAfkMover();
     }
 
     public static void main(String[] args)
