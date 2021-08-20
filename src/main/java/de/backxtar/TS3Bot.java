@@ -17,23 +17,22 @@ public class TS3Bot
 {
     public static Logger logger = LoggerFactory.getLogger(TS3Bot.class);
     public static TS3Bot ts3Bot;
-
-    //Config
-    public final TS3Config config = new TS3Config();
-    public final TS3Query query = new TS3Query(config);
-    public final TS3Api api = query.getApi();
+    public TS3Api api;
 
     public TS3Bot() throws IOException, TS3Exception
     {
         ts3Bot = this;
-        
+        final TS3Config config = new TS3Config();
         Properties cfg = new Properties();
         File file = new File("config.cfg");
 
         if (file.createNewFile())
             logger.info("New config created.");
-        else logger.info("Config loaded.");
-
+        else if (!file.createNewFile() && file.length() == 0)
+        {
+            logger.info("config.cfg is empty!");
+            return;
+        }
         cfg.load(new FileInputStream("config.cfg"));
         Enumeration<Object> en = cfg.keys();
         String host = "", username = "", password = "", nickname = "";
@@ -51,13 +50,15 @@ public class TS3Bot
             if (key.equalsIgnoreCase("nickname"))
                 nickname = (String) cfg.get(key);
         }
-
+        logger.info("Config loaded.");
         config.setHost(host);
         config.setEnableCommunicationsLogging(true);
-        config.setFloodRate(TS3Query.FloodRate.DEFAULT);
+        config.setFloodRate(TS3Query.FloodRate.UNLIMITED);
 
+        final TS3Query query = new TS3Query(config);
         query.connect();
 
+        api = query.getApi();
         api.login(username, password);
         api.selectVirtualServerById(1);
         api.setNickname(nickname);
@@ -69,9 +70,11 @@ public class TS3Bot
     {
         try {
             new TS3Bot();
+            logger.info("Configuration successful!");
             logger.info("Bot online!");
         } catch (IOException | TS3Exception e) {
             logger.info("Configuration failed!");
+            logger.info("Please check config.cfg");
         }
     }
 }
