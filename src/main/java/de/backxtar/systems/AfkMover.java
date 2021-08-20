@@ -6,18 +6,15 @@ import de.backxtar.TS3Bot;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
-public class AfkMover
-{
+public class AfkMover {
     private static final HashMap<String, MoveData> dataHashMap = new HashMap<>();
 
-    private static class MoveData
-    {
+    private static class MoveData {
         public long timestamp;
         public int channelID;
     }
 
-    public static void checkAfk()
-    {
+    public static void checkAfk() {
         TS3Api api = TS3Bot.ts3Bot.api;
         api.getClients().parallelStream().forEach(client -> {
             if (!client.isServerQueryClient()) {

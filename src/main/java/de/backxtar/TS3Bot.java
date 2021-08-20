@@ -15,16 +15,14 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class TS3Bot
-{
+public class TS3Bot {
     public final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
     public static Logger logger = LoggerFactory.getLogger(TS3Bot.class);
     public static TS3Bot ts3Bot;
     public TS3Query query;
     public TS3Api api;
 
-    public TS3Bot() throws IOException, TS3Exception
-    {
+    public TS3Bot() throws IOException, TS3Exception {
         ts3Bot = this;
         final TS3Config config = new TS3Config();
         Properties cfg = new Properties();
@@ -32,8 +30,7 @@ public class TS3Bot
 
         if (file.createNewFile())
             logger.info("New config created.");
-        else if (!file.createNewFile() && file.length() == 0)
-        {
+        else if (!file.createNewFile() && file.length() == 0) {
             logger.info("config.cfg is empty!");
             return;
         }
@@ -41,8 +38,7 @@ public class TS3Bot
         Enumeration<Object> en = cfg.keys();
         String host = "", username = "", password = "", nickname = "";
 
-        while (en.hasMoreElements())
-        {
+        while (en.hasMoreElements()) {
             String key = (String) en.nextElement();
 
             if (key.equalsIgnoreCase("host"))
@@ -71,8 +67,7 @@ public class TS3Bot
         scheduler.scheduleAtFixedRate(AfkMover::checkAfk, 1, 5, TimeUnit.SECONDS);
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         try {
             new TS3Bot();
             logger.info("Configuration successful.");
