@@ -97,7 +97,7 @@ ts3Username=YourQueryUser
 ts3Password=YourQueryPassword
 ts3Nickname=TS3Bot
 
-#MySql
+# MySql
 dbHost=localhost
 dbName=yourDatabase
 dbUser=yourUser
