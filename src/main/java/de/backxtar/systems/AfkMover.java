@@ -14,7 +14,7 @@ public class AfkMover {
     }
 
     public static void checkAfk() {
-        if (TS3Bot.ts3Bot.configData.afkChannelID == 0) return;
+        if (TS3Bot.ts3Bot.configData.afkChannelID == -1) return;
         TS3Api api = TS3Bot.ts3Bot.api;
         api.getClients().parallelStream().forEach(client -> {
             if (!client.isServerQueryClient()) {

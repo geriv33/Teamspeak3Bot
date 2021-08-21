@@ -5,7 +5,7 @@ import com.github.theholywaffle.teamspeak3.api.event.*;
 import de.backxtar.events.OnClientJoin;
 import de.backxtar.events.OnClientLeave;
 
-public class EventDistributor {
+public class EventManager {
     public static void loadEvents() {
         TS3Api api = TS3Bot.ts3Bot.api;
 

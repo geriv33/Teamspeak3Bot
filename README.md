@@ -22,7 +22,8 @@ I do only support my own software! This software is free to use.
 * **RAM:** 4Gb
 * **CPU:** 1 Core
 * **Internet:** 100mbit/s
-* **Java 1.8.0_282**
+* **Java 1.8.0_282** or above
+* **MySQL Database**
 * **Screen**
 
 [Java 1.8.0_282](https://www.oracle.com/de/java/technologies/javase/javase-jdk8-downloads.html) or above is needed.
@@ -90,12 +91,19 @@ Your config.cfg will look like this:
 # Bot configuration
 # Comments will automatically be excluded
 
-host=77.777.777.77
-username=YourQueryUser
-password=YourQueryPassword
-nickname=TS3Bot
+# Teamspeak 3
+ts3Host=77.777.777.77
+ts3Username=YourQueryUser
+ts3Password=YourQueryPassword
+ts3Nickname=TS3Bot
 
-# Optional systems can be deactivated with 0 and activated with 1 or higher IDs
+#MySql
+dbHost=localhost
+dbName=yourDatabase
+dbUser=yourUser
+dbPassword=yourPassword
+        
+# Optional systems can be deactivated with -1
 welcomeMessage=1
 afkChannelID=1
 infoChannelID=2
