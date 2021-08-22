@@ -17,7 +17,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class TS3Bot {
-    public final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
+    public final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(3);
     public static Logger logger = LoggerFactory.getLogger(TS3Bot.class);
     public static TS3Bot ts3Bot;
     public ConfigData configData;
@@ -97,6 +97,7 @@ public class TS3Bot {
         EventManager.loadEvents();
         scheduler.schedule(TS3Bot::initShutdown, 1, TimeUnit.SECONDS);
         scheduler.scheduleAtFixedRate(AfkMover::checkAfk, 1, 5, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(SqlManager::checkConnection, 1, 5, TimeUnit.SECONDS);
     }
 
     public static void main(String[] args) {

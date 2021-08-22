@@ -4,28 +4,41 @@ import java.sql.*;
 import java.util.Arrays;
 
 public class SqlManager {
-    private static Connection conn = null;
+    private static Connection connection = null;
 
     public static void connect() throws ClassNotFoundException, SQLException {
+        if (connection != null) disconnect();
         String jdbcDriver = "com.mysql.cj.jdbc.Driver";
-            Class.forName(jdbcDriver);
-            conn = DriverManager.getConnection("jdbc:mysql://" + TS3Bot.ts3Bot.configData.dbHost + ":3306/" + TS3Bot.ts3Bot.configData.dbName,
-                    TS3Bot.ts3Bot.configData.dbUser, TS3Bot.ts3Bot.configData.dbPassword);
-            TS3Bot.logger.info("Database connected.");
+        Class.forName(jdbcDriver);
+        connection = DriverManager.getConnection("jdbc:mysql://" + TS3Bot.ts3Bot.configData.dbHost + ":3306/" + TS3Bot.ts3Bot.configData.dbName,
+                TS3Bot.ts3Bot.configData.dbUser, TS3Bot.ts3Bot.configData.dbPassword);
+        TS3Bot.logger.info("Database connected.");
     }
 
     public static PreparedStatement prepareStatement(String sql) throws SQLException {
-        return conn.prepareStatement(sql);
+        return connection.prepareStatement(sql);
     }
 
     public static void disconnect() {
         try {
-            if (conn != null) {
-                conn.close();
-                TS3Bot.logger.info("Database connected.");
+            if (connection != null) {
+                connection.close();
+                connection = null;
+                TS3Bot.logger.info("Database disconnected.");
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void checkConnection() {
+        try {
+            if (connection.isClosed() || connection == null) {
+                connect();
+                TS3Bot.logger.info("Database reconnected.");
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            TS3Bot.logger.info("Database reconnect failed.");
         }
     }
 
