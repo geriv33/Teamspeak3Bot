@@ -1,18 +1,22 @@
 package de.backxtar;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.*;
 import java.util.Arrays;
 
 public class SqlManager {
+    private static final Logger logger = LoggerFactory.getLogger(SqlManager.class);
     private static Connection connection = null;
 
     public static void connect() throws ClassNotFoundException, SQLException {
         if (connection != null) disconnect();
         String jdbcDriver = "com.mysql.cj.jdbc.Driver";
         Class.forName(jdbcDriver);
-        connection = DriverManager.getConnection("jdbc:mysql://" + TS3Bot.ts3Bot.configData.dbHost + ":3306/" + TS3Bot.ts3Bot.configData.dbName,
-                TS3Bot.ts3Bot.configData.dbUser, TS3Bot.ts3Bot.configData.dbPassword);
-        TS3Bot.logger.info("Database connected.");
+        connection = DriverManager.getConnection("jdbc:mysql://" + Config.getConfigData().dbHost + ":3306/" + Config.getConfigData().dbName,
+                Config.getConfigData().dbUser, Config.getConfigData().dbPassword);
+        logger.info("Database connected.");
     }
 
     public static PreparedStatement prepareStatement(String sql) throws SQLException {
@@ -24,7 +28,7 @@ public class SqlManager {
             if (connection != null) {
                 connection.close();
                 connection = null;
-                TS3Bot.logger.info("Database disconnected.");
+                logger.info("Database disconnected.");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -35,10 +39,10 @@ public class SqlManager {
         try {
             if (connection.isClosed() || connection == null) {
                 connect();
-                TS3Bot.logger.info("Database reconnected.");
+                logger.info("Database reconnected.");
             }
         } catch (SQLException | ClassNotFoundException e) {
-            TS3Bot.logger.info("Database reconnect failed.");
+            logger.info("Database reconnect failed.");
         }
     }
 

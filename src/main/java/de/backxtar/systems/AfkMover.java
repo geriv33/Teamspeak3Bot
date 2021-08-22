@@ -1,6 +1,7 @@
 package de.backxtar.systems;
 
 import com.github.theholywaffle.teamspeak3.TS3Api;
+import de.backxtar.Config;
 import de.backxtar.TS3Bot;
 
 import java.util.HashMap;
@@ -14,8 +15,8 @@ public class AfkMover {
     }
 
     public static void checkAfk() {
-        if (TS3Bot.ts3Bot.configData.afkChannelID == -1) return;
-        TS3Api api = TS3Bot.ts3Bot.api;
+        if (Config.getConfigData().afkChannelID == -1) return;
+        TS3Api api = TS3Bot.getInstance().api;
         api.getClients().parallelStream().forEach(client -> {
             if (!client.isServerQueryClient()) {
                 if (client.isAway() || client.getIdleTime() >= 900000 && client.isInputMuted()
@@ -26,11 +27,11 @@ public class AfkMover {
                         moveData.timestamp = System.currentTimeMillis() - client.getIdleTime();
 
                         api.sendPrivateMessage(client.getId(), "Du wurdest in den AFK-Channel verschoben!");
-                        api.moveClient(client.getId(), TS3Bot.ts3Bot.configData.afkChannelID);
+                        api.moveClient(client.getId(), Config.getConfigData().afkChannelID);
                     }
                 } else {
                     if (dataHashMap.containsKey(client.getUniqueIdentifier())) {
-                        if (client.getChannelId() == TS3Bot.ts3Bot.configData.afkChannelID)
+                        if (client.getChannelId() == Config.getConfigData().afkChannelID)
                             api.moveClient(client.getId(), dataHashMap.get(client.getUniqueIdentifier()).channelID);
                         long[] duration = getTime(System.currentTimeMillis() - dataHashMap.get(client.getUniqueIdentifier()).timestamp);
                         String time = (duration[2] > 0 ? duration[2] + "h " : "") +

@@ -7,7 +7,7 @@ import de.backxtar.events.OnClientLeave;
 
 public class EventManager {
     public static void loadEvents() {
-        TS3Api api = TS3Bot.ts3Bot.api;
+        TS3Api api = TS3Bot.getInstance().api;
 
         api.registerAllEvents();
         api.addTS3Listeners(new TS3Listener() {
