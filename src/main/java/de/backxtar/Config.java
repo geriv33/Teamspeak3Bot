@@ -26,6 +26,7 @@ public class Config {
         public int infoChannelID = -1;
         public int welcomeMessage = -1;
         public String guildID;
+        public String guildLeaderApiKey;
     }
 
     public static void loadConfig() throws IOException {
@@ -69,6 +70,8 @@ public class Config {
                 configData.welcomeMessage = (int) cfg.get(key);
             if (key.equalsIgnoreCase("guildID"))
                 configData.guildID = (String) cfg.get(key);
+            if (key.equalsIgnoreCase("guildLeaderApiKey"))
+                configData.guildLeaderApiKey = (String) cfg.get(key);
         }
     }
 
