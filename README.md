@@ -91,22 +91,28 @@ Your config.cfg will look like this:
 # Bot configuration
 # Comments will automatically be excluded
 
-# Teamspeak 3
+# Teamspeak
 ts3Host=77.777.777.77
 ts3Username=YourQueryUser
 ts3Password=YourQueryPassword
 ts3Nickname=TS3Bot
 
-# MySql
+#MySql
 dbHost=localhost
 dbName=yourDatabase
 dbUser=yourUser
 dbPassword=yourPassword
-        
-# Optional systems can be deactivated with -1
+
+# Optional systems can be deactivated with 0 and activated with 1 or higher IDs
 welcomeMessage=1
 afkChannelID=1
 infoChannelID=2
+
+# Guild Wars 2
+# First step: Get your guilds from https://api.guildwars2.com/v2/account?access_token=yourGw2ApiKey
+# Check which guildID is your guild: https://api.guildwars2.com/v2/guild/guildID
+guildID=EC72818D-F360-E811-81A8-D0A7E04E41B6
+guildLeaderApiKey=yourGw2ApiKey
 ```
 Change the values to your server settings!
 ## Run the bot
