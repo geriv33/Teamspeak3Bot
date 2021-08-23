@@ -16,7 +16,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class TS3Bot {
-    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
+    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(3);
     private static final Logger logger = LoggerFactory.getLogger(TS3Bot.class);
     private static TS3Bot ts3Bot;
     public TS3Query query;
@@ -43,10 +43,10 @@ public class TS3Bot {
 
         EventManager.loadEvents();
         scheduler.schedule(TS3Bot::initShutdown, 1, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(DateTimeClientChannel::changeInfo, 1, 60, TimeUnit.SECONDS);
         scheduler.scheduleAtFixedRate(() -> {
             AfkMover.checkAfk();
             SqlManager.checkConnection();
-            DateTimeClientChannel.changeInfo();
         }, 1, 5, TimeUnit.SECONDS);
     }
 
