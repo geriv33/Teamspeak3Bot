@@ -37,7 +37,6 @@ public class CallToken {
         TS3Api api = TS3Bot.getInstance().api;
         List<Client> clientList = api.getClients();
         GWCallToken token;
-        String[] infos = {"", ""};
 
         try {
             String[] fieldsSelect = {"GW2_Key", "accountName"};
@@ -45,9 +44,7 @@ public class CallToken {
             ResultSet resultSet = SqlManager.select(fieldsSelect, "API_Keys", "clientIdentity = ?", valuesSelect);
 
             if (resultSet.next()) {
-                infos[0] = resultSet.getString("GW2_Key");
-                infos[1] = resultSet.getString("accountName");
-                token = getGWCallToken(infos[0]);
+                token = getGWCallToken(resultSet.getString("GW2_Key"));
 
                 if (token == null || token.permissions.length < 10) {
                     if (clientList.contains(client)) {
