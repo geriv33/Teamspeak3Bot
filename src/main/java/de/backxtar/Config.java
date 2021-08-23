@@ -25,6 +25,7 @@ public class Config {
         public int afkChannelID = -1;
         public int infoChannelID = -1;
         public int welcomeMessage = -1;
+        public String guildID;
     }
 
     public static void loadConfig() throws IOException {
@@ -66,6 +67,8 @@ public class Config {
                 configData.infoChannelID = (int) cfg.get(key);
             if (key.equalsIgnoreCase("welcomeMessage"))
                 configData.welcomeMessage = (int) cfg.get(key);
+            if (key.equalsIgnoreCase("guildID"))
+                configData.guildID = (String) cfg.get(key);
         }
     }
 
