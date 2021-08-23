@@ -4,6 +4,7 @@ import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.TS3Config;
 import com.github.theholywaffle.teamspeak3.TS3Query;
 import com.github.theholywaffle.teamspeak3.api.exception.TS3Exception;
+import de.backxtar.gw2.CallToken;
 import de.backxtar.systems.AfkMover;
 import de.backxtar.systems.DateTimeClientChannel;
 import org.slf4j.Logger;
@@ -16,7 +17,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class TS3Bot {
-    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(3);
+    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(4);
     private static final Logger logger = LoggerFactory.getLogger(TS3Bot.class);
     private static TS3Bot ts3Bot;
     public TS3Query query;
@@ -48,6 +49,8 @@ public class TS3Bot {
             AfkMover.checkAfk();
             SqlManager.checkConnection();
         }, 1, 5, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(() -> api.getClients().parallelStream().forEach(CallToken::checkToken),
+                1, 600, TimeUnit.SECONDS);
     }
 
     public static void main(String[] args) {
