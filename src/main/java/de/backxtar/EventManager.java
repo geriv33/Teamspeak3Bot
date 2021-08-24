@@ -20,6 +20,7 @@ public class EventManager {
             public void onClientJoin(ClientJoinEvent clientJoinEvent) {
                 OnClientJoin.changeInfo(api);
                 OnClientJoin.sendWelcome(api, clientJoinEvent);
+                OnClientJoin.gw2ApiReminder(api, clientJoinEvent);
             }
 
             @Override

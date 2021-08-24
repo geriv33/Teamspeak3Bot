@@ -19,7 +19,7 @@ public class SqlManager {
         logger.info("Database connected.");
     }
 
-    public static PreparedStatement prepareStatement(String sql) throws SQLException {
+    private static PreparedStatement prepareStatement(String sql) throws SQLException {
         return connection.prepareStatement(sql);
     }
 
