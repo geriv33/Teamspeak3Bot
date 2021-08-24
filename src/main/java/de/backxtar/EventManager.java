@@ -20,11 +20,11 @@ public class EventManager {
                 String message = textMessageEvent.getMessage();
                 Client client = api.getClientInfo(textMessageEvent.getTargetClientId());
 
-                if (message.startsWith("!")) {
-                    String[] command = message.substring(1).split(" ");
+                if (message.startsWith(Config.getConfigData().prefix)) {
+                    String[] command = message.substring(Config.getConfigData().prefix.length()).split(" ");
 
                     if (command.length > 0 && !TS3Bot.getInstance().getCmdManager().runCmd(command, api, textMessageEvent, client))
-                        api.sendChannelMessage(client.getNickname() + ", dieser Befehl ist mir nicht bekannt!");
+                        api.sendChannelMessage("[color=red]✘[/color] Dieser Befehl ist mir nicht bekannt, [b]" + client.getNickname() + "[/b]!");
                 }
             }
 

@@ -22,6 +22,7 @@ public class Config {
         public String dbName;
         public String dbUser;
         public String dbPassword;
+        public String prefix = "!";
         public int afkChannelID = -1;
         public int infoChannelID = -1;
         public int welcomeMessage = -1;
@@ -62,6 +63,8 @@ public class Config {
                 configData.dbUser = (String) cfg.get(key);
             if (key.equalsIgnoreCase("dbPassword"))
                 configData.dbPassword = (String) cfg.get(key);
+            if (key.equalsIgnoreCase("prefix"))
+                configData.prefix = (String) cfg.get(key);
             if (key.equalsIgnoreCase("afkChannelID"))
                 configData.afkChannelID = (int) cfg.get(key);
             if (key.equalsIgnoreCase("infoChannelID"))

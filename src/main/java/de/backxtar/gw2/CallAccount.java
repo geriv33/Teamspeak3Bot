@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import java.io.IOException;
 
 public class CallAccount {
+
     public static class GWCallAccount {
         public String id;
         public String name;

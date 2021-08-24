@@ -122,27 +122,31 @@ public class CallToken {
         }
     }
 
-    public static boolean isValid(Client client) {
+    public static String[] isValid(Client client) {
         TS3Api api = TS3Bot.getInstance().api;
+        String[] gw2Values = new String[2];
 
         try {
-            String[] fieldsSelect = {"GW2_Key"};
+            String[] fieldsSelect = {"GW2_Key", "accountName"};
             Object[] valuesSelect = {client.getUniqueIdentifier()};
             ResultSet resultSet = SqlManager.select(fieldsSelect, "API_Keys", "clientIdentity = ?", valuesSelect);
 
             if (resultSet.next()) {
-                GWCallToken token = getGWCallToken(resultSet.getString("GW2_Key"));
-                if (token != null && token.permissions.length == 10) return true;
+                gw2Values[0] = resultSet.getString("GW2_Key");
+                gw2Values[1] = resultSet.getString("accountName");
+                GWCallToken token = getGWCallToken(gw2Values[0]);
+
+                if (token != null && token.permissions.length == 10) return gw2Values;
                 else {
                     api.sendPrivateMessage(client.getId(),
                             "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][b] ist ungültig oder hat nicht alle Berechtigungen.");
-                    return false;
+                    return null;
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Du hast noch keinen [b][color=red]Gw2-Key[/color][b] hinterlegt.");
-        return false;
+        return null;
     }
 }
