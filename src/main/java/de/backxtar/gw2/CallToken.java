@@ -47,7 +47,7 @@ public class CallToken {
                 if (token == null || token.permissions.length < 10) {
                     if (api.isClientOnline(client.getUniqueIdentifier())) {
                         api.sendPrivateMessage(client.getId(),
-                                "✘ Dein Gw2-Key ist nicht mehr gültig oder" +
+                                "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][b] ist nicht mehr gültig oder" +
                                         "hat nicht alle Berechtigungen.\n" +
                                         "Du kannst hier einen neuen Gw2-Key erstellen:\n" +
                                         "https://account.arena.net/applications");
@@ -55,7 +55,7 @@ public class CallToken {
                     }
                     api.sendOfflineMessage(client.getUniqueIdentifier(),
                             "Gw2_Key ungültig!",
-                            "✘ Dein Gw2-Key ist nicht mehr gültig oder" +
+                            "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][b] ist nicht mehr gültig oder" +
                                     "hat nicht alle Berechtigungen.\n" +
                                     "Du kannst hier einen neuen Gw2-Key erstellen:\n" +
                                     "https://account.arena.net/applications");
@@ -79,7 +79,7 @@ public class CallToken {
             if (resultSet.next()) {
                 if (resultSet.getString("GW2_Key").equalsIgnoreCase(apiKey)) {
                     api.sendPrivateMessage(client.getId(),
-                            "Dieser Gw2-Key ist bereits hinterlegt.");
+                            "[color=red]✘[/color] Dieser [b][color=red]Gw2-Key[/color][b] ist bereits hinterlegt.");
                     return;
                 }
                 token = getGWCallToken(apiKey);
@@ -92,7 +92,7 @@ public class CallToken {
                     SqlManager.update(fieldsUpdate, "API_Keys", "clientIdentity = ?", valuesUpdate);
 
                     api.sendPrivateMessage(client.getId(),
-                            "✔ Dein Gw2-Key wurde aktualisiert.\n" +
+                            "[color=green]✔[/color] Dein [b][color=green]Gw2-Key[/color][b] wurde aktualisiert.\n" +
                                     "Gw2-Account: " + account.name);
                     return;
                 }
@@ -107,13 +107,13 @@ public class CallToken {
                     SqlManager.insert("API_Keys", fieldsInsert, valuesInsert);
 
                     api.sendPrivateMessage(client.getId(),
-                            "✔ Dein Gw2-Key wurde hinterlegt.\n" +
+                            "[color=green]✔[/color] Dein [b][color=green]Gw2-Key[/color][b] wurde hinterlegt.\n" +
                                     "Gw2-Account: " + account.name);
                     return;
                 }
             }
             api.sendPrivateMessage(client.getId(),
-                    "✘ Dein Gw2-Key ist nicht gültig oder" +
+                    "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][b] ist nicht gültig oder" +
                             "hat nicht alle Berechtigungen.\n" +
                             "Du kannst hier einen neuen Gw2-Key erstellen:\n" +
                             "https://account.arena.net/applications");
@@ -135,14 +135,14 @@ public class CallToken {
                 if (token != null && token.permissions.length == 10) return true;
                 else {
                     api.sendPrivateMessage(client.getId(),
-                            "✘ Dein Gw2-Key ist ungültig oder hat nicht alle Berechtigungen.");
+                            "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][b] ist ungültig oder hat nicht alle Berechtigungen.");
                     return false;
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        api.sendPrivateMessage(client.getId(), "✘ Du hast noch keinen Gw2-Key hinterlegt.");
+        api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Du hast noch keinen [b][color=red]Gw2-Key[/color][b] hinterlegt.");
         return false;
     }
 }

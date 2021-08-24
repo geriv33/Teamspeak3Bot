@@ -6,6 +6,7 @@ import com.github.theholywaffle.teamspeak3.api.event.ClientJoinEvent;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
 import de.backxtar.Config;
 import de.backxtar.SqlManager;
+import de.backxtar.commands.HelpCommand;
 import de.backxtar.systems.DateTimeClientChannel;
 
 import java.sql.ResultSet;
@@ -23,7 +24,7 @@ public class OnClientJoin {
     public static void sendWelcome(TS3Api api, ClientJoinEvent e) {
         Client client = api.getClientInfo(e.getClientId());
         api.sendPrivateMessage(client.getId(),
-                "Willkommen auf " + api.getServerInfo().getName() + ", " + client.getNickname() + "!");
+                "Willkommen auf [b][color=red]" + api.getServerInfo().getName() + "[color=red][/b], [b]" + client.getNickname() + "[b]!");
     }
 
     public static void gw2ApiReminder(TS3Api api, ClientJoinEvent e) {
@@ -37,8 +38,8 @@ public class OnClientJoin {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        api.sendPrivateMessage(client.getId(), "Du hast noch keinen Gw2-Key hinterlegt\n" +
-                "Bitte denke daran einen Gw2-Key zu hinterlegen. Du kannst hier einen Gw2-Key erstellen:\n" +
+        api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Du hast noch keinen [b][color=red]Gw2-Key[/color][b] hinterlegt\n" +
+                "Bitte denke daran einen [b][color=red]Gw2-Key[/color][b] zu hinterlegen. Du kannst hier einen [b][color=red]Gw2-Key[/color][b] erstellen:\n" +
                 "https://account.arena.net/applications");
     }
 }
