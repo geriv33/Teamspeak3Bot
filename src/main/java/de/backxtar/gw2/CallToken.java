@@ -9,7 +9,6 @@ import de.backxtar.TS3Bot;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 public class CallToken {
 
@@ -35,7 +34,6 @@ public class CallToken {
 
     public static void checkToken(Client client) {
         TS3Api api = TS3Bot.getInstance().api;
-        List<Client> clientList = api.getClients();
         GWCallToken token;
 
         try {
@@ -47,7 +45,7 @@ public class CallToken {
                 token = getGWCallToken(resultSet.getString("GW2_Key"));
 
                 if (token == null || token.permissions.length < 10) {
-                    if (clientList.contains(client)) {
+                    if (api.isClientOnline(client.getUniqueIdentifier())) {
                         api.sendPrivateMessage(client.getId(),
                                 "✘ Dein Gw2-Key ist nicht mehr gültig oder" +
                                         "hat nicht alle Berechtigungen.\n" +

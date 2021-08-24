@@ -1,7 +1,9 @@
 package de.backxtar;
 
 import com.github.theholywaffle.teamspeak3.TS3Api;
+import com.github.theholywaffle.teamspeak3.api.TextMessageTargetMode;
 import com.github.theholywaffle.teamspeak3.api.event.*;
+import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
 import de.backxtar.events.OnClientJoin;
 import de.backxtar.events.OnClientLeave;
 
@@ -13,7 +15,17 @@ public class EventManager {
         api.addTS3Listeners(new TS3Listener() {
             @Override
             public void onTextMessage(TextMessageEvent textMessageEvent) {
+                if (textMessageEvent.getTargetMode() != TextMessageTargetMode.CLIENT
+                        || textMessageEvent.getInvokerUniqueId().equalsIgnoreCase(api.whoAmI().getUniqueIdentifier())) return;
+                String message = textMessageEvent.getMessage();
+                Client client = api.getClientInfo(textMessageEvent.getTargetClientId());
 
+                if (message.startsWith("!")) {
+                    String[] command = message.substring(1).split(" ");
+
+                    if (command.length > 0 && !TS3Bot.getInstance().getCmdManager().runCmd(command, api, textMessageEvent, client))
+                        api.sendChannelMessage(client.getNickname() + ", dieser Befehl ist mir nicht bekannt!");
+                }
             }
 
             @Override

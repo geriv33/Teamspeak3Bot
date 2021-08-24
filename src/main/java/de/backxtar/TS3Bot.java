@@ -20,6 +20,7 @@ public class TS3Bot {
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(4);
     private static final Logger logger = LoggerFactory.getLogger(TS3Bot.class);
     private static TS3Bot ts3Bot;
+    private final CommandManager commandManager;
     public TS3Query query;
     public TS3Api api;
 
@@ -42,6 +43,7 @@ public class TS3Bot {
         api.selectVirtualServerById(1);
         api.setNickname(Config.getConfigData().ts3Nickname);
 
+        this.commandManager = new CommandManager();
         EventManager.loadEvents();
         scheduler.schedule(TS3Bot::initShutdown, 1, TimeUnit.SECONDS);
         scheduler.scheduleAtFixedRate(DateTimeClientChannel::changeInfo, 1, 60, TimeUnit.SECONDS);
@@ -86,5 +88,9 @@ public class TS3Bot {
 
     public static TS3Bot getInstance() {
         return ts3Bot;
+    }
+
+    public CommandManager getCmdManager() {
+        return commandManager;
     }
 }
