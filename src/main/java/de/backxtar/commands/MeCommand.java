@@ -4,25 +4,35 @@ import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.api.event.TextMessageEvent;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
 import de.backxtar.CommandInterface;
-import de.backxtar.gw2.CallAccount;
-import de.backxtar.gw2.CallGuild;
-import de.backxtar.gw2.CallToken;
-import de.backxtar.gw2.CallWorld;
+import de.backxtar.TS3Bot;
+import de.backxtar.gw2.*;
+
+import java.util.concurrent.*;
 
 public class MeCommand implements CommandInterface {
 
     @Override
     public void run(String cmdValue, TS3Api api, TextMessageEvent event, Client client) {
+        ExecutorService executor = TS3Bot.getInstance().getExecutor();
         String[] gw2Values = CallToken.isValid(client);
         if (gw2Values == null) return;
 
-        CallAccount.GWCallAccount account   = CallAccount.getAccount(gw2Values[0]);
-        CallWorld.GWCallWorld world         = CallWorld.getWorld(account.world).get(0);
+        Future<CallAccount.GWCallAccount> accountAsync = executor.submit(() -> CallAccount.getAccount(gw2Values[0]));
+        Future<CallPvP.GWCallPvP> pvpAsync = executor.submit(() -> CallPvP.getPvp(gw2Values[0]));
+        CallAccount.GWCallAccount account;
+        CallPvP.GWCallPvP pvp;
 
+        try {
+            account = accountAsync.get();
+            pvp = pvpAsync.get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+            return;
+        }
+        CallWorld.GWCallWorld world = CallWorld.getWorld(account.world).get(0);
         StringBuilder guildBuilder = getBuilder(account, 1);
         StringBuilder guildLeadBuilder = getBuilder(account, 2);
         StringBuilder accessBuilder = getBuilder(account, 3);
-        String population = world.population;
 
         api.sendPrivateMessage(client.getId(),
                 "Hier sind Deine Account-Informationen, [b]" + client.getNickname() + "[/b]:\n\n" +
@@ -30,12 +40,17 @@ public class MeCommand implements CommandInterface {
                         "[color=orange][b]Erstellt:[/b][/color] " + getDate(account.created) + "\n" +
                         "[color=orange][b]Alter:[/b][/color] " + getAge(account.age) + "\n" +
                         "[color=orange][b]Inhalte:[/b][/color] " + accessBuilder + "\n" +
-                        "[color=orange][b]Server:[/b][/color] " + world.name + " [" + population + "]\n" +
+                        "[color=orange][b]Server:[/b][/color] " + world.name + " [" + world.population + "]\n" +
                         "[color=orange][b]Kommandeur:[/b][/color] " + (account.commander ? "Ja" : "Nein") + "\n" +
                         (account.guilds.length > 0 ? "[color=orange][b]Gilden:[/b][/color] " + guildBuilder + "\n" : "") +
                         (account.leader.length > 0 ? "[color=orange][b]Leader:[/b][/color] " + guildLeadBuilder + "\n" : "") +
                         "[color=orange][b]Fraktal Level:[/b][/color] " + account.fractal_level + "\n" +
                         "[color=orange][b]WvW-Rang:[/b][/color] " + account.wvw_rank + "\n" +
+                        "[color=orange][b]PvP-Rang:[/b][/color] " + pvp.pvp_rank + "\n" +
+                        "[color=orange][b]PvP-Rangpunkte:[/b][/color] " + pvp.pvp_rank_points + "\n" +
+                        "[color=orange][b]PvP-Siege:[/b][/color] " + pvp.aggregate.wins + "\n" +
+                        "[color=orange][b]PvP-Niederlagen:[/b][/color] " + pvp.aggregate.losses + "\n" +
+                        "[color=orange][b]PvP-Desertionen:[/b][/color] " + pvp.aggregate.desertions + "\n" +
                         "[color=orange][b]Tägliche-AP:[/b][/color] " + account.daily_ap + "\n" +
                         "[color=orange][b]Monatliche-AP:[/b][/color] " + account.monthly_ap);
     }
@@ -52,7 +67,7 @@ public class MeCommand implements CommandInterface {
                 guild = CallGuild.getGuild(account.guilds[i]);
 
                 if (i < (count - 1))
-                    builder.append(guild.name).append(" [").append(guild.tag).append("]").append("\n");
+                    builder.append(guild.name).append(" [").append(guild.tag).append("]").append(", ");
                 else builder.append(guild.name).append(" [").append(guild.tag).append("]");
             }
         } else if (mode == 2) {
@@ -61,8 +76,8 @@ public class MeCommand implements CommandInterface {
             for (int i = 0; i < count; i++) {
                 guild = CallGuild.getGuild(account.leader[i]);
 
-                if (i < (count -1))
-                    builder.append(guild.name).append(" [").append(guild.tag).append("]").append("\n");
+                if (i < (count - 1))
+                    builder.append(guild.name).append(" [").append(guild.tag).append("]").append(", ");
                 else builder.append(guild.name).append(" [").append(guild.tag).append("]");
             }
         } else if (mode == 3) {
@@ -71,19 +86,19 @@ public class MeCommand implements CommandInterface {
             for (int i = 0; i < count; i++) {
                 if (account.access[i].equalsIgnoreCase("PlayForFree")) {
                     builder.append("Guild Wars 2 [Free]");
-                    if (i < (count -1)) builder.append("\n");
+                    if (i < (count - 1)) builder.append(", ");
                 }
                 if (account.access[i].equalsIgnoreCase("GuildWars2")) {
                     builder.append("Guild Wars 2 [Payed]");
-                    if (i < (count -1)) builder.append("\n");
+                    if (i < (count - 1)) builder.append(", ");
                 }
                 if (account.access[i].equalsIgnoreCase("HeartOfThorns")) {
                     builder.append("Heart of Thorns [1]");
-                    if (i < (count -1)) builder.append("\n");
+                    if (i < (count - 1)) builder.append(", ");
                 }
                 if (account.access[i].equalsIgnoreCase("PathOfFire")) {
                     builder.append("Path of Fire [2]");
-                    if (i < (count -1)) builder.append("\n");
+                    if (i < (count - 1)) builder.append(", ");
                 }
             }
         }
