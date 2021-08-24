@@ -9,9 +9,6 @@ import de.backxtar.gw2.CallGuild;
 import de.backxtar.gw2.CallToken;
 import de.backxtar.gw2.CallWorld;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MeCommand implements CommandInterface {
 
     @Override
@@ -55,8 +52,8 @@ public class MeCommand implements CommandInterface {
                 guild = CallGuild.getGuild(account.guilds[i]);
 
                 if (i < (count - 1))
-                    builder.append(guild.name + " [" + guild.tag + "]").append("\n");
-                else builder.append(guild.name + " [" + guild.tag + "]");
+                    builder.append(guild.name).append(" [").append(guild.tag).append("]").append("\n");
+                else builder.append(guild.name).append(" [").append(guild.tag).append("]");
             }
         } else if (mode == 2) {
             count = account.leader.length;
@@ -65,8 +62,8 @@ public class MeCommand implements CommandInterface {
                 guild = CallGuild.getGuild(account.leader[i]);
 
                 if (i < (count -1))
-                    builder.append(guild.name + " [" + guild.tag + "]").append("\n");
-                else builder.append(guild.name + " [" + guild.tag + "]");
+                    builder.append(guild.name).append(" [").append(guild.tag).append("]").append("\n");
+                else builder.append(guild.name).append(" [").append(guild.tag).append("]");
             }
         } else if (mode == 3) {
             count = account.access.length;

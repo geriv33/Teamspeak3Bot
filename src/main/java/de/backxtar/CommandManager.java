@@ -4,6 +4,7 @@ import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.api.event.TextMessageEvent;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
 import de.backxtar.commands.HelpCommand;
+import de.backxtar.commands.MeCommand;
 import de.backxtar.commands.SetAPIKeyCommand;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -17,6 +18,7 @@ public class CommandManager {
         // Command-Register
         this.commands.put("help", new HelpCommand());
         this.commands.put("key", new SetAPIKeyCommand());
+        this.commands.put("me", new MeCommand());
     }
 
     public boolean runCmd(String[] command, TS3Api api, TextMessageEvent event, Client client) {
