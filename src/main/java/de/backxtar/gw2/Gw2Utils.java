@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-public class Utils {
+public class Gw2Utils {
 
     public static String getJson(String urlString) throws IOException {
         BufferedReader reader = null;

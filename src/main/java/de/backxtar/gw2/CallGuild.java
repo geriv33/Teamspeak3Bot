@@ -1,6 +1,7 @@
 package de.backxtar.gw2;
 
 import com.google.gson.Gson;
+import de.backxtar.Config;
 
 import java.io.IOException;
 
@@ -38,7 +39,8 @@ public class CallGuild {
     public static GWCallGuild getGuild(String guildID) {
         String json = "";
         try {
-            json = Utils.getJson("https://api.guildwars2.com/v2/guild/" + guildID);
+            json = Gw2Utils.getJson("https://api.guildwars2.com/v2/guild/" + guildID +
+                    "?access_token=" + Config.getConfigData().guildLeaderApiKey);
         } catch (IOException e) {
             e.printStackTrace();
         }

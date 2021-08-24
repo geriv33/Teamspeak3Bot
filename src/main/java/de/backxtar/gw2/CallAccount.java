@@ -25,7 +25,7 @@ public class CallAccount {
     public static GWCallAccount getAccount(String token) {
         String json = "";
         try {
-            json = Utils.getJson("https://api.guildwars2.com/v2/account?access_token=" + token);
+            json = Gw2Utils.getJson("https://api.guildwars2.com/v2/account?access_token=" + token);
         } catch (IOException e) {
             e.printStackTrace();
         }

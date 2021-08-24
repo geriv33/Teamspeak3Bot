@@ -21,7 +21,7 @@ public class CallToken {
     public static GWCallToken getGWCallToken(String token) {
         String json = "";
         try {
-            json = Utils.getJson("https://api.guildwars2.com/v2/tokeninfo?access_token=" + token);
+            json = Gw2Utils.getJson("https://api.guildwars2.com/v2/tokeninfo?access_token=" + token);
         } catch (IOException ignored) {}
 
         Gson gson = new Gson();
@@ -125,6 +125,8 @@ public class CallToken {
     public static String[] isValid(Client client) {
         TS3Api api = TS3Bot.getInstance().api;
         String[] gw2Values = new String[2];
+        // Slot 1: Gw2-Key
+        // Slot 2: accountName
 
         try {
             String[] fieldsSelect = {"GW2_Key", "accountName"};

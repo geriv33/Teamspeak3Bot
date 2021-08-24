@@ -19,7 +19,7 @@ public class CallWorld {
     public static List<GWCallWorld> getWorld(Long id) {
         String json = "";
         try {
-            json = Utils.getJson("https://api.guildwars2.com/v2/worlds?ids=" + id);
+            json = Gw2Utils.getJson("https://api.guildwars2.com/v2/worlds?ids=" + id);
         } catch (IOException e) {
             e.printStackTrace();
         }
