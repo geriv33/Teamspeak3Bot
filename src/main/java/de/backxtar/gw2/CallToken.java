@@ -86,44 +86,39 @@ public class CallToken {
                 }
                 token = getGWCallToken(apiKey);
 
-                if (token == null || token.permissions.length < 10) {
+                if (token != null && token.permissions.length == 10) {
+                    account = CallAccount.getAccount(apiKey);
+
+                    String[] fieldsUpdate = {"GW2_Key", "accountName"};
+                    Object[] valuesUpdate = {apiKey, account.name, client.getUniqueIdentifier()};
+                    SqlManager.update(fieldsUpdate, "API_Keys", "clientIdentity = ?", valuesUpdate);
+
                     api.sendPrivateMessage(client.getId(),
-                            "✘ Dein Gw2-Key ist nicht mehr gültig oder" +
-                                    "hat nicht alle Berechtigungen.\n" +
-                                    "Du kannst hier einen neuen Gw2-Key erstellen:\n" +
-                                    "https://account.arena.net/applications");
+                            "✔ Dein Gw2-Key wurde aktualisiert.\n" +
+                                    "Gw2-Account: " + account.name);
                     return;
                 }
-                account = CallAccount.getAccount(apiKey);
-
-                String[] fieldsUpdate = {"GW2_Key", "accountName"};
-                Object[] valuesUpdate = {apiKey, account.name, client.getUniqueIdentifier()};
-                SqlManager.update(fieldsUpdate, "API_Keys", "clientIdentity = ?", valuesUpdate);
-
-                api.sendPrivateMessage(client.getId(),
-                        "✔ Dein Gw2-Key wurde aktualisiert.\n" +
-                                "Gw2-Account: " + account.name);
             } else {
                 token = getGWCallToken(apiKey);
 
-                if (token == null || token.permissions.length < 10) {
+                if (token != null && token.permissions.length == 10) {
+                    account = CallAccount.getAccount(apiKey);
+
+                    String[] fieldsInsert = {"clientIdentity", "GW2_Key", "accountName"};
+                    Object[] valuesInsert = {client.getUniqueIdentifier(), apiKey, account.name, client.getUniqueIdentifier()};
+                    SqlManager.insert("API_Keys", fieldsInsert, valuesInsert);
+
                     api.sendPrivateMessage(client.getId(),
-                            "✘ Dein Gw2-Key ist nicht mehr gültig oder" +
-                                    "hat nicht alle Berechtigungen.\n" +
-                                    "Du kannst hier einen neuen Gw2-Key erstellen:\n" +
-                                    "https://account.arena.net/applications");
+                            "✔ Dein Gw2-Key wurde hinterlegt.\n" +
+                                    "Gw2-Account: " + account.name);
                     return;
                 }
-                account = CallAccount.getAccount(apiKey);
-
-                String[] fieldsInsert = {"clientIdentity", "GW2_Key", "accountName"};
-                Object[] valuesInsert = {client.getUniqueIdentifier(), apiKey, account.name, client.getUniqueIdentifier()};
-                SqlManager.insert("API_Keys", fieldsInsert, valuesInsert);
-
-                api.sendPrivateMessage(client.getId(),
-                        "✔ Dein Gw2-Key wurde hinterlegt.\n" +
-                                "Gw2-Account: " + account.name);
             }
+            api.sendPrivateMessage(client.getId(),
+                    "✘ Dein Gw2-Key ist nicht gültig oder" +
+                            "hat nicht alle Berechtigungen.\n" +
+                            "Du kannst hier einen neuen Gw2-Key erstellen:\n" +
+                            "https://account.arena.net/applications");
         } catch (SQLException e) {
             e.printStackTrace();
         }
