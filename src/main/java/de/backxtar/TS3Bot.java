@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.sql.SQLException;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -27,7 +26,7 @@ public class TS3Bot {
 
     public TS3Bot() throws IOException, TS3Exception, SQLException, ClassNotFoundException {
         ts3Bot = this;
-        this.scheduler = Executors.newScheduledThreadPool(4);
+        this.scheduler = Executors.newScheduledThreadPool(3);
         final TS3Config config = new TS3Config();
         Config.loadConfig();
         logger.info("config.cfg loaded.");
@@ -45,16 +44,13 @@ public class TS3Bot {
         api.selectVirtualServerById(1);
         api.setNickname(Config.getConfigData().ts3Nickname);
 
-        this.commandManager = new CommandManager();
         EventManager.loadEvents();
-        scheduler.schedule(TS3Bot::initShutdown, 1, TimeUnit.SECONDS);
+        this.commandManager = new CommandManager();
         scheduler.scheduleAtFixedRate(DateTimeClientChannel::changeInfo, 1, 60, TimeUnit.SECONDS);
-        scheduler.scheduleAtFixedRate(() -> {
-            AfkMover.checkAfk();
-            SqlManager.checkConnection();
-        }, 1, 5, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(AfkMover::checkAfk, 1, 5, TimeUnit.SECONDS);
         scheduler.scheduleAtFixedRate(() -> api.getClients().parallelStream().forEach(CallToken::checkToken),
                 1, 600, TimeUnit.SECONDS);
+        initShutdown();
     }
 
     public static void main(String[] args) {
@@ -75,7 +71,7 @@ public class TS3Bot {
             while ((line = reader.readLine()) != null) {
                 if (line.equalsIgnoreCase("exit")) {
                     if (TS3Bot.ts3Bot.query.isConnected() && !TS3Bot.ts3Bot.scheduler.isShutdown()) {
-                        TS3Bot.ts3Bot.scheduler.shutdown();
+                        TS3Bot.ts3Bot.scheduler.shutdownNow();
                         TS3Bot.ts3Bot.query.exit();
                         SqlManager.disconnect();
                         logger.info("Bot offline.");

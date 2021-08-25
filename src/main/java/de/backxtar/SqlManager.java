@@ -35,17 +35,6 @@ public class SqlManager {
         }
     }
 
-    public static void checkConnection() {
-        try {
-            if (connection.isClosed() || connection == null) {
-                connect();
-                logger.info("Database reconnected.");
-            }
-        } catch (SQLException | ClassNotFoundException e) {
-            logger.info("Database reconnect failed.");
-        }
-    }
-
     public static void insert(String table, String[] fields, Object[] values) throws SQLException {
         StringBuilder stmtString = new StringBuilder("INSERT INTO " + table + Arrays.toString(fields).replace("[", "(").replace("]", ")") + " VALUES(");
         for (Object ignored : values)
