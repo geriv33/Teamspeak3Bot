@@ -29,6 +29,7 @@ public class WalletCommand implements CommandInterface {
     }
 
     private String currency(int id, long amount) {
+        //https://api.guildwars2.com/v2/currencies?ids=all
         String currency = "";
 
         switch (id) {
