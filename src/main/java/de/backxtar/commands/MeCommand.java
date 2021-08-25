@@ -4,16 +4,15 @@ import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.api.event.TextMessageEvent;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
 import de.backxtar.CommandInterface;
-import de.backxtar.TS3Bot;
 import de.backxtar.gw2.*;
 
 import java.util.concurrent.*;
 
 public class MeCommand implements CommandInterface {
+    private final ExecutorService executor = Executors.newFixedThreadPool(2);
 
     @Override
     public void run(String cmdValue, TS3Api api, TextMessageEvent event, Client client) {
-        ExecutorService executor = TS3Bot.getInstance().getExecutor();
         String[] gw2Values = CallToken.isValid(client);
         if (gw2Values == null) return;
 

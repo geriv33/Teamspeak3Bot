@@ -19,7 +19,6 @@ import java.util.concurrent.TimeUnit;
 
 public class TS3Bot {
     private final ScheduledExecutorService scheduler;
-    private ExecutorService executor;
     private static final Logger logger = LoggerFactory.getLogger(TS3Bot.class);
     private static TS3Bot ts3Bot;
     private final CommandManager commandManager;
@@ -29,7 +28,6 @@ public class TS3Bot {
     public TS3Bot() throws IOException, TS3Exception, SQLException, ClassNotFoundException {
         ts3Bot = this;
         this.scheduler = Executors.newScheduledThreadPool(4);
-        this.executor = Executors.newFixedThreadPool(2);
         final TS3Config config = new TS3Config();
         Config.loadConfig();
         logger.info("config.cfg loaded.");
@@ -96,9 +94,5 @@ public class TS3Bot {
 
     public CommandManager getCmdManager() {
         return commandManager;
-    }
-
-    public ExecutorService getExecutor() {
-        return executor;
     }
 }
