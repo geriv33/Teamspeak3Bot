@@ -9,7 +9,7 @@
 This bot is still under developement.\
 [Check Virus Total Scan!](https://www.virustotal.com/gui/file/5c94d45ba57f32ffc090f8ac73810ef365935f7956c18cc6420c58eb28692577/detection)
 
-##Features
+## Features
 * Guild Wars 2 🠖 Teamspeak 3 synchronization
 * Event Management
 * Guild Wars 2 Account-Information
