@@ -6,9 +6,20 @@
 <img align="right" src="https://mlpfyvpfyq69.i.optimole.com/cZ9PPCo-D60oTdJD/w:auto/h:auto/q:auto/https://gameserververgleich.info/wp-content/uploads/TeamSpeak-Server-mieten.png" height="200" width="200">
 
 # Teamspeak 3 Bot
-Quick manual for setting up the TS3Bot on Linux servers. Make sure your server has enough RAM and a good connection.
-
+This bot is still under developement.\
 [Check Virus Total Scan!](https://www.virustotal.com/gui/file/5c94d45ba57f32ffc090f8ac73810ef365935f7956c18cc6420c58eb28692577/detection)
+
+##Features
+* Guild Wars 2 🠖 Teamspeak 3 synchronization
+* Event Management
+* Guild Wars 2 Account-Information
+* Guild Wars 2 Wallet
+* Dailies
+* Raids 
+* Friend system
+* Support System
+* Afk Mover
+* Timer
 ## Summary
 I do only support my own software! This software is free to use.
 
