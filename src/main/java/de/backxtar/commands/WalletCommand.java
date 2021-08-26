@@ -34,13 +34,13 @@ public class WalletCommand implements CommandInterface {
 
         switch (id) {
             case 1 : long[] coins = getCoins(amount);
-                currency = "[color=orange][b]Coins:[/color][/b] " + (coins[2] > 0 ? "[b]" + coins[2] + "[/b] Gold, " : "") +
+                currency = "[color=orange][b]Coins:[/b][/color] " + (coins[2] > 0 ? "[b]" + coins[2] + "[/b] Gold, " : "") +
                         (coins[1] > 0 ? "[b]" + coins[1] + "[/b] Silber, " : "") +
                         (coins[0] > 0 ? "[b]" + coins[0] + "[/b] Kupfer, " : "");
                 break;
-            case 2 : currency = "[color=orange][b]Karma:[/color][/b] " + amount;
+            case 2 : currency = "[color=orange][b]Karma:[/b][/color] " + amount;
                 break;
-            case 3 : currency = "[color=orange][b]Lorbeeren:[/color][/b] " + amount;
+            case 3 : currency = "[color=orange][b]Lorbeeren:[/b][/color] " + amount;
                 break;
             case 4 :
                 //TODO keep on

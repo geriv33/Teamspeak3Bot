@@ -17,7 +17,7 @@ public class Config {
         public String ts3Host;
         public String ts3Username;
         public String ts3Password;
-        public String ts3Nickname = "TS3-Bot";
+        public String ts3Nickname = "Der Gerät";
         public String dbHost;
         public String dbName;
         public String dbUser;
@@ -26,6 +26,8 @@ public class Config {
         public int afkChannelID = -1;
         public int infoChannelID = -1;
         public int welcomeMessage = -1;
+        public String tempServerGroup;
+        public String guestServerGroupName;
         public String guildID;
         public String guildLeaderApiKey;
     }
@@ -55,6 +57,8 @@ public class Config {
                 configData.ts3Password = (String) cfg.get(key);
             if (key.equalsIgnoreCase("ts3Nickname") && cfg.get(key) != null)
                 configData.ts3Nickname = (String) cfg.get(key);
+            else if (key.equalsIgnoreCase("ts3Nickname") && cfg.get(key) == null)
+                configData.ts3Nickname = "Der Gerät";
             if (key.equalsIgnoreCase("dbHost"))
                 configData.dbHost = (String) cfg.get(key);
             if (key.equalsIgnoreCase("dbName"))
@@ -71,6 +75,10 @@ public class Config {
                 configData.infoChannelID = (int) cfg.get(key);
             if (key.equalsIgnoreCase("welcomeMessage"))
                 configData.welcomeMessage = (int) cfg.get(key);
+            if (key.equalsIgnoreCase("tempFriend"))
+                configData.tempServerGroup = (String) cfg.get(key);
+            if (key.equalsIgnoreCase("guestServerGroupName"))
+                configData.guestServerGroupName = (String) cfg.get(key);
             if (key.equalsIgnoreCase("guildID"))
                 configData.guildID = (String) cfg.get(key);
             if (key.equalsIgnoreCase("guildLeaderApiKey"))
