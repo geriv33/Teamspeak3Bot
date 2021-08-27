@@ -35,7 +35,7 @@ public class Config {
 
     public static void loadConfig() throws IOException {
         Properties cfg = new Properties();
-        boolean isLive = false;
+        boolean isLive = true;
 
         if (isLive) file = new File("config.cfg");
         else file = new File("config_test.cfg");
