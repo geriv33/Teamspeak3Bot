@@ -3,7 +3,7 @@ package de.backxtar.systems;
 import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.api.ClientProperty;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
-import de.backxtar.SqlManager;
+import de.backxtar.managers.SqlManager;
 import de.backxtar.DerGeraet;
 
 import java.sql.ResultSet;

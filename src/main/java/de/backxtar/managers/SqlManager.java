@@ -1,5 +1,6 @@
-package de.backxtar;
+package de.backxtar.managers;
 
+import de.backxtar.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

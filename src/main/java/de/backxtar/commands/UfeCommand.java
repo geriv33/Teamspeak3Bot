@@ -3,7 +3,7 @@ package de.backxtar.commands;
 import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.api.event.TextMessageEvent;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
-import de.backxtar.CommandInterface;
+import de.backxtar.managers.CommandInterface;
 import de.backxtar.gw2.CallToken;
 import de.backxtar.gw2.CallWallet;
 import de.backxtar.gw2.Gw2Utils;

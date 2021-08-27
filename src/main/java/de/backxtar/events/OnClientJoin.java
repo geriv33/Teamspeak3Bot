@@ -5,7 +5,7 @@ import com.github.theholywaffle.teamspeak3.api.ChannelProperty;
 import com.github.theholywaffle.teamspeak3.api.event.ClientJoinEvent;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
 import de.backxtar.Config;
-import de.backxtar.SqlManager;
+import de.backxtar.managers.SqlManager;
 import de.backxtar.systems.Utils;
 
 import java.sql.ResultSet;

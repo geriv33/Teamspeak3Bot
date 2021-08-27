@@ -3,7 +3,7 @@ package de.backxtar.commands;
 import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.api.event.TextMessageEvent;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
-import de.backxtar.CommandInterface;
+import de.backxtar.managers.CommandInterface;
 
 public class HelpCommand implements CommandInterface {
 

@@ -3,7 +3,7 @@ package de.backxtar.gw2;
 import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
 import com.google.gson.Gson;
-import de.backxtar.SqlManager;
+import de.backxtar.managers.SqlManager;
 import de.backxtar.DerGeraet;
 
 import java.io.IOException;

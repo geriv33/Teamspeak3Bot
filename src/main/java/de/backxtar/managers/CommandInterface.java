@@ -1,4 +1,4 @@
-package de.backxtar;
+package de.backxtar.managers;
 
 import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.api.event.TextMessageEvent;

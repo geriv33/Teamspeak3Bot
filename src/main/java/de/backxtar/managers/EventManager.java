@@ -1,9 +1,11 @@
-package de.backxtar;
+package de.backxtar.managers;
 
 import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.api.TextMessageTargetMode;
 import com.github.theholywaffle.teamspeak3.api.event.*;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
+import de.backxtar.Config;
+import de.backxtar.DerGeraet;
 import de.backxtar.events.OnClientJoin;
 import de.backxtar.events.OnClientLeave;
 
