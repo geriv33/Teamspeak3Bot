@@ -12,7 +12,6 @@ import java.util.Properties;
 public class Config {
     private static final Logger logger = LoggerFactory.getLogger(Config.class);
     private static ConfigData configData;
-    private static boolean isLive = true;
     private static File file;
 
     public static class ConfigData {
@@ -36,9 +35,9 @@ public class Config {
 
     public static void loadConfig() throws IOException {
         Properties cfg = new Properties();
+        boolean isLive = false;
 
-        if (!isLive)
-            file = new File("config.cfg");
+        if (isLive) file = new File("config.cfg");
         else file = new File("config_test.cfg");
 
         if (file.createNewFile())
@@ -63,7 +62,7 @@ public class Config {
             if (key.equalsIgnoreCase("ts3Nickname") && cfg.get(key) != null)
                 configData.ts3Nickname = (String) cfg.get(key);
             else if (key.equalsIgnoreCase("ts3Nickname") && cfg.get(key) == null)
-                configData.ts3Nickname = "Der Gerät";
+                configData.ts3Nickname = "Der Geraet (Bot)";
             if (key.equalsIgnoreCase("dbHost"))
                 configData.dbHost = (String) cfg.get(key);
             if (key.equalsIgnoreCase("dbName"))

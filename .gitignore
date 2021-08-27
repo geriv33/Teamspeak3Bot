@@ -6,4 +6,5 @@
 .idea
 out
 target
+src/main/resources
 config_test.cfg
