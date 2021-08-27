@@ -37,7 +37,7 @@ I do only support my own software! This software is free to use.
 * **MySQL Database**
 * **Screen**
 
-[Java 1.8.0_282](https://www.oracle.com/de/java/technologies/javase/javase-jdk8-downloads.html) or above is needed.
+[Java 1.8.0_292](https://www.oracle.com/de/java/technologies/javase/javase-jdk8-downloads.html) or above is needed.
 ## Installing Java on Debian or Ubuntu Systems
 **Step 1:** _Check which version of the JDK your system is using:_
 ```java
