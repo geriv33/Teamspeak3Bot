@@ -12,13 +12,14 @@ import java.util.Properties;
 public class Config {
     private static final Logger logger = LoggerFactory.getLogger(Config.class);
     private static ConfigData configData;
-    private static boolean isLive = false;
+    private static boolean isLive = true;
+    private static File file;
 
     public static class ConfigData {
         public String ts3Host;
         public String ts3Username;
         public String ts3Password;
-        public String ts3Nickname = "Der Geraet";
+        public String ts3Nickname = "Der Geraet (Bot)";
         public String dbHost;
         public String dbName;
         public String dbUser;
@@ -35,11 +36,10 @@ public class Config {
 
     public static void loadConfig() throws IOException {
         Properties cfg = new Properties();
-        File file;
 
         if (!isLive)
-            file = new File("config_test.cfg");
-        else file = new File("config.cfg");
+            file = new File("config.cfg");
+        else file = new File("config_test.cfg");
 
         if (file.createNewFile())
             logger.info("New config created.");
@@ -47,7 +47,7 @@ public class Config {
             logger.info("config.cfg is empty!");
             return;
         }
-        cfg.load(new FileInputStream("config.cfg"));
+        cfg.load(new FileInputStream(file.getName()));
         Enumeration<Object> en = cfg.keys();
         configData = new ConfigData();
 
@@ -101,5 +101,9 @@ public class Config {
 
     public static ConfigData getConfigData() {
         return configData;
+    }
+
+    public static File getFile() {
+        return file;
     }
 }

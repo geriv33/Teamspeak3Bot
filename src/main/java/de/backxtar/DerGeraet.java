@@ -32,7 +32,7 @@ public class DerGeraet {
         this.scheduler = Executors.newScheduledThreadPool(3);
         final TS3Config config = new TS3Config();
         Config.loadConfig();
-        logger.info("config.cfg loaded.");
+        logger.info(Config.getFile().getName() + " loaded.");
 
         config.setHost(Config.getConfigData().ts3Host);
         config.setEnableCommunicationsLogging(true);

@@ -5,4 +5,5 @@
 *.iml
 .idea
 out
+target
 config_test.cfg
