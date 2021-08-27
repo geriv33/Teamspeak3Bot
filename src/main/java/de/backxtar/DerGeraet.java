@@ -55,7 +55,6 @@ public class DerGeraet {
         scheduler.scheduleAtFixedRate(() -> api.getClients().parallelStream().forEach(CallToken::checkToken),
                 1, 600, TimeUnit.SECONDS);
         logger.info("Bot online - connected to " + DerGeraet.ts3Bot.api.getServerInfo().getName() + ".");
-        SetAccountName.descChange();
         initShutdown();
     }
 

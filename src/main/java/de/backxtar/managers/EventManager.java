@@ -38,6 +38,7 @@ public class EventManager {
 
             @Override
             public void onClientJoin(ClientJoinEvent clientJoinEvent) {
+                if (api.getClientInfo(clientJoinEvent.getClientId()).isServerQueryClient()) return;
                 OnClientJoin.changeInfo(api);
                 OnClientJoin.sendWelcome(api, clientJoinEvent);
                 OnClientJoin.gw2ApiReminder(api, clientJoinEvent);
