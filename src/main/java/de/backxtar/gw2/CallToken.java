@@ -37,7 +37,7 @@ public class CallToken {
         GWCallToken token;
 
         try {
-            String[] fieldsSelect = {"GW2_Key", "accountName"};
+            String[] fieldsSelect = {"GW2_Key"};
             Object[] valuesSelect = {client.getUniqueIdentifier()};
             ResultSet resultSet = SqlManager.select(fieldsSelect, "API_Keys", "clientIdentity = ?", valuesSelect);
 
