@@ -28,8 +28,8 @@ public class OnClientJoin {
     public static void sendWelcome(TS3Api api, ClientJoinEvent e) {
         Client client = api.getClientInfo(e.getClientId());
         api.sendPrivateMessage(client.getId(),
-                "Willkommen auf [b][color=orange]" + api.getServerInfo().getName() + "[color=red][/b], [b]" + client.getNickname() + "[b]!\n" +
-                        "[color=red][b]Note:[/b][/color] Bitte schließe diesen Chat nicht! Commands können [b]nur hier[/b] ausgeführt werden!");
+                "Willkommen auf [b][color=orange]" + api.getServerInfo().getName() + "[color=red][/b], [b]" + client.getNickname() + "[/b]!\n" +
+                        "[color=red][b]Note:[/b][/color]  Bitte schließe diesen Chat nicht! Commands können [b]nur hier[/b] ausgeführt werden!");
     }
 
     public static void gw2ApiReminder(TS3Api api, ClientJoinEvent e) {
