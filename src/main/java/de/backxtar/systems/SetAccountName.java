@@ -20,8 +20,8 @@ public class SetAccountName {
             while (resultSet.next()) {
                 Client client = api.getClientByUId(resultSet.getString("clientIdentity"));
                 String accountName = resultSet.getString("accountName");
-                if (api.getClientInfo(client.getId()).getDescription().equalsIgnoreCase(accountName)) return;
-                api.editClient(client.getId(), ClientProperty.CLIENT_DESCRIPTION, accountName);
+                if (!api.getClientInfo(client.getId()).getDescription().equalsIgnoreCase(accountName))
+                    api.editClient(client.getId(), ClientProperty.CLIENT_DESCRIPTION, accountName);
             }
         } catch (SQLException e) {
             e.printStackTrace();

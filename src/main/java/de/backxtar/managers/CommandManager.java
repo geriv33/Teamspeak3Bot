@@ -15,7 +15,7 @@ public class CommandManager {
 
         // Command-Register
         this.commands.put("help", new HelpCommand());
-        this.commands.put("key", new SetAPIKeyCommand());
+        this.commands.put("key", new AddAPIKeyCommand());
         this.commands.put("me", new MeCommand());
         this.commands.put("wallet", new WalletCommand());
         this.commands.put("friend", new FriendCommand());

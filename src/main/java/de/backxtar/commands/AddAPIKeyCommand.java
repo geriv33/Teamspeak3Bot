@@ -6,7 +6,7 @@ import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
 import de.backxtar.managers.CommandInterface;
 import de.backxtar.gw2.CallToken;
 
-public class SetAPIKeyCommand implements CommandInterface {
+public class AddAPIKeyCommand implements CommandInterface {
 
     @Override
     public void run(String cmdValue, TS3Api api, TextMessageEvent event, Client client) {
@@ -20,6 +20,7 @@ public class SetAPIKeyCommand implements CommandInterface {
 
     @Override
     public void sendHelp(TS3Api api, Client client) {
-        api.sendChannelMessage("[color=red]✘[/color] Bitte benutze [b][color=red]!key yourKey[/color][/b]!");
+        api.sendPrivateMessage(client.getId(),
+                "[color=red]✘[/color] Bitte benutze [b][color=red]!key yourKey[/color][/b]!");
     }
 }
