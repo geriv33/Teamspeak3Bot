@@ -38,7 +38,9 @@ public class OnClientJoin {
         for (int serverGroup : client.getServerGroups()) {
             if (serverGroup == guest) {
                 api.sendPrivateMessage(client.getId(),
-                        "Bist du ein Freund der Gilde? Gebe [color=orange][b]!friend[/b][/color] ein!");
+                        "\nBist du ein Freund der Gilde? Gebe [color=orange][b]!friend[/b][/color] ein! " +
+                                "\nBist du Mitglied der Gilde? Gebe [color=orange][b]!key youAPIKey[/b][/color] ein!\n" +
+                                "\nDu kannst hier einen [b][color=red]Gw2-Key[/color][b] erstellen: https://account.arena.net/applications");
                 return;
             }
         }
