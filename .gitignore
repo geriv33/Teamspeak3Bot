@@ -3,4 +3,6 @@
 
 # IntelliJ project files
 *.iml
+.idea
+out
 config_test.cfg
