@@ -33,7 +33,7 @@ I do only support my own software! This software is free to use.
 * **RAM:** 4Gb
 * **CPU:** 1 Core
 * **Internet:** 100mbit/s
-* **Java 1.8.0_282** or above
+* **Java 1.8.0_292** or above
 * **MySQL Database**
 * **Screen**
 
