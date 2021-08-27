@@ -19,6 +19,7 @@ public class CommandManager {
         this.commands.put("me", new MeCommand());
         this.commands.put("wallet", new WalletCommand());
         this.commands.put("friend", new FriendCommand());
+        this.commands.put("ufe", new UfeCommand());
     }
 
     public boolean runCmd(String[] command, TS3Api api, TextMessageEvent event, Client client) {

@@ -39,6 +39,18 @@ public class CallGuild {
     public static GWCallGuild getGuild(String guildID) {
         String json = "";
         try {
+            json = Gw2Utils.getJson("https://api.guildwars2.com/v2/guild/" + guildID);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Gson gson = new Gson();
+        return gson.fromJson(json, GWCallGuild.class);
+    }
+
+    public static GWCallGuild getGuildWithLeader(String guildID) {
+        String json = "";
+        try {
             json = Gw2Utils.getJson("https://api.guildwars2.com/v2/guild/" + guildID +
                     "?access_token=" + Config.getConfigData().guildLeaderApiKey);
         } catch (IOException e) {

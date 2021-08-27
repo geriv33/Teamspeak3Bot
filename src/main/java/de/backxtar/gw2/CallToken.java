@@ -4,7 +4,7 @@ import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
 import com.google.gson.Gson;
 import de.backxtar.SqlManager;
-import de.backxtar.TS3Bot;
+import de.backxtar.DerGeraet;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -33,7 +33,7 @@ public class CallToken {
     }
 
     public static void checkToken(Client client) {
-        TS3Api api = TS3Bot.getInstance().api;
+        TS3Api api = DerGeraet.getInstance().api;
         GWCallToken token;
 
         try {
@@ -47,14 +47,16 @@ public class CallToken {
                 if (token == null || token.permissions.length < 10) {
                     if (api.isClientOnline(client.getUniqueIdentifier())) {
                         api.sendPrivateMessage(client.getId(),
-                                "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][b] ist nicht mehr gültig oder" +
+                                "\n" +
+                                        "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][b] ist nicht mehr gültig oder" +
                                         "hat nicht alle Berechtigungen.\n" +
                                         "Du kannst hier einen neuen Gw2-Key erstellen:\n" +
                                         "https://account.arena.net/applications");
                         return;
                     }
                     api.sendOfflineMessage(client.getUniqueIdentifier(),
-                            "Gw2_Key ungültig!",
+                            "\n" +
+                                    "Gw2_Key ungültig!",
                             "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][b] ist nicht mehr gültig oder" +
                                     "hat nicht alle Berechtigungen.\n" +
                                     "Du kannst hier einen neuen Gw2-Key erstellen:\n" +
@@ -67,7 +69,7 @@ public class CallToken {
     }
 
     public static void checkToken(Client client, String apiKey) {
-        TS3Api api = TS3Bot.getInstance().api;
+        TS3Api api = DerGeraet.getInstance().api;
         GWCallToken token;
         CallAccount.GWCallAccount account;
 
@@ -79,7 +81,8 @@ public class CallToken {
             if (resultSet.next()) {
                 if (resultSet.getString("GW2_Key").equalsIgnoreCase(apiKey)) {
                     api.sendPrivateMessage(client.getId(),
-                            "[color=red]✘[/color] Dieser [b][color=red]Gw2-Key[/color][b] ist bereits hinterlegt.");
+                            "\n" +
+                                    "[color=red]✘[/color] Dieser [b][color=red]Gw2-Key[/color][b] ist bereits hinterlegt.");
                     return;
                 }
                 token = getGWCallToken(apiKey);
@@ -92,7 +95,8 @@ public class CallToken {
                     SqlManager.update(fieldsUpdate, "API_Keys", "clientIdentity = ?", valuesUpdate);
 
                     api.sendPrivateMessage(client.getId(),
-                            "[color=green]✔[/color] Dein [b][color=green]Gw2-Key[/color][b] wurde aktualisiert.\n" +
+                            "\n" +
+                                    "[color=green]✔[/color] Dein [b][color=green]Gw2-Key[/color][b] wurde aktualisiert.\n" +
                                     "Gw2-Account: " + account.name);
                     return;
                 }
@@ -103,17 +107,19 @@ public class CallToken {
                     account = CallAccount.getAccount(apiKey);
 
                     String[] fieldsInsert = {"clientIdentity", "GW2_Key", "accountName"};
-                    Object[] valuesInsert = {client.getUniqueIdentifier(), apiKey, account.name, client.getUniqueIdentifier()};
+                    Object[] valuesInsert = {client.getUniqueIdentifier(), apiKey, account.name};
                     SqlManager.insert("API_Keys", fieldsInsert, valuesInsert);
 
                     api.sendPrivateMessage(client.getId(),
-                            "[color=green]✔[/color] Dein [b][color=green]Gw2-Key[/color][b] wurde hinterlegt.\n" +
+                            "\n" +
+                                    "[color=green]✔[/color] Dein [b][color=green]Gw2-Key[/color][b] wurde hinterlegt.\n" +
                                     "Gw2-Account: " + account.name);
                     return;
                 }
             }
             api.sendPrivateMessage(client.getId(),
-                    "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][b] ist nicht gültig oder" +
+                    "\n" +
+                            "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][b] ist nicht gültig oder" +
                             "hat nicht alle Berechtigungen.\n" +
                             "Du kannst hier einen neuen Gw2-Key erstellen:\n" +
                             "https://account.arena.net/applications");
@@ -123,7 +129,7 @@ public class CallToken {
     }
 
     public static String[] isValid(Client client) {
-        TS3Api api = TS3Bot.getInstance().api;
+        TS3Api api = DerGeraet.getInstance().api;
         String[] gw2Values = new String[2];
         // Slot 1: Gw2-Key
         // Slot 2: accountName
@@ -141,14 +147,17 @@ public class CallToken {
                 if (token != null && token.permissions.length == 10) return gw2Values;
                 else {
                     api.sendPrivateMessage(client.getId(),
-                            "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][b] ist ungültig oder hat nicht alle Berechtigungen.");
+                            "\n" +
+                                    "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][b] ist ungültig oder hat nicht alle Berechtigungen.");
                     return null;
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Du hast noch keinen [b][color=red]Gw2-Key[/color][b] hinterlegt.");
+        api.sendPrivateMessage(client.getId(),
+                "\n" +
+                "[color=red]✘[/color] Du hast noch keinen [b][color=red]Gw2-Key[/color][b] hinterlegt.");
         return null;
     }
 }

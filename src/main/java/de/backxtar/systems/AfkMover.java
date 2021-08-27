@@ -2,7 +2,7 @@ package de.backxtar.systems;
 
 import com.github.theholywaffle.teamspeak3.TS3Api;
 import de.backxtar.Config;
-import de.backxtar.TS3Bot;
+import de.backxtar.DerGeraet;
 
 import java.util.HashMap;
 
@@ -15,17 +15,17 @@ public class AfkMover {
     }
 
     public static void checkAfk() {
-        if (Config.getConfigData().afkChannelID == -1) return;
-        TS3Api api = TS3Bot.getInstance().api;
+        if (Config.getConfigData().afkChannelID == 0) return;
+        TS3Api api = DerGeraet.getInstance().api;
         api.getClients().parallelStream().forEach(client -> {
             if (!client.isServerQueryClient()) {
                 if (client.isAway() || client.getIdleTime() >= 900000 && client.isInputMuted()
                         || client.getIdleTime() >= 900000 && client.isOutputMuted()) {
-                    if (!dataHashMap.containsKey(client.getUniqueIdentifier())) {
+                    if (!dataHashMap.containsKey(client.getUniqueIdentifier()) && client.getChannelId() != Config.getConfigData().afkChannelID) {
                         MoveData moveData = new MoveData();
                         moveData.channelID = client.getChannelId();
                         moveData.timestamp = System.currentTimeMillis() - client.getIdleTime();
-
+                        dataHashMap.put(client.getUniqueIdentifier(), moveData);
                         api.sendPrivateMessage(client.getId(), "Du wurdest in den AFK-Channel verschoben!");
                         api.moveClient(client.getId(), Config.getConfigData().afkChannelID);
                     }
@@ -35,7 +35,7 @@ public class AfkMover {
                             api.moveClient(client.getId(), dataHashMap.get(client.getUniqueIdentifier()).channelID);
                         long[] duration = getTime(System.currentTimeMillis() - dataHashMap.get(client.getUniqueIdentifier()).timestamp);
                         String time = (duration[2] > 0 ? duration[2] + "h " : "") +
-                                (duration[1] > 0 ? duration[1] + "min " : "") + String.format("%02d", duration[0]) + " min.";
+                                (duration[1] > 0 ? duration[1] + "min " : "") + String.format("%02d", duration[0]) + " sec.";
                         api.sendPrivateMessage(client.getId(), "Deine AFK-Zeit betrug: " + time);
                         dataHashMap.remove(client.getUniqueIdentifier());
                     }

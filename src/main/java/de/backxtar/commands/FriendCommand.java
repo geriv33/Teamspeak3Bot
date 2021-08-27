@@ -10,19 +10,19 @@ public class FriendCommand implements CommandInterface {
 
     @Override
     public void run(String cmdValue, TS3Api api, TextMessageEvent event, Client client) {
-        String friend = Config.getConfigData().tempServerGroup;
         int guest = api.getServerInfo().getDefaultServerGroup();
         boolean isGuest = false;
 
-        for (int serverGroup : client.getServerGroups()) {
-            if (serverGroup == guest) {
+        for (int group : client.getServerGroups()) {
+            if (group == guest) {
                 isGuest = true;
                 break;
             }
         }
-        if (!isGuest || friend.isEmpty()) return;
-        api.addServerGroup(friend);
+
+        if (Config.getConfigData().tempServerGroupID == 0 || !isGuest) return;
+        api.addClientToServerGroup(Config.getConfigData().tempServerGroupID, client.getDatabaseId());
         api.sendPrivateMessage(client.getId(),
-                "Dir wurde die Server Gruppe: [color=orange][b]" + friend + "[/b][/color] zugewiesen.");
+                "Du wurdest [color=orange][b]temporär[/b][/color] freigeschaltet.");
     }
 }

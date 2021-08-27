@@ -30,11 +30,11 @@ public class MeCommand implements CommandInterface {
         }
         CallWorld.GWCallWorld world = CallWorld.getWorld(account.world).get(0);
         StringBuilder guildBuilder = getBuilder(account, 1);
-        StringBuilder guildLeadBuilder = getBuilder(account, 2);
-        StringBuilder accessBuilder = getBuilder(account, 3);
+        StringBuilder accessBuilder = getBuilder(account, 2);
 
         api.sendPrivateMessage(client.getId(),
-                "Hier sind Deine Account-Informationen, [b]" + client.getNickname() + "[/b]:\n\n" +
+                "\n" +
+                        "Hier sind Deine Account-Informationen, [b]" + client.getNickname() + "[/b]:\n\n" +
                         "[color=orange][b]Gw2-Account:[/b][/color] " + account.name + "\n" +
                         "[color=orange][b]Erstellt:[/b][/color] " + getDate(account.created) + "\n" +
                         "[color=orange][b]Alter:[/b][/color] " + getAge(account.age) + "\n" +
@@ -42,7 +42,6 @@ public class MeCommand implements CommandInterface {
                         "[color=orange][b]Server:[/b][/color] " + world.name + " [" + world.population + "]\n" +
                         "[color=orange][b]Kommandeur:[/b][/color] " + (account.commander ? "Ja" : "Nein") + "\n" +
                         (account.guilds.length > 0 ? "[color=orange][b]Gilden:[/b][/color] " + guildBuilder + "\n" : "") +
-                        (account.leader.length > 0 ? "[color=orange][b]Leader:[/b][/color] " + guildLeadBuilder + "\n" : "") +
                         "[color=orange][b]Fraktal Level:[/b][/color] " + account.fractal_level + "\n" +
                         "[color=orange][b]WvW-Rang:[/b][/color] " + account.wvw_rank + "\n" +
                         "[color=orange][b]PvP-Rang:[/b][/color] " + pvp.pvp_rank + "\n" +
@@ -70,16 +69,6 @@ public class MeCommand implements CommandInterface {
                 else builder.append(guild.name).append(" [").append(guild.tag).append("]");
             }
         } else if (mode == 2) {
-            count = account.leader.length;
-
-            for (int i = 0; i < count; i++) {
-                guild = CallGuild.getGuild(account.leader[i]);
-
-                if (i < (count - 1))
-                    builder.append(guild.name).append(" [").append(guild.tag).append("]").append(", ");
-                else builder.append(guild.name).append(" [").append(guild.tag).append("]");
-            }
-        } else if (mode == 3) {
             count = account.access.length;
 
             for (int i = 0; i < count; i++) {

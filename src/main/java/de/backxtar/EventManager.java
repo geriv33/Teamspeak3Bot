@@ -9,7 +9,7 @@ import de.backxtar.events.OnClientLeave;
 
 public class EventManager {
     public static void loadEvents() {
-        TS3Api api = TS3Bot.getInstance().api;
+        TS3Api api = DerGeraet.getInstance().api;
 
         api.registerAllEvents();
         api.addTS3Listeners(new TS3Listener() {
@@ -18,12 +18,18 @@ public class EventManager {
                 if (textMessageEvent.getTargetMode() != TextMessageTargetMode.CLIENT
                         || textMessageEvent.getInvokerUniqueId().equalsIgnoreCase(api.whoAmI().getUniqueIdentifier())) return;
                 String message = textMessageEvent.getMessage();
-                Client client = api.getClientInfo(textMessageEvent.getTargetClientId());
+                Client client = api.getClientByUId(textMessageEvent.getInvokerUniqueId());
 
                 if (message.startsWith(Config.getConfigData().prefix)) {
                     String[] command = message.substring(Config.getConfigData().prefix.length()).split(" ");
 
-                    if (command.length > 0 && !TS3Bot.getInstance().getCmdManager().runCmd(command, api, textMessageEvent, client))
+                    if (command.length < 2) {
+                        command = new String[2];
+                        command[0] = message.substring(Config.getConfigData().prefix.length());
+                        command[1] = "";
+                    }
+
+                    if (!DerGeraet.getInstance().getCmdManager().runCmd(command, api, textMessageEvent, client))
                         api.sendChannelMessage("[color=red]✘[/color] Dieser Befehl ist mir nicht bekannt, [b]" + client.getNickname() + "[/b]!");
                 }
             }

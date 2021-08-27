@@ -12,21 +12,22 @@ import java.util.Properties;
 public class Config {
     private static final Logger logger = LoggerFactory.getLogger(Config.class);
     private static ConfigData configData;
+    private static boolean isLive = false;
 
     public static class ConfigData {
         public String ts3Host;
         public String ts3Username;
         public String ts3Password;
-        public String ts3Nickname = "Der Gerät";
+        public String ts3Nickname = "Der Geraet";
         public String dbHost;
         public String dbName;
         public String dbUser;
         public String dbPassword;
         public String prefix = "!";
-        public int afkChannelID = -1;
-        public int infoChannelID = -1;
-        public int welcomeMessage = -1;
-        public String tempServerGroup;
+        public int afkChannelID = 0;
+        public int infoChannelID = 0;
+        public int welcomeMessage = 0;
+        public int tempServerGroupID = 0;
         public String guestServerGroupName;
         public String guildID;
         public String guildLeaderApiKey;
@@ -34,7 +35,11 @@ public class Config {
 
     public static void loadConfig() throws IOException {
         Properties cfg = new Properties();
-        File file = new File("config.cfg");
+        File file;
+
+        if (!isLive)
+            file = new File("config_test.cfg");
+        else file = new File("config.cfg");
 
         if (file.createNewFile())
             logger.info("New config created.");
@@ -69,14 +74,22 @@ public class Config {
                 configData.dbPassword = (String) cfg.get(key);
             if (key.equalsIgnoreCase("prefix"))
                 configData.prefix = (String) cfg.get(key);
-            if (key.equalsIgnoreCase("afkChannelID"))
-                configData.afkChannelID = (int) cfg.get(key);
-            if (key.equalsIgnoreCase("infoChannelID"))
-                configData.infoChannelID = (int) cfg.get(key);
-            if (key.equalsIgnoreCase("welcomeMessage"))
-                configData.welcomeMessage = (int) cfg.get(key);
-            if (key.equalsIgnoreCase("tempFriend"))
-                configData.tempServerGroup = (String) cfg.get(key);
+            if (key.equalsIgnoreCase("afkChannelID")) {
+                String value = (String) cfg.get(key);
+                configData.afkChannelID = Integer.parseInt(value);
+            }
+            if (key.equalsIgnoreCase("infoChannelID")) {
+                String value = (String) cfg.get(key);
+                configData.infoChannelID = Integer.parseInt(value);
+            }
+            if (key.equalsIgnoreCase("welcomeMessage")) {
+                String value = (String) cfg.get(key);
+                configData.welcomeMessage = Integer.parseInt(value);
+            }
+            if (key.equalsIgnoreCase("tempFriendID")) {
+                String value = (String) cfg.get(key);
+                configData.tempServerGroupID = Integer.parseInt(value);
+            }
             if (key.equalsIgnoreCase("guestServerGroupName"))
                 configData.guestServerGroupName = (String) cfg.get(key);
             if (key.equalsIgnoreCase("guildID"))

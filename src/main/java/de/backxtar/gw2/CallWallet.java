@@ -24,7 +24,7 @@ public class CallWallet {
         }
 
         Gson gson = new Gson();
-        Type callWorld = new TypeToken<ArrayList<CallWorld.GWCallWorld>>(){}.getType();
-        return gson.<ArrayList<GWCallWallet>>fromJson(json, callWorld);
+        Type callWallet = new TypeToken<ArrayList<GWCallWallet>>(){}.getType();
+        return gson.<ArrayList<GWCallWallet>>fromJson(json, callWallet);
     }
 }

@@ -6,7 +6,7 @@
 
     <groupId>de.backxtar</groupId>
     <artifactId>Teamspeak3Bot</artifactId>
-    <version>1.0</version>
+    <version>run</version>
     <packaging>jar</packaging>
 
     <properties>

@@ -9,7 +9,8 @@ public class HelpCommand implements CommandInterface {
 
     @Override
     public void run(String cmdValue, TS3Api api, TextMessageEvent event, Client client) {
-        api.sendChannelMessage("Hier ist Deine angeforderte Hilfe, " + client.getNickname() + ":\n\n" +
+        api.sendPrivateMessage(client.getId(),
+                "Hier ist Deine angeforderte Hilfe, " + client.getNickname() + ":\n\n" +
                 "· [color=orange][b]!key yourAPIKey[/b][/color] ⎯  Speichert oder aktualisiert Deinen [b]Gw2-Key[/b]\n" +
                 "");
     }
