@@ -15,7 +15,8 @@ public class OnClientLeave {
             if (!client.isServerQueryClient())
                 clientSize++;
         }
-        api.editChannel(Config.getConfigData().infoChannelID, ChannelProperty.CHANNEL_NAME, "[cspacer0]Clients: " +
-                clientSize + "/" + api.getServerInfo().getMaxClients() + " | " + Utils.getDate());
+        String info = "[cspacer0]Clients: " + clientSize + "/" + api.getServerInfo().getMaxClients() + " | " + Utils.getDate();
+        if (api.getChannelInfo(Config.getConfigData().infoChannelID).getName().equalsIgnoreCase(info)) return;
+        api.editChannel(Config.getConfigData().infoChannelID, ChannelProperty.CHANNEL_NAME, info);
     }
 }
