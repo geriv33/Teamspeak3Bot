@@ -11,6 +11,7 @@ import de.backxtar.managers.SqlManager;
 import de.backxtar.systems.AfkMover;
 import de.backxtar.systems.ExchangeCheck;
 import de.backxtar.systems.SetAccountName;
+import de.backxtar.systems.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -56,7 +57,8 @@ public class DerGeraet {
             SetAccountName.descChange();
             ExchangeCheck.checkExchange();
             api.getClients().forEach(CallToken::checkToken);
-                }, 1, 300, TimeUnit.SECONDS);
+            Utils.checkInfo(api);
+            }, 1, 300, TimeUnit.SECONDS);
         logger.info("Bot online - connected to " + DerGeraet.ts3Bot.api.getServerInfo().getName() + ".");
         initShutdown();
     }
