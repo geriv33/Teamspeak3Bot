@@ -36,8 +36,8 @@ public class ExchangeCheck {
             return;
         }
         long[] result = Gw2Utils.getCoins(gems.quantity);
-        String resultExchange = (result[2] > 0 ? "[b]" + result[2] + "[/b][img]" + urlGold + "[/img]" : "") +
-                (result[1] > 0 ? "[b]" + result[1] + "[/b][img]" + urlSilver + "[/img]" : "") +
+        String resultExchange = (result[2] > 0 ? "[b]" + result[2] + "[/b][img]" + urlGold + "[/img] " : "") +
+                (result[1] > 0 ? "[b]" + result[1] + "[/b][img]" + urlSilver + "[/img] " : "") +
                 (result[0] > 0 ? "[b]" + result[0] + "[/b][img]" + urlCopper + "[/img]" : "");
 
         String desc = "[center][size=11][URL=client://" + api.whoAmI().getId() + "/"

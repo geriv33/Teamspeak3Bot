@@ -48,7 +48,7 @@ public class CallToken {
                     if (api.isClientOnline(client.getUniqueIdentifier())) {
                         api.sendPrivateMessage(client.getId(),
                                 "\n" +
-                                        "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][b] ist nicht mehr gültig oder" +
+                                        "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][/b] ist nicht mehr gültig oder " +
                                         "hat nicht alle Berechtigungen.\n" +
                                         "Du kannst hier einen neuen Gw2-Key erstellen:\n" +
                                         "https://account.arena.net/applications");
@@ -57,7 +57,7 @@ public class CallToken {
                     api.sendOfflineMessage(client.getUniqueIdentifier(),
                             "\n" +
                                     "Gw2_Key ungültig!",
-                            "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][b] ist nicht mehr gültig oder" +
+                            "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][/b] ist nicht mehr gültig oder " +
                                     "hat nicht alle Berechtigungen.\n" +
                                     "Du kannst hier einen neuen Gw2-Key erstellen:\n" +
                                     "https://account.arena.net/applications");
@@ -82,7 +82,7 @@ public class CallToken {
                 if (resultSet.getString("GW2_Key").equalsIgnoreCase(apiKey)) {
                     api.sendPrivateMessage(client.getId(),
                             "\n" +
-                                    "[color=red]✘[/color] Dieser [b][color=red]Gw2-Key[/color][b] ist bereits hinterlegt.");
+                                    "[color=red]✘[/color] Dieser [b][color=red]Gw2-Key[/color][/b] ist bereits hinterlegt.");
                     return;
                 }
                 token = getGWCallToken(apiKey);
@@ -96,7 +96,7 @@ public class CallToken {
 
                     api.sendPrivateMessage(client.getId(),
                             "\n" +
-                                    "[color=green]✔[/color] Dein [b][color=green]Gw2-Key[/color][b] wurde aktualisiert.\n" +
+                                    "[color=green]✔[/color] Dein [b][color=green]Gw2-Key[/color][/b] wurde aktualisiert.\n" +
                                     "Gw2-Account: " + account.name);
                     return;
                 }
@@ -112,14 +112,14 @@ public class CallToken {
 
                     api.sendPrivateMessage(client.getId(),
                             "\n" +
-                                    "[color=green]✔[/color] Dein [b][color=green]Gw2-Key[/color][b] wurde hinterlegt.\n" +
+                                    "[color=green]✔[/color] Dein [b][color=green]Gw2-Key[/color][/b] wurde hinterlegt.\n" +
                                     "Gw2-Account: " + account.name);
                     return;
                 }
             }
             api.sendPrivateMessage(client.getId(),
                     "\n" +
-                            "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][b] ist nicht gültig oder" +
+                            "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][/b] ist nicht gültig oder " +
                             "hat nicht alle Berechtigungen.\n" +
                             "Du kannst hier einen neuen Gw2-Key erstellen:\n" +
                             "https://account.arena.net/applications");
@@ -148,7 +148,7 @@ public class CallToken {
                 else {
                     api.sendPrivateMessage(client.getId(),
                             "\n" +
-                                    "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][b] ist ungültig oder hat nicht alle Berechtigungen.");
+                                    "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][/b] ist ungültig oder hat nicht alle Berechtigungen.");
                     return null;
                 }
             }
@@ -157,7 +157,7 @@ public class CallToken {
         }
         api.sendPrivateMessage(client.getId(),
                 "\n" +
-                "[color=red]✘[/color] Du hast noch keinen [b][color=red]Gw2-Key[/color][b] hinterlegt.");
+                "[color=red]✘[/color] Du hast noch keinen [b][color=red]Gw2-Key[/color][/b] hinterlegt.");
         return null;
     }
 }
