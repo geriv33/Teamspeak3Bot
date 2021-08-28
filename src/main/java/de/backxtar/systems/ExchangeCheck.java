@@ -14,14 +14,14 @@ import java.util.concurrent.Future;
 
 public class ExchangeCheck {
     private static final ExecutorService executor = Executors.newFixedThreadPool(2);
-    private static TS3Api api = DerGeraet.getInstance().api;
+    private static final TS3Api api = DerGeraet.getInstance().api;
 
     public static void checkExchange() {
         String urlTP = "https://wiki.guildwars2.com/images/thumb/d/df/Black-Lion-Logo.png/300px-Black-Lion-Logo.png";
-        String urlGem = "http://i.epvpimg.com/BLondab.png";
-        String urlGold = "http://i.epvpimg.com/JEyBcab.png";
-        String urlSilver = "http://i.epvpimg.com/ieqSaab.png";
-        String urlCopper = "http://i.epvpimg.com/I8jDgab.png";
+        String urlGem = "https://i.epvpimg.com/BLondab.png";
+        String urlGold = "https://i.epvpimg.com/JEyBcab.png";
+        String urlSilver = "https://i.epvpimg.com/ieqSaab.png";
+        String urlCopper = "https://i.epvpimg.com/I8jDgab.png";
 
         Future<CallExchange.GWCallExchange> coinsAsync = executor.submit(() -> CallExchange.getCoins(true));
         Future<CallExchange.GWCallExchange> gemsAsync = executor.submit(() -> CallExchange.getCoins(false));
