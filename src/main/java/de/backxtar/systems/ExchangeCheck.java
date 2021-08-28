@@ -40,7 +40,8 @@ public class ExchangeCheck {
                 (result[1] > 0 ? "[b]" + result[1] + "[/b][img]" + urlSilver + "[/img]" : "") +
                 (result[0] > 0 ? "[b]" + result[0] + "[/b][img]" + urlCopper + "[/img]" : "");
 
-        String desc = "[center][img]" + urlTP + "[/img]\n" +
+        String desc = "[center][size=11][URL=client://259/serveradmin]Message me![/URL][/size]" +
+                "\n[img]" + urlTP + "[/img]\n" +
                 "[size=11][b]100[/b][img]" + urlGem + "[/img] entsprechen: " + resultExchange + "\n" +
                 "[b]100[/b][img]" + urlGold + "[/img] entsprechen: [b]" + coins.quantity + "[/b][img]" + urlGem + "[/img]";
         if (api.getChannelInfo(Config.getConfigData().infoChannelID).getDescription().equalsIgnoreCase(desc)) return;

@@ -6,18 +6,33 @@ import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
 import de.backxtar.managers.CommandInterface;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-
-import java.io.IOException;
+import org.jsoup.select.Elements;
 
 public class ArcDpsCommand implements CommandInterface {
 
     @Override
     public void run(String cmdValue, TS3Api api, TextMessageEvent event, Client client) {
         String webpage = "https://www.deltaconnected.com/arcdps/x64/";
+        String[] data;
+        String d3d9 = "", md5sum = "", d3d9Date = "", md5sumDate = "";
 
         try {
             String html = Jsoup.connect(webpage).get().html();
             Document document = Jsoup.parse(html);
+            Elements elements = document.select("tbody");
+
+            data = elements.get(0).text().split(" ");
+            d3d9 = data[8];
+            d3d9Date = data[9] + " " + data[10] + " " + data[11];
+            md5sum = data[12];
+            md5sumDate = data[13] + " " + data[14] + " " + data[15];
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        api.sendPrivateMessage(client.getId(), "\n[color=red][b]Last modified[/b][/color]" +
+                "\n[color=orange][b]" + d3d9 + ":[/b][/color] " + d3d9Date +
+                "\n[color=orange][b]" + md5sum + ":[/b][/color] " + md5sumDate +
+                "\n[color=orange][b]Download:[/b][/color] [URL=https://www.deltaconnected.com/arcdps/x64/]Index of X64[/URL]");
 
             /*
             <!doctype html>
@@ -75,8 +90,5 @@ public class ArcDpsCommand implements CommandInterface {
  </body>
 </html>
              */
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

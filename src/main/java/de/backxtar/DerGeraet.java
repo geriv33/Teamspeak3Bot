@@ -59,7 +59,8 @@ public class DerGeraet {
             api.getClients().forEach(CallToken::checkToken);
             Utils.checkInfo(api);
             }, 1, 300, TimeUnit.SECONDS);
-        logger.info("Bot online - connected to " + DerGeraet.ts3Bot.api.getServerInfo().getName() + ".");
+        logger.info(Config.getConfigData().ts3Nickname + " online - connected to " + DerGeraet.ts3Bot.api.getServerInfo().getName() + ".");
+        logger.info("UID: " + api.whoAmI().getUniqueIdentifier() + " | ID: " + api.whoAmI().getId());
         initShutdown();
     }
 
