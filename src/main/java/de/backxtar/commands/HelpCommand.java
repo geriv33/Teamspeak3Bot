@@ -16,6 +16,7 @@ public class HelpCommand implements CommandInterface {
                 "· [color=orange][b]!friend[/b][/color] ⎯  Gibt Gästen eine temp [b]Friend-Servergruppe[/b]\n" +
                 "· [color=orange][b]!me[/b][/color] ⎯  Gibt Dir Deine [b]Gw2-Accountinformationen[/b] aus\n" +
                 "· [color=orange][b]!wallet[/b][/color] ⎯  Zeigt Dir Deine [b]Gw2-Geldbörse[/b] an\n" +
+                "· [color=orange][b]!arcdps[/b][/color] ⎯  Zeigt Dir die aktuellste [b]ArcDPS Version[/b] an\n" +
                 "");
     }
 }
