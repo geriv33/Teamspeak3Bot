@@ -150,7 +150,7 @@ public class Gw2Utils {
         return currency;
     }
 
-    private static long[] getCoins(long amount) {
+    public static long[] getCoins(long amount) {
         long[] coins = new long[3];
 
         long copper = amount;

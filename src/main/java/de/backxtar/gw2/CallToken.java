@@ -76,7 +76,7 @@ public class CallToken {
         try {
             String[] fieldsSelect = {"GW2_Key"};
             Object[] valuesSelect = {client.getUniqueIdentifier()};
-            ResultSet resultSet = SqlManager.select(fieldsSelect, "API_Keys", "clientIdentity = ?", valuesSelect);
+            ResultSet resultSet = SqlManager.select(fieldsSelect, "API_Keys", "x = ?", valuesSelect);
 
             if (resultSet.next()) {
                 if (resultSet.getString("GW2_Key").equalsIgnoreCase(apiKey)) {

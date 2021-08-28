@@ -9,6 +9,7 @@ import de.backxtar.managers.CommandManager;
 import de.backxtar.managers.EventManager;
 import de.backxtar.managers.SqlManager;
 import de.backxtar.systems.AfkMover;
+import de.backxtar.systems.ExchangeCheck;
 import de.backxtar.systems.SetAccountName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,6 +54,7 @@ public class DerGeraet {
         scheduler.scheduleAtFixedRate(AfkMover::checkAfk, 1, 1, TimeUnit.SECONDS);
         scheduler.scheduleAtFixedRate(() -> {
             SetAccountName.descChange();
+            ExchangeCheck.checkExchange();
             api.getClients().forEach(CallToken::checkToken);
                 }, 1, 300, TimeUnit.SECONDS);
         logger.info("Bot online - connected to " + DerGeraet.ts3Bot.api.getServerInfo().getName() + ".");
