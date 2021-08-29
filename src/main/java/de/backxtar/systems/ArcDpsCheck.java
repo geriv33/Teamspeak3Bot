@@ -32,7 +32,8 @@ public class ArcDpsCheck {
             e.printStackTrace();
         }
         String desc = "[center][size=11][URL=client://" + api.whoAmI().getId() + "/" +
-                        api.whoAmI().getUniqueIdentifier()+ "]Message me![/URL]\n" +
+                        api.whoAmI().getUniqueIdentifier()+ "]Message me![/URL]" +
+                        "\n[img]http://i.epvpimg.com/IhT7eab.png[/img]" +
                         "\n[color=red][b]Last modified[/b][/color]" +
                         "\n[color=orange][b]" + d3d9 + ":[/b][/color] " + d3d9Date +
                         "\n[color=orange][b]" + md5sum + ":[/b][/color] " + md5sumDate +
