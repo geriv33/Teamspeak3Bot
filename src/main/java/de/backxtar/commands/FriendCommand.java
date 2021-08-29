@@ -10,6 +10,7 @@ public class FriendCommand implements CommandInterface {
 
     @Override
     public void run(String cmdValue, TS3Api api, TextMessageEvent event, Client client) {
+        if (Config.getConfigData().tempServerGroupID == 0) return;
         int guest = api.getServerInfo().getDefaultServerGroup();
         boolean isGuest = false;
 

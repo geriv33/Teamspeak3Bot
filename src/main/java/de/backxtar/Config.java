@@ -24,9 +24,10 @@ public class Config {
         public String dbUser;
         public String dbPassword;
         public String prefix = "!";
-        public int afkChannelID = 0;
-        public int infoChannelID = 0;
         public int welcomeMessage = 0;
+        public int tradingPostChannelID = 0;
+        public int[] afkChannelID;
+        public int infoChannelID = 0;
         public int tempServerGroupID = 0;
         public String guestServerGroupName;
         public String guildID;
@@ -75,7 +76,16 @@ public class Config {
                 configData.prefix = (String) cfg.get(key);
             if (key.equalsIgnoreCase("afkChannelID")) {
                 String value = (String) cfg.get(key);
-                configData.afkChannelID = Integer.parseInt(value);
+                String[] values = value.split(",");
+                if (values.length == 0 || values[0].equalsIgnoreCase("0")) {
+                    configData.afkChannelID = new int[1];
+                    configData.afkChannelID[0] = 0;
+                } else {
+                    configData.afkChannelID = new int[values.length];
+                    for (int i = 0; i < configData.afkChannelID.length; i++) {
+                        configData.afkChannelID[i] = Integer.parseInt(values[i]);
+                    }
+                }
             }
             if (key.equalsIgnoreCase("infoChannelID")) {
                 String value = (String) cfg.get(key);
@@ -88,6 +98,10 @@ public class Config {
             if (key.equalsIgnoreCase("tempFriendID")) {
                 String value = (String) cfg.get(key);
                 configData.tempServerGroupID = Integer.parseInt(value);
+            }
+            if (key.equalsIgnoreCase("tradingPostChannelID")) {
+                String value = (String) cfg.get(key);
+                configData.tradingPostChannelID = Integer.parseInt(value);
             }
             if (key.equalsIgnoreCase("guestServerGroupName"))
                 configData.guestServerGroupName = (String) cfg.get(key);

@@ -17,6 +17,7 @@ public class ExchangeCheck {
     private static final TS3Api api = DerGeraet.getInstance().api;
 
     public static void checkExchange() {
+        if (Config.getConfigData().tradingPostChannelID == 0) return;
         String urlTP = "https://wiki.guildwars2.com/images/thumb/d/df/Black-Lion-Logo.png/300px-Black-Lion-Logo.png";
         String urlGem = "https://i.epvpimg.com/BLondab.png";
         String urlGold = "https://i.epvpimg.com/JEyBcab.png";
@@ -45,7 +46,7 @@ public class ExchangeCheck {
                 "\n[img]" + urlTP + "[/img]\n" +
                 "[size=11][b]100[/b][img]" + urlGem + "[/img] entsprechen: " + resultExchange + "\n" +
                 "[b]100[/b][img]" + urlGold + "[/img] entsprechen: [b]" + coins.quantity + "[/b][img]" + urlGem + "[/img]";
-        if (api.getChannelInfo(Config.getConfigData().infoChannelID).getDescription().equalsIgnoreCase(desc)) return;
-        api.editChannel(Config.getConfigData().infoChannelID, ChannelProperty.CHANNEL_DESCRIPTION, desc);
+        if (api.getChannelInfo(Config.getConfigData().tradingPostChannelID).getDescription().equalsIgnoreCase(desc)) return;
+        api.editChannel(Config.getConfigData().tradingPostChannelID, ChannelProperty.CHANNEL_DESCRIPTION, desc);
     }
 }

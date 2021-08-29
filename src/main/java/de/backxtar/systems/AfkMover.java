@@ -15,23 +15,30 @@ public class AfkMover {
     }
 
     public static void checkAfk() {
-        if (Config.getConfigData().afkChannelID == 0) return;
+        if (Config.getConfigData().afkChannelID.length == 0 || Config.getConfigData().afkChannelID[0] == 0) return;
         TS3Api api = DerGeraet.getInstance().api;
         api.getClients().parallelStream().forEach(client -> {
             if (!client.isServerQueryClient()) {
                 if (client.isAway() || client.getIdleTime() >= 900000 && client.isInputMuted()
                         || client.getIdleTime() >= 900000 && client.isOutputMuted()) {
-                    if (!dataHashMap.containsKey(client.getUniqueIdentifier()) && client.getChannelId() != Config.getConfigData().afkChannelID) {
+                    boolean isAfkChannel = false;
+
+                    for (int id : Config.getConfigData().afkChannelID) {
+                        if (client.getChannelId() == id)
+                            isAfkChannel = true;
+                    }
+
+                    if (!dataHashMap.containsKey(client.getUniqueIdentifier()) && !isAfkChannel) {
                         MoveData moveData = new MoveData();
                         moveData.channelID = client.getChannelId();
                         moveData.timestamp = System.currentTimeMillis() - client.getIdleTime();
                         dataHashMap.put(client.getUniqueIdentifier(), moveData);
                         api.sendPrivateMessage(client.getId(), "Du wurdest in den AFK-Channel verschoben!");
-                        api.moveClient(client.getId(), Config.getConfigData().afkChannelID);
+                        api.moveClient(client.getId(), Config.getConfigData().afkChannelID[0]);
                     }
                 } else {
                     if (dataHashMap.containsKey(client.getUniqueIdentifier())) {
-                        if (client.getChannelId() == Config.getConfigData().afkChannelID)
+                        if (client.getChannelId() == Config.getConfigData().afkChannelID[0])
                             api.moveClient(client.getId(), dataHashMap.get(client.getUniqueIdentifier()).channelID);
                         long[] duration = getTime(System.currentTimeMillis() - dataHashMap.get(client.getUniqueIdentifier()).timestamp);
                         String time = (duration[2] > 0 ? duration[2] + "h " : "") +
