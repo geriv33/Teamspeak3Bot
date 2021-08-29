@@ -28,6 +28,7 @@ public class Config {
         public int tradingPostChannelID = 0;
         public int[] afkChannelID;
         public int infoChannelID = 0;
+        public int arcDpsChannelID = 0;
         public int tempServerGroupID = 0;
         public String guestServerGroupName;
         public String guildID;
@@ -90,6 +91,10 @@ public class Config {
             if (key.equalsIgnoreCase("infoChannelID")) {
                 String value = (String) cfg.get(key);
                 configData.infoChannelID = Integer.parseInt(value);
+            }
+            if (key.equalsIgnoreCase("arcDpsChannelID")) {
+                String value = (String) cfg.get(key);
+                configData.arcDpsChannelID = Integer.parseInt(value);
             }
             if (key.equalsIgnoreCase("welcomeMessage")) {
                 String value = (String) cfg.get(key);

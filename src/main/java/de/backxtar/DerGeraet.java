@@ -8,10 +8,7 @@ import de.backxtar.gw2.CallToken;
 import de.backxtar.managers.CommandManager;
 import de.backxtar.managers.EventManager;
 import de.backxtar.managers.SqlManager;
-import de.backxtar.systems.AfkMover;
-import de.backxtar.systems.ExchangeCheck;
-import de.backxtar.systems.SetAccountName;
-import de.backxtar.systems.Utils;
+import de.backxtar.systems.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -56,6 +53,7 @@ public class DerGeraet {
         scheduler.scheduleAtFixedRate(() -> {
             SetAccountName.descChange();
             ExchangeCheck.checkExchange();
+            ArcDpsCheck.checkArcDpsVersion();
             api.getClients().forEach(CallToken::checkToken);
             Utils.checkInfo(api);
             }, 1, 300, TimeUnit.SECONDS);
