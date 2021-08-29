@@ -17,23 +17,6 @@ public class CallGuild {
         public String id;
         public String name;
         public String tag;
-        public Emblem emblem;
-    }
-
-    public static class Emblem {
-        public Background background;
-        public Foreground foreground;
-        public String[] flags;
-    }
-
-    public static class Foreground {
-        public long id;
-        public long[] colors;
-    }
-
-    public static class Background {
-        public long id;
-        public long[] colors;
     }
 
     public static GWCallGuild getGuild(String guildID) {

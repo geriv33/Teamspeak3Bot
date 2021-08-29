@@ -2,7 +2,9 @@ package de.backxtar.gw2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class Gw2Utils {
@@ -11,7 +13,7 @@ public class Gw2Utils {
         BufferedReader reader = null;
         try {
             URL url = new URL(urlString);
-            reader = new BufferedReader(new InputStreamReader(url.openStream()));
+            reader = new BufferedReader(new InputStreamReader(read(url)));
             StringBuilder stringBuilder = new StringBuilder();
             int read;
             char[] chars = new char[1024];
@@ -24,6 +26,12 @@ public class Gw2Utils {
                 reader.close();
             }
         }
+    }
+
+    private static InputStream read(URL url) throws IOException {
+        HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
+        httpCon.addRequestProperty("User-Agent", "Mozilla/4.0");
+        return httpCon.getInputStream();
     }
 
     public static String currency(int id, long amount) {
