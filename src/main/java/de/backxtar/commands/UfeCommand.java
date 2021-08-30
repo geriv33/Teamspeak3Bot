@@ -26,6 +26,8 @@ public class UfeCommand implements CommandInterface {
                 break;
             }
         }
+        if (ufe.isEmpty()) ufe = Gw2Utils.currency(59, 0);
+
         api.sendPrivateMessage(client.getId(),
                 "\n[color=orange][b]Gw2-Account:[/b][/color] " + gw2Values[1] + "\n" +
                         ufe);
