@@ -28,7 +28,7 @@ public class DailyCheck {
 
         String des = "[center][size=11][URL=client://" + api.whoAmI().getId() + "/"
                 + api.whoAmI().getUniqueIdentifier()+ "]Message me![/URL][/size]" +
-                "\n\n" + dailies + "\n\n" + dailiesTomorrow;
+                "\n\n" + dailies + "\n\n\n" + dailiesTomorrow;
         if (api.getChannelInfo(Config.getConfigData().dailiesChannelID).getDescription().equalsIgnoreCase(des)) return;
         api.editChannel(Config.getConfigData().dailiesChannelID, ChannelProperty.CHANNEL_DESCRIPTION, des);
     }

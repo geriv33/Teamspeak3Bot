@@ -2,6 +2,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/Backxtar/Teamspeak3Bot?color=%23fc3003)](https://github.com/Backxtar/Teamspeak3Bot/issues)
 ![GitHub repo size](https://img.shields.io/github/repo-size/Backxtar/Teamspeak3Bot?color=%233aa63a)
 [![GitHub all releases](https://img.shields.io/github/downloads/Backxtar/Teamspeak3Bot/total?color=%233aa63a&label=download)](https://github.com/Backxtar/Teamspeak3Bot/releases)
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/Backxtar?color=%23bda000&label=sponsors%20on%20patreon)](https://www.patreon.com/backxtar)
 
 <img align="right" src="https://mlpfyvpfyq69.i.optimole.com/cZ9PPCo-D60oTdJD/w:auto/h:auto/q:auto/https://gameserververgleich.info/wp-content/uploads/TeamSpeak-Server-mieten.png" height="200" width="200">
 
