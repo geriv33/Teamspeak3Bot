@@ -51,9 +51,10 @@ public class DerGeraet {
         this.commandManager = new CommandManager();
         scheduler.scheduleAtFixedRate(AfkMover::checkAfk, 1, 1, TimeUnit.SECONDS);
         scheduler.scheduleAtFixedRate(() -> {
-            SetAccountName.descChange();
+            ClientDescCheck.descChange();
             ExchangeCheck.checkExchange();
             ArcDpsCheck.checkArcDpsVersion();
+            DailyCheck.checkDailies();
             api.getClients().forEach(CallToken::checkToken);
             Utils.checkInfo(api);
             }, 1, 300, TimeUnit.SECONDS);

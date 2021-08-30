@@ -9,10 +9,10 @@ import de.backxtar.DerGeraet;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SetAccountName {
+public class ClientDescCheck {
+    private static TS3Api api = DerGeraet.getInstance().api;
 
     public static void descChange() {
-        TS3Api api = DerGeraet.getInstance().api;
 
         try {
             ResultSet resultSet = SqlManager.selectAll("API_Keys");

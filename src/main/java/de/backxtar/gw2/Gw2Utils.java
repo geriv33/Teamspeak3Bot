@@ -172,4 +172,229 @@ public class Gw2Utils {
         coins[2] = gold;
         return coins;
     }
+
+    public static String formatRecs(String input) {
+        String formatted = "";
+
+        switch (input.substring(32)) {
+            case "1" :
+            case "19":
+            case "28":
+            case "52":
+                formatted = input.substring(32) + " - Vulkanisch";
+                break;
+            case "2" :
+            case "36":
+            case "44":
+            case "62":
+                formatted = input.substring(32) + " - Nicht kategorisiert";
+                break;
+            case "3" :
+            case "27":
+            case "51":
+            case "68":
+                formatted = input.substring(32) + " - Schneeblind";
+                break;
+            case "4" :
+            case "31":
+            case "57":
+            case "66":
+                formatted = input.substring(32) + " - Urbanes Schlachtfeld";
+                break;
+            case "5" :
+            case "17":
+            case "32":
+            case "56":
+                formatted = input.substring(32) + " - Sumpfland";
+                break;
+            case "6" :
+            case "21":
+            case "47":
+            case "69":
+                formatted = input.substring(32) + " - Felswand";
+                break;
+            case "7" :
+            case "26":
+            case "61":
+                formatted = input.substring(32) + " - Unterwasserruinen";
+                break;
+            case "8" :
+            case "29":
+            case "53":
+                formatted = input.substring(32) + " - Untergrundeinrichtung";
+                break;
+            case "9" :
+            case "22":
+            case "39":
+            case "58":
+                formatted = input.substring(32) + " - Feuriger Hochofen";
+                break;
+            case "10":
+            case "40":
+            case "70":
+                formatted = input.substring(32) + " - Feuriger Boss";
+                break;
+            case "11":
+            case "33":
+            case "67":
+                formatted = input.substring(32) + " - Tiefenstein";
+                break;
+            case "12":
+            case "37":
+            case "54":
+                formatted = input.substring(32) + " - Riff der Sirene";
+                break;
+            case "13":
+            case "30":
+            case "38":
+            case "63":
+                formatted = input.substring(32) + " - Chaos";
+                break;
+            case "14":
+            case "46":
+            case "65":
+            case "71":
+                formatted = input.substring(32) + " - Ätherklinge";
+                break;
+            case "15":
+            case "34":
+            case "43":
+            case "55":
+            case "64":
+                formatted = input.substring(32) + " - Thaumanova-Reaktor";
+                break;
+            case "16":
+            case "41":
+            case "59":
+                formatted = input.substring(32) + " - Zwielichtoase";
+                break;
+            case "18":
+            case "42":
+            case "72":
+                formatted = input.substring(32) + " - Kapitän Mai Trin Boss";
+                break;
+            case "20":
+            case "35":
+            case "45":
+            case "60":
+                formatted = input.substring(32) + " - Solider Ozean";
+                break;
+            case "23":
+            case "48":
+            case "73":
+                formatted = input.substring(32) + " - Albtraum";
+                break;
+            case "24":
+            case "49":
+            case "74":
+                formatted = input.substring(32) + " - Zerschmettertes Observatorium";
+                break;
+            case "25":
+            case "50":
+            case "75":
+                formatted = input.substring(32) + " - Sunqua-Gipfel";
+                break;
+            default :
+        }
+        return formatted;
+    }
+
+    public static String formatDaily(String input) {
+        String formatted = "";
+
+        switch (input.substring(13)) {
+            case "Aquatic Ruins" :
+                formatted = "76 - Unterwasserruinen";
+                break;
+            case "Swampland" :
+                formatted = "89 - Sumpfland";
+                break;
+            case "Siren's Reef" :
+                formatted = "78 - Riff der Sirene";
+                break;
+            case "Uncategorized" :
+                formatted = "91 - Nicht kategorisiert";
+                break;
+            case "Solider Ozean" :
+                formatted = "80 - Solider Ozean";
+                break;
+            case "Underground Facility" :
+                formatted = "81 - Untergrundeinrichtung";
+                break;
+            case "Thaumanova Reactor" :
+                formatted = "82 - Thaumanova-Reaktor";
+                break;
+            case "Molten Furnace" :
+                formatted = "83 - Feuriger Hochofen";
+                break;
+            case "Deepstone" :
+                formatted = "84 - Tiefenstein";
+                break;
+            case "Urban Battleground" :
+                formatted = "85 - Urbanes Schlachtfeld";
+                break;
+            case "Snowblind" :
+                formatted = "93 - Schneeblind";
+                break;
+            case "Twilight Oasis" :
+                formatted = "87 - Zwielichtoase";
+                break;
+            case "Chaos" :
+                formatted = "97 - Chaos";
+                break;
+            case "Molten Boss" :
+                formatted = "90 - Feuriger Boss";
+                break;
+            case "Volcanic" :
+                formatted = "92 - Vulkanisch";
+                break;
+            case "Cliffside" :
+                formatted = "94 - Felswand";
+                break;
+            case "Captain Mai Trin Boss" :
+                formatted = "95 - Kapitän Mai Trin Boss";
+                break;
+            case "Aetherblade" :
+                formatted = "96 - Ätherklinge";
+                break;
+            case "Nightmare" :
+                formatted = "98 - Albtraum";
+                break;
+            case "Shattered Observatory" :
+                formatted = "99 - Zerschmettertes Observatorium";
+                break;
+            case "Sunqua Peak" :
+                formatted = "100 - Sunqua-Gipfel";
+                break;
+            default:
+        }
+        return formatted;
+    }
+
+    public static String formatStrike(String input) {
+        String formatted = "";
+
+        switch (input) {
+            case "boneskinner":
+                formatted = "Knochenhäuter";
+                break;
+            case "fraenir_of_jormag":
+                formatted = "Fraenir Jormags";
+                break;
+            case "icebrood_construct":
+                formatted = "Zittergipfel-Pass";
+                break;
+            case "voice_of_the_fallen":
+                formatted = "Stimme der Gefallenen und Klaue der Gefallenen";
+                break;
+            case "voice_in_the_frozen_deep":
+                formatted = "Geflüster des Jormag";
+                break;
+            case "cold_war":
+                formatted = "Kalter Krieg";
+                break;
+            default:
+        }
+        return formatted;
+    }
 }

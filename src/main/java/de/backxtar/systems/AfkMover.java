@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 public class AfkMover {
     private static final HashMap<String, MoveData> dataHashMap = new HashMap<>();
+    private static TS3Api api = DerGeraet.getInstance().api;
 
     private static class MoveData {
         public long timestamp;
@@ -16,7 +17,6 @@ public class AfkMover {
 
     public static void checkAfk() {
         if (Config.getConfigData().afkChannelID.length == 0 || Config.getConfigData().afkChannelID[0] == 0) return;
-        TS3Api api = DerGeraet.getInstance().api;
         api.getClients().parallelStream().forEach(client -> {
             if (!client.isServerQueryClient()) {
                 if (client.isAway() || client.getIdleTime() >= 900000 && client.isInputMuted()
