@@ -81,7 +81,7 @@ public class DailyCheck {
         daily.append("[size=10][color=orange][b]WvW Dailies:\n").append("[/b][/color][/size][size=9]").append(wvw).append("[/size]\n\n");
         daily.append("[size=10][color=orange][b]Fraktal Dailies:\n").append("[/b][/color][/size][size=9]").append(fractals).append("[/size]\n\n");
         daily.append("[size=10][color=orange][b]Daily empfohlene Fraktale:\n").append("[/b][/color][/size][size=9]").append(recFractals).append("[/size]\n");
-        daily.append("[size=10][color=orange][b]Daily Strike Mission:\n").append("[/b][/color][/size][img]http://i.epvpimg.com/cfb6fab.png[/img] [size=9]").append(Gw2Utils.formatStrike(strikes.get(mode).strike)).append("[/size]");
+        daily.append("[size=10][color=orange][b]Daily Strike Mission:\n").append("[/b][/color][/size][img]http://i.epvpimg.com/cfb6fab.png[/img] [size=9]").append(Gw2Utils.formatDailyStrike(strikes.get(mode).strike)).append("[/size]");
 
         return daily;
     }
@@ -143,7 +143,7 @@ public class DailyCheck {
             List<String> unsorted = new ArrayList<>();
             for (CallDaily.GWCallDailyNames gwCallDailyNames : names) {
                 if (!builder.toString().contains(gwCallDailyNames.name) && gwCallDailyNames.name.contains("Tier 4")) {
-                    String name = Gw2Utils.formatDaily(gwCallDailyNames.name);
+                    String name = Gw2Utils.formatDailyFractals(gwCallDailyNames.name);
                     unsorted.add(name);
                 }
             }
@@ -158,7 +158,7 @@ public class DailyCheck {
         if (mode == 2) {
             for (int i = 0; i < names.size(); i++) {
                 if (!builder.toString().contains(names.get(i).name) && names.get(i).name.contains("Recommended")) {
-                    String name = Gw2Utils.formatRecs(names.get(i).name);
+                    String name = Gw2Utils.formatRecFractals(names.get(i).name);
                     builder.append("[img]http://i.epvpimg.com/UgDScab.png[/img] ").append(name);
                     if (i < (names.size() - 1)) builder.append("\n");
                 }

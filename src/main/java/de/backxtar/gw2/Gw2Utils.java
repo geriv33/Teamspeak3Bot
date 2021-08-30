@@ -173,7 +173,7 @@ public class Gw2Utils {
         return coins;
     }
 
-    public static String formatRecs(String input) {
+    public static String formatRecFractals(String input) {
         String formatted = "";
 
         switch (input.substring(32)) {
@@ -299,7 +299,7 @@ public class Gw2Utils {
         return formatted;
     }
 
-    public static String formatDaily(String input) {
+    public static String formatDailyFractals(String input) {
         String formatted = "";
 
         switch (input.substring(13)) {
@@ -371,7 +371,7 @@ public class Gw2Utils {
         return formatted;
     }
 
-    public static String formatStrike(String input) {
+    public static String formatDailyStrike(String input) {
         String formatted = "";
 
         switch (input) {
@@ -394,6 +394,23 @@ public class Gw2Utils {
                 formatted = "Kalter Krieg";
                 break;
             default:
+        }
+        return formatted;
+    }
+
+    public static String formatDailies(String input) {
+        String formatted = "";
+
+        switch (input) {
+            case "Daily Adventure: A Fungus Among Us":
+                formatted = "Tägliches Abenteuer: Pöse Pilze!";
+                break;
+            case "Daily Adventure: Beetle Feast":
+                formatted = "Tägliches Abenteuer: Käferschmaus";
+                break;
+            case "Daily Adventure: Bugs in the Branches":
+                formatted = "Tägliches Abenteuer: Käfer im Geäst";
+                break;
         }
         return formatted;
     }
