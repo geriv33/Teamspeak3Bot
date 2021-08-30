@@ -129,11 +129,19 @@ public class DailyCheck {
         if (mode == 0) {
             for (int i = 0; i < names.size(); i++) {
                 if (!builder.toString().contains(names.get(i).name)) {
-                    if (names.get(i).name.contains("PvP") || names.get(i).name.contains("Top Stats"))
-                        builder.append("[img]http://i.epvpimg.com/MLQ3fab.png[/img] ").append(names.get(i).name);
-                    else if (names.get(i).name.contains("WvW") || names.get(i).name.contains("Mists Guard Killer"))
-                        builder.append("[img]http://i.epvpimg.com/WHXtfab.png[/img] ").append(names.get(i).name);
-                    else builder.append("[img]http://i.epvpimg.com/f6E1cab.png[/img] ").append(names.get(i).name);
+                    String name;
+                    if (names.get(i).name.contains("PvP") || names.get(i).name.contains("Top Stats")) {
+                        name = Gw2Utils.formatDailies(names.get(i).name);
+                        builder.append("[img]http://i.epvpimg.com/MLQ3fab.png[/img] ").append(name);
+                    }
+                    else if (names.get(i).name.contains("WvW") || names.get(i).name.contains("Mists Guard Killer")) {
+                        name = Gw2Utils.formatDailies(names.get(i).name);
+                        builder.append("[img]http://i.epvpimg.com/WHXtfab.png[/img] ").append(name);
+                    }
+                    else {
+                        name = Gw2Utils.formatDailies(names.get(i).name);
+                        builder.append("[img]http://i.epvpimg.com/f6E1cab.png[/img] ").append(name);
+                    }
                     if (i < (names.size() - 1)) builder.append("\n");
                 }
             }

@@ -402,6 +402,7 @@ public class Gw2Utils {
         String formatted = "";
 
         switch (input) {
+            // Adventures
             case "Daily Adventure: A Fungus Among Us":
                 formatted = "Tägliches Abenteuer: Pöse Pilze!";
                 break;
@@ -411,6 +412,273 @@ public class Gw2Utils {
             case "Daily Adventure: Bugs in the Branches":
                 formatted = "Tägliches Abenteuer: Käfer im Geäst";
                 break;
+            case "Daily Adventure: Drone Race":
+                formatted = "Tägliches Abenteuer: Drohnen-Rennen";
+                break;
+            case "Daily Adventure: Fallen Masks":
+                formatted = "Tägliches Abenteuer: Gefallenen-Masken";
+                break;
+            case "Daily Adventure: Flying Circus":
+                formatted = "Tägliches Abenteuer: Schauflug";
+                break;
+            case "Daily Adventure: Haywire Punch-o-Matic Battle":
+                formatted = "Tägliches Abenteuer: Kampf als durchdrehender Haudrauf-o-Mat";
+                break;
+            case "Daily Adventure: On Wings of Gold":
+                formatted = "Tägliches Abenteuer: Auf goldenen Schwingen";
+                break;
+            case "Daily Adventure: Salvage Pit":
+                formatted = "Tägliches Abenteuer: Bergungsmaterial-Grube";
+                break;
+            case "Daily Adventure: Sanctum Scramble":
+                formatted = "Tägliches Abenteuer: Rauferei am Refugium";
+                break;
+            case "Daily Adventure: Scrap Rifle Field Test":
+                formatted = "Tägliches Abenteuer: Schrottgewehr-Feldversuch";
+                break;
+            case "Daily Adventure: Shooting Gallery":
+                formatted = "Tägliches Abenteuer: Schießbude";
+                break;
+            case "Daily Adventure: Tendril Torchers":
+                formatted = "Tägliches Abenteuer: Rankenbrenner";
+                break;
+            case "Daily Adventure: The Floor Is Lava?":
+                formatted = "Tägliches Abenteuer: Der Boden besteht aus Lava?";
+                break;
+            case "Daily Adventure: The Ley-Line Run":
+                formatted = "Tägliches Abenteuer: Das Ley-Linien-Rennen";
+                break;
+            case "Daily Desert Adventurer":
+                formatted = "Täglicher Abenteurer der Wüste";
+                break;
+            // Bounties
+            case "Daily Crystal Oasis Bounty Hunter":
+                formatted = "Tägliche Kopfgeldjäger der Kristalloase";
+                break;
+            case "Daily Desert Highlands Bounty Hunter":
+                formatted = "Täglicher Kopfgeldjäger des Wüsten-Hochlands";
+                break;
+            case "Daily Elon Riverlands Bounty Hunter":
+                formatted = "Täglicher Kopfgeldjäger der Elon-Flusslande";
+                break;
+            case "Daily Desolation Bounty Hunter":
+                formatted = "Täglicher Kopfgeldjäger des Ödlands";
+                break;
+            case "Daily Vabbian Bounty Hunter":
+                formatted = "Täglicher Kopfgeldjäger von Vaabi";
+                break;
+            // Dungeons
+            case "Daily Ascalonian Catacombs":
+                formatted = "Tägliche Erforschung: Katakomben von Ascalon";
+                break;
+            case "Daily Caudecus's Manor":
+                formatted = "Tägliche Erforschung: Caudecus' Anwesen";
+                break;
+            case "Daily Twilight Arbor":
+                formatted = "Tägliche Erforschung: Zwielichtgarten";
+                break;
+            case "Daily Sorrow's Embrace":
+                formatted = "Tägliche Erforschung: Umarmung der Betrübnis";
+                break;
+            case "Daily Citadel of Flame":
+                formatted = "Tägliche Erforschung: Flammenzitadelle";
+                break;
+            case "Daily Honor of the Waves":
+                formatted = "Tägliche Erforschung: Zierde der Wogen";
+                break;
+            case "Daily Crucible of Eternity":
+                formatted = "Tägliche Erforschung: Schmelztiegel der Ewigkeit";
+                break;
+            case "Daily Ruined City of Arah":
+                formatted = "Tägliche Erforschung: Ruinenstadt Arah";
+                break;
+            // Events
+            case "Daily Blazeridge Steppes Event Completer":
+                formatted = "Tägliche Event-Koryphäe der Flammenkamm-Steppe";
+                break;
+            case "Daily Bloodtide Coast Event Completer":
+                formatted = "Tägliche Event-Koryphäe der Blutstrom-Küste";
+                break;
+            case "Daily Brisban Wildlands Event Completer":
+                formatted = "Tägliche Event-Koryphäe der Brisban-Wildnis";
+                break;
+            case "Daily Caledon Forest Event Completer":
+                formatted = "Tägliche Event-Koryphäe des Caledon-Walds";
+                break;
+            case "Daily Cursed Shore Event Completer":
+                formatted = "Tägliche Event-Koryphäe der Fluchküste";
+                break;
+            case "Daily Diessa Plateau Event Completer":
+                formatted = "Tägliche Event-Koryphäe des Diessa-Plateaus";
+                break;
+            case "Daily Dredgehaunt Cliffs Event Completer":
+                formatted = "Tägliche Event-Koryphäe der Schauflerschreck-Klippen";
+                break;
+            case "Daily Dry Top Event Completer":
+                formatted = "Tägliche Event-Koryphäe der Trockenkuppe";
+                break;
+            case "Daily Fields of Ruin Event Completer":
+                formatted = "Tägliche Event-Koryphäe der Felder der Verwüstung";
+                break;
+            case "Daily Fireheart Rise Event Completer":
+                formatted = "Tägliche Event-Koryphäe der Feuerherzhügel";
+                break;
+            case "Daily Frostgorge Sound Event Completer":
+                formatted = "Tägliche Event-Koryphäe des Eisklamm-Sunds";
+                break;
+            case "Daily Gendarran Fields Event Completer":
+                formatted = "Tägliche Event-Koryphäe der Gendarran-Felder";
+                break;
+            case "Daily Harathi Hinterlands Event Completer":
+                formatted = "Tägliche Event-Koryphäe des Harathi-Hinterlands";
+                break;
+            case "Daily Iron Marches Event Completer":
+                formatted = "Tägliche Event-Koryphäe der Eisenmark";
+                break;
+            case "Daily Kessex Hills Event Completer":
+                formatted = "Tägliche Event-Koryphäe der Kessex-Hügel";
+                break;
+            case "Daily Lornar's Pass Event Completer":
+                formatted = "Tägliche Event-Koryphäe von Lornars Pass";
+                break;
+            case "Daily Malchor's Leap Event Completer":
+                formatted = "Tägliche Event-Koryphäe von Malchors Sprung";
+                break;
+            case "Daily Metrica Province Event Completer":
+                formatted = "Tägliche Event-Koryphäe der Provinz Metrica";
+                break;
+            case "Daily Mount Maelstrom Event Completer":
+                formatted = "Tägliche Event-Koryphäe des Mahlstromgipfels";
+                break;
+            case "Daily Plains of Ashford Event Completer":
+                formatted = "Tägliche Event-Koryphäe der Ebenen von Aschfurt";
+                break;
+            case "Daily Queensdale Event Completer":
+                formatted = "Tägliche Event-Koryphäe des Königintals";
+                break;
+            case "Daily Silverwastes Event Completer":
+                formatted = "Tägliche Event-Koryphäe der Silberwüste";
+                break;
+            case "Daily Snowden Drifts Event Completer":
+                formatted = "Tägliche Event-Koryphäe der Schneekuhlenhöhen";
+                break;
+            case "Daily Southsun Cove Event Completer":
+                formatted = "Tägliche Event-Koryphäe der Südlicht-Bucht";
+                break;
+            case "Daily Sparkfly Fen Event Completer":
+                formatted = "Tägliche Event-Koryphäe des Funkenschwärmersumpfs";
+                break;
+            case "Daily Straits of Devastation Event Completer":
+                formatted = "Tägliche Event-Koryphäe der Meerenge der Verwüstung";
+                break;
+            case "Daily Timberline Falls Event Completer":
+                formatted = "Tägliche Event-Koryphäe der Baumgrenzen-Fälle";
+                break;
+            case "Daily Wayfarer Foothills Event Completer":
+                formatted = "Tägliche Event-Koryphäe der Wanderer-Hügel";
+                break;
+            case "Daily Verdant Brink Event Completer":
+                formatted = "Tägliche Event-Koryphäe: Grasgrüne Schwelle";
+                break;
+            case "Daily Auric Basin Event Completer":
+                formatted = "Tägliche Event-Koryphäe: Güldener Talkessel";
+                break;
+            case "Daily Tangled Depths Event Completer":
+                formatted = "Tägliche Event-Koryphäe: Verschlungene Tiefen";
+                break;
+            case "Daily Dragon's Stand Event Completer":
+                formatted = "Tägliche Event-Koryphäe: Drachensturz";
+                break;
+            case "Daily Crystal Oasis Event Completer":
+                formatted = "Tägliche Event-Koryphäe: Kristall Oase";
+                break;
+            case "Daily Desert Highlands Event Completer":
+                formatted = "Tägliche Event-Koryphäe: Wüsten-Hochland";
+                break;
+            case "Daily Elon Riverlands Event Completer":
+                formatted = "Tägliche Event-Koryphäe: Elon-Flusslande";
+                break;
+            case "Daily Desolation Event Completer":
+                formatted = "Tägliche Event-Koryphäe: Ödland";
+                break;
+            case "Daily Vabbi Event Completer":
+                formatted = "Tägliche Event-Koryphäe: Vabbi";
+                break;
+            // Gathering
+            case "Daily Ascalon Forager":
+                formatted = "Täglicher Erntearbeiter von Ascalon";
+                break;
+            case "Daily Ascalon Lumberer":
+                formatted = "Täglicher Holzfäller von Ascalon";
+                break;
+            case "Daily Ascalon Miner":
+                formatted = "Täglicher Bergarbeiter von Ascalon";
+                break;
+            case "Daily Kryta Forager":
+                formatted = "Täglicher Erntearbeiter von Kryta";
+                break;
+            case "Daily Kryta Lumberer":
+                formatted = "Täglicher Holzfäller von Kryta";
+                break;
+            case "Daily Kryta Miner":
+                formatted = "Täglicher Bergarbeiter von Kryta";
+                break;
+            case "Daily Maguuma Jungle Forager":
+                formatted = "Täglicher Erntearbeiter des Maguuma-Dschungels";
+                break;
+            case "Daily Maguuma Jungle Lumberer":
+                formatted = "Täglicher Holzfäller des Maguuma-Dschungels";
+                break;
+            case "Daily Maguuma Jungle Miner":
+                formatted = "Täglicher Bergarbeiter des Maguuma-Dschungels";
+                break;
+            case "Daily Maguuma Wastes Forager":
+                formatted = "Täglicher Erntearbeiter der Maguuma-Einöde";
+                break;
+            case "Daily Maguuma Wastes Lumberer":
+                formatted = "Täglicher Holzfäller des Maguuma-Dschungels";
+                break;
+            case "Daily Maguuma Wastes Miner":
+                formatted = "Täglicher Bergarbeiter des Maguuma-Dschungels";
+                break;
+            case "Daily Orr Forager":
+                formatted = "Täglicher Erntearbeiter von Orr";
+                break;
+            case "Daily Orr Lumberer":
+                formatted = "Täglicher Holzfäller von Orr";
+                break;
+            case "Daily Orr Miner":
+                formatted = "Täglicher Bergarbeiter von Orr";
+                break;
+            case "Daily Shiverpeaks Forager":
+                formatted = "Täglicher Erntearbeiter der Zittergipfel";
+                break;
+            case "Daily Shiverpeaks Lumberer":
+                formatted = "Täglicher Holzfäller der Zittergipfel";
+                break;
+            case "Daily Shiverpeaks Miner":
+                formatted = "Täglicher Bergarbeiter der Zittergipfel";
+                break;
+            case "Daily Heart of Maguuma Forager":
+                formatted = "Täglicher Sammler: Herz von Maguuma";
+                break;
+            case "Daily Heart of Maguuma Lumberer":
+                formatted = "Täglicher Holzfäller: Herz von Maguuma";
+                break;
+            case "Daily Heart of Maguuma Miner":
+                formatted = "Täglicher Bergarbeiter: Herz von Maguuma";
+                break;
+            case "Daily Desert Forager":
+                formatted = "Täglicher Erntearbeiter der Wüste";
+                break;
+            case "Daily Desert Lumberer":
+                formatted = "Täglicher Holzfäller der Wüste";
+                break;
+            case "Daily Desert Miner":
+                formatted = "Täglicher Bergarbeiter der Wüste";
+                break;
+            default:
+                formatted = input;
         }
         return formatted;
     }
