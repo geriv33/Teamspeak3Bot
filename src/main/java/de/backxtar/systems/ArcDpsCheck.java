@@ -34,8 +34,8 @@ public class ArcDpsCheck {
         String desc = "[center][size=11][URL=client://" + api.whoAmI().getId() + "/" +
                         api.whoAmI().getUniqueIdentifier()+ "]Message me![/URL]" +
                         "\n[img]http://i.epvpimg.com/IhT7eab.png[/img]" +
-                        "\n[color=red][b]Last modified[/b][/color]" +
-                        "\n[color=orange][b]" + d3d9 + ":[/b][/color] " + d3d9Date +
+                        "\n[color=red][b]Last modified[/b][/color][/size]" +
+                        "\n[size=10][color=orange][b]" + d3d9 + ":[/b][/color] " + d3d9Date +
                         "\n[color=orange][b]" + md5sum + ":[/b][/color] " + md5sumDate +
                         "\n[color=orange][b]Download:[/b][/color] [URL=https://www.deltaconnected.com/arcdps/x64/]Index of X64[/URL][/size]";
         if (api.getChannelInfo(Config.getConfigData().arcDpsChannelID).getDescription().equalsIgnoreCase(desc)) return;
