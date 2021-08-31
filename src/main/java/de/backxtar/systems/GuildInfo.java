@@ -22,10 +22,10 @@ public class GuildInfo {
         String announcement = "[center][size=11][color=red][b]" + guild.name + " [" + guild.tag + "] (" + guild.level + ")[/b][/color][/size]" +
                 "\n\n[size=10][color=orange][b]Ankündigung:[/b][/color][/size]\n" + guild.motd +
                 "\n\n" + memberIcon + " [size=10][color=orange][b]Members:[/b][/color][/size] [size=9]" + guild.member_count + "/" + guild.member_capacity + "[/size]" +
-                "\n\n" + aetheriumIcon + " [size=10][color=orange][b]Ätherium:[/b][/color][/size] [size=9]" + guild.aetherium + "[/size]" +
-                "\n\n" + favorIcon + " [size=10][color=orange][b]Gunst:[/b][/color][/size] [size=9]" + guild.favor + "[/size]" +
-                "\n\n" + influenceIcon + " [size=10][color=orange][b]Einfluss:[/b][/color][/size] [size=9]" + guild.influence + "[/size]" +
-                "\n\n" + resonanceIcon + " [size=10][color=orange][b]Resonanz:[/b][/color][/size] [size=9]" + guild.resonance + "[/size]" +
+                "\n" + aetheriumIcon + " [size=10][color=orange][b]Ätherium:[/b][/color][/size] [size=9]" + guild.aetherium + "[/size]" +
+                "\n" + favorIcon + " [size=10][color=orange][b]Gunst:[/b][/color][/size] [size=9]" + guild.favor + "[/size]" +
+                "\n" + influenceIcon + " [size=10][color=orange][b]Einfluss:[/b][/color][/size] [size=9]" + guild.influence + "[/size]" +
+                "\n" + resonanceIcon + " [size=10][color=orange][b]Resonanz:[/b][/color][/size] [size=9]" + guild.resonance + "[/size]" +
                 "";
         if (api.getChannelInfo(Config.getConfigData().guildChannelID)
                 .getDescription().equalsIgnoreCase(announcement)) return;
