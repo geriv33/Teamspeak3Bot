@@ -19,18 +19,23 @@ public class DailyCheck {
     private static final TS3Api api = DerGeraet.getInstance().api;
 
     public static void checkDailies() {
-        if (Config.getConfigData().dailiesChannelID == 0) return;
-        CallDaily.GWCallDaily daily = CallDaily.getDailies(1);
-        CallDaily.GWCallDaily dailyTomorrow = CallDaily.getDailies(2);
+        try {
+            if (Config.getConfigData().dailiesChannelID == 0) return;
+            CallDaily.GWCallDaily daily = CallDaily.getDailies(1);
+            CallDaily.GWCallDaily dailyTomorrow = CallDaily.getDailies(2);
 
-        StringBuilder dailies = checkDailies(daily, 0);
-        StringBuilder dailiesTomorrow = checkDailies(dailyTomorrow, 1);
+            StringBuilder dailies = checkDailies(daily, 0);
+            StringBuilder dailiesTomorrow = checkDailies(dailyTomorrow, 1);
 
-        String des = "[center][size=11][URL=client://" + api.whoAmI().getId() + "/"
-                + api.whoAmI().getUniqueIdentifier()+ "]Message me![/URL][/size]" +
-                "\n\n" + dailies + "\n\n\n" + dailiesTomorrow;
-        if (api.getChannelInfo(Config.getConfigData().dailiesChannelID).getDescription().equalsIgnoreCase(des)) return;
-        api.editChannel(Config.getConfigData().dailiesChannelID, ChannelProperty.CHANNEL_DESCRIPTION, des);
+            String des = "[center][size=11][URL=client://" + api.whoAmI().getId() + "/"
+                    + api.whoAmI().getUniqueIdentifier() + "]Message me![/URL][/size]" +
+                    "\n\n" + dailies + "\n\n\n" + dailiesTomorrow;
+            if (api.getChannelInfo(Config.getConfigData().dailiesChannelID).getDescription().equalsIgnoreCase(des))
+                return;
+            api.editChannel(Config.getConfigData().dailiesChannelID, ChannelProperty.CHANNEL_DESCRIPTION, des);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private static StringBuilder checkDailies(CallDaily.GWCallDaily dailies, int mode) {
@@ -131,15 +136,15 @@ public class DailyCheck {
                 if (!builder.toString().contains(names.get(i).name)) {
                     String name;
                     if (names.get(i).name.contains("PvP") || names.get(i).name.contains("Top Stats")) {
-                        name = Gw2Utils.formatDailies(names.get(i).name);
+                        name = Gw2Utils.formatDailiesPvpWvw(names.get(i).name);
                         builder.append("[img]http://i.epvpimg.com/MLQ3fab.png[/img] ").append(name);
                     }
                     else if (names.get(i).name.contains("WvW") || names.get(i).name.contains("Mists Guard Killer")) {
-                        name = Gw2Utils.formatDailies(names.get(i).name);
+                        name = Gw2Utils.formatDailiesPvpWvw(names.get(i).name);
                         builder.append("[img]http://i.epvpimg.com/WHXtfab.png[/img] ").append(name);
                     }
                     else {
-                        name = Gw2Utils.formatDailies(names.get(i).name);
+                        name = Gw2Utils.formatDaily(names.get(i).name);
                         builder.append("[img]http://i.epvpimg.com/f6E1cab.png[/img] ").append(name);
                     }
                     if (i < (names.size() - 1)) builder.append("\n");

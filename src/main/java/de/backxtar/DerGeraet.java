@@ -28,7 +28,7 @@ public class DerGeraet {
 
     public DerGeraet() throws IOException, TS3Exception, SQLException, ClassNotFoundException {
         ts3Bot = this;
-        this.scheduler = Executors.newScheduledThreadPool(2);
+        this.scheduler = Executors.newScheduledThreadPool(3);
         final TS3Config config = new TS3Config();
         Config.loadConfig();
         logger.info(Config.getFile().getName() + " loaded.");

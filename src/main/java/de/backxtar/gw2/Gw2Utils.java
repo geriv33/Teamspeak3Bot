@@ -315,7 +315,7 @@ public class Gw2Utils {
             case "Uncategorized" :
                 formatted = "91 - Nicht kategorisiert";
                 break;
-            case "Solider Ozean" :
+            case "Solid Ocean" :
                 formatted = "80 - Solider Ozean";
                 break;
             case "Underground Facility" :
@@ -366,7 +366,7 @@ public class Gw2Utils {
             case "Sunqua Peak" :
                 formatted = "100 - Sunqua-Gipfel";
                 break;
-            default:
+            default: formatted = input;
         }
         return formatted;
     }
@@ -387,7 +387,7 @@ public class Gw2Utils {
             case "voice_of_the_fallen":
                 formatted = "Stimme der Gefallenen und Klaue der Gefallenen";
                 break;
-            case "voice_in_the_frozen_deep":
+            case "whisper_of_jormag":
                 formatted = "Geflüster des Jormag";
                 break;
             case "cold_war":
@@ -398,10 +398,151 @@ public class Gw2Utils {
         return formatted;
     }
 
-    public static String formatDailies(String input) {
+    public static String formatDaily(String input) {
         String formatted = "";
 
         switch (input) {
+            case "Daily Ascalonian Catacombs":
+                formatted = "Tägliche Erforschung: Katakomben von Ascalon";
+                break;
+            case "Daily Caudecus's Manor":
+                formatted = "Tägliche Erforschung: Caudecus' Anwesen";
+                break;
+            case "Daily Twilight Arbor":
+                formatted = "Tägliche Erforschung: Zwielichtgarten";
+                break;
+            case "Daily Sorrow's Embrace":
+                formatted = "Tägliche Erforschung: Umarmung der Betrübnis";
+                break;
+            case "Daily Citadel of Flame":
+                formatted = "Tägliche Erforschung: Flammenzitadelle";
+                break;
+            case "Daily Honor of the Waves":
+                formatted = "Tägliche Erforschung: Zierde der Wogen";
+                break;
+            case "Daily Crucible of Eternity":
+                formatted = "Tägliche Erforschung: Schmelztiegel der Ewigkeit";
+                break;
+            case "Daily Ruined City of Arah":
+                formatted = "Tägliche Erforschung: Ruinenstadt Arah";
+                break;
+            case "Daily Ascalon Forager":
+                formatted = "Täglicher Erntearbeiter von Ascalon";
+                break;
+            case "Daily Ascalon Lumberer":
+                formatted = "Täglicher Holzfäller von Ascalon";
+                break;
+            case "Daily Ascalon Miner":
+                formatted = "Täglicher Bergarbeiter von Ascalon";
+                break;
+            case "Daily Kryta Forager":
+                formatted = "Täglicher Erntearbeiter von Kryta";
+                break;
+            case "Daily Kryta Lumberer":
+                formatted = "Täglicher Holzfäller von Kryta";
+                break;
+            case "Daily Kryta Miner":
+                formatted = "Täglicher Bergarbeiter von Kryta";
+                break;
+            case "Daily Maguuma Jungle Forager":
+                formatted = "Täglicher Erntearbeiter des Maguuma-Dschungels";
+                break;
+            case "Daily Maguuma Jungle Lumberer":
+                formatted = "Täglicher Holzfäller des Maguuma-Dschungels";
+                break;
+            case "Daily Maguuma Jungle Miner":
+                formatted = "Täglicher Bergarbeiter des Maguuma-Dschungels";
+                break;
+            case "Daily Maguuma Wastes Forager":
+                formatted = "Täglicher Erntearbeiter der Maguuma-Einöde";
+                break;
+            case "Daily Maguuma Wastes Lumberer":
+                formatted = "Täglicher Holzfäller des Maguuma-Dschungels";
+                break;
+            case "Daily Maguuma Wastes Miner":
+                formatted = "Täglicher Bergarbeiter des Maguuma-Dschungels";
+                break;
+            case "Daily Orr Forager":
+                formatted = "Täglicher Erntearbeiter von Orr";
+                break;
+            case "Daily Orr Lumberer":
+                formatted = "Täglicher Holzfäller von Orr";
+                break;
+            case "Daily Orr Miner":
+                formatted = "Täglicher Bergarbeiter von Orr";
+                break;
+            case "Daily Shiverpeaks Forager":
+                formatted = "Täglicher Erntearbeiter der Zittergipfel";
+                break;
+            case "Daily Shiverpeaks Lumberer":
+                formatted = "Täglicher Holzfäller der Zittergipfel";
+                break;
+            case "Daily Shiverpeaks Miner":
+                formatted = "Täglicher Bergarbeiter der Zittergipfel";
+                break;
+            case "Daily Heart of Maguuma Forager":
+                formatted = "Täglicher Sammler: Herz von Maguuma";
+                break;
+            case "Daily Heart of Maguuma Lumberer":
+                formatted = "Täglicher Holzfäller: Herz von Maguuma";
+                break;
+            case "Daily Heart of Maguuma Miner":
+                formatted = "Täglicher Bergarbeiter: Herz von Maguuma";
+                break;
+            case "Daily Desert Forager":
+                formatted = "Täglicher Erntearbeiter der Wüste";
+                break;
+            case "Daily Desert Lumberer":
+                formatted = "Täglicher Holzfäller der Wüste";
+                break;
+            case "Daily Desert Miner":
+                formatted = "Täglicher Bergarbeiter der Wüste";
+                break;
+            // Renown Hearts
+            case "Daily Elon Riverlands Taskmaster":
+                formatted = "Täglicher Meister der Aufgaben der Elon-Flusslande";
+                break;
+            case "Daily Desolation Taskmaster":
+                formatted = "Täglicher Meister der Aufgaben des Ödlandes";
+                break;
+            // World Bosses
+            case "Daily Claw of Jormag":
+                formatted = "Tägliche Klaue von Jormag";
+                break;
+            case "Daily Demolisher":
+                formatted = "Täglicher Zerstörer";
+                break;
+            case "Daily Fire Elemental":
+                formatted = "Täglicher Feuer-Elementar";
+                break;
+            case "Daily Frozen Maw":
+                formatted = "Täglicher Gefrorener Schlund";
+                break;
+            case "Daily Great Jungle Wurm":
+                formatted = "Täglicher Großer Dschungelwurm";
+                break;
+            case "Daily Hound Master":
+                formatted = "Täglicher Meister der Hunde";
+                break;
+            case "Daily Inquest Golem Mark II":
+                formatted = "Täglicher Inquestur-Golem Typ II";
+                break;
+            case "Daily Megadestroyer":
+                formatted = "Täglicher Mega-Zerstörer";
+                break;
+            case "Daily Shadow Behemoth":
+                formatted = "Täglicher Schatten-Behemoth";
+                break;
+            case "Daily Shatterer":
+                formatted = "Täglicher Zerschmetterer";
+                break;
+            // Other
+            case "Daily Activity Participation":
+                formatted = "Täglicher Aktivitäts-Teilnehmer";
+                break;
+            case "Daily Mystic Forger":
+                formatted = "Täglicher mystischer Schmied";
+                break;
             // Adventures
             case "Daily Adventure: A Fungus Among Us":
                 formatted = "Tägliches Abenteuer: Pöse Pilze!";
@@ -451,46 +592,148 @@ public class Gw2Utils {
             case "Daily Desert Adventurer":
                 formatted = "Täglicher Abenteurer der Wüste";
                 break;
-            // Bounties
-            case "Daily Crystal Oasis Bounty Hunter":
-                formatted = "Tägliche Kopfgeldjäger der Kristalloase";
+            //Vistas
+            case "Daily Ascalon Vista Viewer":
+                formatted = "Täglicher Panorama-Genießer von Ascalon";
                 break;
-            case "Daily Desert Highlands Bounty Hunter":
-                formatted = "Täglicher Kopfgeldjäger des Wüsten-Hochlands";
+            case "Daily Kryta Vista Viewer":
+                formatted = "Täglicher Panorama-Genießer von Kryta";
                 break;
-            case "Daily Elon Riverlands Bounty Hunter":
-                formatted = "Täglicher Kopfgeldjäger der Elon-Flusslande";
+            case "Daily Maguuma Vista Viewer":
+                formatted = "Täglicher Panorama-Genießer von Maguuma";
                 break;
-            case "Daily Desolation Bounty Hunter":
-                formatted = "Täglicher Kopfgeldjäger des Ödlands";
+            case "Daily Maguuma Wastes Vista Viewer":
+                formatted = "Täglicher Panorama-Genießer der Maguuma-Einöde";
                 break;
-            case "Daily Vabbian Bounty Hunter":
-                formatted = "Täglicher Kopfgeldjäger von Vaabi";
+            case "Daily Orr Vista Viewer":
+                formatted = "Täglicher Panorama-Genießer von Orr";
                 break;
-            // Dungeons
-            case "Daily Ascalonian Catacombs":
-                formatted = "Tägliche Erforschung: Katakomben von Ascalon";
+            case "Daily Shiverpeaks Vista Viewer":
+                formatted = "Täglicher Panorama-Genießer der Zittergipfel";
                 break;
-            case "Daily Caudecus's Manor":
-                formatted = "Tägliche Erforschung: Caudecus' Anwesen";
+            case "Daily Heart of Maguuma Vista Viewer":
+                formatted = "Täglicher Panorama-Genießer: Herz von Maguuma";
                 break;
-            case "Daily Twilight Arbor":
-                formatted = "Tägliche Erforschung: Zwielichtgarten";
+            case "Daily Desert Vista Viewer":
+                formatted = "Täglicher Panorama-Genießer der Wüste";
                 break;
-            case "Daily Sorrow's Embrace":
-                formatted = "Tägliche Erforschung: Umarmung der Betrübnis";
+            // Jumping Puzzle
+            case "Daily Antre of Adjournment Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Der Abgrund des Plünderers";
                 break;
-            case "Daily Citadel of Flame":
-                formatted = "Tägliche Erforschung: Flammenzitadelle";
+            case "Daily Behem Gauntlet Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Behem-Spießrutenlauf";
                 break;
-            case "Daily Honor of the Waves":
-                formatted = "Tägliche Erforschung: Zierde der Wogen";
+            case "Daily Branded Mine Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Die Gebrandmarkte Mine";
                 break;
-            case "Daily Crucible of Eternity":
-                formatted = "Tägliche Erforschung: Schmelztiegel der Ewigkeit";
+            case "Daily Buried Archives Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Verschüttete Archive";
                 break;
-            case "Daily Ruined City of Arah":
-                formatted = "Tägliche Erforschung: Ruinenstadt Arah";
+            case "Daily Chaos Crystal Cavern Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Die Chaoskristallhöhle";
+                break;
+            case "Daily Coddler's Cove Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Knuddlerbucht";
+                break;
+            case "Daily Collapsed Observatory Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Das eingestürzte Observatorium";
+                break;
+            case "Daily Conundrum Cubed Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Zwickmühle hoch drei";
+                break;
+            case "Daily Crash Site Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Absturzstelle";
+                break;
+            case "Daily Craze's Folly Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Crazes Torheit";
+                break;
+            case "Daily Crimson Plateau Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Purpur-Plateau";
+                break;
+            case "Daily Dark Reverie Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Finsterer Tagtraum";
+                break;
+            case "Daily Demongrub Pits Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Dämonenraupen-Gruben";
+                break;
+            case "Daily Fawcett's Bounty Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Fawcetts Beute";
+                break;
+            case "Daily Goemm's Lab Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Goemms Labor";
+                break;
+            case "Daily Grendich Gamble Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Grendich-Spiel";
+                break;
+            case "Daily Griffonrook Run Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Greifenturmstrecke";
+                break;
+            case "Daily Hexfoundry Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Fluchgießerei Abgedreht";
+                break;
+            case "Daily Hidden Garden Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Verborgener Garten";
+                break;
+            case "Daily King Jalis's Refuge Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: König Jalis' Zuflucht";
+                break;
+            case "Daily Loreclaw Expanse Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Sagenklauen-Weite";
+                break;
+            case "Daily Morgan's Leap Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Morgans Sprung";
+                break;
+            case "Daily Only Zuhl Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Nur Zuhl";
+                break;
+            case "Daily Pig Iron Quarry Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Die Roheisen-Grube";
+                break;
+            case "Daily Portmatt's Lab Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Professor Portmatts Labor";
+                break;
+            case "Daily Scavenger's Chasm Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Der Abgrund des Plünderers";
+                break;
+            case "Daily Shaman's Rookery Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Schamanen-Kolonie";
+                break;
+            case "Daily Shattered Ice Ruins Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Die Zerschmetterten Eisruinen";
+                break;
+            case "Daily Skipping Stones Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Steine hüpfen lassen";
+                break;
+            case "Daily Spekks's Lab Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Spekks Labor";
+                break;
+            case "Daily Spelunker's Delve Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Höhlenforscher-Senke";
+                break;
+            case "Daily Swashbuckler's Cove Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Die Säbelrassler-Bucht";
+                break;
+            case "Daily Tribulation Caverns Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Trübsalriss-Höhlen";
+                break;
+            case "Daily Tribulation Rift Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Trübsalriss";
+                break;
+            case "Daily Under New Management Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Unter neuer Leitung";
+                break;
+            case "Daily Urmaug's Secret Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Urmaugs Geheimnis";
+                break;
+            case "Daily Vizier's Tower Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Der Turm des Wesirs";
+                break;
+            case "Daily Wall Breach Blitz Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Wallbrecherblitz";
+                break;
+            case "Daily Weyandt's Revenge Jumping Puzzle":
+                formatted = "Tägliches Sprungrätsel: Weyandts Rache";
                 break;
             // Events
             case "Daily Blazeridge Steppes Event Completer":
@@ -604,81 +847,129 @@ public class Gw2Utils {
             case "Daily Vabbi Event Completer":
                 formatted = "Tägliche Event-Koryphäe: Vabbi";
                 break;
-            // Gathering
-            case "Daily Ascalon Forager":
-                formatted = "Täglicher Erntearbeiter von Ascalon";
+            // Bounties
+            case "Daily Crystal Oasis Bounty Hunter":
+                formatted = "Tägliche Kopfgeldjäger der Kristalloase";
                 break;
-            case "Daily Ascalon Lumberer":
-                formatted = "Täglicher Holzfäller von Ascalon";
+            case "Daily Desert Highlands Bounty Hunter":
+                formatted = "Täglicher Kopfgeldjäger des Wüsten-Hochlands";
                 break;
-            case "Daily Ascalon Miner":
-                formatted = "Täglicher Bergarbeiter von Ascalon";
+            case "Daily Elon Riverlands Bounty Hunter":
+                formatted = "Täglicher Kopfgeldjäger der Elon-Flusslande";
                 break;
-            case "Daily Kryta Forager":
-                formatted = "Täglicher Erntearbeiter von Kryta";
+            case "Daily Desolation Bounty Hunter":
+                formatted = "Täglicher Kopfgeldjäger des Ödlands";
                 break;
-            case "Daily Kryta Lumberer":
-                formatted = "Täglicher Holzfäller von Kryta";
+            case "Daily Vabbian Bounty Hunter":
+                formatted = "Täglicher Kopfgeldjäger von Vaabi";
                 break;
-            case "Daily Kryta Miner":
-                formatted = "Täglicher Bergarbeiter von Kryta";
+            // Minidungeons
+            case "Daily Bad Neighborhood Minidungeon":
+                formatted = "Tägliches Mini-Verlies: Miese Nachbarschaft";
                 break;
-            case "Daily Maguuma Jungle Forager":
-                formatted = "Täglicher Erntearbeiter des Maguuma-Dschungels";
+            case "Daily Don't Touch the Shiny Minidungeon":
+                formatted = "Tägliches Mini-Verlies: Finger weg vom Glänzigen";
                 break;
-            case "Daily Maguuma Jungle Lumberer":
-                formatted = "Täglicher Holzfäller des Maguuma-Dschungels";
+            case "Daily Forgotten Stream Minidungeon":
+                formatted = "Tägliches Mini-Verlies: Der vergessene Fluss";
                 break;
-            case "Daily Maguuma Jungle Miner":
-                formatted = "Täglicher Bergarbeiter des Maguuma-Dschungels";
+            case "Daily Forsaken Fortune Minidungeon":
+                formatted = "Tägliches Mini-Verlies: Verdammte Schätze";
                 break;
-            case "Daily Maguuma Wastes Forager":
-                formatted = "Täglicher Erntearbeiter der Maguuma-Einöde";
+            case "Daily Goff's Loot Minidungeon":
+                formatted = "Tägliches Mini-Verlies: Goffs Beute";
                 break;
-            case "Daily Maguuma Wastes Lumberer":
-                formatted = "Täglicher Holzfäller des Maguuma-Dschungels";
+            case "Daily Grounded Minidungeon":
+                formatted = "Tägliches Mini-Verlies: Geerdet";
                 break;
-            case "Daily Maguuma Wastes Miner":
-                formatted = "Täglicher Bergarbeiter des Maguuma-Dschungels";
+            case "Daily Magellan's Memento Minidungeon":
+                formatted = "Tägliches Mini-Verlies: Magellans Andenken";
                 break;
-            case "Daily Orr Forager":
-                formatted = "Täglicher Erntearbeiter von Orr";
+            case "Daily Rebel's Seclusion Minidungeon":
+                formatted = "Tägliches Mini-Verlies: Unterschlupf der Rebellen";
                 break;
-            case "Daily Orr Lumberer":
-                formatted = "Täglicher Holzfäller von Orr";
+            case "Daily Ship of Sorrows Minidungeon":
+                formatted = "Tägliches Mini-Verlies: Schiff des Leids";
                 break;
-            case "Daily Orr Miner":
-                formatted = "Täglicher Bergarbeiter von Orr";
+            case "Daily Tears of Itlaocol Minidungeon":
+                formatted = "Tägliches Mini-Verlies: Die Tränen Itlaocols";
                 break;
-            case "Daily Shiverpeaks Forager":
-                formatted = "Täglicher Erntearbeiter der Zittergipfel";
+            case "Daily The Long Way Around Minidungeon":
+                formatted = "Tägliches Mini-Verlies: Ein großer Umweg";
                 break;
-            case "Daily Shiverpeaks Lumberer":
-                formatted = "Täglicher Holzfäller der Zittergipfel";
+            case "Daily Vexa's Lab Minidungeon":
+                formatted = "Tägliches Mini-Verlies: Vexas Labor";
                 break;
-            case "Daily Shiverpeaks Miner":
-                formatted = "Täglicher Bergarbeiter der Zittergipfel";
+            case "Daily Windy Cave Treasure Minidungeon":
+                formatted = "Tägliches Mini-Verlies: Schatz der Zugigen Höhle";
                 break;
-            case "Daily Heart of Maguuma Forager":
-                formatted = "Täglicher Sammler: Herz von Maguuma";
+            default: formatted = input;
+        }
+        return formatted;
+    }
+
+    public static String formatDailiesPvpWvw(String input) {
+        String formatted = "";
+
+        switch (input) {
+            case "Daily PvP Matches Played in Unranked or Ranked Arena":
+                formatted = "Tägliche PvP-Matches in Arena mit oder ohne Rangwertung";
                 break;
-            case "Daily Heart of Maguuma Lumberer":
-                formatted = "Täglicher Holzfäller: Herz von Maguuma";
+            case "Daily PvP Player Kills":
+                formatted = "Tägliche PvP-Spielersiege";
                 break;
-            case "Daily Heart of Maguuma Miner":
-                formatted = "Täglicher Bergarbeiter: Herz von Maguuma";
+            case "Daily PvP Rank Points":
+                formatted = "Tägliche PvP-Rangpunkte";
                 break;
-            case "Daily Desert Forager":
-                formatted = "Täglicher Erntearbeiter der Wüste";
+            case "Daily PvP Rated Game Winner":
+                formatted = "Täglicher Gewinner eines bewerteten PvP-Spiels";
                 break;
-            case "Daily Desert Lumberer":
-                formatted = "Täglicher Holzfäller der Wüste";
+            case "Daily PvP Reward Earner":
+                formatted = "Täglicher PvP-Belohnungsmeister";
                 break;
-            case "Daily Desert Miner":
-                formatted = "Täglicher Bergarbeiter der Wüste";
+            case "Daily PvP Tournament Participator":
+                formatted = "Täglicher Teilnehmer an einem PvP-Turnier";
                 break;
-            default:
-                formatted = input;
+            case "Daily Top Stats":
+                formatted = "Tägliche Top-Stats";
+                break;
+            // WvW
+            case "Daily Mists Guard Killer":
+                formatted = "Täglicher Nebelwachen-Schlächter";
+                break;
+            case "Daily WvW Big Spender":
+                formatted = "Täglicher WvW-Spendierer";
+                break;
+            case "Daily WvW Camp Capturer":
+                formatted = "Täglicher WvW-Lager-Eroberer";
+                break;
+            case "Daily WvW Caravan Disruptor":
+                formatted = "Täglicher WvW-Karawanen-Zerstörer";
+                break;
+            case "Daily WvW Invasion Defender":
+                formatted = "Täglicher WvW-Invasions-Abwehrer";
+                break;
+            case "Daily WvW Keep Capturer":
+                formatted = "Täglicher WvW-Festeneroberer";
+                break;
+            case "Daily WvW Land Claimer":
+                formatted = "Täglicher WvW-Land-Beansprucher";
+                break;
+            case "Daily WvW Objective Defender":
+                formatted = "Täglicher WvW-Zielobjekt-Verteidiger";
+                break;
+            case "Daily WvW Tower Capturer":
+                formatted = "Täglicher WvW-Turm-Eroberer";
+                break;
+            case "Daily WvW World Ranker":
+                formatted = "Täglicher WvW-Weltrang-Stürmer";
+                break;
+            case "Daily WvW Master of Monuments":
+                formatted = "Täglicher Meister der Monumente";
+                break;
+            case "Daily WvW Veteran Creature Slayer":
+                formatted = "Täglicher Bezwinger von WvW-Veteran-Kreaturen";
+                break;
         }
         return formatted;
     }
