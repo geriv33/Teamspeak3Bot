@@ -52,6 +52,7 @@ public class DerGeraet {
         scheduler.scheduleAtFixedRate(AfkMover::checkAfk, 1, 1, TimeUnit.SECONDS);
         scheduler.scheduleAtFixedRate(() -> {
             ClientDescCheck.descChange();
+            GuildInfo.loadGuildInfo();
             ExchangeCheck.checkExchange();
             ArcDpsCheck.checkArcDpsVersion();
             DailyCheck.checkDailies();

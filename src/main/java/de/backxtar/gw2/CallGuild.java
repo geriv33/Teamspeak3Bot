@@ -14,6 +14,8 @@ public class CallGuild {
         public long aetherium;
         public long resonance;
         public long favor;
+        public int member_count;
+        public int member_capacity;
         public String id;
         public String name;
         public String tag;
@@ -31,10 +33,10 @@ public class CallGuild {
         return gson.fromJson(json, GWCallGuild.class);
     }
 
-    public static GWCallGuild getGuildWithLeader(String guildID) {
+    public static GWCallGuild getOwnGuild() {
         String json = "";
         try {
-            json = Gw2Utils.getJson("https://api.guildwars2.com/v2/guild/" + guildID +
+            json = Gw2Utils.getJson("https://api.guildwars2.com/v2/guild/" + Config.getConfigData().guildID +
                     "?access_token=" + Config.getConfigData().guildLeaderApiKey);
         } catch (IOException e) {
             e.printStackTrace();
