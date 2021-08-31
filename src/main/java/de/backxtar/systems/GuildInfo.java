@@ -26,7 +26,7 @@ public class GuildInfo {
                 "\n" + favorIcon + " [size=10][color=orange][b]Gunst:[/b][/color][/size] [size=9]" + guild.favor + "[/size]" +
                 "\n" + influenceIcon + " [size=10][color=orange][b]Einfluss:[/b][/color][/size] [size=9]" + guild.influence + "[/size]" +
                 "\n" + resonanceIcon + " [size=10][color=orange][b]Resonanz:[/b][/color][/size] [size=9]" + guild.resonance + "[/size]" +
-                "";
+                "\n\n[url=https://www.paypal.com/donate/?hosted_button_id=MEW4LZBC24EQQ][img]http://i.epvpimg.com/Tlnqcab.png[/img][/url]";
         if (api.getChannelInfo(Config.getConfigData().guildChannelID)
                 .getDescription().equalsIgnoreCase(announcement)) return;
         api.editChannel(Config.getConfigData().guildChannelID, ChannelProperty.CHANNEL_DESCRIPTION, announcement);
