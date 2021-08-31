@@ -13,11 +13,11 @@ public class GuildInfo {
         if (Config.getConfigData().guildChannelID == 0) return;
         CallGuild.GWCallGuild guild = CallGuild.getOwnGuild();
 
-        String memberIcon = "[img]http://i.epvpimg.com/e2Excab.png[/img]";
-        String aetheriumIcon = "[img]http://i.epvpimg.com/eeCYdab.png[/img]";
-        String favorIcon = "[img]http://i.epvpimg.com/sV0ucab.png[/img]";
-        String influenceIcon = "[img]http://i.epvpimg.com/YWkzeab.png[/img]";
-        String resonanceIcon = "[img]http://i.epvpimg.com/blHsfab.png[/img]";
+        String memberIcon = "[img]http://i.epvpimg.com/F7l1aab.png[/img]";
+        String aetheriumIcon = "[img]http://i.epvpimg.com/FRHBeab.png[/img]";
+        String favorIcon = "[img]http://i.epvpimg.com/u8EWdab.png[/img]";
+        String influenceIcon = "[img]http://i.epvpimg.com/7iWhbab.png[/img]";
+        String resonanceIcon = "[img]http://i.epvpimg.com/uVuAbab.png[/img]";
 
         String announcement = "[center][size=11][color=red][b]" + guild.name + " [" + guild.tag + "] (" + guild.level + ")[/b][/color][/size]" +
                 "\n\n[size=10][color=orange][b]Ankündigung:[/b][/color][/size]\n" + guild.motd +
