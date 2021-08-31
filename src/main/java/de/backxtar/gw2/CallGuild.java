@@ -1,9 +1,13 @@
 package de.backxtar.gw2;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import de.backxtar.Config;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CallGuild {
 
@@ -44,5 +48,24 @@ public class CallGuild {
 
         Gson gson = new Gson();
         return gson.fromJson(json, GWCallGuild.class);
+    }
+
+    public static class GWCallGuildMembers {
+        public String name;
+        public String rank;
+    }
+
+    public static List<GWCallGuildMembers> getMembers() {
+        String json = "";
+        try {
+            json = Gw2Utils.getJson("https://api.guildwars2.com/v2/guild/" + Config.getConfigData().guildID +
+                    "/members?access_token=" + Config.getConfigData().guildLeaderApiKey);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Gson gson = new Gson();
+        Type callGuildMembers = new TypeToken<ArrayList<GWCallGuildMembers>>(){}.getType();
+        return gson.<ArrayList<GWCallGuildMembers>>fromJson(json, callGuildMembers);
     }
 }
