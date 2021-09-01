@@ -29,37 +29,28 @@ public class GuildInfo {
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
+        String guildList = "";
 
-        StringBuilder founders = null;
-        StringBuilder leaders = null;
-        StringBuilder konkubs = null;
-        StringBuilder officers = null;
-        StringBuilder members = null;
-        StringBuilder holliday = null;
-        StringBuilder trail = null;
+        if (!Config.getConfigData().guildRanks[0].equalsIgnoreCase("0") && memberList != null && !memberList.isEmpty()) {
+            StringBuilder[] stringBuilders = new StringBuilder[Config.getConfigData().guildRanks.length];
 
-        if (Config.getConfigData().guildID.equalsIgnoreCase("37BCE50B-899C-E611-80D3-E83935B5B448")) {
-            founders = getRanks(memberList, "Gründer");
-            leaders = getRanks(memberList, "Leader");
-            konkubs = getRanks(memberList, "Konkubinchen");
-            officers = getRanks(memberList, "Offizier");
-            members = getRanks(memberList, "Member");
-            holliday = getRanks(memberList, "Urlauber");
-            trail = getRanks(memberList, "Probe");
+            for (int i = 0; i < stringBuilders.length; i++) {
+                stringBuilders[i] = getRanks(memberList, Config.getConfigData().guildRanks[i]);
+            }
+
+            for (int i = 0; i < stringBuilders.length; i++) {
+                guildList += "\n\n" +
+                        "[size=10][color=orange][b]" + Config.getConfigData().guildRanks[i] + "[/b][/color]" + "\n" +
+                        stringBuilders[i];
+            }
         }
+        String info = "";
+        if (guild != null) info = getInfos(guild);
+        String ready = info + guildList + "\n\n[url=https://www.paypal.com/donate/?hosted_button_id=MEW4LZBC24EQQ][img]http://i.epvpimg.com/Tlnqcab.png[/img][/url]";
 
-        String info = getInfos(guild);
-        String auraOnly = founders == null ? "" : "\n\n" + "[size=10][color=orange][b]Gründer:[/b][/color]" + "\n" + founders
-                + "\n\n" + "[size=10][color=orange][b]Leader:[/b][/color]" + "\n" + leaders
-                + "\n\n" + "[size=10][color=orange][b]Konkubinchen:[/b][/color]" + "\n" + konkubs
-                + "\n\n" + "[size=10][color=orange][b]Offiziere:[/b][/color]" + "\n" + officers
-                + "\n\n" + "[size=10][color=orange][b]Member:[/b][/color]" + "\n" + members
-                + "\n\n" + "[size=10][color=orange][b]Urlauber:[/b][/color]" + "\n" + holliday
-                + "\n\n" + "[size=10][color=orange][b]Probe:[/b][/color]" + "\n" + trail;
         if (api.getChannelInfo(Config.getConfigData().guildChannelID)
-                .getDescription().equalsIgnoreCase(info)) return;
-        api.editChannel(Config.getConfigData().guildChannelID, ChannelProperty.CHANNEL_DESCRIPTION, info + auraOnly
-                + "\n\n[url=https://www.paypal.com/donate/?hosted_button_id=MEW4LZBC24EQQ][img]http://i.epvpimg.com/Tlnqcab.png[/img][/url]");
+                .getDescription().equalsIgnoreCase(ready)) return;
+        api.editChannel(Config.getConfigData().guildChannelID, ChannelProperty.CHANNEL_DESCRIPTION, ready);
     }
 
     private static String getInfos(CallGuild.GWCallGuild guild) {

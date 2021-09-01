@@ -29,6 +29,7 @@ public class Config {
         public int[] afkChannelID;
         public int infoChannelID = 0;
         public int guildChannelID = 0;
+        public String[] guildRanks;
         public int arcDpsChannelID = 0;
         public int dailiesChannelID = 0;
         public int tempServerGroupID = 0;
@@ -97,6 +98,20 @@ public class Config {
             if (key.equalsIgnoreCase("guildChannelID")) {
                 String value = (String) cfg.get(key);
                 configData.guildChannelID = Integer.parseInt(value);
+            }
+            if (key.equalsIgnoreCase("guildRanks")) {
+                String value = (String) cfg.get(key);
+                String[] values = value.split(",");
+
+                if (values.length == 0) {
+                    configData.guildRanks = new String[1];
+                    configData.guildRanks[0] = "0";
+                } else {
+                    configData.guildRanks = new String[values.length];
+                    for (int i = 0; i < configData.guildRanks.length; i++) {
+                        configData.guildRanks[i] = values[i];
+                    }
+                }
             }
             if (key.equalsIgnoreCase("arcDpsChannelID")) {
                 String value = (String) cfg.get(key);
