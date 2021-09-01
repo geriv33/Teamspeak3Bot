@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Enumeration;
 import java.util.Properties;
 
@@ -51,7 +53,8 @@ public class Config {
             logger.info("config.cfg is empty!");
             return;
         }
-        cfg.load(new FileInputStream(file.getName()));
+        InputStreamReader streamReader = new InputStreamReader(new FileInputStream(file.getName()), "UTF-8");
+        cfg.load(streamReader);
         Enumeration<Object> en = cfg.keys();
         configData = new ConfigData();
 
