@@ -457,10 +457,10 @@ public class Gw2Utils {
                 formatted = "Täglicher Erntearbeiter der Maguuma-Einöde";
                 break;
             case "Daily Maguuma Wastes Lumberer":
-                formatted = "Täglicher Holzfäller des Maguuma-Dschungels";
+                formatted = "Täglicher Holzfäller der Maguuma-Einöde";
                 break;
             case "Daily Maguuma Wastes Miner":
-                formatted = "Täglicher Bergarbeiter des Maguuma-Dschungels";
+                formatted = "Täglicher Bergarbeiter der Maguuma-Einöde";
                 break;
             case "Daily Orr Forager":
                 formatted = "Täglicher Erntearbeiter von Orr";
