@@ -60,88 +60,83 @@ public class Config {
 
         while (en.hasMoreElements()) {
             String key = (String) en.nextElement();
+            String value;
+            String[] values;
 
-            if (key.equalsIgnoreCase("ts3Host"))
-                configData.ts3Host = (String) cfg.get(key);
-            if (key.equalsIgnoreCase("ts3Username"))
-                configData.ts3Username = (String) cfg.get(key);
-            if (key.equalsIgnoreCase("ts3Password"))
-                configData.ts3Password = (String) cfg.get(key);
-            if (key.equalsIgnoreCase("ts3Nickname") && cfg.get(key) != null)
-                configData.ts3Nickname = (String) cfg.get(key);
-            else if (key.equalsIgnoreCase("ts3Nickname") && cfg.get(key) == null)
-                configData.ts3Nickname = "Der Geraet (Bot)";
-            if (key.equalsIgnoreCase("dbHost"))
-                configData.dbHost = (String) cfg.get(key);
-            if (key.equalsIgnoreCase("dbName"))
-                configData.dbName = (String) cfg.get(key);
-            if (key.equalsIgnoreCase("dbUser"))
-                configData.dbUser = (String) cfg.get(key);
-            if (key.equalsIgnoreCase("dbPassword"))
-                configData.dbPassword = (String) cfg.get(key);
-            if (key.equalsIgnoreCase("prefix"))
-                configData.prefix = (String) cfg.get(key);
-            if (key.equalsIgnoreCase("afkChannelID")) {
-                String value = (String) cfg.get(key);
-                String[] values = value.split(",");
-                if (values.length == 0 || values[0].equalsIgnoreCase("0")) {
-                    configData.afkChannelID = new int[1];
-                    configData.afkChannelID[0] = 0;
-                } else {
-                    configData.afkChannelID = new int[values.length];
-                    for (int i = 0; i < configData.afkChannelID.length; i++) {
-                        configData.afkChannelID[i] = Integer.parseInt(values[i]);
-                    }
-                }
-            }
-            if (key.equalsIgnoreCase("infoChannelID")) {
-                String value = (String) cfg.get(key);
-                configData.infoChannelID = Integer.parseInt(value);
-            }
-            if (key.equalsIgnoreCase("guildChannelID")) {
-                String value = (String) cfg.get(key);
-                configData.guildChannelID = Integer.parseInt(value);
-            }
-            if (key.equalsIgnoreCase("guildRanks")) {
-                String value = (String) cfg.get(key);
-                String[] values = value.split(",");
+            switch (key) {
+                // Teamspeak3 data
+                case "ts3Host": configData.ts3Host = (String) cfg.get(key);
+                    break;
+                case "ts3Username": configData.ts3Username = (String) cfg.get(key);
+                    break;
+                case "ts3Password": configData.ts3Password = (String) cfg.get(key);
+                    break;
+                case "ts3Nickname":
+                    if (cfg.get(key) != null) configData.ts3Nickname = (String) cfg.get(key);
+                    else configData.ts3Nickname = "Der Geraet (Bot)";
+                    break;
+                // Database data
+                case "dbHost": configData.dbHost = (String) cfg.get(key);
+                    break;
+                case "dbName": configData.dbName = (String) cfg.get(key);
+                    break;
+                case "dbUser": configData.dbUser = (String) cfg.get(key);
+                    break;
+                case "dbPassword": configData.dbPassword = (String) cfg.get(key);
+                    break;
+                // Settings
+                case "prefix": configData.prefix = (String) cfg.get(key);
+                    break;
+                case "afkChannelID":
+                    value = (String) cfg.get(key);
+                    values = value.split(",");
+                    if (values.length == 0 || values[0].equalsIgnoreCase("0")) {
+                        configData.afkChannelID = new int[1];
+                        configData.afkChannelID[0] = 0;
+                    } else {
+                        configData.afkChannelID = new int[values.length];
+                        for (int i = 0; i < configData.afkChannelID.length; i++) {
+                            configData.afkChannelID[i] = Integer.parseInt(values[i]);
+                        }
+                    } break;
+                case "infoChannelID": value = (String) cfg.get(key);
+                    configData.infoChannelID = Integer.parseInt(value);
+                    break;
+                case "guildChannelID": value = (String) cfg.get(key);
+                    configData.guildChannelID = Integer.parseInt(value);
+                    break;
+                case "guildRanks": value = (String) cfg.get(key);
+                    values = value.split(",");
 
-                if (values.length == 0) {
-                    configData.guildRanks = new String[1];
-                    configData.guildRanks[0] = "0";
-                } else {
-                    configData.guildRanks = new String[values.length];
-                    for (int i = 0; i < configData.guildRanks.length; i++) {
-                        configData.guildRanks[i] = values[i];
-                    }
-                }
+                    if (values.length == 0) {
+                        configData.guildRanks = new String[1];
+                        configData.guildRanks[0] = "0";
+                    } else {
+                        configData.guildRanks = new String[values.length];
+                        for (int i = 0; i < configData.guildRanks.length; i++) {
+                            configData.guildRanks[i] = values[i];
+                        }
+                    } break;
+                case "arcDpsChannelID": value = (String) cfg.get(key);
+                    configData.arcDpsChannelID = Integer.parseInt(value);
+                    break;
+                case "tradingPostChannelID": value = (String) cfg.get(key);
+                    configData.tradingPostChannelID = Integer.parseInt(value);
+                    break;
+                case "dailiesChannelID": value = (String) cfg.get(key);
+                    configData.dailiesChannelID = Integer.parseInt(value);
+                    break;
+                case "welcomeMessage": value = (String) cfg.get(key);
+                    configData.welcomeMessage = Integer.parseInt(value);
+                    break;
+                case "tempFriendID": value = (String) cfg.get(key);
+                    configData.tempServerGroupID = Integer.parseInt(value);
+                    break;
+                case "guildID": configData.guildID = (String) cfg.get(key);
+                    break;
+                case "guildLeaderApiKey": configData.guildLeaderApiKey = (String) cfg.get(key);
+                    break;
             }
-            if (key.equalsIgnoreCase("arcDpsChannelID")) {
-                String value = (String) cfg.get(key);
-                configData.arcDpsChannelID = Integer.parseInt(value);
-            }
-            if (key.equalsIgnoreCase("tradingPostChannelID")) {
-                String value = (String) cfg.get(key);
-                configData.tradingPostChannelID = Integer.parseInt(value);
-            }
-            if (key.equalsIgnoreCase("dailiesChannelID")) {
-                String value = (String) cfg.get(key);
-                configData.dailiesChannelID = Integer.parseInt(value);
-            }
-            if (key.equalsIgnoreCase("welcomeMessage")) {
-                String value = (String) cfg.get(key);
-                configData.welcomeMessage = Integer.parseInt(value);
-            }
-            if (key.equalsIgnoreCase("tempFriendID")) {
-                String value = (String) cfg.get(key);
-                configData.tempServerGroupID = Integer.parseInt(value);
-            }
-            if (key.equalsIgnoreCase("guestServerGroupName"))
-                configData.guestServerGroupName = (String) cfg.get(key);
-            if (key.equalsIgnoreCase("guildID"))
-                configData.guildID = (String) cfg.get(key);
-            if (key.equalsIgnoreCase("guildLeaderApiKey"))
-                configData.guildLeaderApiKey = (String) cfg.get(key);
         }
     }
 
