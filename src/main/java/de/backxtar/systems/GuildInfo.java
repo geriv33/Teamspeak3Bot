@@ -48,8 +48,7 @@ public class GuildInfo {
         if (guild != null) info = getInfos(guild);
         String ready = info + guildList + "\n\n[url=https://www.paypal.com/donate/?hosted_button_id=MEW4LZBC24EQQ][img]http://i.epvpimg.com/Tlnqcab.png[/img][/url]";
 
-        if (api.getChannelInfo(Config.getConfigData().guildChannelID)
-                .getDescription().equalsIgnoreCase(ready)) return;
+        if (ready.equalsIgnoreCase(api.getChannelInfo(Config.getConfigData().guildChannelID).getDescription())) return;
         api.editChannel(Config.getConfigData().guildChannelID, ChannelProperty.CHANNEL_DESCRIPTION, ready);
     }
 
