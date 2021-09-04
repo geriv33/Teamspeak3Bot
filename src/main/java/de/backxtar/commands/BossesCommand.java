@@ -23,31 +23,83 @@ public class BossesCommand implements CommandInterface {
 
         List<String> raidBosses = CallBosses.getRaidBosses(gw2Values[0]);
         int[] counters = {21, 5};
-        String[] wings = new String[8];
+        String[] conditions = new String[8];
         List<String> raidBoss = new ArrayList<>();
         List<String> raidEvent = new ArrayList<>();
 
         for (int i = 0; i < 21; i++) {
             if (raidBosses.contains(bosses[i])) {
-                raidBoss.add(i, "[size=10][color=green]✔[/color] " + bossTranslations[i]);
+                raidBoss.add(i, "[color=green]✔[/color] " + bossTranslations[i]);
                 counters[0]--;
-            } else raidBoss.add(i, "[size=10][color=red]✘[/color] " + bossTranslations[i]);
+            } else raidBoss.add(i, "[color=red]✘[/color] " + bossTranslations[i]);
         }
 
         for (int i = 0; i < 5; i++) {
             if (raidBosses.contains(events[i])) {
-                raidEvent.add(i, "[size=10][color=green]✔[/color] " + eventTranslations[i]);
+                raidEvent.add(i, "[color=green]✔[/color] " + eventTranslations[i]);
                 counters[1]--;
-            } else raidEvent.add(i, "[size=10][color=red]✘[/color] " + eventTranslations[i]);
+            } else raidEvent.add(i, "[color=red]✘[/color] " + eventTranslations[i]);
         }
 
-        wings[0] = (raidBosses.contains(bosses[0]) && raidBosses.contains(events[0])
+        conditions[0] = (raidBosses.contains(bosses[0]) && raidBosses.contains(events[0])
                 && raidBosses.contains(bosses[1]) && raidBosses.contains(bosses[2])) ?
-                "[size=10][color=green]✔[/color] Geistertal:[/size]" :
-                "[size=10][color=red]✘[/color] Geistertal:[/size]";
-        wings[1] = (raidBosses.contains(bosses[3]) && raidBosses.contains(bosses[4])
+                "[color=green]✔[/color] Geistertal:" :
+                "[color=red]✘[/color] Geistertal:";
+        conditions[1] = (raidBosses.contains(bosses[3]) && raidBosses.contains(bosses[4])
                 && raidBosses.contains(bosses[5])) ?
-                "[size=10][color=green]✔[/color] Erlösungspass:[/size] " :
-                "[size=10][color=red]✘[/color] Erlösungspass:[/size]";
+                "[color=green]✔[/color] Erlösungspass:" :
+                "[color=red]✘[/color] Erlösungspass:";
+        conditions[2] = (raidBosses.contains(events[1]) && raidBosses.contains(bosses[6])
+                && raidBosses.contains(events[2]) && raidBosses.contains(bosses[7])) ?
+                "[color=green]✔[/color] Festung der Treuen:" :
+                "[color=red]✘[/color] Festung der Treuen:";
+        conditions[3] = (raidBosses.contains(bosses[8]) && raidBosses.contains(bosses[9])
+                && raidBosses.contains(bosses[10]) && raidBosses.contains(bosses[11])) ?
+                "[color=green]✔[/color] Bastion der Bußfertigen:" :
+                "[color=red]✘[/color] Bastion der Bußfertigen:";
+        conditions[4] = (raidBosses.contains(bosses[12]) && raidBosses.contains(events[3])
+                && raidBosses.contains(bosses[13]) && raidBosses.contains(bosses[14])) ?
+                "[color=green]✔[/color] Halle der Ketten:" :
+                "[color=red]✘[/color] Halle der Ketten:";
+        conditions[5] = (raidBosses.contains(bosses[15]) && raidBosses.contains(bosses[16])
+                && raidBosses.contains(bosses[17])) ?
+                "[color=green]✔[/color] Mythenschreiber-Wagnis:" :
+                "[color=red]✘[/color] Mythenschreiber-Wagnis:";
+        conditions[6] = (raidBosses.contains(events[4]) && raidBosses.contains(bosses[18])
+                && raidBosses.contains(bosses[19]) && raidBosses.contains(bosses[20])) ?
+                "[color=green]✔[/color] Schlüssel von Ahdashim:" :
+                "[color=red]✘[/color] Schlüssel von Ahdashim:";
+
+        boolean singleBoss = counters[0] <= 1;
+        boolean singleEvent = counters[1] <= 1;
+        
+        if (counters[0] != 0 && counters[1] != 0) {
+            conditions[7] = "[b]" + client.getNickname() + "[/b], Dir " + (singleBoss ? "fehlt" : "fehlen") + " " +
+                    "[b][color=orange]" + counters[0] + " " + (singleBoss ? "Boss" : "Bosse") + "[/color][/b] " +
+                    "und [b][color=orange]" + counters[1] + " " + (singleEvent ? "Event" : "Events") + "[/color][/b] für die Woche.";
+        } else if (counters[0] != 0 && counters[1] == 0) {
+            conditions[7] = "[b]" + client.getNickname() + "[/b], Dir " + (singleBoss ? "fehlt" : "fehlen") + " " +
+                    "[b][color=orange]" + counters[0] + " " + (singleBoss ? "Boss" : "Bosse") + "[/color][/b] " +
+                    "für die Woche.";
+        } else if (counters[0] == 0 && counters[1] != 0) {
+            conditions[7] = "[b]" + client.getNickname() + "[/b], Dir " + (singleEvent ? "fehlt" : "fehlen") + " " +
+                    "[b][color=orange]" + counters[1] + " " + (singleEvent ? "Event" : "Events") + "[/color][/b] " +
+                    "für die Woche.";
+        } else if (counters[0] == 0 && counters[1] == 0) {
+            conditions[7] = "[b]" + client.getNickname() + "[/b], Du hast einen [b][color=orange]Fullclear[/color][/b]!";
+        }
+        api.sendPrivateMessage(client.getId(), buildMessage(gw2Values[1], conditions, raidBoss, raidEvent));
+    }
+
+    private String buildMessage(String accountName, String[] conditions, List<String> raidBoss, List<String> raidEvent) {
+        return "\nRaid-Zusammenfassung für [b]" + accountName + "[/b]:" +
+                "\n" + conditions[7] +
+                "\n\n" + conditions[0] + "\n╰ " + raidBoss.get(0) + "\n╰ " + raidEvent.get(0) + "\n╰ " + raidBoss.get(1) + "\n╰ " + raidBoss.get(2) +
+                "\n\n" + conditions[1] + "\n╰ " + raidBoss.get(3) + "\n╰ " + raidBoss.get(4) + "\n╰ " + raidBoss.get(5) +
+                "\n\n" + conditions[2] + "\n╰ " + raidBoss.get(1) + "\n╰ " + raidBoss.get(6) + "\n╰ " + raidEvent.get(2) + "\n╰ " + raidBoss.get(7) +
+                "\n\n" + conditions[3] + "\n╰ " + raidBoss.get(8) + "\n╰ " + raidBoss.get(9) + "\n╰ " + raidBoss.get(10) + "\n╰ " + raidBoss.get(11) +
+                "\n\n" + conditions[4] + "\n╰ " + raidBoss.get(12) + "\n╰ " + raidEvent.get(3) + "\n╰ " + raidBoss.get(13) + "\n╰ " + raidBoss.get(14) +
+                "\n\n" + conditions[5] + "\n╰ " + raidBoss.get(15) + "\n╰ " + raidBoss.get(16) + "\n╰ " + raidBoss.get(17) +
+                "\n\n" + conditions[6] + "\n╰ " + raidEvent.get(4) + "\n╰ " + raidBoss.get(18) + "\n╰ " + raidBoss.get(19) + "\n╰ " + raidBoss.get(20);
     }
 }
