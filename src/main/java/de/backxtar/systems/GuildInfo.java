@@ -5,6 +5,10 @@ import com.github.theholywaffle.teamspeak3.api.ChannelProperty;
 import de.backxtar.Config;
 import de.backxtar.DerGeraet;
 import de.backxtar.gw2.CallGuild;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -22,6 +26,7 @@ public class GuildInfo {
 
         CallGuild.GWCallGuild guild = null;
         List<CallGuild.GWCallGuildMembers> memberList = null;
+        String desc = api.getChannelInfo(Config.getConfigData().guildChannelID).getDescription();
 
         try {
             guild = guildAsync.get();
@@ -29,7 +34,7 @@ public class GuildInfo {
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
-        String guildList = "";
+        StringBuilder guildList = new StringBuilder();
 
         if (!Config.getConfigData().guildRanks[0].equalsIgnoreCase("0") && memberList != null && !memberList.isEmpty()) {
             StringBuilder[] stringBuilders = new StringBuilder[Config.getConfigData().guildRanks.length];
@@ -39,17 +44,16 @@ public class GuildInfo {
             }
 
             for (int i = 0; i < stringBuilders.length; i++) {
-                guildList += "\n\n" +
-                        "[size=10][color=orange][b]" + Config.getConfigData().guildRanks[i] + "[/b][/color]" + "\n" +
-                        stringBuilders[i];
+                guildList.append("\n\n" + "[size=10][color=orange][b]").append(Config.getConfigData().guildRanks[i])
+                        .append("[/b][/color]").append("\n").append(stringBuilders[i]);
             }
         }
-        String info = "";
-        if (guild != null) info = getInfos(guild);
-        String ready = info + guildList + "\n\n[url=https://www.paypal.com/donate/?hosted_button_id=MEW4LZBC24EQQ][img]http://i.epvpimg.com/Tlnqcab.png[/img][/url]";
 
-        if (ready.equalsIgnoreCase(api.getChannelInfo(Config.getConfigData().guildChannelID).getDescription())) return;
-        api.editChannel(Config.getConfigData().guildChannelID, ChannelProperty.CHANNEL_DESCRIPTION, ready);
+        if (guild == null) return;
+        String info = getInfos(guild) + guildList + "\n\n[url=https://www.paypal.com/donate/?hosted_button_id=MEW4LZBC24EQQ][img]http://i.epvpimg.com/Tlnqcab.png[/img][/url]";
+
+        if (desc.equalsIgnoreCase(info)) return;
+        api.editChannel(Config.getConfigData().guildChannelID, ChannelProperty.CHANNEL_DESCRIPTION, info);
     }
 
     private static String getInfos(CallGuild.GWCallGuild guild) {

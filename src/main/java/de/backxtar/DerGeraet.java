@@ -28,7 +28,7 @@ public class DerGeraet {
 
     public DerGeraet() throws IOException, TS3Exception, SQLException, ClassNotFoundException {
         ts3Bot = this;
-        this.scheduler = Executors.newScheduledThreadPool(3);
+        this.scheduler = Executors.newScheduledThreadPool(4);
         final TS3Config config = new TS3Config();
         Config.loadConfig();
         logger.info(Config.getFile().getName() + " loaded.");
@@ -51,14 +51,14 @@ public class DerGeraet {
         this.commandManager = new CommandManager();
         scheduler.scheduleAtFixedRate(AfkMover::checkAfk, 1, 1, TimeUnit.SECONDS);
         scheduler.scheduleAtFixedRate(() -> {
-            ClientDescCheck.descChange();
-            GuildInfo.loadGuildInfo();
             ExchangeCheck.checkExchange();
             ArcDpsCheck.checkArcDpsVersion();
             DailyCheck.checkDailies();
-            api.getClients().forEach(CallToken::checkToken);
-            Utils.checkInfo(api);
+            ClientDescCheck.descChange();
+            GuildInfo.loadGuildInfo();
             }, 1, 300, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(() -> api.getClients().forEach(CallToken::checkToken), 1, 600, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(() -> Utils.checkInfo(api), 1, 60, TimeUnit.SECONDS);
         logger.info(Config.getConfigData().ts3Nickname + " online - connected to " + DerGeraet.ts3Bot.api.getServerInfo().getName() + ".");
         logger.info("UID: " + api.whoAmI().getUniqueIdentifier() + " | ID: " + api.whoAmI().getId());
         initShutdown();
