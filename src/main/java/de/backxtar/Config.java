@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Properties;
 
 public class Config {
@@ -34,6 +35,7 @@ public class Config {
         public int guildChannelID = 0;
         public String[] guildRanks;
         public HashMap<String, Integer> serverGroups;
+        public List<Integer> ignoreGroups;
         public int arcDpsChannelID = 0;
         public int dailiesChannelID = 0;
         public int tempServerGroupID = 0;
@@ -125,6 +127,11 @@ public class Config {
                         configData.serverGroups = null;
                     for (int i = 0; i < values.length; i++)
                         configData.serverGroups.put(configData.guildRanks[i], Integer.parseInt(values[i]));
+                    break;
+                case "ignoreGroups" : value = (String) cfg.get(key);
+                    values = value.split(",");
+                    for (String str : values)
+                        configData.ignoreGroups.add(Integer.parseInt(str));
                     break;
                 case "arcDpsChannelID": value = (String) cfg.get(key);
                     configData.arcDpsChannelID = Integer.parseInt(value);
