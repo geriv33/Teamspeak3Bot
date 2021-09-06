@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Properties;
 
 public class Config {
@@ -32,10 +33,10 @@ public class Config {
         public int infoChannelID = 0;
         public int guildChannelID = 0;
         public String[] guildRanks;
+        public HashMap<String, Integer> serverGroups;
         public int arcDpsChannelID = 0;
         public int dailiesChannelID = 0;
         public int tempServerGroupID = 0;
-        public String guestServerGroupName;
         public String guildID;
         public String guildLeaderApiKey;
     }
@@ -113,10 +114,18 @@ public class Config {
                         configData.guildRanks[0] = "0";
                     } else {
                         configData.guildRanks = new String[values.length];
-                        for (int i = 0; i < configData.guildRanks.length; i++) {
+                        for (int i = 0; i < configData.guildRanks.length; i++)
                             configData.guildRanks[i] = values[i];
-                        }
                     } break;
+                case "serverGroups" : value = (String) cfg.get(key);
+                    values = value.split(",");
+                    if (values.length != configData.guildRanks.length)
+                        throw new IOException("Number of guildRanks are not equal to number of serverGroups!");
+                    if (configData.guildRanks.length == 1 && configData.guildRanks[0] == "0")
+                        configData.serverGroups = null;
+                    for (int i = 0; i < values.length; i++)
+                        configData.serverGroups.put(configData.guildRanks[i], Integer.parseInt(values[i]));
+                    break;
                 case "arcDpsChannelID": value = (String) cfg.get(key);
                     configData.arcDpsChannelID = Integer.parseInt(value);
                     break;
