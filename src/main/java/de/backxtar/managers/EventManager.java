@@ -8,6 +8,7 @@ import de.backxtar.Config;
 import de.backxtar.DerGeraet;
 import de.backxtar.events.OnClientJoin;
 import de.backxtar.events.OnClientLeave;
+import de.backxtar.systems.ClientHelpReminder;
 import de.backxtar.systems.Utils;
 
 public class EventManager {
@@ -41,8 +42,8 @@ public class EventManager {
             public void onClientJoin(ClientJoinEvent clientJoinEvent) {
                 if (api.getClientInfo(clientJoinEvent.getClientId()).isServerQueryClient()) return;
                 Utils.changeInfo();
-                OnClientJoin.sendWelcome(api, clientJoinEvent);
-                OnClientJoin.gw2ApiReminder(api, clientJoinEvent);
+                OnClientJoin.sendWelcome(clientJoinEvent);
+                OnClientJoin.gw2ApiReminder(clientJoinEvent);
             }
 
             @Override
@@ -67,7 +68,7 @@ public class EventManager {
 
             @Override
             public void onClientMoved(ClientMovedEvent clientMovedEvent) {
-
+                ClientHelpReminder.doSupport(clientMovedEvent);
             }
 
             @Override

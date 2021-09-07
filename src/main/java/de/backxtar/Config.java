@@ -34,6 +34,8 @@ public class Config {
         private int[] tempServerGroups;
         public HashMap<String, Integer> serverGroups;
         public List<Integer> ignoreGroups;
+        public List<Integer> supportChannels;
+        public List<Integer> supportGroups;
         public int arcDpsChannelID = 0;
         public int dailiesChannelID = 0;
         public int tempServerGroupID = 0;
@@ -69,8 +71,8 @@ public class Config {
                     break;
                 case "ts3Nickname":
                     if (cfg.get(key) != null) configData.ts3Nickname = (String) cfg.get(key);
-                    else configData.ts3Nickname = "Der Geraet (Bot)";
                     break;
+
                 // Database data
                 case "dbHost": configData.dbHost = (String) cfg.get(key);
                     break;
@@ -80,12 +82,13 @@ public class Config {
                     break;
                 case "dbPassword": configData.dbPassword = (String) cfg.get(key);
                     break;
+
                 // Settings
                 case "prefix": configData.prefix = (String) cfg.get(key);
                     break;
                 case "afkChannelID":
                     value = (String) cfg.get(key);
-                    values = value.split(",");
+                    values = getArray(value);
                     if (values.length == 0 || values[0].equalsIgnoreCase("0")) {
                         configData.afkChannelID = new int[1];
                     } else {
@@ -101,7 +104,7 @@ public class Config {
                     configData.guildChannelID = Integer.parseInt(value);
                     break;
                 case "guildRanks": value = (String) cfg.get(key);
-                    values = value.split(",");
+                    values = getArray(value);
                     if (values.length == 0) {
                         configData.guildRanks = new String[1];
                         configData.guildRanks[0] = "0";
@@ -110,17 +113,32 @@ public class Config {
                         System.arraycopy(values, 0, configData.guildRanks, 0, configData.guildRanks.length);
                     } break;
                 case "serverGroups" : value = (String) cfg.get(key);
-                    values = value.split(",");
+                    values = getArray(value);
                     configData.tempServerGroups = new int[values.length];
                     for (int i = 0; i < values.length; i++)
                         configData.tempServerGroups[i] = Integer.parseInt(values[i]);
                     break;
                 case "ignoreGroups" : value = (String) cfg.get(key);
-                    values = value.split(",");
-                    configData.ignoreGroups = new ArrayList<>();
-                    for (String str : values)
-                        configData.ignoreGroups.add(Integer.parseInt(str));
-                    break;
+                    values = getArray(value);
+                    if (!value.isEmpty()) {
+                        configData.ignoreGroups = new ArrayList<>();
+                        for (String str : values)
+                            configData.ignoreGroups.add(Integer.parseInt(str));
+                    } break;
+                case "supportChannels" : value = (String) cfg.get(key);
+                    values = getArray(value);
+                    if (!value.isEmpty()) {
+                        configData.supportChannels = new ArrayList<>();
+                        for (String str : values)
+                            configData.supportChannels.add(Integer.parseInt(str));
+                    } break;
+                case "supportGroups" : value = (String) cfg.get(key);
+                    values = getArray(value);
+                    if (!value.isEmpty()) {
+                        configData.supportGroups = new ArrayList<>();
+                        for (String str : values)
+                            configData.supportGroups.add(Integer.parseInt(str));
+                    } break;
                 case "arcDpsChannelID": value = (String) cfg.get(key);
                     configData.arcDpsChannelID = Integer.parseInt(value);
                     break;
@@ -150,6 +168,10 @@ public class Config {
         configData.serverGroups = new HashMap<>();
         for (int i = 0; i < configData.tempServerGroups.length; i++)
             configData.serverGroups.put(configData.guildRanks[i], configData.tempServerGroups[i]);
+    }
+
+    private static String[] getArray(String value) {
+        return value.split(",");
     }
 
     private static boolean created(File file) throws IOException{
