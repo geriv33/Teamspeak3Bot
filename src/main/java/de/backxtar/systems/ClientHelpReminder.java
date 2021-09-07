@@ -4,6 +4,7 @@ import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.api.event.ClientMovedEvent;
 import com.github.theholywaffle.teamspeak3.api.wrapper.ChannelInfo;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
+import com.github.theholywaffle.teamspeak3.api.wrapper.ServerGroup;
 import com.github.theholywaffle.teamspeak3.api.wrapper.ServerGroupClient;
 import de.backxtar.Config;
 import de.backxtar.DerGeraet;
@@ -16,8 +17,13 @@ public class ClientHelpReminder {
 
     public static void doSupport(ClientMovedEvent e) {
         Client client = api.getClientInfo(e.getClientId());
-        ChannelInfo channelInfo = api.getChannelInfo(client.getChannelId());
         if (!Config.getConfigData().supportChannels.contains(client.getChannelId())) return;
+
+        for (int serverGroup : client.getServerGroups()) {
+            if (Config.getConfigData().supportGroups.contains(serverGroup))
+                return;
+        }
+        ChannelInfo channelInfo = api.getChannelInfo(client.getChannelId());
         List<Client> clients = new ArrayList<>();
 
         for (int i = 0; i < Config.getConfigData().supportGroups.size(); i++) {
