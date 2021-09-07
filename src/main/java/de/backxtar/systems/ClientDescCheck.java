@@ -21,10 +21,10 @@ public class ClientDescCheck {
                 String clientIdentity = resultSet.getString("clientIdentity");
                 String accountName = resultSet.getString("accountName");
 
-                if (!api.isClientOnline(clientIdentity)) return;
+                if (!api.isClientOnline(clientIdentity)) continue;
                 Client client = api.getClientByUId(clientIdentity);
 
-                if (api.getClientInfo(client.getId()).getDescription().equalsIgnoreCase(accountName)) return;
+                if (api.getClientInfo(client.getId()).getDescription().equalsIgnoreCase(accountName)) continue;
                 api.editClient(client.getId(), ClientProperty.CLIENT_DESCRIPTION, accountName);
             }
         } catch (SQLException e) {

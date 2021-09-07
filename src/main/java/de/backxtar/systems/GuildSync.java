@@ -6,6 +6,7 @@ import de.backxtar.Config;
 import de.backxtar.DerGeraet;
 import de.backxtar.gw2.CallAccount;
 import de.backxtar.gw2.CallGuild;
+import de.backxtar.gw2.CallToken;
 import de.backxtar.managers.SqlManager;
 
 import java.sql.ResultSet;
@@ -31,6 +32,9 @@ public class GuildSync {
                 String identity = resultSet.getString("clientIdentity");
                 String key = resultSet.getString("GW2_Key");
                 String accountName = resultSet.getString("accountName");
+                Client client = api.getClientByUId(identity);
+
+                if (!CallToken.tokenIsValid(client)) continue;
                 account = CallAccount.getAccount(key);
 
                 if (!api.isClientOnline(identity) || Arrays.stream(account.guilds)
@@ -38,8 +42,7 @@ public class GuildSync {
                         api.getClientByUId(identity).isServerQueryClient())
                     continue;
 
-                Client client = api.getClientByUId(identity);
-                members.forEach(member -> {
+                members.parallelStream().forEach(member -> {
                     if (member.name.equalsIgnoreCase(accountName)) {
                         String rank = member.rank;
 

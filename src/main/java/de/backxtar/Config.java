@@ -47,13 +47,8 @@ public class Config {
 
         if (isLive) file = new File("config.cfg");
         else file = new File("config_test.cfg");
+        if (!created(file)) return;
 
-        if (file.createNewFile())
-            logger.info("New config created.");
-        else if (!file.createNewFile() && file.length() == 0) {
-            logger.info("config.cfg is empty!");
-            return;
-        }
         InputStreamReader streamReader = new InputStreamReader(new FileInputStream(file.getName()), StandardCharsets.UTF_8);
         cfg.load(streamReader);
         Enumeration<Object> en = cfg.keys();
@@ -155,6 +150,15 @@ public class Config {
         configData.serverGroups = new HashMap<>();
         for (int i = 0; i < configData.tempServerGroups.length; i++)
             configData.serverGroups.put(configData.guildRanks[i], configData.tempServerGroups[i]);
+    }
+
+    private static boolean created(File file) throws IOException{
+        if (file.length() == 0 && !file.createNewFile()) {
+            logger.info(file.getName() + " is empty or could not be created!");
+            return false;
+        }
+        logger.info("New " + file.getName() + " created.");
+        return true;
     }
 
     public static ConfigData getConfigData() {

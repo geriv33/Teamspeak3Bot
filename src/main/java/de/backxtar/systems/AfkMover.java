@@ -29,7 +29,6 @@ public class AfkMover {
                         isAfkChannel = true;
                 }
                 if (dataHashMap.containsKey(client.getUniqueIdentifier()) || isAfkChannel) return;
-
                 MoveData moveData = new MoveData();
                 moveData.channelID = client.getChannelId();
                 moveData.timestamp = System.currentTimeMillis() - client.getIdleTime();
@@ -38,7 +37,6 @@ public class AfkMover {
                 api.moveClient(client.getId(), Config.getConfigData().afkChannelID[0]);
             } else {
                 if (!dataHashMap.containsKey(client.getUniqueIdentifier())) return;
-
                 if (client.getChannelId() == Config.getConfigData().afkChannelID[0])
                     api.moveClient(client.getId(), dataHashMap.get(client.getUniqueIdentifier()).channelID);
                 long[] duration = getTime(System.currentTimeMillis() - dataHashMap.get(client.getUniqueIdentifier()).timestamp);
