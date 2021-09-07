@@ -8,10 +8,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 public class Config {
     private static final Logger logger = LoggerFactory.getLogger(Config.class);
@@ -34,6 +31,7 @@ public class Config {
         public int infoChannelID = 0;
         public int guildChannelID = 0;
         public String[] guildRanks;
+        private int[] tempServerGroups;
         public HashMap<String, Integer> serverGroups;
         public List<Integer> ignoreGroups;
         public int arcDpsChannelID = 0;
@@ -56,7 +54,7 @@ public class Config {
             logger.info("config.cfg is empty!");
             return;
         }
-        InputStreamReader streamReader = new InputStreamReader(new FileInputStream(file.getName()), "UTF-8");
+        InputStreamReader streamReader = new InputStreamReader(new FileInputStream(file.getName()), StandardCharsets.UTF_8);
         cfg.load(streamReader);
         Enumeration<Object> en = cfg.keys();
         configData = new ConfigData();
@@ -95,7 +93,6 @@ public class Config {
                     values = value.split(",");
                     if (values.length == 0 || values[0].equalsIgnoreCase("0")) {
                         configData.afkChannelID = new int[1];
-                        configData.afkChannelID[0] = 0;
                     } else {
                         configData.afkChannelID = new int[values.length];
                         for (int i = 0; i < configData.afkChannelID.length; i++) {
@@ -110,26 +107,22 @@ public class Config {
                     break;
                 case "guildRanks": value = (String) cfg.get(key);
                     values = value.split(",");
-
                     if (values.length == 0) {
                         configData.guildRanks = new String[1];
                         configData.guildRanks[0] = "0";
                     } else {
                         configData.guildRanks = new String[values.length];
-                        for (int i = 0; i < configData.guildRanks.length; i++)
-                            configData.guildRanks[i] = values[i];
+                        System.arraycopy(values, 0, configData.guildRanks, 0, configData.guildRanks.length);
                     } break;
                 case "serverGroups" : value = (String) cfg.get(key);
                     values = value.split(",");
-                    if (values.length != configData.guildRanks.length)
-                        throw new IOException("Number of guildRanks are not equal to number of serverGroups!");
-                    if (configData.guildRanks.length == 1 && configData.guildRanks[0] == "0")
-                        configData.serverGroups = null;
+                    configData.tempServerGroups = new int[values.length];
                     for (int i = 0; i < values.length; i++)
-                        configData.serverGroups.put(configData.guildRanks[i], Integer.parseInt(values[i]));
+                        configData.tempServerGroups[i] = Integer.parseInt(values[i]);
                     break;
                 case "ignoreGroups" : value = (String) cfg.get(key);
                     values = value.split(",");
+                    configData.ignoreGroups = new ArrayList<>();
                     for (String str : values)
                         configData.ignoreGroups.add(Integer.parseInt(str));
                     break;
@@ -154,6 +147,14 @@ public class Config {
                     break;
             }
         }
+        if (configData.tempServerGroups.length != configData.guildRanks.length)
+            throw new IOException("Number of guildRanks are not equal to number of serverGroups!");
+        if (configData.guildRanks.length == 1 && configData.guildRanks[0].equalsIgnoreCase("0"))
+            configData.serverGroups = null;
+
+        configData.serverGroups = new HashMap<>();
+        for (int i = 0; i < configData.tempServerGroups.length; i++)
+            configData.serverGroups.put(configData.guildRanks[i], configData.tempServerGroups[i]);
     }
 
     public static ConfigData getConfigData() {

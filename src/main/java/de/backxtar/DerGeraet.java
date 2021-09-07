@@ -55,6 +55,7 @@ public class DerGeraet {
             ArcDpsCheck.checkArcDpsVersion();
             DailyCheck.checkDailies();
             ClientDescCheck.descChange();
+            GuildSync.syncRights();
             GuildInfo.loadGuildInfo();
             }, 1, 300, TimeUnit.SECONDS);
         scheduler.scheduleAtFixedRate(() -> api.getClients().forEach(CallToken::checkToken), 1, 600, TimeUnit.SECONDS);
