@@ -12,16 +12,16 @@ This bot is still under developement.\
 [Check Virus Total Scan!](https://www.virustotal.com/gui/file/5c94d45ba57f32ffc090f8ac73810ef365935f7956c18cc6420c58eb28692577/detection)
 
 ## Features
-* Guild Wars 2 🠖 Teamspeak 3 synchronization
-* Event Management
-* Guild Wars 2 Account-Information
-* Guild Wars 2 Wallet
-* Dailies
-* Raids 
-* Friend system
-* Support System
+* GW2 ⇄ Teamspeak 3 synchronization
+* GW2 Account-Information
+* GW2 Wallet
+* GW2 Dailies
+* GW2 Guild-Information
+* GW2 Event Management
+* GW2 Weekly Raid Boss-Kills
+* Show GW2-Account in Client-Description
+* Friend System
 * Afk Mover
-* Timer
 ## Summary
 I do only support my own software! This software is free to use.
 
