@@ -2,7 +2,6 @@ package de.backxtar.systems;
 
 import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.api.event.ClientMovedEvent;
-import com.github.theholywaffle.teamspeak3.api.wrapper.Channel;
 import com.github.theholywaffle.teamspeak3.api.wrapper.ChannelInfo;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
 import com.github.theholywaffle.teamspeak3.api.wrapper.ServerGroupClient;
@@ -35,9 +34,8 @@ public class ClientHelpReminder {
                         "Bitte komme zu einem späteren Zeitpunkt wieder!";
         api.sendPrivateMessage(client.getId(), sendHelp);
 
-        clients.parallelStream().forEach(supporter -> {
-            api.sendPrivateMessage(supporter.getId(), "[color=orange][b]" + client.getNickname() + "[/b][/color] " +
-                    "wartet in [color=orange][b]" + channelInfo.getName() + "[/b][/color] auf Hilfe!");
-        });
+        clients.parallelStream().forEach(supporter -> api.sendPrivateMessage(supporter.getId(),
+                "[color=orange][b]" + client.getNickname() + "[/b][/color] " +
+                "wartet in [color=orange][b]" + channelInfo.getName() + "[/b][/color] auf Hilfe!"));
     }
 }
