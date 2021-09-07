@@ -32,12 +32,14 @@ public class GuildSync {
                 String identity = resultSet.getString("clientIdentity");
                 String key = resultSet.getString("GW2_Key");
                 String accountName = resultSet.getString("accountName");
+
+                if (!api.isClientOnline(identity)) continue;
                 Client client = api.getClientByUId(identity);
 
                 if (!CallToken.tokenIsValid(client)) continue;
                 account = CallAccount.getAccount(key);
 
-                if (!api.isClientOnline(identity) || Arrays.stream(account.guilds)
+                if (Arrays.stream(account.guilds)
                         .noneMatch(id -> id.equalsIgnoreCase(Config.getConfigData().guildID)) ||
                         api.getClientByUId(identity).isServerQueryClient())
                     continue;

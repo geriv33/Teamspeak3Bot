@@ -68,7 +68,7 @@ public class EventManager {
 
             @Override
             public void onClientMoved(ClientMovedEvent clientMovedEvent) {
-                ClientHelpReminder.doSupport(clientMovedEvent);
+                //ClientHelpReminder.doSupport(clientMovedEvent);
             }
 
             @Override
