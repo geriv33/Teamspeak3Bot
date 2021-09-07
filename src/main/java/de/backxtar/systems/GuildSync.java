@@ -43,7 +43,7 @@ public class GuildSync {
                     continue;
 
                 members.parallelStream().forEach(member -> {
-                    if (member.name.equalsIgnoreCase(accountName)) {
+                    if (member.name.equalsIgnoreCase(accountName) && !member.rank.equalsIgnoreCase("invited")) {
                         String rank = member.rank;
 
                         if (Config.getConfigData().serverGroups.containsKey(rank)) {
