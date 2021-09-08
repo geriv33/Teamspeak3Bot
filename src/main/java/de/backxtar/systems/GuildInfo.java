@@ -63,7 +63,8 @@ public class GuildInfo {
         String influenceIcon = "[img]http://i.epvpimg.com/7iWhbab.png[/img]";
         String resonanceIcon = "[img]http://i.epvpimg.com/uVuAbab.png[/img]";
 
-        return "[center][size=11][color=red][b]" + guild.name + " [" + guild.tag + "] (" + guild.level + ")[/b][/color][/size]" +
+        return "[center][img]http://i.epvpimg.com/otBNbab.png[/img]\n" +
+                "[size=11][color=#806BE3][b]" + guild.name + " [" + guild.tag + "] (" + guild.level + ")[/b][/color][/size]" +
                 "\n\n[size=10][color=orange][b]Ankündigung:[/b][/color]\n" + guild.motd +
                 "\n\n" + memberIcon + " [size=10][color=orange][b]Members:[/b][/color] " + guild.member_count + "/" + guild.member_capacity +
                 "\n" + aetheriumIcon + " [size=10][color=orange][b]Ätherium:[/b][/color] " + guild.aetherium +

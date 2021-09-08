@@ -5,6 +5,7 @@ import com.github.theholywaffle.teamspeak3.api.ChannelProperty;
 import de.backxtar.Config;
 import de.backxtar.DerGeraet;
 import de.backxtar.gw2.CallDaily;
+import de.backxtar.gw2.CallPactSupply;
 import de.backxtar.gw2.Gw2Utils;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 public class DailyCheck {
-    private static final ExecutorService executor = Executors.newFixedThreadPool(4);
+    private static final ExecutorService executor = Executors.newFixedThreadPool(5);
     private static final TS3Api api = DerGeraet.getInstance().api;
 
     public static void checkDailies() {
@@ -49,6 +50,7 @@ public class DailyCheck {
         Future<ArrayList<CallDaily.GWCallDailyNames>> pvpAsync = executor.submit(() -> CallDaily.getDailiesName(idsPvP));
         Future<ArrayList<CallDaily.GWCallDailyNames>> wvwAsync = executor.submit(() -> CallDaily.getDailiesName(idsWvW));
         Future<ArrayList<CallDaily.GWCallDailyNames>> fractalsAsync = executor.submit(() -> CallDaily.getDailiesName(idsFractals));
+        Future<ArrayList<CallPactSupply.GWCallPactSupply>> pactAsync = executor.submit(() -> CallPactSupply.getSupplies(mode));
 
         StringBuilder daily = new StringBuilder();
         StringBuilder pve = null;
@@ -56,12 +58,14 @@ public class DailyCheck {
         StringBuilder wvw = null;
         StringBuilder fractals = null;
         StringBuilder recFractals = null;
+        StringBuilder pactSupplies = null;
 
         ArrayList<CallDaily.GWCallDailyStrikes> strikes = null;
         ArrayList<CallDaily.GWCallDailyNames> pveNames;
         ArrayList<CallDaily.GWCallDailyNames> pvpNames;
         ArrayList<CallDaily.GWCallDailyNames> wvwNames;
         ArrayList<CallDaily.GWCallDailyNames> fractalNames;
+        ArrayList<CallPactSupply.GWCallPactSupply> supplies;
 
         try {
             pveNames = pveAsync.get();
@@ -77,6 +81,8 @@ public class DailyCheck {
             fractals = getNames(fractalNames, 1);
             recFractals = getNames(fractalNames, 2);
             strikes = strikesAsync.get();
+            supplies = pactAsync.get();
+            pactSupplies = getLocations(supplies);
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
@@ -86,9 +92,20 @@ public class DailyCheck {
         daily.append("[size=10][color=orange][b]WvW Dailies:\n").append("[/b][/color][/size][size=9]").append(wvw).append("[/size]\n\n");
         daily.append("[size=10][color=orange][b]Fraktal Dailies:\n").append("[/b][/color][/size][size=9]").append(fractals).append("[/size]\n\n");
         daily.append("[size=10][color=orange][b]Daily empfohlene Fraktale:\n").append("[/b][/color][/size][size=9]").append(recFractals).append("[/size]\n");
-        daily.append("[size=10][color=orange][b]Daily Strike Mission:\n").append("[/b][/color][/size][img]http://i.epvpimg.com/cfb6fab.png[/img] [size=9]").append(Gw2Utils.formatDailyStrike(strikes.get(mode).strike)).append("[/size]");
+        daily.append("[size=10][color=orange][b]Daily Strike Mission:\n").append("[/b][/color][/size][img]http://i.epvpimg.com/cfb6fab.png[/img] [size=9]").append(Gw2Utils.formatDailyStrike(strikes.get(mode).strike)).append("[/size]\n\n");
+        daily.append("[size=10][color=orange][b]Daily Pakt-Vorratsnetz-Agenten:\n").append("[/b][/color][/size] [size=9]").append(pactSupplies).append("[/size]");
 
         return daily;
+    }
+
+    private static StringBuilder getLocations(ArrayList<CallPactSupply.GWCallPactSupply> supplies) {
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < supplies.size(); i++) {
+            builder.append(supplies.get(i).name).append(" @").append(supplies.get(i).location[1]);
+            if (i < (supplies.size() - 1)) builder.append(", ");
+        }
+        return builder;
     }
 
     private static int[] getIds(CallDaily.GWCallDaily dailies, int array) {
