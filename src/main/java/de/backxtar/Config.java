@@ -125,7 +125,7 @@ public class Config {
                         for (String str : values)
                             configData.ignoreGroups.add(Integer.parseInt(str));
                     } break;
-                /*case "supportChannels" : value = (String) cfg.get(key);
+                case "supportChannels" : value = (String) cfg.get(key);
                     values = getArray(value);
                     if (!value.isEmpty()) {
                         configData.supportChannels = new ArrayList<>();
@@ -138,7 +138,7 @@ public class Config {
                         configData.supportGroups = new ArrayList<>();
                         for (String str : values)
                             configData.supportGroups.add(Integer.parseInt(str));
-                    } break;*/
+                    } break;
                 case "arcDpsChannelID": value = (String) cfg.get(key);
                     configData.arcDpsChannelID = Integer.parseInt(value);
                     break;
@@ -179,7 +179,8 @@ public class Config {
             logger.info(file.getName() + " is empty or could not be created!");
             return false;
         }
-        logger.info("New " + file.getName() + " created.");
+        if (file.createNewFile())
+            logger.info("New " + file.getName() + " created.");
         return true;
     }
 
