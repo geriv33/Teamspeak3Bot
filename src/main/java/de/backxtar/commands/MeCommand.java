@@ -37,7 +37,7 @@ public class MeCommand implements CommandInterface {
                         "Hier sind Deine Account-Informationen, [b]" + client.getNickname() + "[/b]:\n" +
                         "╰ [color=orange][b]Gw2-Account:[/b][/color] " + account.name + "\n" +
                         "╰ [color=orange][b]Erstellt:[/b][/color] " + getDate(account.created) + "\n" +
-                        "╰ [color=orange][b]Alter:[/b][/color] " + getAge(account.age) + "\n" +
+                        "╰ [color=orange][b]Spielzeit:[/b][/color] " + getAge(account.age) + "\n" +
                         "╰ [color=orange][b]Inhalte:[/b][/color] " + accessBuilder + "\n" +
                         "╰ [color=orange][b]Server:[/b][/color] " + world.name + " [" + world.population + "]\n" +
                         "╰ [color=orange][b]Kommandeur:[/b][/color] " + (account.commander ? "Ja" : "Nein") + "\n" +

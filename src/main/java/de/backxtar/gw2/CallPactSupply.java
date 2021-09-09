@@ -15,10 +15,10 @@ public class CallPactSupply {
 
     public static ArrayList<GWCallPactSupply> getSupplies(int mode) {
         String json = "";
-        String request = mode == 0 ? "" : "?tomorrow=true";
+        String request = mode == 0 ? "" : "&tomorrow=true";
 
         try {
-            json = Gw2Utils.getJson("https://aurora-theogenia.de/api/pactsupply/" + request);
+            json = Gw2Utils.getJson("https://aurora-theogenia.de/api/pactsupply/?lang=de" + request);
         } catch (IOException e) {
             e.printStackTrace();
         }
