@@ -12,7 +12,7 @@ public class AfkMover {
 
     private static class MoveData {
         public long timestamp;
-        public int channelID;
+        public String channelName;
     }
 
     public static void checkAfk() {
@@ -30,7 +30,7 @@ public class AfkMover {
                 }
                 if (dataHashMap.containsKey(client.getUniqueIdentifier()) || isAfkChannel) return;
                 MoveData moveData = new MoveData();
-                moveData.channelID = client.getChannelId();
+                moveData.channelName = api.getChannelInfo(client.getChannelId()).getName();
                 moveData.timestamp = System.currentTimeMillis() - client.getIdleTime();
                 dataHashMap.put(client.getUniqueIdentifier(), moveData);
                 api.sendPrivateMessage(client.getId(), "Du wurdest in den AFK-Channel verschoben!");
@@ -40,7 +40,8 @@ public class AfkMover {
                 long[] duration = getTime(System.currentTimeMillis() - dataHashMap.get(client.getUniqueIdentifier()).timestamp);
                 String time = (duration[2] > 0 ? duration[2] + "h " : "") +
                         (duration[1] > 0 ? duration[1] + "min " : "") + String.format("%02d", duration[0]) + " sec.";
-                api.sendPrivateMessage(client.getId(), "Deine AFK-Zeit betrug: " + time);
+                api.sendPrivateMessage(client.getId(), "Deine AFK-Zeit betrug: [color=#806BE3][b]" + time + "[/b][/color]. " +
+                        "Dein voheriger Channel: [color=#806BE3][b]" + dataHashMap.get(client.getUniqueIdentifier()).channelName + "[/b][/color].");
                 dataHashMap.remove(client.getUniqueIdentifier());
             }
         });
