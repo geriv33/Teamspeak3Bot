@@ -26,7 +26,7 @@ public class TempChannel {
         Channel channel = api.getChannelByNameExact(channelName, true);
         int count = 0;
 
-        while (channel != null) {
+        while (api.getChannelByNameExact(channelName, true) != null) {
             count++;
             channelName = channelInfo.getName() + " #" + client.getNickname() + "(" + count + ")";
         }
