@@ -1,0 +1,40 @@
+package de.backxtar.systems;
+
+import com.github.theholywaffle.teamspeak3.TS3Api;
+import com.github.theholywaffle.teamspeak3.api.ChannelProperty;
+import com.github.theholywaffle.teamspeak3.api.event.ClientMovedEvent;
+import com.github.theholywaffle.teamspeak3.api.wrapper.Channel;
+import com.github.theholywaffle.teamspeak3.api.wrapper.ChannelInfo;
+import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
+import de.backxtar.Config;
+import de.backxtar.DerGeraet;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class TempChannel {
+    private static final TS3Api api = DerGeraet.getInstance().api;
+
+    public static void createTempChannel(ClientMovedEvent e) {
+        if (Config.getConfigData().tempChannelList == null ||
+            !Config.getConfigData().tempChannelList.contains(e.getTargetChannelId()))
+            return;
+
+        Client client = api.getClientInfo(e.getClientId());
+        ChannelInfo channelInfo = api.getChannelInfo(e.getTargetChannelId());
+        String channelName = channelInfo.getName() + " #" + client.getNickname();
+        Channel channel = api.getChannelByNameExact(channelName, true);
+        int count = 0;
+
+        while (channel != null) {
+            count++;
+            channelName = channelInfo.getName() + " #" + client.getNickname() + "(" + count + ")";
+        }
+        final Map<ChannelProperty, String> properties = new HashMap<>();
+        properties.put(ChannelProperty.CHANNEL_FLAG_TEMPORARY, "1");
+        properties.put(ChannelProperty.CPID, String.valueOf(e.getTargetChannelId()));
+        api.createChannel(channelName, properties);
+        api.moveClient(client.getId(), api.getChannelByNameExact(channelName, true).getId());
+        api.moveClient(api.whoAmI().getId(), api.getServerInfo().getDefaultChannelGroup());
+    }
+}

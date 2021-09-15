@@ -96,7 +96,7 @@ public class BossesCommand implements CommandInterface {
                 "\n" + conditions[7] +
                 "\n\n" + conditions[0] + "\n╰ " + raidBoss.get(0) + "\n╰ " + raidEvent.get(0) + "\n╰ " + raidBoss.get(1) + "\n╰ " + raidBoss.get(2) +
                 "\n\n" + conditions[1] + "\n╰ " + raidBoss.get(3) + "\n╰ " + raidBoss.get(4) + "\n╰ " + raidBoss.get(5) +
-                "\n\n" + conditions[2] + "\n╰ " + raidBoss.get(1) + "\n╰ " + raidBoss.get(6) + "\n╰ " + raidEvent.get(2) + "\n╰ " + raidBoss.get(7) +
+                "\n\n" + conditions[2] + "\n╰ " + raidEvent.get(1) + "\n╰ " + raidBoss.get(6) + "\n╰ " + raidEvent.get(2) + "\n╰ " + raidBoss.get(7) +
                 "\n\n" + conditions[3] + "\n╰ " + raidBoss.get(8) + "\n╰ " + raidBoss.get(9) + "\n╰ " + raidBoss.get(10) + "\n╰ " + raidBoss.get(11) +
                 "\n\n" + conditions[4] + "\n╰ " + raidBoss.get(12) + "\n╰ " + raidEvent.get(3) + "\n╰ " + raidBoss.get(13) + "\n╰ " + raidBoss.get(14) +
                 "\n\n" + conditions[5] + "\n╰ " + raidBoss.get(15) + "\n╰ " + raidBoss.get(16) + "\n╰ " + raidBoss.get(17) +

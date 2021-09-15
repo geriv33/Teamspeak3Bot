@@ -9,6 +9,7 @@ import de.backxtar.DerGeraet;
 import de.backxtar.events.OnClientJoin;
 import de.backxtar.events.OnClientLeave;
 import de.backxtar.systems.ClientHelpReminder;
+import de.backxtar.systems.TempChannel;
 import de.backxtar.systems.Utils;
 
 public class EventManager {
@@ -69,6 +70,7 @@ public class EventManager {
             @Override
             public void onClientMoved(ClientMovedEvent clientMovedEvent) {
                 ClientHelpReminder.doSupport(clientMovedEvent);
+                TempChannel.createTempChannel(clientMovedEvent);
             }
 
             @Override

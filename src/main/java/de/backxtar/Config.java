@@ -36,6 +36,7 @@ public class Config {
         public List<Integer> ignoreGroups;
         public List<Integer> supportChannels;
         public List<Integer> supportGroups;
+        public List<Integer> tempChannelList;
         public int arcDpsChannelID = 0;
         public int dailiesChannelID = 0;
         public int tempServerGroupID = 0;
@@ -139,6 +140,16 @@ public class Config {
                         for (String str : values)
                             configData.supportGroups.add(Integer.parseInt(str));
                     } break;
+                case "tempChannelList" : value = (String) cfg.get(key);
+                    values = getArray(value);
+                    if (values.length == 0 || values.length == 1 && values[0].equalsIgnoreCase("0"))
+                        configData.tempChannelList = null;
+                    else {
+                        configData.tempChannelList = new ArrayList<>();
+                        for (String str : values)
+                            configData.tempChannelList.add(Integer.parseInt(str));
+                    }
+                    break;
                 case "arcDpsChannelID": value = (String) cfg.get(key);
                     configData.arcDpsChannelID = Integer.parseInt(value);
                     break;
