@@ -37,8 +37,6 @@ public class AfkMover {
                 api.moveClient(client.getId(), Config.getConfigData().afkChannelID[0]);
             } else {
                 if (!dataHashMap.containsKey(client.getUniqueIdentifier())) return;
-                if (client.getChannelId() == Config.getConfigData().afkChannelID[0])
-                    api.moveClient(client.getId(), dataHashMap.get(client.getUniqueIdentifier()).channelID);
                 long[] duration = getTime(System.currentTimeMillis() - dataHashMap.get(client.getUniqueIdentifier()).timestamp);
                 String time = (duration[2] > 0 ? duration[2] + "h " : "") +
                         (duration[1] > 0 ? duration[1] + "min " : "") + String.format("%02d", duration[0]) + " sec.";
