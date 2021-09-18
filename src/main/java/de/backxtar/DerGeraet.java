@@ -62,7 +62,7 @@ public class DerGeraet {
 
             @Override
             public void onDisconnect(TS3Query ts3Query) {
-                scheduler.shutdownNow();
+
             }
         });
         query = new TS3Query(config);
