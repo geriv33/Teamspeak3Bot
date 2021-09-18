@@ -4,7 +4,6 @@ import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.TS3Config;
 import com.github.theholywaffle.teamspeak3.TS3Query;
 import com.github.theholywaffle.teamspeak3.api.exception.TS3Exception;
-import com.github.theholywaffle.teamspeak3.api.reconnect.ConnectionHandler;
 import de.backxtar.gw2.CallToken;
 import de.backxtar.managers.CommandManager;
 import de.backxtar.managers.EventManager;
