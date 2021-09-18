@@ -50,11 +50,12 @@ public class DerGeraet {
 
         query = new TS3Query(config);
         query.connect();
+
         SqlManager.connect();
         EventManager.loadEvents();
-
         this.commandManager = new CommandManager();
         scheduleTasks();
+
         logger.info(Config.getConfigData().ts3Nickname + " online - connected to " + DerGeraet.ts3Bot.api.getServerInfo().getName() + ".");
         logger.info("UID: " + api.whoAmI().getUniqueIdentifier() + " | ID: " + api.whoAmI().getId());
         initShutdown();
