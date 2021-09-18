@@ -4,6 +4,7 @@ import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.TS3Config;
 import com.github.theholywaffle.teamspeak3.TS3Query;
 import com.github.theholywaffle.teamspeak3.api.exception.TS3Exception;
+import com.github.theholywaffle.teamspeak3.api.reconnect.ConnectionHandler;
 import de.backxtar.gw2.CallToken;
 import de.backxtar.managers.CommandManager;
 import de.backxtar.managers.EventManager;
@@ -17,6 +18,11 @@ import java.sql.SQLException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
+/*
+* Author: Josh Quick
+* A Guild Wars 2 Teamspeak3 Bot
+*/
 
 public class DerGeraet {
     private final ScheduledExecutorService scheduler;
@@ -36,34 +42,35 @@ public class DerGeraet {
         config.setHost(Config.getConfigData().ts3Host);
         config.setEnableCommunicationsLogging(true);
         config.setFloodRate(TS3Query.FloodRate.UNLIMITED);
-        logger.info("Configuration successful.");
 
+        config.setConnectionHandler(new ConnectionHandler() {
+            @Override
+            public void onConnect(TS3Api ts3Api) {
+                api = query.getApi();
+                api.login(Config.getConfigData().ts3Username, Config.getConfigData().ts3Password);
+                api.selectVirtualServerById(1);
+                api.setNickname(Config.getConfigData().ts3Nickname);
+                EventManager.loadEvents();
+
+                logger.info("Config successful.");
+                logger.info("Query connected.");
+                logger.info("Server: " + api.getServerInfo().getName() + ".");
+                logger.info("Nickname: " + Config.getConfigData().ts3Nickname + ".");
+                logger.info("UID: " + api.whoAmI().getUniqueIdentifier());
+                logger.info("ID: " + api.whoAmI().getId());
+            }
+
+            @Override
+            public void onDisconnect(TS3Query ts3Query) {
+                scheduler.shutdownNow();
+            }
+        });
         query = new TS3Query(config);
         query.connect();
         SqlManager.connect();
 
-        api = query.getApi();
-        api.login(Config.getConfigData().ts3Username, Config.getConfigData().ts3Password);
-        api.selectVirtualServerById(1);
-        api.setNickname(Config.getConfigData().ts3Nickname);
-
-        EventManager.loadEvents();
         this.commandManager = new CommandManager();
-        scheduler.scheduleAtFixedRate(AfkMover::checkAfk, 1, 1, TimeUnit.SECONDS);
-        scheduler.scheduleAtFixedRate(() -> {
-            ExchangeCheck.checkExchange();
-            ArcDpsCheck.checkArcDpsVersion();
-            DailyCheck.checkDailies();
-            }, 1, 300, TimeUnit.SECONDS);
-        scheduler.scheduleAtFixedRate(() -> {
-            ClientDescCheck.descChange();
-            GuildSync.syncRights();
-            GuildInfo.loadGuildInfo();
-        },1, 300, TimeUnit.SECONDS);
-        scheduler.scheduleAtFixedRate(() -> api.getClients().forEach(CallToken::checkToken), 1, 600, TimeUnit.SECONDS);
-        scheduler.scheduleAtFixedRate(() -> Utils.checkInfo(api), 1, 60, TimeUnit.SECONDS);
-        logger.info(Config.getConfigData().ts3Nickname + " online - connected to " + DerGeraet.ts3Bot.api.getServerInfo().getName() + ".");
-        logger.info("UID: " + api.whoAmI().getUniqueIdentifier() + " | ID: " + api.whoAmI().getId());
+        scheduleTasks();
         initShutdown();
     }
 
@@ -77,15 +84,31 @@ public class DerGeraet {
         }
     }
 
-    private static void initShutdown() {
+    private void scheduleTasks() {
+        scheduler.scheduleAtFixedRate(AfkMover::checkAfk, 1, 1, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(() -> {
+            ExchangeCheck.checkExchange();
+            ArcDpsCheck.checkArcDpsVersion();
+            DailyCheck.checkDailies();
+        }, 1, 300, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(() -> {
+            ClientDescCheck.descChange();
+            GuildSync.syncRights();
+            GuildInfo.loadGuildInfo();
+        },1, 300, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(() -> api.getClients().forEach(CallToken::checkToken), 1, 600, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(() -> Utils.checkInfo(api), 1, 60, TimeUnit.SECONDS);
+    }
+
+    private void initShutdown() {
         String line;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {
             while ((line = reader.readLine()) != null) {
                 if (line.equalsIgnoreCase("exit")) {
-                    if (DerGeraet.ts3Bot.query.isConnected() && !DerGeraet.ts3Bot.scheduler.isShutdown()) {
-                        DerGeraet.ts3Bot.scheduler.shutdownNow();
-                        DerGeraet.ts3Bot.query.exit();
+                    if (query.isConnected() && !DerGeraet.ts3Bot.scheduler.isShutdown()) {
+                        scheduler.shutdownNow();
+                        query.exit();
                         SqlManager.disconnect();
                         logger.info("Bot offline.");
                         System.exit(0);

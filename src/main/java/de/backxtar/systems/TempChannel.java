@@ -3,7 +3,6 @@ package de.backxtar.systems;
 import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.api.ChannelProperty;
 import com.github.theholywaffle.teamspeak3.api.event.ClientMovedEvent;
-import com.github.theholywaffle.teamspeak3.api.wrapper.Channel;
 import com.github.theholywaffle.teamspeak3.api.wrapper.ChannelInfo;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
 import de.backxtar.Config;
@@ -23,7 +22,6 @@ public class TempChannel {
         Client client = api.getClientInfo(e.getClientId());
         ChannelInfo channelInfo = api.getChannelInfo(e.getTargetChannelId());
         String channelName = channelInfo.getName() + " #" + client.getNickname();
-        Channel channel = api.getChannelByNameExact(channelName, true);
         int count = 0;
 
         while (api.getChannelByNameExact(channelName, true) != null) {
