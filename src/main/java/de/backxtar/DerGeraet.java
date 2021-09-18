@@ -43,34 +43,20 @@ public class DerGeraet {
         config.setEnableCommunicationsLogging(true);
         config.setFloodRate(TS3Query.FloodRate.UNLIMITED);
 
-        config.setConnectionHandler(new ConnectionHandler() {
-            @Override
-            public void onConnect(TS3Api ts3Api) {
-                api = query.getApi();
-                api.login(Config.getConfigData().ts3Username, Config.getConfigData().ts3Password);
-                api.selectVirtualServerById(1);
-                api.setNickname(Config.getConfigData().ts3Nickname);
-                EventManager.loadEvents();
+        api = query.getApi();
+        api.login(Config.getConfigData().ts3Username, Config.getConfigData().ts3Password);
+        api.selectVirtualServerById(1);
+        api.setNickname(Config.getConfigData().ts3Nickname);
 
-                logger.info("Config successful.");
-                logger.info("Query connected.");
-                logger.info("Server: " + api.getServerInfo().getName() + ".");
-                logger.info("Nickname: " + Config.getConfigData().ts3Nickname + ".");
-                logger.info("UID: " + api.whoAmI().getUniqueIdentifier());
-                logger.info("ID: " + api.whoAmI().getId());
-            }
-
-            @Override
-            public void onDisconnect(TS3Query ts3Query) {
-
-            }
-        });
         query = new TS3Query(config);
         query.connect();
         SqlManager.connect();
+        EventManager.loadEvents();
 
         this.commandManager = new CommandManager();
         scheduleTasks();
+        logger.info(Config.getConfigData().ts3Nickname + " online - connected to " + DerGeraet.ts3Bot.api.getServerInfo().getName() + ".");
+        logger.info("UID: " + api.whoAmI().getUniqueIdentifier() + " | ID: " + api.whoAmI().getId());
         initShutdown();
     }
 
@@ -80,6 +66,26 @@ public class DerGeraet {
         } catch (IOException | TS3Exception | SQLException | ClassNotFoundException e) {
             logger.info("Configuration failed!");
             logger.info("Please check config.cfg");
+            e.printStackTrace();
+        }
+    }
+
+    private void initShutdown() {
+        String line;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            while ((line = reader.readLine()) != null) {
+                if (line.equalsIgnoreCase("exit")) {
+                    if (DerGeraet.ts3Bot.query.isConnected() && !DerGeraet.ts3Bot.scheduler.isShutdown()) {
+                        DerGeraet.ts3Bot.scheduler.shutdownNow();
+                        DerGeraet.ts3Bot.query.exit();
+                        SqlManager.disconnect();
+                        logger.info("Bot offline.");
+                        System.exit(0);
+                    } else logger.info("Can not shutdown! Please terminate the screen.");
+                }
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -98,26 +104,6 @@ public class DerGeraet {
         },1, 300, TimeUnit.SECONDS);
         scheduler.scheduleAtFixedRate(() -> api.getClients().forEach(CallToken::checkToken), 1, 600, TimeUnit.SECONDS);
         scheduler.scheduleAtFixedRate(() -> Utils.checkInfo(api), 1, 60, TimeUnit.SECONDS);
-    }
-
-    private void initShutdown() {
-        String line;
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        try {
-            while ((line = reader.readLine()) != null) {
-                if (line.equalsIgnoreCase("exit")) {
-                    if (query.isConnected() && !DerGeraet.ts3Bot.scheduler.isShutdown()) {
-                        scheduler.shutdownNow();
-                        query.exit();
-                        SqlManager.disconnect();
-                        logger.info("Bot offline.");
-                        System.exit(0);
-                    } else logger.info("Can not shutdown! Please terminate the screen.");
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public static DerGeraet getInstance() {

@@ -37,6 +37,10 @@ public class SqlManager {
         }
     }
 
+    public static Connection getConnection() {
+        return connection;
+    }
+
     public static void insert(String table, String[] fields, Object[] values) throws SQLException {
         StringBuilder stmtString = new StringBuilder("INSERT INTO " + table + Arrays.toString(fields).replace("[", "(").replace("]", ")") + " VALUES(");
         for (Object ignored : values)
