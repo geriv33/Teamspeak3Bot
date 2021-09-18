@@ -50,6 +50,7 @@ public class DerGeraet {
 
         query = new TS3Query(config);
         query.connect();
+        logger.info("Configuration successful.");
 
         SqlManager.connect();
         EventManager.loadEvents();
