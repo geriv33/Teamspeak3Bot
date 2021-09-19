@@ -10,7 +10,6 @@ public class AfkMover {
     private static final TS3Api api = DerGeraet.getInstance().api;
 
     private static class MoveData {
-        public String UID;
         public long timestamp;
         public String channelName;
         public int channelID;
@@ -30,7 +29,6 @@ public class AfkMover {
                 }
                 if (dataHashMap.containsKey(client.getUniqueIdentifier()) || isAfkChannel) return;
                 MoveData moveData = new MoveData();
-                moveData.UID = client.getUniqueIdentifier();
                 moveData.channelID = client.getChannelId();
                 moveData.channelName = api.getChannelInfo(client.getChannelId()).getName();
                 moveData.timestamp = System.currentTimeMillis() - client.getIdleTime();

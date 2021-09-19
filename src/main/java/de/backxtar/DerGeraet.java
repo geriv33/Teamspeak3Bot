@@ -99,7 +99,6 @@ public class DerGeraet {
             DailyCheck.checkDailies();
         }, 1, 300, TimeUnit.SECONDS);
         scheduler.scheduleAtFixedRate(() -> {
-            AfkMover.checkOnline();
             ClientDescCheck.descChange();
             GuildSync.syncRights();
             GuildInfo.loadGuildInfo();
@@ -108,6 +107,7 @@ public class DerGeraet {
         scheduler.scheduleAtFixedRate(() -> {
             Utils.checkInfo(api);
             ClientHelpReminder.unlockChannel();
+            AfkMover.checkOnline();
             }, 1, 60, TimeUnit.SECONDS);
     }
 

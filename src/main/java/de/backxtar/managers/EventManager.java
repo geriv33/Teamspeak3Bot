@@ -4,6 +4,7 @@ import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.api.TextMessageTargetMode;
 import com.github.theholywaffle.teamspeak3.api.event.*;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
+import com.github.theholywaffle.teamspeak3.api.wrapper.ClientInfo;
 import de.backxtar.Config;
 import de.backxtar.DerGeraet;
 import de.backxtar.events.OnClientJoin;
@@ -41,7 +42,8 @@ public class EventManager {
 
             @Override
             public void onClientJoin(ClientJoinEvent clientJoinEvent) {
-                if (api.getClientInfo(clientJoinEvent.getClientId()).isServerQueryClient()) return;
+                ClientInfo clientInfo = api.getClientInfo(clientJoinEvent.getClientId());
+                if (clientInfo.isServerQueryClient()) return;
                 Utils.changeInfo();
                 OnClientJoin.sendWelcome(clientJoinEvent);
                 OnClientJoin.gw2ApiReminder(clientJoinEvent);
