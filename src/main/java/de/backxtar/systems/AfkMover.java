@@ -63,7 +63,7 @@ public class AfkMover {
     public static void checkOnline() {
         dataHashMap.forEach((key, moveData) -> {
             String UID = key;
-            if (!api.isClientOnline(UID))
+            if (!api.isClientOnline(UID) || api.getClientByUId(UID).getChannelId() != Config.getConfigData().afkChannelID[0])
                 dataHashMap.remove(UID);
         });
     }
