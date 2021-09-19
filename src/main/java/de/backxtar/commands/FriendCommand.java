@@ -24,6 +24,6 @@ public class FriendCommand implements CommandInterface {
         if (Config.getConfigData().tempServerGroupID == 0 || !isGuest) return;
         api.addClientToServerGroup(Config.getConfigData().tempServerGroupID, client.getDatabaseId());
         api.sendPrivateMessage(client.getId(),
-                "Du wurdest [color=orange][b]temporär[/b][/color] freigeschaltet.");
+                "Du wurdest [color=" + Config.getColors().mainColor + "][b]temporär[/b][/color] freigeschaltet.");
     }
 }

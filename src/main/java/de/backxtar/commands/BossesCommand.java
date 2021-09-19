@@ -3,6 +3,7 @@ package de.backxtar.commands;
 import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.api.event.TextMessageEvent;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
+import de.backxtar.Config;
 import de.backxtar.gw2.CallBosses;
 import de.backxtar.gw2.CallToken;
 import de.backxtar.managers.CommandInterface;
@@ -75,18 +76,18 @@ public class BossesCommand implements CommandInterface {
         
         if (counters[0] != 0 && counters[1] != 0) {
             conditions[7] = "[b]" + client.getNickname() + "[/b], Dir " + (singleBoss ? "fehlt" : "fehlen") + " " +
-                    "[b][color=orange]" + counters[0] + " " + (singleBoss ? "Boss" : "Bosse") + "[/color][/b] " +
-                    "und [b][color=orange]" + counters[1] + " " + (singleEvent ? "Event" : "Events") + "[/color][/b] für die Woche.";
+                    "[b][color=" + Config.getColors().mainColor + "]" + counters[0] + " " + (singleBoss ? "Boss" : "Bosse") + "[/color][/b] " +
+                    "und [b][color=" + Config.getColors().mainColor + "]" + counters[1] + " " + (singleEvent ? "Event" : "Events") + "[/color][/b] für die Woche.";
         } else if (counters[0] != 0 && counters[1] == 0) {
             conditions[7] = "[b]" + client.getNickname() + "[/b], Dir " + (singleBoss ? "fehlt" : "fehlen") + " " +
-                    "[b][color=orange]" + counters[0] + " " + (singleBoss ? "Boss" : "Bosse") + "[/color][/b] " +
+                    "[b][color=" + Config.getColors().mainColor + "]" + counters[0] + " " + (singleBoss ? "Boss" : "Bosse") + "[/color][/b] " +
                     "für die Woche.";
         } else if (counters[0] == 0 && counters[1] != 0) {
             conditions[7] = "[b]" + client.getNickname() + "[/b], Dir " + (singleEvent ? "fehlt" : "fehlen") + " " +
-                    "[b][color=orange]" + counters[1] + " " + (singleEvent ? "Event" : "Events") + "[/color][/b] " +
+                    "[b][color=" + Config.getColors().mainColor + "]" + counters[1] + " " + (singleEvent ? "Event" : "Events") + "[/color][/b] " +
                     "für die Woche.";
         } else if (counters[0] == 0 && counters[1] == 0) {
-            conditions[7] = "[b]" + client.getNickname() + "[/b], Du hast einen [b][color=orange]Fullclear[/color][/b]!";
+            conditions[7] = "[b]" + client.getNickname() + "[/b], Du hast einen [b][color=" + Config.getColors().mainColor + "]Fullclear[/color][/b]!";
         }
         api.sendPrivateMessage(client.getId(), buildMessage(gw2Values[1], conditions, raidBoss, raidEvent));
     }

@@ -3,6 +3,7 @@ package de.backxtar.commands;
 import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.api.event.TextMessageEvent;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
+import de.backxtar.Config;
 import de.backxtar.managers.CommandInterface;
 import de.backxtar.gw2.*;
 
@@ -35,22 +36,22 @@ public class MeCommand implements CommandInterface {
         api.sendPrivateMessage(client.getId(),
                 "\n" +
                         "Hier sind Deine Account-Informationen, [b]" + client.getNickname() + "[/b]:\n" +
-                        "╰ [color=orange][b]Gw2-Account:[/b][/color] " + account.name + "\n" +
-                        "╰ [color=orange][b]Erstellt:[/b][/color] " + getDate(account.created) + "\n" +
-                        "╰ [color=orange][b]Spielzeit:[/b][/color] " + getAge(account.age) + "\n" +
-                        "╰ [color=orange][b]Inhalte:[/b][/color] " + accessBuilder + "\n" +
-                        "╰ [color=orange][b]Server:[/b][/color] " + world.name + " [" + world.population + "]\n" +
-                        "╰ [color=orange][b]Kommandeur:[/b][/color] " + (account.commander ? "Ja" : "Nein") + "\n" +
-                        (account.guilds.length > 0 ? "╰ [color=orange][b]Gilden:[/b][/color] " + guildBuilder + "\n" : "") +
-                        "╰ [color=orange][b]Fraktal Level:[/b][/color] " + account.fractal_level + "\n" +
-                        "╰ [color=orange][b]WvW-Rang:[/b][/color] " + account.wvw_rank + "\n" +
-                        "╰ [color=orange][b]PvP-Rang:[/b][/color] " + pvp.pvp_rank + "\n" +
-                        "╰ [color=orange][b]PvP-Rangpunkte:[/b][/color] " + pvp.pvp_rank_points + "\n" +
-                        "╰ [color=orange][b]PvP-Siege:[/b][/color] " + pvp.aggregate.wins + "\n" +
-                        "╰ [color=orange][b]PvP-Niederlagen:[/b][/color] " + pvp.aggregate.losses + "\n" +
-                        "╰ [color=orange][b]PvP-Desertionen:[/b][/color] " + pvp.aggregate.desertions + "\n" +
-                        "╰ [color=orange][b]Tägliche-AP:[/b][/color] " + account.daily_ap + "\n" +
-                        "╰ [color=orange][b]Monatliche-AP:[/b][/color] " + account.monthly_ap);
+                        "╰ [color=" + Config.getColors().mainColor + "][b]Gw2-Account:[/b][/color] " + account.name + "\n" +
+                        "╰ [color=" + Config.getColors().mainColor + "][b]Erstellt:[/b][/color] " + getDate(account.created) + "\n" +
+                        "╰ [color=" + Config.getColors().mainColor + "][b]Spielzeit:[/b][/color] " + getAge(account.age) + "\n" +
+                        "╰ [color=" + Config.getColors().mainColor + "][b]Inhalte:[/b][/color] " + accessBuilder + "\n" +
+                        "╰ [color=" + Config.getColors().mainColor + "][b]Server:[/b][/color] " + world.name + " [" + world.population + "]\n" +
+                        "╰ [color=" + Config.getColors().mainColor + "][b]Kommandeur:[/b][/color] " + (account.commander ? "Ja" : "Nein") + "\n" +
+                        (account.guilds.length > 0 ? "╰ [color=" + Config.getColors().mainColor + "][b]Gilden:[/b][/color] " + guildBuilder + "\n" : "") +
+                        "╰ [color=" + Config.getColors().mainColor + "][b]Fraktal Level:[/b][/color] " + account.fractal_level + "\n" +
+                        "╰ [color=" + Config.getColors().mainColor + "][b]WvW-Rang:[/b][/color] " + account.wvw_rank + "\n" +
+                        "╰ [color=" + Config.getColors().mainColor + "][b]PvP-Rang:[/b][/color] " + pvp.pvp_rank + "\n" +
+                        "╰ [color=" + Config.getColors().mainColor + "][b]PvP-Rangpunkte:[/b][/color] " + pvp.pvp_rank_points + "\n" +
+                        "╰ [color=" + Config.getColors().mainColor + "][b]PvP-Siege:[/b][/color] " + pvp.aggregate.wins + "\n" +
+                        "╰ [color=" + Config.getColors().mainColor + "][b]PvP-Niederlagen:[/b][/color] " + pvp.aggregate.losses + "\n" +
+                        "╰ [color=" + Config.getColors().mainColor + "][b]PvP-Desertionen:[/b][/color] " + pvp.aggregate.desertions + "\n" +
+                        "╰ [color=" + Config.getColors().mainColor + "][b]Tägliche-AP:[/b][/color] " + account.daily_ap + "\n" +
+                        "╰ [color=" + Config.getColors().mainColor + "][b]Monatliche-AP:[/b][/color] " + account.monthly_ap);
     }
 
     private StringBuilder getBuilder(CallAccount.GWCallAccount account, int mode) {

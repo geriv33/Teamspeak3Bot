@@ -13,7 +13,13 @@ import java.util.*;
 public class Config {
     private static final Logger logger = LoggerFactory.getLogger(Config.class);
     private static ConfigData configData;
+    private static Colors colors;
     private static File file;
+
+    public static class Colors {
+        public String mainColor = "#806BE3";
+        public String secondColor = "#49b5cb";
+    }
 
     public static class ConfigData {
         public String ts3Host;
@@ -56,6 +62,7 @@ public class Config {
         cfg.load(streamReader);
         Enumeration<Object> en = cfg.keys();
         configData = new ConfigData();
+        colors = new Colors();
 
         while (en.hasMoreElements()) {
             String key = (String) en.nextElement();
@@ -197,6 +204,10 @@ public class Config {
 
     public static ConfigData getConfigData() {
         return configData;
+    }
+
+    public static Colors getColors() {
+        return colors;
     }
 
     public static File getFile() {

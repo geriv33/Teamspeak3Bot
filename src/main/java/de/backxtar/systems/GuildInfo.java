@@ -44,7 +44,7 @@ public class GuildInfo {
             }
 
             for (int i = 0; i < stringBuilders.length; i++) {
-                guildList.append("\n\n" + "[size=10][color=orange][b]").append(Config.getConfigData().guildRanks[i])
+                guildList.append("\n\n" + "[size=10][color=" + Config.getColors().secondColor + "][b]").append(Config.getConfigData().guildRanks[i])
                         .append("[/b][/color]").append("\n").append(stringBuilders[i]);
             }
         }
@@ -65,12 +65,12 @@ public class GuildInfo {
 
         return "[center][img]http://i.epvpimg.com/otBNbab.png[/img]\n" +
                 "[size=11][color=#806BE3][b]" + guild.name + " [" + guild.tag + "] (" + guild.level + ")[/b][/color][/size]" +
-                "\n\n[size=10][color=orange][b]Ankündigung:[/b][/color]\n" + guild.motd +
-                "\n\n" + memberIcon + " [size=10][color=orange][b]Members:[/b][/color] " + guild.member_count + "/" + guild.member_capacity +
-                "\n" + aetheriumIcon + " [size=10][color=orange][b]Ätherium:[/b][/color] " + guild.aetherium +
-                "\n" + favorIcon + " [size=10][color=orange][b]Gunst:[/b][/color] " + guild.favor +
-                "\n" + influenceIcon + " [size=10][color=orange][b]Einfluss:[/b][/color] " + guild.influence +
-                "\n" + resonanceIcon + " [size=10][color=orange][b]Resonanz:[/b][/color] " + guild.resonance + "[/size]";
+                "\n\n[size=10][color=" + Config.getColors().secondColor + "][b]Ankündigung:[/b][/color]\n" + guild.motd +
+                "\n\n" + memberIcon + " [size=10][color=" + Config.getColors().secondColor + "][b]Members:[/b][/color] " + guild.member_count + "/" + guild.member_capacity +
+                "\n" + aetheriumIcon + " [size=10][color=" + Config.getColors().secondColor + "][b]Ätherium:[/b][/color] " + guild.aetherium +
+                "\n" + favorIcon + " [size=10][color=" + Config.getColors().secondColor + "][b]Gunst:[/b][/color] " + guild.favor +
+                "\n" + influenceIcon + " [size=10][color=" + Config.getColors().secondColor + "][b]Einfluss:[/b][/color] " + guild.influence +
+                "\n" + resonanceIcon + " [size=10][color=" + Config.getColors().secondColor + "][b]Resonanz:[/b][/color] " + guild.resonance + "[/size]";
     }
 
     private static StringBuilder getRanks(List<CallGuild.GWCallGuildMembers> members, String rank) {

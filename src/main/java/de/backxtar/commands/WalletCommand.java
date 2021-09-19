@@ -3,6 +3,7 @@ package de.backxtar.commands;
 import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.api.event.TextMessageEvent;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
+import de.backxtar.Config;
 import de.backxtar.managers.CommandInterface;
 import de.backxtar.gw2.CallToken;
 import de.backxtar.gw2.CallWallet;
@@ -27,6 +28,6 @@ public class WalletCommand implements CommandInterface {
 
         api.sendPrivateMessage(client.getId(),
                 "\nHier ist deine Geldbörse, [b]" + client.getNickname() + "[/b]\n\n" +
-                "[color=orange][b]Gw2-Account:[/b][/color] " + gw2Values[1] + "\n" + currencies);
+                "[color=" + Config.getColors().mainColor + "][b]Gw2-Account:[/b][/color] " + gw2Values[1] + "\n" + currencies);
     }
 }

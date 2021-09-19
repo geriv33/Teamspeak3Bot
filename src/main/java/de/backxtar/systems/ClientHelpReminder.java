@@ -37,14 +37,14 @@ public class ClientHelpReminder {
             }
         }
         String sendHelp = clients.size() > 0 ? "Momentan " + (clients.size() > 1 ? "sind" : "ist") +
-                        " [color=orange][b]" + clients.size() + " Supporter[/b][/color] online! " +
+                        " [color=" + Config.getColors().mainColor + "][b]" + clients.size() + " Supporter[/b][/color] online! " +
                         "Es wird sich sofort jemand um Dich kümmern!" :
-                        "Momentan ist leider [color=orange][b]kein Supporter[/b][/color] online. " +
+                        "Momentan ist leider [color=" + Config.getColors().mainColor + "][b]kein Supporter[/b][/color] online. " +
                         "Bitte komme zu einem späteren Zeitpunkt wieder!";
         api.sendPrivateMessage(client.getId(), sendHelp);
 
         clients.parallelStream().forEach(supporter -> api.sendPrivateMessage(supporter.getId(),
-                "[color=orange][b]" + client.getNickname() + "[/b][/color] " +
-                "wartet in [color=orange][b]" + channelInfo.getName() + "[/b][/color] auf Hilfe!"));
+                "[color=" + Config.getColors().mainColor + "][b]" + client.getNickname() + "[/b][/color] " +
+                "wartet in [color=" + Config.getColors().mainColor + "][b]" + channelInfo.getName() + "[/b][/color] auf Hilfe!"));
     }
 }

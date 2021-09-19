@@ -42,14 +42,14 @@ public class DerGeraet {
         config.setEnableCommunicationsLogging(true);
         config.setFloodRate(TS3Query.FloodRate.UNLIMITED);
 
+        query = new TS3Query(config);
+        query.connect();
+
         api = query.getApi();
         api.login(Config.getConfigData().ts3Username, Config.getConfigData().ts3Password);
         api.selectVirtualServerById(1);
         api.setNickname(Config.getConfigData().ts3Nickname);
-
-        query = new TS3Query(config);
-        query.connect();
-        logger.info("Configuration successful.");
+        logger.info("Configuration successful. Query connected.");
 
         SqlManager.connect();
         EventManager.loadEvents();

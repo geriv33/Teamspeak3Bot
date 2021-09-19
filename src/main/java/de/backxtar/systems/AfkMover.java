@@ -41,7 +41,7 @@ public class AfkMover {
                 String time = (duration[2] > 0 ? duration[2] + "h " : "") +
                         (duration[1] > 0 ? duration[1] + "min " : "") + String.format("%02d", duration[0]) + " sec.";
                 api.sendPrivateMessage(client.getId(), "Deine AFK-Zeit betrug: [color=#806BE3][b]" + time + "[/b][/color]. " +
-                        "Dein voheriger Channel: [color=#806BE3][b]" + dataHashMap.get(client.getUniqueIdentifier()).channelName + "[/b][/color].");
+                        "Dein voheriger Channel: [color=" + Config.getColors().mainColor + "][b]" + dataHashMap.get(client.getUniqueIdentifier()).channelName + "[/b][/color].");
                 dataHashMap.remove(client.getUniqueIdentifier());
             }
         });
