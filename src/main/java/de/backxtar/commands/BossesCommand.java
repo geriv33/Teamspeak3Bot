@@ -16,6 +16,7 @@ public class BossesCommand implements CommandInterface {
     private final String[] events = {"spirit_woods", "escort", "twisted_castle", "river_of_souls", "gate"};
     private final String[] bossTranslations = {"Tal-Wächter", "Gorseval", "Sabetha", "Faultierion", "Banditen-Trio", "Matthias", "Festenkonstrukt", "Xera", "Cairn", "Mursaat-Aufseher", "Samarog", "Deimos", "Desmina", "Statuen des Grenth", "Dhuum", "Beschworene Verschmelzung", "Zwillings-Largos", "Qadim", "Kardinal Adina", "Kardinal Sabir", "Qadim der Unvergleichliche"};
     private final String[] eventTranslations = {"Geisterlauf", "Belagert die Festung", "Verdrehtes Schloss", "Fluss der Seelen", "Tore von Ahdashim"};
+    private Config.Colors colors = Config.getColors();
 
     @Override
     public void run(String cmdValue, TS3Api api, TextMessageEvent event, Client client) {
@@ -76,18 +77,18 @@ public class BossesCommand implements CommandInterface {
         
         if (counters[0] != 0 && counters[1] != 0) {
             conditions[7] = "[b]" + client.getNickname() + "[/b], Dir " + (singleBoss ? "fehlt" : "fehlen") + " " +
-                    "[b][color=" + Config.getColors().mainColor + "]" + counters[0] + " " + (singleBoss ? "Boss" : "Bosse") + "[/color][/b] " +
-                    "und [b][color=" + Config.getColors().mainColor + "]" + counters[1] + " " + (singleEvent ? "Event" : "Events") + "[/color][/b] für die Woche.";
+                    "[b][color=" + colors.mainColor + "]" + counters[0] + " " + (singleBoss ? "Boss" : "Bosse") + "[/color][/b] " +
+                    "und [b][color=" + colors.mainColor + "]" + counters[1] + " " + (singleEvent ? "Event" : "Events") + "[/color][/b] für die Woche.";
         } else if (counters[0] != 0 && counters[1] == 0) {
             conditions[7] = "[b]" + client.getNickname() + "[/b], Dir " + (singleBoss ? "fehlt" : "fehlen") + " " +
-                    "[b][color=" + Config.getColors().mainColor + "]" + counters[0] + " " + (singleBoss ? "Boss" : "Bosse") + "[/color][/b] " +
+                    "[b][color=" + colors.mainColor + "]" + counters[0] + " " + (singleBoss ? "Boss" : "Bosse") + "[/color][/b] " +
                     "für die Woche.";
         } else if (counters[0] == 0 && counters[1] != 0) {
             conditions[7] = "[b]" + client.getNickname() + "[/b], Dir " + (singleEvent ? "fehlt" : "fehlen") + " " +
-                    "[b][color=" + Config.getColors().mainColor + "]" + counters[1] + " " + (singleEvent ? "Event" : "Events") + "[/color][/b] " +
+                    "[b][color=" + colors.mainColor + "]" + counters[1] + " " + (singleEvent ? "Event" : "Events") + "[/color][/b] " +
                     "für die Woche.";
         } else if (counters[0] == 0 && counters[1] == 0) {
-            conditions[7] = "[b]" + client.getNickname() + "[/b], Du hast einen [b][color=" + Config.getColors().mainColor + "]Fullclear[/color][/b]!";
+            conditions[7] = "[b]" + client.getNickname() + "[/b], Du hast einen [b][color=" + colors.mainColor + "]Fullclear[/color][/b]!";
         }
         api.sendPrivateMessage(client.getId(), buildMessage(gw2Values[1], conditions, raidBoss, raidEvent));
     }
