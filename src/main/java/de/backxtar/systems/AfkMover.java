@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class AfkMover {
     private static final HashMap<String, MoveData> dataHashMap = new HashMap<>();
-    private static TS3Api api = DerGeraet.getInstance().api;
+    private static final TS3Api api = DerGeraet.getInstance().api;
 
     private static class MoveData {
         public String UID;
@@ -62,9 +62,8 @@ public class AfkMover {
 
     public static void checkOnline() {
         dataHashMap.forEach((key, moveData) -> {
-            String UID = key;
-            if (!api.isClientOnline(UID) || api.getClientByUId(UID).getChannelId() != Config.getConfigData().afkChannelID[0])
-                dataHashMap.remove(UID);
+            if (!api.isClientOnline(key) || api.getClientByUId(key).getChannelId() != Config.getConfigData().afkChannelID[0])
+                dataHashMap.remove(key);
         });
     }
 
