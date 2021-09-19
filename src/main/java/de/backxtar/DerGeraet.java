@@ -105,7 +105,10 @@ public class DerGeraet {
             GuildInfo.loadGuildInfo();
         },1, 300, TimeUnit.SECONDS);
         scheduler.scheduleAtFixedRate(() -> api.getClients().forEach(CallToken::checkToken), 1, 600, TimeUnit.SECONDS);
-        scheduler.scheduleAtFixedRate(() -> Utils.checkInfo(api), 1, 60, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(() -> {
+            Utils.checkInfo(api);
+            ClientHelpReminder.unlockChannel();
+            }, 1, 60, TimeUnit.SECONDS);
     }
 
     public static DerGeraet getInstance() {

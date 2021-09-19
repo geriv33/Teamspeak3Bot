@@ -70,6 +70,7 @@ public class EventManager {
             @Override
             public void onClientMoved(ClientMovedEvent clientMovedEvent) {
                 ClientHelpReminder.doSupport(clientMovedEvent);
+                ClientHelpReminder.lockChannel(clientMovedEvent);
                 TempChannel.createTempChannel(clientMovedEvent);
             }
 
