@@ -18,6 +18,7 @@ import java.util.concurrent.Future;
 public class DailyCheck {
     private static final ExecutorService executor = Executors.newFixedThreadPool(5);
     private static final TS3Api api = DerGeraet.getInstance().api;
+    private static final Config.Colors colors = Config.getColors();
 
     public static void checkDailies() {
         try {
@@ -86,14 +87,15 @@ public class DailyCheck {
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
-        daily.append("[size=11][color=" + Config.getColors().mainColor + "][b]").append(mode == 0 ? "Dailies von heute:" : "Dailies von morgen:").append("[/b][/color][/size]\n\n");
-        daily.append("[size=10][color=" + Config.getColors().secondColor + "][b]PvE Dailies:\n").append("[/b][/color][/size][size=9]").append(pve).append("[/size]\n\n");
-        daily.append("[size=10][color=" + Config.getColors().secondColor + "][b]PvP Dailies:\n").append("[/b][/color][/size][size=9]").append(pvp).append("[/size]\n\n");
-        daily.append("[size=10][color=" + Config.getColors().secondColor + "][b]WvW Dailies:\n").append("[/b][/color][/size][size=9]").append(wvw).append("[/size]\n\n");
-        daily.append("[size=10][color=" + Config.getColors().secondColor + "][b]Fraktal Dailies:\n").append("[/b][/color][/size][size=9]").append(fractals).append("[/size]\n\n");
-        daily.append("[size=10][color=" + Config.getColors().secondColor + "][b]Daily empfohlene Fraktale:\n").append("[/b][/color][/size][size=9]").append(recFractals).append("[/size]\n");
-        daily.append("[size=10][color=" + Config.getColors().secondColor + "][b]Daily Strike Mission:\n").append("[/b][/color][/size][img]http://i.epvpimg.com/cfb6fab.png[/img] [size=9]").append(Gw2Utils.formatDailyStrike(strikes.get(mode).strike)).append("[/size]\n\n");
-        daily.append("[size=10][color=" + Config.getColors().secondColor + "][b]Daily Pakt-Vorratsnetz-Agenten:\n").append("[/b][/color][/size] [size=9]").append(pactSupplies).append("[/size]");
+        daily.append("[size=11][color=" + colors.mainColor + "][b]").append(mode == 0 ? "Dailies von heute:" : "Dailies von morgen:").append("[/b][/color][/size]\n\n");
+        daily.append("[size=10][color=" + colors.secondColor + "][b]PvE Dailies:\n").append("[/b][/color][/size][size=9]").append(pve).append("[/size]\n\n");
+        daily.append("[size=10][color=" + colors.secondColor + "][b]PvP Dailies:\n").append("[/b][/color][/size][size=9]").append(pvp).append("[/size]\n\n");
+        daily.append("[size=10][color=" + colors.secondColor + "][b]WvW Dailies:\n").append("[/b][/color][/size][size=9]").append(wvw).append("[/size]\n\n");
+        daily.append("[size=10][color=" + colors.secondColor + "][b]Fraktal Dailies:\n").append("[/b][/color][/size][size=9]").append(fractals).append("[/size]\n\n");
+        daily.append("[size=10][color=" + colors.secondColor + "][b]Daily empfohlene Fraktale:\n").append("[/b][/color][/size][size=9]").append(recFractals).append("[/size]\n");
+        daily.append("[size=10][color=" + colors.secondColor + "][b]Daily Strike Mission:\n").append("[/b][/color][/size][img]http://i.epvpimg.com/cfb6fab.png[/img] [size=9]").append(Gw2Utils.formatDailyStrike(strikes.get(mode).strike)).append("[/size]\n\n");
+        daily.append("[size=10][color=" + colors.secondColor + "][b]Daily Pakt-Vorratsnetz-Agenten:\n").append("[/b][/color][/size] [size=9]").append(pactSupplies).append("[/size]\n\n");
+        daily.append("[size=10][color=" + colors.secondColor + "][b]Profit:\n").append("[/b][/color][/size] [size=9]").append("[URL=https://wiki.guildwars2.com/wiki/Map_bonus_reward/profit]Map Belohnungen[/URL][/size]");
 
         return daily;
     }
