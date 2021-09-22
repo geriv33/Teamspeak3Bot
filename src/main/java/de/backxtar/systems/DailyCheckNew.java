@@ -104,7 +104,7 @@ public class DailyCheckNew {
         builder.append("\n\n");
 
         builder.append("[size=10][color=" + colors.secondColor + "][b]Daily Strike Mission:\n")
-                .append("[/b][/color][/size][img]http://i.epvpimg.com/cfb6fab.png[/img] [size=9]")
+                .append("[/b][/color][/size][img]https://i.epvpimg.com/cfb6fab.png[/img] [size=9]")
                 .append(Gw2Utils.formatDailyStrike(strikes.strike));
         builder.append("[/size]\n\n");
 
@@ -119,13 +119,13 @@ public class DailyCheckNew {
     }
 
     private static String getLocations(ArrayList<CallPactSupply.GWCallPactSupply> supplies) {
-        String supply = "";
+        StringBuilder supply = new StringBuilder();
 
         for (int i = 0; i < supplies.size(); i++) {
-            supply += supplies.get(i).name + " @" + supplies.get(i).location[1];
-            if (i < (supplies.size() - 1)) supply += (", ");
+            supply.append(supplies.get(i).name).append(" @").append(supplies.get(i).location[1]);
+            if (i < (supplies.size() - 1)) supply.append(", ");
         }
-        return supply;
+        return supply.toString();
     }
 
     private static List<String> splitDailies(ArrayList<CallDaily.GWCallDailyNames> dailyNames, int mode) {
@@ -133,41 +133,42 @@ public class DailyCheckNew {
 
         switch (mode) {
             case 1 :
-                for (int i = 0; i < dailyNames.size(); i++) {
-                    if (dailies.contains(dailyNames.get(i).name)) continue;
+                for (CallDaily.GWCallDailyNames dailyName : dailyNames) {
+                    if (dailies.contains(dailyName.name)) continue;
                     String name;
-                    if (dailyNames.get(i).name.contains("PvP") || dailyNames.get(i).name.contains("Top Stats")) {
-                        name = Gw2Utils.formatDailiesPvpWvw(dailyNames.get(i).name);
-                        dailies.add("[img]http://i.epvpimg.com/MLQ3fab.png[/img] " + name);
-                    } else if (dailyNames.get(i).name.contains("WvW") || dailyNames.get(i).name.contains("Mists Guard Killer")) {
-                        name = Gw2Utils.formatDailiesPvpWvw(dailyNames.get(i).name);
-                        dailies.add("[img]http://i.epvpimg.com/WHXtfab.png[/img] " + name);
+                    if (dailyName.name.contains("PvP") || dailyName.name.contains("Top Stats")) {
+                        name = Gw2Utils.formatDailiesPvpWvw(dailyName.name);
+                        dailies.add("[img]https://i.epvpimg.com/MLQ3fab.png[/img] " + name);
+                    } else if (dailyName.name.contains("WvW") || dailyName.name.contains("Mists Guard Killer")) {
+                        name = Gw2Utils.formatDailiesPvpWvw(dailyName.name);
+                        dailies.add("[img]https://i.epvpimg.com/WHXtfab.png[/img] " + name);
                     } else {
-                        name = Gw2Utils.formatDaily(dailyNames.get(i).name);
-                        dailies.add("[img]http://i.epvpimg.com/f6E1cab.png[/img] " + name);
+                        name = Gw2Utils.formatDaily(dailyName.name);
+                        dailies.add("[img]https://i.epvpimg.com/f6E1cab.png[/img] " + name);
                     }
-                } break;
+                }
+                break;
 
             case 2 :
                 List<String> unsorted = new ArrayList<>();
-                for (int i = 0; i < dailyNames.size(); i++) {
-                    if (dailies.contains(dailyNames.get(i).name) || !dailyNames.get(i).name.contains("Tier 4")) continue;
+                for (CallDaily.GWCallDailyNames dailyName : dailyNames) {
+                    if (unsorted.contains(dailyName.name) || !dailyName.name.contains("Tier 4")) continue;
                     String name;
-                    name = Gw2Utils.formatDailyFractals(dailyNames.get(i).name);
+                    name = Gw2Utils.formatDailyFractals(dailyName.name);
                     unsorted.add(name);
                 }
                 sort(unsorted);
 
-                for (int i = 0; i < unsorted.size(); i++)
-                    dailies.add("[img]http://i.epvpimg.com/UgDScab.png[/img] " + unsorted.get(i));
+                for (String s : unsorted) dailies.add("[img]https://i.epvpimg.com/UgDScab.png[/img] " + s);
                 break;
 
             case 3 :
-                for (int i = 0; i < dailyNames.size(); i++) {
-                    if (dailies.contains(dailyNames.get(i).name) || !dailyNames.get(i).name.contains("Recommended")) continue;
-                    String name = Gw2Utils.formatRecFractals(dailyNames.get(i).name);
-                    dailies.add("[img]http://i.epvpimg.com/UgDScab.png[/img] " + name);
-                } break;
+                for (CallDaily.GWCallDailyNames dailyName : dailyNames) {
+                    if (dailies.contains(dailyName.name) || !dailyName.name.contains("Recommended")) continue;
+                    String name = Gw2Utils.formatRecFractals(dailyName.name);
+                    dailies.add("[img]https://i.epvpimg.com/UgDScab.png[/img] " + name);
+                }
+                break;
         }
         return dailies;
     }
