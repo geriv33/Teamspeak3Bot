@@ -49,6 +49,22 @@ public class CallDaily {
         return gson.fromJson(json, GWCallDaily.class);
     }
 
+    public static GWCallDaily getDailies(boolean tomorrow) {
+        String json = "";
+
+        try {
+            if (!tomorrow)
+                json = Gw2Utils.getJson("https://api.guildwars2.com/v2/achievements/daily");
+            else if (tomorrow)
+                json = Gw2Utils.getJson("https://api.guildwars2.com/v2/achievements/daily/tomorrow");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Gson gson = new Gson();
+        return gson.fromJson(json, GWCallDaily.class);
+    }
+
     public static class GWCallDailyNames {
         public int id;
         public String name;
@@ -61,6 +77,26 @@ public class CallDaily {
         for (int i = 0; i < ids.length; i++) {
             idRow.append(ids[i]);
             if (i < (ids.length - 1)) idRow.append(",");
+        }
+
+        try {
+            json = Gw2Utils.getJson("https://api.guildwars2.com/v2/achievements?ids=" + idRow);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Gson gson = new Gson();
+        Type callNames = new TypeToken<ArrayList<GWCallDailyNames>>(){}.getType();
+        return gson.fromJson(json, callNames);
+    }
+
+    public static ArrayList<GWCallDailyNames> getDailiesName(ArrayList<Integer> ids) {
+        String json = "";
+        StringBuilder idRow = new StringBuilder();
+
+        for (int i = 0; i < ids.size(); i++) {
+            idRow.append(ids.get(i));
+            if (i < (ids.size() - 1)) idRow.append(",");
         }
 
         try {
