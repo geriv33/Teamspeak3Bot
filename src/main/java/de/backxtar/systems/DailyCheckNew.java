@@ -51,20 +51,21 @@ public class DailyCheckNew {
         for (int i = 0; i < 4; i++) {
             switch (i) {
                 case 0:
-                    for (int j = 0; j < dailies.pve.size(); j++)
-                        ids.add(dailies.pve.get(i).id);
+                    for (int j = 0; j < dailies.pve.size(); j++) {
+                        ids.add(dailies.pve.get(j).id);
+                    }
                     break;
                 case 1:
                     for (int j = 0; j < dailies.pvp.size(); j++)
-                        ids.add(dailies.pvp.get(i).id);
+                        ids.add(dailies.pvp.get(j).id);
                     break;
                 case 2:
                     for (int j = 0; j < dailies.wvw.size(); j++)
-                        ids.add(dailies.wvw.get(i).id);
+                        ids.add(dailies.wvw.get(j).id);
                     break;
                 case 3:
                     for (int j = 0; j < dailies.fractals.size(); j++)
-                        ids.add(dailies.fractals.get(i).id);
+                        ids.add(dailies.fractals.get(j).id);
                     break;
             }
         }
@@ -142,7 +143,7 @@ public class DailyCheckNew {
                     } else if (dailyName.name.contains("WvW") || dailyName.name.contains("Mists Guard Killer")) {
                         name = Gw2Utils.formatDailiesPvpWvw(dailyName.name);
                         dailies.add("[img]https://i.epvpimg.com/WHXtfab.png[/img] " + name);
-                    } else {
+                    } else if (!dailyName.name.contains("Tier 1") || !dailyName.name.contains("Tier 2") || !dailyName.name.contains("Tier 3") || !dailyName.name.contains("Tier 4") || !dailyName.name.contains("Recommended")){
                         name = Gw2Utils.formatDaily(dailyName.name);
                         dailies.add("[img]https://i.epvpimg.com/f6E1cab.png[/img] " + name);
                     }

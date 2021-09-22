@@ -33,7 +33,7 @@ public class Gw2Utils {
 
     private static InputStream read(URL url) throws IOException {
         HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
-        httpCon.addRequestProperty("User-Agent", "Mozilla/4.0");
+        httpCon.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36");
         return httpCon.getInputStream();
     }
 
