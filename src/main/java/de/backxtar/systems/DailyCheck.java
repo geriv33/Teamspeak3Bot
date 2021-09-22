@@ -16,187 +16,194 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 public class DailyCheck {
-    private static final ExecutorService executor = Executors.newFixedThreadPool(5);
+    private static final ExecutorService executor = Executors.newFixedThreadPool(2);
     private static final TS3Api api = DerGeraet.getInstance().api;
     private static final Config.Colors colors = Config.getColors();
 
     public static void checkDailies() {
+        if (Config.getConfigData().dailiesChannelID == 0) return;
+        CallDaily.GWCallDaily daily = CallDaily.getDailies(false);
+        CallDaily.GWCallDaily dailyTomorrow = CallDaily.getDailies(true);
+
+        Future<StringBuilder> dailies = executor.submit(() -> getDailies(daily, false));
+        Future<StringBuilder> dailiesTomorrow = executor.submit(() -> getDailies(dailyTomorrow, true));
+
         try {
-            if (Config.getConfigData().dailiesChannelID == 0) return;
-            CallDaily.GWCallDaily daily = CallDaily.getDailies(1);
-            CallDaily.GWCallDaily dailyTomorrow = CallDaily.getDailies(2);
-
-            StringBuilder dailies = checkDailies(daily, 0);
-            StringBuilder dailiesTomorrow = checkDailies(dailyTomorrow, 1);
-
             String des = "[center][size=11][URL=client://" + api.whoAmI().getId() + "/"
                     + api.whoAmI().getUniqueIdentifier() + "]Message me![/URL][/size]" +
-                    "\n\n" + dailies + "\n\n\n" + dailiesTomorrow;
+                    "\n\n" + dailies.get().toString() + "\n\n\n" + dailiesTomorrow.get().toString();
             if (api.getChannelInfo(Config.getConfigData().dailiesChannelID).getDescription().equalsIgnoreCase(des))
                 return;
             api.editChannel(Config.getConfigData().dailiesChannelID, ChannelProperty.CHANNEL_DESCRIPTION, des);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static StringBuilder checkDailies(CallDaily.GWCallDaily dailies, int mode) {
-        int[] idsPvE = getIds(dailies, 1);
-        int[] idsPvP = getIds(dailies, 2);
-        int[] idsWvW = getIds(dailies, 3);
-        int[] idsFractals = getIds(dailies, 4);
-
-        Future<ArrayList<CallDaily.GWCallDailyStrikes>> strikesAsync = executor.submit(CallDaily::getStrikes);
-        Future<ArrayList<CallDaily.GWCallDailyNames>> pveAsync = executor.submit(() -> CallDaily.getDailiesName(idsPvE));
-        Future<ArrayList<CallDaily.GWCallDailyNames>> pvpAsync = executor.submit(() -> CallDaily.getDailiesName(idsPvP));
-        Future<ArrayList<CallDaily.GWCallDailyNames>> wvwAsync = executor.submit(() -> CallDaily.getDailiesName(idsWvW));
-        Future<ArrayList<CallDaily.GWCallDailyNames>> fractalsAsync = executor.submit(() -> CallDaily.getDailiesName(idsFractals));
-        Future<ArrayList<CallPactSupply.GWCallPactSupply>> pactAsync = executor.submit(() -> CallPactSupply.getSupplies(mode));
-
-        StringBuilder daily = new StringBuilder();
-        StringBuilder pve = null;
-        StringBuilder pvp = null;
-        StringBuilder wvw = null;
-        StringBuilder fractals = null;
-        StringBuilder recFractals = null;
-        StringBuilder pactSupplies = null;
-
-        ArrayList<CallDaily.GWCallDailyStrikes> strikes = null;
-        ArrayList<CallDaily.GWCallDailyNames> pveNames;
-        ArrayList<CallDaily.GWCallDailyNames> pvpNames;
-        ArrayList<CallDaily.GWCallDailyNames> wvwNames;
-        ArrayList<CallDaily.GWCallDailyNames> fractalNames;
-        ArrayList<CallPactSupply.GWCallPactSupply> supplies;
-
-        try {
-            pveNames = pveAsync.get();
-            pve = getNames(pveNames, 0);
-
-            pvpNames = pvpAsync.get();
-            pvp = getNames(pvpNames, 0);
-
-            wvwNames = wvwAsync.get();
-            wvw = getNames(wvwNames, 0);
-
-            fractalNames = fractalsAsync.get();
-            fractals = getNames(fractalNames, 1);
-            recFractals = getNames(fractalNames, 2);
-            strikes = strikesAsync.get();
-            supplies = pactAsync.get();
-            pactSupplies = getLocations(supplies);
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
-        daily.append("[size=11][color=" + colors.mainColor + "][b]").append(mode == 0 ? "Dailies von heute:" : "Dailies von morgen:").append("[/b][/color][/size]\n\n");
-        daily.append("[size=10][color=" + colors.secondColor + "][b]PvE Dailies:\n").append("[/b][/color][/size][size=9]").append(pve).append("[/size]\n\n");
-        daily.append("[size=10][color=" + colors.secondColor + "][b]PvP Dailies:\n").append("[/b][/color][/size][size=9]").append(pvp).append("[/size]\n\n");
-        daily.append("[size=10][color=" + colors.secondColor + "][b]WvW Dailies:\n").append("[/b][/color][/size][size=9]").append(wvw).append("[/size]\n\n");
-        daily.append("[size=10][color=" + colors.secondColor + "][b]Fraktal Dailies:\n").append("[/b][/color][/size][size=9]").append(fractals).append("[/size]\n\n");
-        daily.append("[size=10][color=" + colors.secondColor + "][b]Daily empfohlene Fraktale:\n").append("[/b][/color][/size][size=9]").append(recFractals).append("[/size]\n");
-        daily.append("[size=10][color=" + colors.secondColor + "][b]Daily Strike Mission:\n").append("[/b][/color][/size][img]http://i.epvpimg.com/cfb6fab.png[/img] [size=9]").append(Gw2Utils.formatDailyStrike(strikes.get(mode).strike)).append("[/size]\n\n");
-        daily.append("[size=10][color=" + colors.secondColor + "][b]Daily Pakt-Vorratsnetz-Agenten:\n").append("[/b][/color][/size] [size=9]").append(pactSupplies).append("[/size]\n\n");
-        daily.append("[size=10][color=" + colors.secondColor + "][b]Profit:\n").append("[/b][/color][/size] [size=9]").append("[URL=https://wiki.guildwars2.com/wiki/Map_bonus_reward/profit]Map Belohnungen[/URL][/size]");
-
-        return daily;
     }
 
-    private static StringBuilder getLocations(ArrayList<CallPactSupply.GWCallPactSupply> supplies) {
+    private static StringBuilder getDailies(CallDaily.GWCallDaily dailies, boolean tomorrow) {
         StringBuilder builder = new StringBuilder();
+        ArrayList<Integer> ids = new ArrayList<>();
+        ArrayList<CallDaily.GWCallDailyNames> daileNames;
+        CallDaily.GWCallDailyStrikes strikes = !tomorrow ? CallDaily.getStrikes().get(0) : CallDaily.getStrikes().get(1);
+        ArrayList<CallPactSupply.GWCallPactSupply> supply = !tomorrow ? CallPactSupply.getSupplies(0) : CallPactSupply.getSupplies(1);
+        //dailies.pve.size(), dailies.pvp.size(), dailies.wvw.size(), dailies.fractals.size();
+
+        for (int i = 0; i < 4; i++) {
+            switch (i) {
+                case 0:
+                    for (int j = 0; j < dailies.pve.size(); j++)
+                        ids.add(dailies.pve.get(j).id);
+                    break;
+                case 1:
+                    for (int j = 0; j < dailies.pvp.size(); j++)
+                        ids.add(dailies.pvp.get(j).id);
+                    break;
+                case 2:
+                    for (int j = 0; j < dailies.wvw.size(); j++)
+                        ids.add(dailies.wvw.get(j).id);
+                    break;
+                case 3:
+                    for (int j = 0; j < dailies.fractals.size(); j++)
+                        ids.add(dailies.fractals.get(j).id);
+                    break;
+            }
+        }
+        daileNames = CallDaily.getDailiesName(ids);
+
+        //1=pve, pvp, wvw, 2=dailyFractals, 3=recFractals
+        List<String> dailyPve = splitDailies(daileNames, 1);
+        List<String> dailyPvp = splitDailies(daileNames, 2);
+        List<String> dailyWvW = splitDailies(daileNames, 3);
+        List<String> dailyFractals = splitDailies(daileNames, 4);
+        List<String> recFractals = splitDailies(daileNames, 5);
+
+        builder.append("[size=11][color=" + colors.mainColor + "][b]")
+                .append(!tomorrow ? "Dailies von heute:" : "Dailies von morgen:")
+                .append("[/b][/color][/size]\n\n");
+
+        builder.append("[size=10][color=" + colors.secondColor + "][b]PvE Dailies:\n")
+                .append("[/b][/color][/size][size=9]");
+        for (int i = 0; i < dailyPve.size(); i++) {
+            builder.append("[size=9]").append(dailyPve.get(i)).append("[/size]");
+            if (i < (dailyPve.size() - 1)) builder.append("\n");
+        }
+        builder.append("\n\n");
+
+        builder.append("[size=10][color=" + colors.secondColor + "][b]PvP Dailies:\n")
+                .append("[/b][/color][/size][size=9]");
+        for (int i = 0; i < dailyPvp.size(); i++) {
+            builder.append("[size=9]").append(dailyPvp.get(i)).append("[/size]");
+            if (i < (dailyPvp.size() - 1)) builder.append("\n");
+        }
+        builder.append("\n\n");
+
+        builder.append("[size=10][color=" + colors.secondColor + "][b]WvW Dailies:\n")
+                .append("[/b][/color][/size][size=9]");
+        for (int i = 0; i < dailyWvW.size(); i++) {
+            builder.append("[size=9]").append(dailyWvW.get(i)).append("[/size]");
+            if (i < (dailyWvW.size() - 1)) builder.append("\n");
+        }
+        builder.append("\n\n");
+
+        builder.append("[size=10][color=" + colors.secondColor + "][b]Fraktal Dailies:\n")
+                .append("[/b][/color][/size][size=9]");
+        for (int i = 0; i < dailyFractals.size(); i++) {
+            builder.append("[size=9]").append(dailyFractals.get(i)).append("[/size]");
+            if (i < (dailyFractals.size() - 1)) builder.append("\n");
+        }
+        builder.append("\n\n");
+
+        builder.append("[size=10][color=" + colors.secondColor + "][b]Empfohlene Fraktale:\n")
+                .append("[/b][/color][/size][size=9]");
+        for (int i = 0; i < recFractals.size(); i++) {
+            builder.append("[size=9]").append(recFractals.get(i)).append("[/size]");
+            if (i < (recFractals.size() - 1)) builder.append("\n");
+        }
+        builder.append("\n\n");
+
+        builder.append("[size=10][color=" + colors.secondColor + "][b]Daily Strike Mission:\n")
+                .append("[/b][/color][/size][img]https://i.epvpimg.com/cfb6fab.png[/img] [size=9]")
+                .append(Gw2Utils.formatDailyStrike(strikes.strike));
+        builder.append("[/size]\n\n");
+
+        builder.append("[size=10][color=" + colors.secondColor + "][b]Daily Pakt-Vorratsnetz-Agenten:\n")
+                .append("[/b][/color][/size] [size=9]").append(getLocations(supply));
+        builder.append("[/size]\n\n");
+
+        builder.append("[size=10][color=" + colors.secondColor + "][b]Profit:\n")
+                .append("[/b][/color][/size] [size=9]")
+                .append("[URL=https://wiki.guildwars2.com/wiki/Map_bonus_reward/profit]Map Belohnungen[/URL][/size]");
+        return builder;
+    }
+
+    private static String getLocations(ArrayList<CallPactSupply.GWCallPactSupply> supplies) {
+        StringBuilder supply = new StringBuilder();
 
         for (int i = 0; i < supplies.size(); i++) {
-            builder.append(supplies.get(i).name).append(" @").append(supplies.get(i).location[1]);
-            if (i < (supplies.size() - 1)) builder.append(", ");
+            supply.append(supplies.get(i).name).append(" @").append(supplies.get(i).location[1]);
+            if (i < (supplies.size() - 1)) supply.append(", ");
         }
-        return builder;
+        return supply.toString();
     }
 
-    private static int[] getIds(CallDaily.GWCallDaily dailies, int array) {
-        int[] ids = null;
+    private static List<String> splitDailies(ArrayList<CallDaily.GWCallDailyNames> dailyNames, int mode) {
+        List<String> dailies = new ArrayList<>();
 
-        if (array == 1) {
-            ids = new int[dailies.pve.size()];
-
-            for (int i = 0; i < dailies.pve.size(); i++) {
-                ids[i] = dailies.pve.get(i).id;
-            }
-        }
-
-        if (array == 2) {
-            ids = new int[dailies.pvp.size()];
-
-            for (int i = 0; i < dailies.pvp.size(); i++) {
-                ids[i] = dailies.pvp.get(i).id;
-            }
-        }
-
-        if (array == 3) {
-            ids = new int[dailies.wvw.size()];
-
-            for (int i = 0; i < dailies.wvw.size(); i++) {
-                ids[i] = dailies.wvw.get(i).id;
-            }
-        }
-
-        if (array == 4) {
-            ids = new int[dailies.fractals.size()];
-
-            for (int i = 0; i < dailies.fractals.size(); i++) {
-                ids[i] = dailies.fractals.get(i).id;
-            }
-        }
-        return ids;
-    }
-
-    private static StringBuilder getNames(ArrayList<CallDaily.GWCallDailyNames> names, int mode) {
-        StringBuilder builder = new StringBuilder();
-
-        if (mode == 0) {
-            for (int i = 0; i < names.size(); i++) {
-                if (!builder.toString().contains(names.get(i).name)) {
-                    String name;
-                    if (names.get(i).name.contains("PvP") || names.get(i).name.contains("Top Stats")) {
-                        name = Gw2Utils.formatDailiesPvpWvw(names.get(i).name);
-                        builder.append("[img]http://i.epvpimg.com/MLQ3fab.png[/img] ").append(name);
+        switch (mode) {
+            case 1 :
+                for (CallDaily.GWCallDailyNames dailyName : dailyNames) {
+                    if (dailies.contains(dailyName.name)) continue;
+                    if (!dailyName.name.contains("Tier 1") && !dailyName.name.contains("Tier 2") &&
+                            !dailyName.name.contains("Tier 3") && !dailyName.name.contains("Tier 4") &&
+                            !dailyName.name.contains("Recommended") && !dailyName.name.contains("PvP") &&
+                            !dailyName.name.contains("Top Stats") && !dailyName.name.contains("WvW") &&
+                            !dailyName.name.contains("Mists Guard Killer")){
+                        String name = Gw2Utils.formatDaily(dailyName.name);
+                        dailies.add("[img]https://i.epvpimg.com/f6E1cab.png[/img] " + name);
                     }
-                    else if (names.get(i).name.contains("WvW") || names.get(i).name.contains("Mists Guard Killer")) {
-                        name = Gw2Utils.formatDailiesPvpWvw(names.get(i).name);
-                        builder.append("[img]http://i.epvpimg.com/WHXtfab.png[/img] ").append(name);
-                    }
-                    else {
-                        name = Gw2Utils.formatDaily(names.get(i).name);
-                        builder.append("[img]http://i.epvpimg.com/f6E1cab.png[/img] ").append(name);
-                    }
-                    if (i < (names.size() - 1)) builder.append("\n");
                 }
-            }
-        }
+                break;
 
-        if (mode == 1) {
-            List<String> unsorted = new ArrayList<>();
-            for (CallDaily.GWCallDailyNames gwCallDailyNames : names) {
-                if (!builder.toString().contains(gwCallDailyNames.name) && gwCallDailyNames.name.contains("Tier 4")) {
-                    String name = Gw2Utils.formatDailyFractals(gwCallDailyNames.name);
+            case 2 :
+                for (CallDaily.GWCallDailyNames dailyName : dailyNames) {
+                    if (dailies.contains(dailyName.name)) continue;
+                    if (dailyName.name.contains("PvP") || dailyName.name.contains("Top Stats")) {
+                        String name = Gw2Utils.formatDailiesPvpWvw(dailyName.name);
+                        dailies.add("[img]https://i.epvpimg.com/MLQ3fab.png[/img] " + name);
+                    }
+                } break;
+
+            case 3 :
+                for (CallDaily.GWCallDailyNames dailyName : dailyNames) {
+                    if (dailies.contains(dailyName.name)) continue;
+                    if (dailyName.name.contains("WvW") || dailyName.name.contains("Mists Guard Killer")) {
+                        String name = Gw2Utils.formatDailiesPvpWvw(dailyName.name);
+                        dailies.add("[img]https://i.epvpimg.com/WHXtfab.png[/img] " + name);
+                    }
+                } break;
+
+            case 4 :
+                List<String> unsorted = new ArrayList<>();
+                for (CallDaily.GWCallDailyNames dailyName : dailyNames) {
+                    if (unsorted.contains(dailyName.name) || !dailyName.name.contains("Tier 4")) continue;
+                    String name;
+                    name = Gw2Utils.formatDailyFractals(dailyName.name);
                     unsorted.add(name);
                 }
-            }
-            sort(unsorted);
+                sort(unsorted);
 
-            for (int i = 0; i < unsorted.size(); i++) {
-                builder.append("[img]http://i.epvpimg.com/UgDScab.png[/img] ").append(unsorted.get(i));
-                if (i < (unsorted.size() - 1)) builder.append("\n");
-            }
-        }
+                for (String s : unsorted) dailies.add("[img]https://i.epvpimg.com/UgDScab.png[/img] " + s);
+                break;
 
-        if (mode == 2) {
-            for (int i = 0; i < names.size(); i++) {
-                if (!builder.toString().contains(names.get(i).name) && names.get(i).name.contains("Recommended")) {
-                    String name = Gw2Utils.formatRecFractals(names.get(i).name);
-                    builder.append("[img]http://i.epvpimg.com/UgDScab.png[/img] ").append(name);
-                    if (i < (names.size() - 1)) builder.append("\n");
+            case 5 :
+                for (CallDaily.GWCallDailyNames dailyName : dailyNames) {
+                    if (dailies.contains(dailyName.name) || !dailyName.name.contains("Recommended")) continue;
+                    String name = Gw2Utils.formatRecFractals(dailyName.name);
+                    dailies.add("[img]https://i.epvpimg.com/UgDScab.png[/img] " + name);
                 }
-            }
+                break;
         }
-        return builder;
+        return dailies;
     }
 
     private static void sort(List<String> getRecFractals) {
