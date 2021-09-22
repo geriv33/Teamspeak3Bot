@@ -33,22 +33,6 @@ public class CallDaily {
         public int id;
     }
 
-    public static GWCallDaily getDailies(int mode) {
-        String json = "";
-
-        try {
-            if (mode == 1)
-                json = Gw2Utils.getJson("https://api.guildwars2.com/v2/achievements/daily");
-            else if (mode == 2)
-                json = Gw2Utils.getJson("https://api.guildwars2.com/v2/achievements/daily/tomorrow");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Gson gson = new Gson();
-        return gson.fromJson(json, GWCallDaily.class);
-    }
-
     public static GWCallDaily getDailies(boolean tomorrow) {
         String json = "";
 
@@ -68,26 +52,6 @@ public class CallDaily {
     public static class GWCallDailyNames {
         public int id;
         public String name;
-    }
-
-    public static ArrayList<GWCallDailyNames> getDailiesName(int[] ids) {
-        String json = "";
-        StringBuilder idRow = new StringBuilder();
-
-        for (int i = 0; i < ids.length; i++) {
-            idRow.append(ids[i]);
-            if (i < (ids.length - 1)) idRow.append(",");
-        }
-
-        try {
-            json = Gw2Utils.getJson("https://api.guildwars2.com/v2/achievements?ids=" + idRow);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Gson gson = new Gson();
-        Type callNames = new TypeToken<ArrayList<GWCallDailyNames>>(){}.getType();
-        return gson.fromJson(json, callNames);
     }
 
     public static ArrayList<GWCallDailyNames> getDailiesName(ArrayList<Integer> ids) {
