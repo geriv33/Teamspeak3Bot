@@ -164,4 +164,4 @@ screen -r "Screenname"
 exit
 ```
 ## License
-####[ReadMe](https://github.com/Backxtar/Teamspeak3Bot/blob/master/LICENSE.md)
+[ReadMe](https://github.com/Backxtar/Teamspeak3Bot/blob/master/LICENSE.md)
