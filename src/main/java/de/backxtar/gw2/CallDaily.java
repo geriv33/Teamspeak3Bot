@@ -15,6 +15,7 @@ public class CallDaily {
         public List<PVP> pvp;
         public List<WVW> wvw;
         public List<Fractals> fractals;
+        public List<Special> special;
     }
 
     public static class PVE {
@@ -33,14 +34,16 @@ public class CallDaily {
         public int id;
     }
 
+    public static class Special {
+        public int id;
+    }
+
     public static GWCallDaily getDailies(boolean tomorrow) {
         String json = "";
 
         try {
-            if (!tomorrow)
-                json = Gw2Utils.getJson("https://api.guildwars2.com/v2/achievements/daily");
-            else if (tomorrow)
-                json = Gw2Utils.getJson("https://api.guildwars2.com/v2/achievements/daily/tomorrow");
+            if (!tomorrow) json = Gw2Utils.getJson("https://api.guildwars2.com/v2/achievements/daily");
+            else json = Gw2Utils.getJson("https://api.guildwars2.com/v2/achievements/daily/tomorrow");
         } catch (IOException e) {
             e.printStackTrace();
         }

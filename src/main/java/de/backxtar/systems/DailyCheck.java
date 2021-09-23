@@ -46,26 +46,32 @@ public class DailyCheck {
         ArrayList<CallDaily.GWCallDailyNames> daileNames;
         CallDaily.GWCallDailyStrikes strikes = !tomorrow ? CallDaily.getStrikes().get(0) : CallDaily.getStrikes().get(1);
         ArrayList<CallPactSupply.GWCallPactSupply> supply = !tomorrow ? CallPactSupply.getSupplies(0) : CallPactSupply.getSupplies(1);
-        //dailies.pve.size(), dailies.pvp.size(), dailies.wvw.size(), dailies.fractals.size();
 
         for (int i = 0; i < 4; i++) {
             switch (i) {
-                case 0:
-                    for (int j = 0; j < dailies.pve.size(); j++)
-                        ids.add(dailies.pve.get(j).id);
-                    break;
-                case 1:
-                    for (int j = 0; j < dailies.pvp.size(); j++)
-                        ids.add(dailies.pvp.get(j).id);
-                    break;
-                case 2:
-                    for (int j = 0; j < dailies.wvw.size(); j++)
-                        ids.add(dailies.wvw.get(j).id);
-                    break;
-                case 3:
-                    for (int j = 0; j < dailies.fractals.size(); j++)
-                        ids.add(dailies.fractals.get(j).id);
-                    break;
+                case 0 :
+                    for (int j = 0; j < dailies.pve.size(); j++) {
+                        if (!ids.contains(dailies.pve.get(j).id))
+                            ids.add(dailies.pve.get(j).id);
+                    } break;
+
+                case 1 :
+                    for (int j = 0; j < dailies.pvp.size(); j++) {
+                        if (!ids.contains(dailies.pvp.get(j).id))
+                            ids.add(dailies.pvp.get(j).id);
+                    } break;
+
+                case 2 :
+                    for (int j = 0; j < dailies.wvw.size(); j++) {
+                        if (!ids.contains(dailies.wvw.get(j).id))
+                            ids.add(dailies.wvw.get(j).id);
+                    } break;
+
+                case 3 :
+                    for (int j = 0; j < dailies.fractals.size(); j++) {
+                        if (!ids.contains(dailies.fractals.get(j).id))
+                            ids.add(dailies.fractals.get(j).id);
+                    } break;
             }
         }
         daileNames = CallDaily.getDailiesName(ids);
@@ -133,6 +139,7 @@ public class DailyCheck {
         builder.append("[size=10][color=" + colors.secondColor + "][b]Profit:\n")
                 .append("[/b][/color][/size] [size=9]")
                 .append("[URL=https://wiki.guildwars2.com/wiki/Map_bonus_reward/profit]Map Belohnungen[/URL][/size]");
+
         return builder;
     }
 
@@ -191,7 +198,6 @@ public class DailyCheck {
                     unsorted.add(name);
                 }
                 sort(unsorted);
-
                 for (String s : unsorted) dailies.add("[img]https://i.epvpimg.com/UgDScab.png[/img] " + s);
                 break;
 
@@ -200,8 +206,7 @@ public class DailyCheck {
                     if (dailies.contains(dailyName.name) || !dailyName.name.contains("Recommended")) continue;
                     String name = Gw2Utils.formatRecFractals(dailyName.name);
                     dailies.add("[img]https://i.epvpimg.com/UgDScab.png[/img] " + name);
-                }
-                break;
+                } break;
         }
         return dailies;
     }
