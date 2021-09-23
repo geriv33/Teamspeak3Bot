@@ -20,30 +20,40 @@ public class CallDaily {
 
     public static class PVE {
         public int id;
+        public Level level;
     }
 
     public static class PVP {
         public int id;
+        public Level level;
     }
 
     public static class WVW {
         public int id;
+        public Level level;
     }
 
     public static class Fractals {
         public int id;
+        public Level level;
     }
 
     public static class Special {
         public int id;
+        public Level level;
+    }
+
+    public static class Level {
+        public int min;
+        public int max;
     }
 
     public static GWCallDaily getDailies(boolean tomorrow) {
         String json = "";
 
         try {
-            if (!tomorrow) json = Gw2Utils.getJson("https://api.guildwars2.com/v2/achievements/daily");
-            else json = Gw2Utils.getJson("https://api.guildwars2.com/v2/achievements/daily/tomorrow");
+            if (!tomorrow) json = Gw2Utils.getJson("https://api.guildwars2.com/v2/achievements/daily?v=latest");
+            else json = Gw2Utils.getJson("https://api.guildwars2.com/v2/achievements/daily/tomorrow?v=latest");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -51,7 +51,7 @@ public class DailyCheck {
             switch (i) {
                 case 0 :
                     for (int j = 0; j < dailies.pve.size(); j++) {
-                        if (!ids.contains(dailies.pve.get(j).id))
+                        if (dailies.pve.get(j).level.max == 80 && !ids.contains(dailies.pve.get(j).id))
                             ids.add(dailies.pve.get(j).id);
                     } break;
 
@@ -159,7 +159,6 @@ public class DailyCheck {
         switch (mode) {
             case 1 :
                 for (CallDaily.GWCallDailyNames dailyName : dailyNames) {
-                    if (dailies.contains(dailyName.name)) continue;
                     if (!dailyName.name.contains("Tier 1") && !dailyName.name.contains("Tier 2") &&
                             !dailyName.name.contains("Tier 3") && !dailyName.name.contains("Tier 4") &&
                             !dailyName.name.contains("Recommended") && !dailyName.name.contains("PvP") &&
@@ -173,7 +172,6 @@ public class DailyCheck {
 
             case 2 :
                 for (CallDaily.GWCallDailyNames dailyName : dailyNames) {
-                    if (dailies.contains(dailyName.name)) continue;
                     if (dailyName.name.contains("PvP") || dailyName.name.contains("Top Stats")) {
                         String name = Gw2Utils.formatDailiesPvpWvw(dailyName.name);
                         dailies.add("[img]https://i.epvpimg.com/MLQ3fab.png[/img] " + name);
@@ -182,7 +180,6 @@ public class DailyCheck {
 
             case 3 :
                 for (CallDaily.GWCallDailyNames dailyName : dailyNames) {
-                    if (dailies.contains(dailyName.name)) continue;
                     if (dailyName.name.contains("WvW") || dailyName.name.contains("Mists Guard Killer")) {
                         String name = Gw2Utils.formatDailiesPvpWvw(dailyName.name);
                         dailies.add("[img]https://i.epvpimg.com/WHXtfab.png[/img] " + name);
@@ -192,7 +189,7 @@ public class DailyCheck {
             case 4 :
                 List<String> unsorted = new ArrayList<>();
                 for (CallDaily.GWCallDailyNames dailyName : dailyNames) {
-                    if (unsorted.contains(dailyName.name) || !dailyName.name.contains("Tier 4")) continue;
+                    if (!dailyName.name.contains("Tier 4")) continue;
                     String name;
                     name = Gw2Utils.formatDailyFractals(dailyName.name);
                     unsorted.add(name);
@@ -203,7 +200,7 @@ public class DailyCheck {
 
             case 5 :
                 for (CallDaily.GWCallDailyNames dailyName : dailyNames) {
-                    if (dailies.contains(dailyName.name) || !dailyName.name.contains("Recommended")) continue;
+                    if (!dailyName.name.contains("Recommended")) continue;
                     String name = Gw2Utils.formatRecFractals(dailyName.name);
                     dailies.add("[img]https://i.epvpimg.com/UgDScab.png[/img] " + name);
                 } break;
