@@ -24,7 +24,7 @@
                 <version>3.3.0</version>
                 <configuration>
                     <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                        <descriptorRef>compiled</descriptorRef>
                     </descriptorRefs>
                     <archive>
                         <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>

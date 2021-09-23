@@ -127,32 +127,6 @@ public class CallToken {
         }
     }
 
-    public static boolean tokenIsValid(Client client) {
-        GWCallToken apiKey;
-
-        try {
-            String[] fieldsSelect = {"GW2_Key"};
-            Object[] valuesSelect = {client.getUniqueIdentifier()};
-            ResultSet resultSet = SqlManager.select(fieldsSelect, "API_Keys", "clientIdentity = ?", valuesSelect);
-
-            if (resultSet.next()) {
-                apiKey = getGWCallToken(resultSet.getString("GW2_Key"));
-                if (apiKey.permissions.length != 10 || apiKey == null) {
-                    api.sendPrivateMessage(client.getId(),
-                            "\n" +
-                                    "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][/b] ist nicht mehr gültig oder " +
-                                    "hat nicht alle Berechtigungen.\n" +
-                                    "Du kannst hier einen neuen Gw2-Key erstellen:\n" +
-                                    "https://account.arena.net/applications");
-                    return false;
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return true;
-    }
-
     public static String[] isValid(Client client) {
         String[] gw2Values = new String[2];
         // Slot 1: Gw2-Key

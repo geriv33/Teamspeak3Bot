@@ -21,7 +21,7 @@ public class Utils {
 
     public static String getDate(String parseFormat) {
         Instant instant = Instant.parse(parseFormat);
-        ZoneId zone = ZoneId.of("Europe/Berlin");
+        ZoneId zone = ZoneId.systemDefault();
         ZonedDateTime zdt = instant.atZone(zone);
         Date date = Date.from(zdt.toInstant());
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
