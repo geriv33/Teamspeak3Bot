@@ -163,3 +163,5 @@ screen -r "Screenname"
 ```java
 exit
 ```
+## License
+####[ReadMe](https://github.com/Backxtar/Teamspeak3Bot/blob/master/LICENSE.md)
