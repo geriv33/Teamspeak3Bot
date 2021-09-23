@@ -17,8 +17,9 @@ This bot is still under developement.\
 * GW2 Wallet
 * GW2 Dailies
 * GW2 Guild-Information
-* GW2 Event Management
+* GW2 Support System
 * GW2 Weekly Raid Boss-Kills
+* GW2 ArcDPS Version Check
 * Show GW2-Account in Client-Description
 * Friend System
 * Afk Mover
