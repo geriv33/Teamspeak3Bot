@@ -6,14 +6,26 @@ import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
 import de.backxtar.Config;
 import de.backxtar.DerGeraet;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.*;
 import java.util.Date;
 
 public class Utils {
+
     public static String getDate() {
         Date date = new Date();
         SimpleDateFormat sdfDate = new SimpleDateFormat("dd.MM.yyyy");
         return sdfDate.format(date);
+    }
+
+    public static String getDate(String parseFormat) {
+        Instant instant = Instant.parse(parseFormat);
+        ZoneId zone = ZoneId.of("Europe/Berlin");
+        ZonedDateTime zdt = instant.atZone(zone);
+        Date date = Date.from(zdt.toInstant());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        return sdf.format(date);
     }
 
     public static void checkInfo(TS3Api api) {

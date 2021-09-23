@@ -85,7 +85,7 @@ public class GuildInfo {
         for (CallGuild.GWCallGuildMembers member : members) {
             if (member.rank.equalsIgnoreCase(rank)) {
                 count--;
-                builder.append(member.name);
+                builder.append(member.name).append(" [").append(Utils.getDate(member.joined)).append("]");
                 if (count > 0) builder.append("\n");
             }
         }

@@ -53,6 +53,7 @@ public class CallGuild {
     public static class GWCallGuildMembers {
         public String name;
         public String rank;
+        public String joined;
     }
 
     public static List<GWCallGuildMembers> getMembers() {
