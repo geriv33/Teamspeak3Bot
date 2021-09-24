@@ -32,7 +32,6 @@ public class CallGuild {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         Gson gson = new Gson();
         return gson.fromJson(json, GWCallGuild.class);
     }
@@ -45,7 +44,6 @@ public class CallGuild {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         Gson gson = new Gson();
         return gson.fromJson(json, GWCallGuild.class);
     }
@@ -58,13 +56,17 @@ public class CallGuild {
 
     public static List<GWCallGuildMembers> getMembers() {
         String json = "";
-        try {
-            json = Gw2Utils.getJson("https://api.guildwars2.com/v2/guild/" + Config.getConfigData().guildID +
-                    "/members?access_token=" + Config.getConfigData().guildLeaderApiKey);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        int fails = 0;
 
+        while (fails < 3) {
+            try {
+                json = Gw2Utils.getJson("https://api.guildwars2.com/v2/guild/" + Config.getConfigData().guildID +
+                        "/members?access_token=" + Config.getConfigData().guildLeaderApiKey);
+                fails = 4;
+            } catch (IOException e) {
+                if (fails++ == 3) e.printStackTrace();
+            }
+        }
         Gson gson = new Gson();
         Type callGuildMembers = new TypeToken<ArrayList<GWCallGuildMembers>>(){}.getType();
         return gson.<ArrayList<GWCallGuildMembers>>fromJson(json, callGuildMembers);
