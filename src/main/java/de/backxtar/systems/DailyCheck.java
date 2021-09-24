@@ -9,6 +9,7 @@ import de.backxtar.gw2.CallPactSupply;
 import de.backxtar.gw2.Gw2Utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -19,6 +20,14 @@ public class DailyCheck {
     private static final ExecutorService executor = Executors.newFixedThreadPool(2);
     private static final TS3Api api = DerGeraet.getInstance().api;
     private static final Config.Colors colors = Config.getColors();
+    private static final Provisioner_Agents provisioner_agents = new Provisioner_Agents();
+
+    private static class Provisioner_Agents {
+        List<String> names = Arrays.asList("Skritt", "Quartier", "Aym", "Eve",
+                "Legion", "Synergetik", "Natomi", "Rakatin", "Vorratshelfer");
+        List<String> location = Arrays.asList("[&BAwEAAA=]", "[&BP4EAAA=]", "[&BIYDAAA=]", "[&BLsEAAA=]", "[&BKgDAAA=]",
+                "[&BLYEAAA=]", "[&BN4HAAA=]", "[&BNYHAAA=]", "[&BMwHAAA=]");
+    }
 
     public static void checkDailies() {
         if (Config.getConfigData().dailiesChannelID == 0) return;
@@ -139,8 +148,22 @@ public class DailyCheck {
         builder.append("[size=10][color=" + colors.secondColor + "][b]Profit:\n")
                 .append("[/b][/color][/size] [size=9]")
                 .append("[URL=https://wiki.guildwars2.com/wiki/Map_bonus_reward/profit]Map Belohnungen[/URL][/size]");
+        builder.append("[/size]\n\n");
+
+        builder.append("[size=10][color=" + colors.secondColor + "][b]Fraktions Versorger:[/b][/color][/size]\n")
+                .append("[size=9]").append(getProvisioners()).append("[/size]");
 
         return builder;
+    }
+
+    private static String getProvisioners() {
+        StringBuilder provisioners = new StringBuilder();
+
+        for (int i = 0; i < provisioner_agents.names.size(); i++) {
+            provisioners.append(provisioner_agents.names.get(i)).append(" @").append(provisioner_agents.location.get(i));
+            if (i < (provisioner_agents.names.size() - 1)) provisioners.append(", ");
+        }
+        return provisioners.toString();
     }
 
     private static String getLocations(ArrayList<CallPactSupply.GWCallPactSupply> supplies) {

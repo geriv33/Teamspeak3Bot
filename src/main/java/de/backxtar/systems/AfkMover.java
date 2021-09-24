@@ -16,7 +16,8 @@ public class AfkMover {
     }
 
     public static void checkAfk() {
-        if (Config.getConfigData().afkChannelID.length == 0 || Config.getConfigData().afkChannelID[0] == 0) return;
+        int[] afkChannelIDs = Config.getConfigData().afkChannelID;
+        if (afkChannelIDs.length == 0 || afkChannelIDs[0] == 0) return;
         api.getClients().parallelStream().forEach(client -> {
             if (client.isServerQueryClient()) return;
             if (client.isAway() || client.getIdleTime() >= 900000 && client.isInputMuted()
@@ -34,15 +35,19 @@ public class AfkMover {
                 moveData.timestamp = System.currentTimeMillis() - client.getIdleTime();
                 dataHashMap.put(client.getUniqueIdentifier(), moveData);
 
-                api.sendPrivateMessage(client.getId(), "Du wurdest in den AFK-Channel verschoben!");
-                api.moveClient(client.getId(), Config.getConfigData().afkChannelID[0]);
+                api.sendPrivateMessage(client.getId(),
+                        "Du wurdest in [color=" + Config.getColors().mainColor + "][b]" +
+                        api.getChannelInfo(afkChannelIDs[0]).getName() + "[/b][/color] verschoben!");
+                api.moveClient(client.getId(), afkChannelIDs[0]);
             } else {
                 if (!dataHashMap.containsKey(client.getUniqueIdentifier())) return;
                 long[] duration = getTime(System.currentTimeMillis() - dataHashMap.get(client.getUniqueIdentifier()).timestamp);
                 String time = (duration[2] > 0 ? duration[2] + "h " : "") +
                         (duration[1] > 0 ? duration[1] + "min " : "") + String.format("%02d", duration[0]) + " sec.";
-                api.sendPrivateMessage(client.getId(), "Deine AFK-Zeit betrug: [color=#806BE3][b]" + time + "[/b][/color]. " +
-                        "Dein voheriger Channel: [color=" + Config.getColors().mainColor + "][b]" + dataHashMap.get(client.getUniqueIdentifier()).channelName + "[/b][/color].");
+                api.sendPrivateMessage(client.getId(), "Deine AFK-Zeit betrug: " +
+                        "[color=" + Config.getColors().mainColor + "][b]" + time + "[/b][/color]. " +
+                        "Dein voheriger Channel: [color=" + Config.getColors().mainColor + "][b]" +
+                        dataHashMap.get(client.getUniqueIdentifier()).channelName + "[/b][/color].");
 
                 boolean exists = api.getChannels().parallelStream().anyMatch(channel ->
                         channel.getId() == dataHashMap.get(client.getUniqueIdentifier()).channelID);
