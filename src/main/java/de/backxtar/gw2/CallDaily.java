@@ -50,16 +50,24 @@ public class CallDaily {
 
     public static GWCallDaily getDailies(boolean tomorrow) {
         String json = "";
+        int fails = 0, maxFails = 3;
+
+        while (fails != maxFails) {
+            try {
+                if (!tomorrow) json = Gw2Utils.getJson("https://api.guildwars2.com/v2/achievements/daily?v=latest");
+                else json = Gw2Utils.getJson("https://api.guildwars2.com/v2/achievements/daily/tomorrow?v=latest");
+                fails = 3;
+            } catch (IOException e) {
+                if (++fails == 3) e.printStackTrace();
+            }
+        }
+        Gson gson = new Gson();
 
         try {
-            if (!tomorrow) json = Gw2Utils.getJson("https://api.guildwars2.com/v2/achievements/daily?v=latest");
-            else json = Gw2Utils.getJson("https://api.guildwars2.com/v2/achievements/daily/tomorrow?v=latest");
-        } catch (IOException e) {
-            e.printStackTrace();
+            return gson.fromJson(json, GWCallDaily.class);
+        } catch (Exception e) {
+            return null;
         }
-
-        Gson gson = new Gson();
-        return gson.fromJson(json, GWCallDaily.class);
     }
 
     public static class GWCallDailyNames {
@@ -69,6 +77,7 @@ public class CallDaily {
 
     public static ArrayList<GWCallDailyNames> getDailiesName(ArrayList<Integer> ids) {
         String json = "";
+        int fails = 0, maxFails = 3;
         StringBuilder idRow = new StringBuilder();
 
         for (int i = 0; i < ids.size(); i++) {
@@ -76,15 +85,22 @@ public class CallDaily {
             if (i < (ids.size() - 1)) idRow.append(",");
         }
 
-        try {
-            json = Gw2Utils.getJson("https://api.guildwars2.com/v2/achievements?ids=" + idRow);
-        } catch (IOException e) {
-            e.printStackTrace();
+        while (fails != maxFails) {
+            try {
+                json = Gw2Utils.getJson("https://api.guildwars2.com/v2/achievements?ids=" + idRow);
+                fails = 3;
+            } catch (IOException e) {
+                if (++fails == 3) e.printStackTrace();
+            }
         }
-
         Gson gson = new Gson();
-        Type callNames = new TypeToken<ArrayList<GWCallDailyNames>>(){}.getType();
-        return gson.fromJson(json, callNames);
+
+        try {
+            Type callNames = new TypeToken<ArrayList<GWCallDailyNames>>() {}.getType();
+            return gson.fromJson(json, callNames);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public static class GWCallDailyStrikes {
@@ -94,15 +110,23 @@ public class CallDaily {
 
     public static ArrayList<GWCallDailyStrikes> getStrikes() {
         String json = "";
+        int fails = 0, maxFails = 3;
+
+        while (fails != maxFails) {
+            try {
+                json = Gw2Utils.getJson("https://api.aleeva.io/data/strike/priority");
+                fails = 3;
+            } catch (IOException e) {
+                if (++fails == 3) e.printStackTrace();
+            }
+        }
+        Gson gson = new Gson();
 
         try {
-            json = Gw2Utils.getJson("https://api.aleeva.io/data/strike/priority");
-        } catch (IOException e) {
-            e.printStackTrace();
+            Type callStrikes = new TypeToken<ArrayList<GWCallDailyStrikes>>() {}.getType();
+            return gson.fromJson(json, callStrikes);
+        } catch (Exception e) {
+            return null;
         }
-
-        Gson gson = new Gson();
-        Type callStrikes = new TypeToken<ArrayList<GWCallDailyStrikes>>(){}.getType();
-        return gson.fromJson(json, callStrikes);
     }
 }

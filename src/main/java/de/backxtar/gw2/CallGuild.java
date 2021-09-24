@@ -56,19 +56,24 @@ public class CallGuild {
 
     public static List<GWCallGuildMembers> getMembers() {
         String json = "";
-        int fails = 0;
+        int fails = 0, maxFails = 3;
 
-        while (fails < 3) {
+        while (fails != maxFails) {
             try {
                 json = Gw2Utils.getJson("https://api.guildwars2.com/v2/guild/" + Config.getConfigData().guildID +
                         "/members?access_token=" + Config.getConfigData().guildLeaderApiKey);
-                fails = 4;
+                fails = 3;
             } catch (IOException e) {
-                if (fails++ == 3) e.printStackTrace();
+                if (++fails == 3) e.printStackTrace();
             }
         }
         Gson gson = new Gson();
-        Type callGuildMembers = new TypeToken<ArrayList<GWCallGuildMembers>>(){}.getType();
-        return gson.<ArrayList<GWCallGuildMembers>>fromJson(json, callGuildMembers);
+
+        try {
+            Type callGuildMembers = new TypeToken<ArrayList<GWCallGuildMembers>>() {}.getType();
+            return gson.<ArrayList<GWCallGuildMembers>>fromJson(json, callGuildMembers);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

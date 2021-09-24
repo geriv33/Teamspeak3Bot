@@ -11,14 +11,23 @@ public class CallBosses {
 
     public static List<String> getRaidBosses(String token) {
         String json = "";
-        try {
-            json = Gw2Utils.getJson("https://api.guildwars2.com/v2/account/raids?access_token=" + token);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        int fails = 0, maxFails = 3;
 
+        while (fails != maxFails) {
+            try {
+                json = Gw2Utils.getJson("https://api.guildwars2.com/v2/account/raids?access_token=" + token);
+                fails = 3;
+            } catch (IOException e) {
+                if (++fails == 3) e.printStackTrace();
+            }
+        }
         Gson gson = new Gson();
-        Type type = new TypeToken<List<String>>() {}.getType();
-        return gson.fromJson(json, type);
+
+        try {
+            Type type = new TypeToken<List<String>>() {}.getType();
+            return gson.fromJson(json, type);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

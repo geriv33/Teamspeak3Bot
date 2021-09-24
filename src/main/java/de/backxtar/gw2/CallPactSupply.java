@@ -16,15 +16,23 @@ public class CallPactSupply {
     public static ArrayList<GWCallPactSupply> getSupplies(int mode) {
         String json = "";
         String request = mode == 0 ? "" : "&tomorrow=true";
+        int fails = 0, maxFails = 3;
+
+        while (fails != maxFails) {
+            try {
+                json = Gw2Utils.getJson("https://aurora-theogenia.de/api/pactsupply/?lang=de" + request);
+                fails = 3;
+            } catch (IOException e) {
+                if (++fails == 3) e.printStackTrace();
+            }
+        }
+        Gson gson = new Gson();
 
         try {
-            json = Gw2Utils.getJson("https://aurora-theogenia.de/api/pactsupply/?lang=de" + request);
-        } catch (IOException e) {
-            e.printStackTrace();
+            Type callPactSupply = new TypeToken<ArrayList<GWCallPactSupply>>() {}.getType();
+            return gson.fromJson(json, callPactSupply);
+        } catch (Exception e) {
+            return null;
         }
-
-        Gson gson = new Gson();
-        Type callPactSupply = new TypeToken<ArrayList<GWCallPactSupply>>(){}.getType();
-        return gson.fromJson(json, callPactSupply);
     }
 }

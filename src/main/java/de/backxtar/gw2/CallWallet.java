@@ -17,14 +17,23 @@ public class CallWallet {
 
     public static List<GWCallWallet> getWallet(String token) {
         String json = "";
-        try {
-            json = Gw2Utils.getJson("https://api.guildwars2.com/v2/account/wallet?access_token=" + token);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        int fails = 0, maxFails = 3;
 
+        while (fails != maxFails) {
+            try {
+                json = Gw2Utils.getJson("https://api.guildwars2.com/v2/account/wallet?access_token=" + token);
+                fails = 3;
+            } catch (IOException e) {
+                if (++fails == 3) e.printStackTrace();
+            }
+        }
         Gson gson = new Gson();
-        Type callWallet = new TypeToken<ArrayList<GWCallWallet>>(){}.getType();
-        return gson.<ArrayList<GWCallWallet>>fromJson(json, callWallet);
+
+        try {
+            Type callWallet = new TypeToken<ArrayList<GWCallWallet>>() {}.getType();
+            return gson.<ArrayList<GWCallWallet>>fromJson(json, callWallet);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

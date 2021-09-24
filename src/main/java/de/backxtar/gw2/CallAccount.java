@@ -24,13 +24,22 @@ public class CallAccount {
 
     public static GWCallAccount getAccount(String token) {
         String json = "";
-        try {
-            json = Gw2Utils.getJson("https://api.guildwars2.com/v2/account?access_token=" + token);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        int fails = 0, maxFails = 3;
 
+        while (fails != maxFails) {
+            try {
+                json = Gw2Utils.getJson("https://api.guildwars2.com/v2/account?access_token=" + token);
+                fails = 3;
+            } catch (IOException e) {
+                if (++fails == 3) e.printStackTrace();
+            }
+        }
         Gson gson = new Gson();
-        return gson.fromJson(json, GWCallAccount.class);
+
+        try {
+            return gson.fromJson(json, GWCallAccount.class);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

@@ -23,13 +23,22 @@ public class CallPvP {
 
     public static GWCallPvP getPvp(String token) {
         String json = "";
-        try {
-            json = Gw2Utils.getJson("https://api.guildwars2.com/v2/pvp/stats?access_token=" + token);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        int fails = 0, maxFails = 3;
 
+        while (fails != maxFails) {
+            try {
+                json = Gw2Utils.getJson("https://api.guildwars2.com/v2/pvp/stats?access_token=" + token);
+                fails = 3;
+            } catch (IOException e) {
+                if (++fails == 3) e.printStackTrace();
+            }
+        }
         Gson gson = new Gson();
-        return gson.fromJson(json, GWCallPvP.class);
+
+        try {
+            return gson.fromJson(json, GWCallPvP.class);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

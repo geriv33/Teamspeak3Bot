@@ -21,11 +21,18 @@ public class CallToken {
 
     public static GWCallToken getGWCallToken(String token) {
         String json = "";
-        try {
-            json = Gw2Utils.getJson("https://api.guildwars2.com/v2/tokeninfo?access_token=" + token);
-        } catch (IOException ignored) {}
+        int fails = 0, maxFails = 3;
 
+        while (fails != maxFails) {
+            try {
+                json = Gw2Utils.getJson("https://api.guildwars2.com/v2/tokeninfo?access_token=" + token);
+                fails = 3;
+            } catch (IOException ignored) {
+                ++fails;
+            }
+        }
         Gson gson = new Gson();
+
         try {
             return gson.fromJson(json, GWCallToken.class);
         } catch (Exception e) {

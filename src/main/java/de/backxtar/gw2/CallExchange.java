@@ -15,12 +15,15 @@ public class CallExchange {
         String currency = isCoin ? "coins" : "gems";
         String amount = isCoin ? "1000000" : "100";
         String json = "";
+        int fails = 0, maxFails = 3;
 
-        try {
-            json = Gw2Utils.getJson("https://api.guildwars2.com/v2/commerce/exchange/" + currency +
-                    "?quantity=" + amount);
-        } catch (IOException ignored) {}
-
+        while (fails != maxFails) {
+            try {
+                json = Gw2Utils.getJson("https://api.guildwars2.com/v2/commerce/exchange/" + currency +
+                        "?quantity=" + amount);
+            } catch (IOException ignored) {
+            }
+        }
         Gson gson = new Gson();
         try {
             return gson.fromJson(json, GWCallExchange.class);

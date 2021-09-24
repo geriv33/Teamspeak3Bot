@@ -10,7 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class Gw2Utils {
-    private static Config.Colors colors = Config.getColors();
+    private static final Config.Colors colors = Config.getColors();
 
     public static String getJson(String urlString) throws IOException {
         BufferedReader reader = null;
