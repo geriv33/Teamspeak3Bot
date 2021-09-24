@@ -31,8 +31,7 @@ public class CallWorld {
         Gson gson = new Gson();
 
         try {
-            Type callWorld = new TypeToken<ArrayList<GWCallWorld>>() {
-            }.getType();
+            Type callWorld = new TypeToken<ArrayList<GWCallWorld>>() {}.getType();
             return gson.<ArrayList<GWCallWorld>>fromJson(json, callWorld);
         } catch (Exception e) {
             return null;
