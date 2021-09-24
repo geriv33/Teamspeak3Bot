@@ -18,7 +18,7 @@ public class OnClientJoin {
         Client client = api.getClientInfo(e.getClientId());
         api.sendPrivateMessage(client.getId(),
                 "Willkommen auf [b][color=" + colors.mainColor + "]" + api.getServerInfo().getName() + "[color=red][/b], [b]" + client.getNickname() + "[/b]!\n" +
-                        "[color=red][b]Note:[/b][/color]  Bitte schließe diesen Chat nicht! Commands können [b]nur hier[/b] ausgeführt werden!");
+                        "[color=red][b]Note:[/b][/color]  Commands können per [b]privater Nachricht[/b] oder per [b]Channel Nachricht[/b] ausgeführt werden!");
     }
 
     public static void gw2ApiReminder(ClientJoinEvent e) {

@@ -20,11 +20,10 @@ public class EventManager {
         api.registerAllEvents();
         api.addTS3Listeners(new TS3Listener() {
             @Override
-            public void onTextMessage(TextMessageEvent textMessageEvent) {
-                if (textMessageEvent.getTargetMode() != TextMessageTargetMode.CLIENT
-                        || textMessageEvent.getInvokerUniqueId().equalsIgnoreCase(api.whoAmI().getUniqueIdentifier())) return;
-                String message = textMessageEvent.getMessage();
-                Client client = api.getClientByUId(textMessageEvent.getInvokerUniqueId());
+            public void onTextMessage(TextMessageEvent event) {
+                if (event.getInvokerUniqueId().equalsIgnoreCase(api.whoAmI().getUniqueIdentifier())) return;
+                String message = event.getMessage();
+                Client client = api.getClientByUId(event.getInvokerUniqueId());
 
                 if (message.startsWith(Config.getConfigData().prefix)) {
                     String[] command = message.substring(Config.getConfigData().prefix.length()).split(" ");
@@ -35,8 +34,8 @@ public class EventManager {
                         command[1] = "";
                     }
 
-                    if (!DerGeraet.getInstance().getCmdManager().runCmd(command, api, textMessageEvent, client))
-                        api.sendChannelMessage("[color=red]✘[/color] Dieser Befehl ist mir nicht bekannt, [b]" + client.getNickname() + "[/b]!");
+                    if (!DerGeraet.getInstance().getCmdManager().runCmd(command, api, event, client))
+                        api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Dieser Befehl ist mir nicht bekannt, [b]" + client.getNickname() + "[/b]!");
                 }
             }
 
