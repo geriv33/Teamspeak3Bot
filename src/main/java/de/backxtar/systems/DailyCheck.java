@@ -38,17 +38,21 @@ public class DailyCheck {
         Future<StringBuilder> dailyAsync = executor.submit(() -> getDailies(daily, false));
         Future<StringBuilder> dailyTomorrowAsync = executor.submit(() -> getDailies(dailyTomorrow, true));
 
-        if (dailyAsync == null || dailyTomorrowAsync == null) return;
+        StringBuilder dailyStr = null, dailyTomorrowStr = null;
         try {
-            String des = "[center][size=11][URL=client://" + api.whoAmI().getId() + "/"
-                    + api.whoAmI().getUniqueIdentifier() + "]Message me![/URL][/size]" +
-                    "\n\n" + dailyAsync.get().toString() + "\n\n\n" + dailyTomorrowAsync.get().toString();
-            if (api.getChannelInfo(Config.getConfigData().dailiesChannelID).getDescription().equalsIgnoreCase(des))
-                return;
-            api.editChannel(Config.getConfigData().dailiesChannelID, ChannelProperty.CHANNEL_DESCRIPTION, des);
+            dailyStr = dailyAsync.get();
+            dailyTomorrowStr = dailyTomorrowAsync.get();
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
+
+        if (dailyStr == null || dailyTomorrowStr == null) return;
+        String des = "[center][size=11][URL=client://" + api.whoAmI().getId() + "/"
+                + api.whoAmI().getUniqueIdentifier() + "]Message me![/URL][/size]" +
+                "\n\n" + dailyStr.toString() + "\n\n\n" + dailyTomorrowStr.toString();
+        if (api.getChannelInfo(Config.getConfigData().dailiesChannelID).getDescription().equalsIgnoreCase(des))
+            return;
+        api.editChannel(Config.getConfigData().dailiesChannelID, ChannelProperty.CHANNEL_DESCRIPTION, des);
     }
 
     private static StringBuilder getDailies(CallDaily.GWCallDaily dailies, boolean tomorrow) {
@@ -61,29 +65,33 @@ public class DailyCheck {
         if (strikes == null || supply == null) return null;
         for (int i = 0; i < 4; i++) {
             switch (i) {
-                case 0 :
+                case 0:
                     for (int j = 0; j < dailies.pve.size(); j++) {
                         if (dailies.pve.get(j).level.max == 80 && !ids.contains(dailies.pve.get(j).id))
                             ids.add(dailies.pve.get(j).id);
-                    } break;
+                    }
+                    break;
 
-                case 1 :
+                case 1:
                     for (int j = 0; j < dailies.pvp.size(); j++) {
                         if (!ids.contains(dailies.pvp.get(j).id))
                             ids.add(dailies.pvp.get(j).id);
-                    } break;
+                    }
+                    break;
 
-                case 2 :
+                case 2:
                     for (int j = 0; j < dailies.wvw.size(); j++) {
                         if (!ids.contains(dailies.wvw.get(j).id))
                             ids.add(dailies.wvw.get(j).id);
-                    } break;
+                    }
+                    break;
 
-                case 3 :
+                case 3:
                     for (int j = 0; j < dailies.fractals.size(); j++) {
                         if (!ids.contains(dailies.fractals.get(j).id))
                             ids.add(dailies.fractals.get(j).id);
-                    } break;
+                    }
+                    break;
             }
         }
         daileNames = CallDaily.getDailiesName(ids);
@@ -183,36 +191,38 @@ public class DailyCheck {
         List<String> dailies = new ArrayList<>();
 
         switch (mode) {
-            case 1 :
+            case 1:
                 for (CallDaily.GWCallDailyNames dailyName : dailyNames) {
                     if (!dailyName.name.contains("Tier 1") && !dailyName.name.contains("Tier 2") &&
                             !dailyName.name.contains("Tier 3") && !dailyName.name.contains("Tier 4") &&
                             !dailyName.name.contains("Recommended") && !dailyName.name.contains("PvP") &&
                             !dailyName.name.contains("Top Stats") && !dailyName.name.contains("WvW") &&
-                            !dailyName.name.contains("Mists Guard Killer")){
+                            !dailyName.name.contains("Mists Guard Killer")) {
                         String name = Gw2Utils.formatDaily(dailyName.name);
                         dailies.add("[img]https://i.epvpimg.com/f6E1cab.png[/img] " + name);
                     }
                 }
                 break;
 
-            case 2 :
+            case 2:
                 for (CallDaily.GWCallDailyNames dailyName : dailyNames) {
                     if (dailyName.name.contains("PvP") || dailyName.name.contains("Top Stats")) {
                         String name = Gw2Utils.formatDailiesPvpWvw(dailyName.name);
                         dailies.add("[img]https://i.epvpimg.com/MLQ3fab.png[/img] " + name);
                     }
-                } break;
+                }
+                break;
 
-            case 3 :
+            case 3:
                 for (CallDaily.GWCallDailyNames dailyName : dailyNames) {
                     if (dailyName.name.contains("WvW") || dailyName.name.contains("Mists Guard Killer")) {
                         String name = Gw2Utils.formatDailiesPvpWvw(dailyName.name);
                         dailies.add("[img]https://i.epvpimg.com/WHXtfab.png[/img] " + name);
                     }
-                } break;
+                }
+                break;
 
-            case 4 :
+            case 4:
                 List<String> unsorted = new ArrayList<>();
                 for (CallDaily.GWCallDailyNames dailyName : dailyNames) {
                     if (!dailyName.name.contains("Tier 4")) continue;
@@ -224,12 +234,13 @@ public class DailyCheck {
                 for (String s : unsorted) dailies.add("[img]https://i.epvpimg.com/UgDScab.png[/img] " + s);
                 break;
 
-            case 5 :
+            case 5:
                 for (CallDaily.GWCallDailyNames dailyName : dailyNames) {
                     if (!dailyName.name.contains("Recommended")) continue;
                     String name = Gw2Utils.formatRecFractals(dailyName.name);
                     dailies.add("[img]https://i.epvpimg.com/UgDScab.png[/img] " + name);
-                } break;
+                }
+                break;
         }
         return dailies;
     }

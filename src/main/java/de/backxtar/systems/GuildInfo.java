@@ -5,10 +5,6 @@ import com.github.theholywaffle.teamspeak3.api.ChannelProperty;
 import de.backxtar.Config;
 import de.backxtar.DerGeraet;
 import de.backxtar.gw2.CallGuild;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -24,7 +20,6 @@ public class GuildInfo {
         Future<CallGuild.GWCallGuild> guildAsync = executor.submit(CallGuild::getOwnGuild);
         Future<List<CallGuild.GWCallGuildMembers>> memberAsync = executor.submit(CallGuild::getMembers);
 
-        if (guildAsync == null || memberAsync == null) return;
         CallGuild.GWCallGuild guild = null;
         List<CallGuild.GWCallGuildMembers> memberList = null;
         String desc = api.getChannelInfo(Config.getConfigData().guildChannelID).getDescription();
@@ -35,9 +30,10 @@ public class GuildInfo {
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
+        if (guild == null || memberList == null || memberList.isEmpty()) return;
         StringBuilder guildList = new StringBuilder();
 
-        if (!Config.getConfigData().guildRanks[0].equalsIgnoreCase("0") && memberList != null && !memberList.isEmpty()) {
+        if (!Config.getConfigData().guildRanks[0].equalsIgnoreCase("0")) {
             StringBuilder[] stringBuilders = new StringBuilder[Config.getConfigData().guildRanks.length];
 
             for (int i = 0; i < stringBuilders.length; i++) {
@@ -49,8 +45,6 @@ public class GuildInfo {
                         .append("[/b][/color]").append("\n").append(stringBuilders[i]);
             }
         }
-
-        if (guild == null) return;
         String info = getInfos(guild) + guildList + "\n\n[url=https://www.paypal.com/donate/?hosted_button_id=MEW4LZBC24EQQ][img]http://i.epvpimg.com/Tlnqcab.png[/img][/url]";
 
         if (desc.equalsIgnoreCase(info)) return;

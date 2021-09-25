@@ -34,7 +34,7 @@ public class ClientHelpReminder {
             for (ServerGroupClient sClient : sClients) {
                 if(api.isClientOnline(sClient.getUniqueIdentifier())) {
                     Client supporter = api.getClientByUId(sClient.getUniqueIdentifier());
-                    if (!clients.parallelStream().anyMatch(sup -> sup.getUniqueIdentifier()
+                    if (clients.parallelStream().noneMatch(sup -> sup.getUniqueIdentifier()
                             .equalsIgnoreCase(sClient.getUniqueIdentifier())))
                         clients.add(supporter);
                 }

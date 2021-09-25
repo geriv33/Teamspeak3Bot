@@ -27,7 +27,6 @@ public class ExchangeCheck {
         Future<CallExchange.GWCallExchange> coinsAsync = executor.submit(() -> CallExchange.getCoins(true));
         Future<CallExchange.GWCallExchange> gemsAsync = executor.submit(() -> CallExchange.getCoins(false));
 
-        if (coinsAsync == null || gemsAsync == null) return;
         CallExchange.GWCallExchange coins;
         CallExchange.GWCallExchange gems;
 
@@ -38,6 +37,8 @@ public class ExchangeCheck {
             e.printStackTrace();
             return;
         }
+
+        if (coins == null || gems == null) return;
         long[] result = Gw2Utils.getCoins(gems.quantity);
         String resultExchange = (result[2] > 0 ? "[b]" + result[2] + "[/b][img]" + urlGold + "[/img] " : "") +
                 (result[1] > 0 ? "[b]" + result[1] + "[/b][img]" + urlSilver + "[/img] " : "") +

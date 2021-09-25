@@ -27,25 +27,45 @@ public class CallGuild {
 
     public static GWCallGuild getGuild(String guildID) {
         String json = "";
-        try {
-            json = Gw2Utils.getJson("https://api.guildwars2.com/v2/guild/" + guildID);
-        } catch (IOException e) {
-            e.printStackTrace();
+        int fails = 0, maxFails = 3;
+
+        while (fails != maxFails) {
+            try {
+                json = Gw2Utils.getJson("https://api.guildwars2.com/v2/guild/" + guildID);
+                fails = 3;
+            } catch (IOException e) {
+                if (++fails == 3) e.printStackTrace();
+            }
         }
         Gson gson = new Gson();
-        return gson.fromJson(json, GWCallGuild.class);
+
+        try {
+            return gson.fromJson(json, GWCallGuild.class);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public static GWCallGuild getOwnGuild() {
         String json = "";
-        try {
-            json = Gw2Utils.getJson("https://api.guildwars2.com/v2/guild/" + Config.getConfigData().guildID +
-                    "?access_token=" + Config.getConfigData().guildLeaderApiKey);
-        } catch (IOException e) {
-            e.printStackTrace();
+        int fails = 0, maxFails = 3;
+
+        while (fails != maxFails) {
+            try {
+                json = Gw2Utils.getJson("https://api.guildwars2.com/v2/guild/" + Config.getConfigData().guildID +
+                        "?access_token=" + Config.getConfigData().guildLeaderApiKey);
+                fails = 3;
+            } catch (IOException e) {
+                if (++fails == 3) e.printStackTrace();
+            }
         }
         Gson gson = new Gson();
-        return gson.fromJson(json, GWCallGuild.class);
+
+        try {
+            return gson.fromJson(json, GWCallGuild.class);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public static class GWCallGuildMembers {

@@ -11,7 +11,7 @@ import java.util.concurrent.*;
 
 public class MeCommand implements CommandInterface {
     private final ExecutorService executor = Executors.newFixedThreadPool(2);
-    private Config.Colors colors = Config.getColors();
+    private final Config.Colors colors = Config.getColors();
 
     @Override
     public void run(String cmdValue, TS3Api api, TextMessageEvent event, Client client) {
@@ -21,7 +21,6 @@ public class MeCommand implements CommandInterface {
         Future<CallAccount.GWCallAccount> accountAsync = executor.submit(() -> CallAccount.getAccount(gw2Values[0], client));
         Future<CallPvP.GWCallPvP> pvpAsync = executor.submit(() -> CallPvP.getPvp(gw2Values[0], client));
 
-        if (accountAsync == null || pvpAsync == null) return;
         CallAccount.GWCallAccount account;
         CallPvP.GWCallPvP pvp;
 
@@ -32,15 +31,17 @@ public class MeCommand implements CommandInterface {
             e.printStackTrace();
             return;
         }
-        CallWorld.GWCallWorld world = CallWorld.getWorld(account.world).get(0);
+        if (account == null || pvp == null) return;
+        CallWorld.GWCallWorld world = CallWorld.getWorld(account.world, client).get(0);
 
-        if (world == null) {
-            api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Ups, da funktioniert etwas nicht!");
-            return;
-        }
+        if (world == null) return;
         StringBuilder guildBuilder = getBuilder(account, 1);
         StringBuilder accessBuilder = getBuilder(account, 2);
 
+        if (guildBuilder == null || accessBuilder == null) {
+            api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Ups, da funktioniert etwas nicht!");
+            return;
+        }
         api.sendPrivateMessage(client.getId(),
                 "\n" +
                         "Hier sind Deine Account-Informationen, [b]" + client.getNickname() + "[/b]:\n" +
@@ -72,6 +73,7 @@ public class MeCommand implements CommandInterface {
 
             for (int i = 0; i < count; i++) {
                 guild = CallGuild.getGuild(account.guilds[i]);
+                if (guild == null) return null;
 
                 if (i < (count - 1))
                     builder.append(guild.name).append(" [").append(guild.tag).append("]").append(", ");

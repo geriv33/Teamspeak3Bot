@@ -21,7 +21,9 @@ public class CallExchange {
             try {
                 json = Gw2Utils.getJson("https://api.guildwars2.com/v2/commerce/exchange/" + currency +
                         "?quantity=" + amount);
-            } catch (IOException ignored) {
+                fails = 3;
+            } catch (IOException e) {
+                if (++fails == 3) e.printStackTrace();
             }
         }
         Gson gson = new Gson();
