@@ -6,7 +6,6 @@ import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
 import de.backxtar.Config;
 import de.backxtar.DerGeraet;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.util.Date;

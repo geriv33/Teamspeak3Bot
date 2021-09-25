@@ -17,11 +17,12 @@ public class CommandManager {
         this.commands.put("help", new HelpCommand());
         this.commands.put("key", new AddAPIKeyCommand());
         this.commands.put("keyremove", new RemoveAPIKeyCommand());
+        this.commands.put("uid", new UIDCommand());
         this.commands.put("me", new MeCommand());
         this.commands.put("wallet", new WalletCommand());
         this.commands.put("friend", new FriendCommand());
-        this.commands.put("ufe", new UfeCommand());
         this.commands.put("bosses", new BossesCommand());
+        //this.commands.put("ufe", new UfeCommand());
     }
 
     public boolean runCmd(String[] command, TS3Api api, TextMessageEvent event, Client client) {

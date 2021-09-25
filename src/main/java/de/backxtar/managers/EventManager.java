@@ -1,14 +1,12 @@
 package de.backxtar.managers;
 
 import com.github.theholywaffle.teamspeak3.TS3Api;
-import com.github.theholywaffle.teamspeak3.api.TextMessageTargetMode;
 import com.github.theholywaffle.teamspeak3.api.event.*;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
 import com.github.theholywaffle.teamspeak3.api.wrapper.ClientInfo;
 import de.backxtar.Config;
 import de.backxtar.DerGeraet;
 import de.backxtar.events.OnClientJoin;
-import de.backxtar.events.OnClientLeave;
 import de.backxtar.systems.ClientHelpReminder;
 import de.backxtar.systems.TempChannel;
 import de.backxtar.systems.Utils;
@@ -35,7 +33,8 @@ public class EventManager {
                     }
 
                     if (!DerGeraet.getInstance().getCmdManager().runCmd(command, api, event, client))
-                        api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Dieser Befehl ist mir nicht bekannt, [b]" + client.getNickname() + "[/b]!");
+                        api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Dieser Befehl ist mir nicht bekannt, [b]" + client.getNickname() + "[/b]!\n" +
+                                "Für eine Liste aller Commands gebe [color=" + Config.getColors().mainColor + "][b]!help[/b][/color] ein!");
                 }
             }
 
