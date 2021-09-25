@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 public class OnClientJoin {
     private static final TS3Api api = DerGeraet.getInstance().api;
-    private static Config.Colors colors = Config.getColors();
+    private static final Config.Colors colors = Config.getColors();
 
     public static void sendWelcome(ClientJoinEvent e) {
         Client client = api.getClientInfo(e.getClientId());
@@ -43,6 +43,7 @@ public class OnClientJoin {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        api.pokeClient(client.getId(), "[color=red]✘[/color] Du hast noch keinen [b][color=red]Gw2-Key[/color][b] hinterlegt!");
         api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Du hast noch keinen [b][color=red]Gw2-Key[/color][b] hinterlegt\n" +
                 "Bitte denke daran einen [b][color=red]Gw2-Key[/color][b] zu hinterlegen. Du kannst hier einen [b][color=red]Gw2-Key[/color][b] erstellen:\n" +
                 "https://account.arena.net/applications");
