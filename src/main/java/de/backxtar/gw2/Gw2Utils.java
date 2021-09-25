@@ -303,7 +303,7 @@ public class Gw2Utils {
     }
 
     public static String formatDailyFractals(String input) {
-        String formatted = "";
+        String formatted;
 
         switch (input.substring(13)) {
             case "Aquatic Ruins" :
@@ -402,7 +402,7 @@ public class Gw2Utils {
     }
 
     public static String formatDaily(String input) {
-        String formatted = "";
+        String formatted;
 
         switch (input) {
             case "Daily Ascalonian Catacombs":
