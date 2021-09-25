@@ -20,6 +20,7 @@ public class GuildSync {
             return;
 
         List<CallGuild.GWCallGuildMembers> members = CallGuild.getMembers();
+        if (members == null) return;
 
         try {
             ResultSet resultSet = SqlManager.selectAll("API_Keys");

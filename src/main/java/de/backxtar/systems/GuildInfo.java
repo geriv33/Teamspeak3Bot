@@ -24,6 +24,7 @@ public class GuildInfo {
         Future<CallGuild.GWCallGuild> guildAsync = executor.submit(CallGuild::getOwnGuild);
         Future<List<CallGuild.GWCallGuildMembers>> memberAsync = executor.submit(CallGuild::getMembers);
 
+        if (guildAsync == null || memberAsync == null) return;
         CallGuild.GWCallGuild guild = null;
         List<CallGuild.GWCallGuildMembers> memberList = null;
         String desc = api.getChannelInfo(Config.getConfigData().guildChannelID).getDescription();

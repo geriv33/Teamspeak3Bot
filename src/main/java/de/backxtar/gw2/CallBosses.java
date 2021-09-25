@@ -1,15 +1,19 @@
 package de.backxtar.gw2;
 
+import com.github.theholywaffle.teamspeak3.TS3Api;
+import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import de.backxtar.DerGeraet;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 
 public class CallBosses {
+    private static final TS3Api api = DerGeraet.getInstance().api;
 
-    public static List<String> getRaidBosses(String token) {
+    public static List<String> getRaidBosses(String token, Client client) {
         String json = "";
         int fails = 0, maxFails = 3;
 
@@ -27,6 +31,7 @@ public class CallBosses {
             Type type = new TypeToken<List<String>>() {}.getType();
             return gson.fromJson(json, type);
         } catch (Exception e) {
+            api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Ups, da funktioniert etwas nicht!");
             return null;
         }
     }

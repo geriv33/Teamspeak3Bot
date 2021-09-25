@@ -1,7 +1,10 @@
 package de.backxtar.gw2;
 
+import com.github.theholywaffle.teamspeak3.TS3Api;
+import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import de.backxtar.DerGeraet;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -9,13 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CallWallet {
+    private static final TS3Api api = DerGeraet.getInstance().api;
 
     public static class GWCallWallet {
         public int id;
         public long value;
     }
 
-    public static List<GWCallWallet> getWallet(String token) {
+    public static List<GWCallWallet> getWallet(String token, Client client) {
         String json = "";
         int fails = 0, maxFails = 3;
 
@@ -33,6 +37,7 @@ public class CallWallet {
             Type callWallet = new TypeToken<ArrayList<GWCallWallet>>() {}.getType();
             return gson.<ArrayList<GWCallWallet>>fromJson(json, callWallet);
         } catch (Exception e) {
+            api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Ups, da funktioniert etwas nicht!");
             return null;
         }
     }

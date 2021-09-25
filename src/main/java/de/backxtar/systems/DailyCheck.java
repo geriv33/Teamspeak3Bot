@@ -34,13 +34,15 @@ public class DailyCheck {
         CallDaily.GWCallDaily daily = CallDaily.getDailies(false);
         CallDaily.GWCallDaily dailyTomorrow = CallDaily.getDailies(true);
 
-        Future<StringBuilder> dailies = executor.submit(() -> getDailies(daily, false));
-        Future<StringBuilder> dailiesTomorrow = executor.submit(() -> getDailies(dailyTomorrow, true));
+        if (daily == null || dailyTomorrow == null) return;
+        Future<StringBuilder> dailyAsync = executor.submit(() -> getDailies(daily, false));
+        Future<StringBuilder> dailyTomorrowAsync = executor.submit(() -> getDailies(dailyTomorrow, true));
 
+        if (dailyAsync == null || dailyTomorrowAsync == null) return;
         try {
             String des = "[center][size=11][URL=client://" + api.whoAmI().getId() + "/"
                     + api.whoAmI().getUniqueIdentifier() + "]Message me![/URL][/size]" +
-                    "\n\n" + dailies.get().toString() + "\n\n\n" + dailiesTomorrow.get().toString();
+                    "\n\n" + dailyAsync.get().toString() + "\n\n\n" + dailyTomorrowAsync.get().toString();
             if (api.getChannelInfo(Config.getConfigData().dailiesChannelID).getDescription().equalsIgnoreCase(des))
                 return;
             api.editChannel(Config.getConfigData().dailiesChannelID, ChannelProperty.CHANNEL_DESCRIPTION, des);
@@ -56,6 +58,7 @@ public class DailyCheck {
         CallDaily.GWCallDailyStrikes strikes = !tomorrow ? CallDaily.getStrikes().get(0) : CallDaily.getStrikes().get(1);
         ArrayList<CallPactSupply.GWCallPactSupply> supply = !tomorrow ? CallPactSupply.getSupplies(0) : CallPactSupply.getSupplies(1);
 
+        if (strikes == null || supply == null) return null;
         for (int i = 0; i < 4; i++) {
             switch (i) {
                 case 0 :

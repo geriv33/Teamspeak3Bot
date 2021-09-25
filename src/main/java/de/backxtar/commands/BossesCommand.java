@@ -23,7 +23,9 @@ public class BossesCommand implements CommandInterface {
         String[] gw2Values = CallToken.isValid(client);
         if (gw2Values == null) return;
 
-        List<String> raidBosses = CallBosses.getRaidBosses(gw2Values[0]);
+        List<String> raidBosses = CallBosses.getRaidBosses(gw2Values[0], client);
+
+        if (raidBosses == null) return;
         int[] counters = {21, 5};
         String[] conditions = new String[8];
         List<String> raidBoss = new ArrayList<>();

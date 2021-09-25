@@ -18,8 +18,10 @@ public class MeCommand implements CommandInterface {
         String[] gw2Values = CallToken.isValid(client);
         if (gw2Values == null) return;
 
-        Future<CallAccount.GWCallAccount> accountAsync = executor.submit(() -> CallAccount.getAccount(gw2Values[0]));
-        Future<CallPvP.GWCallPvP> pvpAsync = executor.submit(() -> CallPvP.getPvp(gw2Values[0]));
+        Future<CallAccount.GWCallAccount> accountAsync = executor.submit(() -> CallAccount.getAccount(gw2Values[0], client));
+        Future<CallPvP.GWCallPvP> pvpAsync = executor.submit(() -> CallPvP.getPvp(gw2Values[0], client));
+
+        if (accountAsync == null || pvpAsync == null) return;
         CallAccount.GWCallAccount account;
         CallPvP.GWCallPvP pvp;
 
@@ -31,6 +33,11 @@ public class MeCommand implements CommandInterface {
             return;
         }
         CallWorld.GWCallWorld world = CallWorld.getWorld(account.world).get(0);
+
+        if (world == null) {
+            api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Ups, da funktioniert etwas nicht!");
+            return;
+        }
         StringBuilder guildBuilder = getBuilder(account, 1);
         StringBuilder accessBuilder = getBuilder(account, 2);
 

@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CallToken {
-    private static TS3Api api = DerGeraet.getInstance().api;
+    private static final TS3Api api = DerGeraet.getInstance().api;
 
     public static class GWCallToken {
         public String id;
@@ -96,6 +96,7 @@ public class CallToken {
                 if (token != null && token.permissions.length == 10) {
                     account = CallAccount.getAccount(apiKey);
 
+                    if (account == null) return;
                     String[] fieldsUpdate = {"GW2_Key", "accountName"};
                     Object[] valuesUpdate = {apiKey, account.name, client.getUniqueIdentifier()};
                     SqlManager.update(fieldsUpdate, "API_Keys", "clientIdentity = ?", valuesUpdate);
@@ -112,6 +113,7 @@ public class CallToken {
                 if (token != null && token.permissions.length == 10) {
                     account = CallAccount.getAccount(apiKey);
 
+                    if (account == null) return;
                     String[] fieldsInsert = {"clientIdentity", "GW2_Key", "accountName"};
                     Object[] valuesInsert = {client.getUniqueIdentifier(), apiKey, account.name};
                     SqlManager.insert("API_Keys", fieldsInsert, valuesInsert);

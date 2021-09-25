@@ -18,7 +18,9 @@ public class WalletCommand implements CommandInterface {
         String[] gw2Values = CallToken.isValid(client);
         if (gw2Values == null) return;
 
-        List<CallWallet.GWCallWallet> wallet = CallWallet.getWallet(gw2Values[0]);
+        List<CallWallet.GWCallWallet> wallet = CallWallet.getWallet(gw2Values[0], client);
+
+        if (wallet == null) return;
         StringBuilder currencies = new StringBuilder();
 
         for (int i = 0; i < wallet.size(); i++) {

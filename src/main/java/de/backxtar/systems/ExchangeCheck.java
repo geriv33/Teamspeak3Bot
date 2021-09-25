@@ -26,6 +26,8 @@ public class ExchangeCheck {
 
         Future<CallExchange.GWCallExchange> coinsAsync = executor.submit(() -> CallExchange.getCoins(true));
         Future<CallExchange.GWCallExchange> gemsAsync = executor.submit(() -> CallExchange.getCoins(false));
+
+        if (coinsAsync == null || gemsAsync == null) return;
         CallExchange.GWCallExchange coins;
         CallExchange.GWCallExchange gems;
 
