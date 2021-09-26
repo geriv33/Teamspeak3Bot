@@ -3,7 +3,16 @@ package de.backxtar.managers;
 import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.api.event.TextMessageEvent;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
-import de.backxtar.commands.*;
+import de.backxtar.commands.info.BossesCommand;
+import de.backxtar.commands.info.MeCommand;
+import de.backxtar.commands.info.WalletCommand;
+import de.backxtar.commands.key.AddAPIKeyCommand;
+import de.backxtar.commands.key.RemoveAPIKeyCommand;
+import de.backxtar.commands.manage.FriendCommand;
+import de.backxtar.commands.manage.HelpCommand;
+import de.backxtar.commands.manage.UIDCommand;
+import de.backxtar.commands.timer.ShowTimersCommand;
+import de.backxtar.commands.timer.StartTimerCommand;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -23,6 +32,7 @@ public class CommandManager {
         this.commands.put("friend", new FriendCommand());
         this.commands.put("bosses", new BossesCommand());
         this.commands.put("timer", new StartTimerCommand());
+        this.commands.put("timers", new ShowTimersCommand());
         //this.commands.put("ufe", new UfeCommand());
     }
 

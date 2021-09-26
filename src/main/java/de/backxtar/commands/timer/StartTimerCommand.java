@@ -1,4 +1,4 @@
-package de.backxtar.commands;
+package de.backxtar.commands.timer;
 
 import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.api.event.TextMessageEvent;
@@ -19,7 +19,7 @@ public class StartTimerCommand implements CommandInterface {
         if (cmdValue.isEmpty()) sendHelp(api, client);
         String[] args = event.getMessage().split(" ");
         if (args.length < 2 || args.length > 3) sendHelp(api, client);
-        String dateTime, timeStamp = null;
+        String dateTime, code, timeStamp = null;
 
         try {
             if (args.length == 2) {
@@ -29,8 +29,9 @@ public class StartTimerCommand implements CommandInterface {
                 dateTime = args[1] + " " + args[2];
                 timeStamp = Timer.getTimestamp(dateTime);
             }
-            String[] fieldsInsert = {"clientIdentity", "timeStamp"};
-            Object[] valuesInsert = {client.getUniqueIdentifier(), timeStamp};
+            code = Timer.generateCode();
+            String[] fieldsInsert = {"clientIdentity", "timeStamp", "code"};
+            Object[] valuesInsert = {client.getUniqueIdentifier(), timeStamp, code};
             if (timeStamp != null) SqlManager.insert("Timers", fieldsInsert, valuesInsert);
         } catch (NumberFormatException | ParseException | SQLException e) {
             sendHelp(api, client);
@@ -39,7 +40,8 @@ public class StartTimerCommand implements CommandInterface {
         String[] values = Timer.getValues(timeStamp);
         api.sendPrivateMessage(client.getId(), "[b]" + client.getNickname() + "[/b], Dein Timer für den " +
                 "[color=" + colors.mainColor + "][b]" + values[0] + "[/b][/color] um " +
-                "[color=" + colors.mainColor + "][b]" + values[1] + " Uhr[/b][/color] ist gestellt.");
+                "[color=" + colors.mainColor + "][b]" + values[1] + " Uhr[/b][/color] ist gestellt. " +
+                "TimerID: [color=" + colors.mainColor + "][b]" + code + "[/b][/color]");
     }
 
     @Override

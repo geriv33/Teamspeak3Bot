@@ -1,4 +1,4 @@
-package de.backxtar.commands;
+package de.backxtar.commands.info;
 
 import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.api.event.TextMessageEvent;
@@ -11,7 +11,8 @@ import de.backxtar.gw2.Gw2Utils;
 
 import java.util.List;
 
-public class WalletCommand implements CommandInterface {
+public class
+WalletCommand implements CommandInterface {
 
     @Override
     public void run(String cmdValue, TS3Api api, TextMessageEvent event, Client client) {
