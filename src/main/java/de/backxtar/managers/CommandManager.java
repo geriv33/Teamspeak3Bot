@@ -22,6 +22,7 @@ public class CommandManager {
         this.commands.put("wallet", new WalletCommand());
         this.commands.put("friend", new FriendCommand());
         this.commands.put("bosses", new BossesCommand());
+        this.commands.put("timer", new StartTimerCommand());
         //this.commands.put("ufe", new UfeCommand());
     }
 

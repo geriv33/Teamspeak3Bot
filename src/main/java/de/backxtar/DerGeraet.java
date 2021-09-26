@@ -108,6 +108,7 @@ public class DerGeraet {
             Utils.checkInfo(api);
             ClientHelpReminder.unlockChannel();
             AfkMover.checkOnline();
+            Timer.checkTimers();
             }, 1, 60, TimeUnit.SECONDS);
     }
 
