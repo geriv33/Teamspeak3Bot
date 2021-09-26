@@ -40,11 +40,13 @@ public class EventManager {
 
             @Override
             public void onClientJoin(ClientJoinEvent clientJoinEvent) {
-                ClientInfo clientInfo = api.getClientInfo(clientJoinEvent.getClientId());
-                if (clientInfo.isServerQueryClient()) return;
-                Utils.changeInfo();
-                OnClientJoin.sendWelcome(clientJoinEvent);
-                OnClientJoin.gw2ApiReminder(clientJoinEvent);
+                try {
+                    ClientInfo clientInfo = api.getClientInfo(clientJoinEvent.getClientId());
+                    if (clientInfo.isServerQueryClient()) return;
+                    Utils.changeInfo();
+                    OnClientJoin.sendWelcome(clientJoinEvent);
+                    OnClientJoin.gw2ApiReminder(clientJoinEvent);
+                } catch (Exception ignored) {}
             }
 
             @Override

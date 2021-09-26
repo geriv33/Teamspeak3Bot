@@ -43,6 +43,7 @@ public class Config {
         public List<Integer> supportChannels;
         public List<Integer> supportGroups;
         public List<Integer> tempChannelList;
+        public boolean unwantedGuests = false;
         public int arcDpsChannelID = 0;
         public int dailiesChannelID = 0;
         public int tempServerGroupID = 0;
@@ -156,6 +157,10 @@ public class Config {
                         for (String str : values)
                             configData.tempChannelList.add(Integer.parseInt(str));
                     }
+                    break;
+                case "unwantedGuests" : value = (String) cfg.get(key);
+                    if (value.equalsIgnoreCase("true")) configData.unwantedGuests = true;
+                    else configData.unwantedGuests = false;
                     break;
                 case "arcDpsChannelID": value = (String) cfg.get(key);
                     configData.arcDpsChannelID = Integer.parseInt(value);

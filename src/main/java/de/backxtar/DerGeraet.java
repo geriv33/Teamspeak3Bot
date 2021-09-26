@@ -105,6 +105,7 @@ public class DerGeraet {
         },1, 300, TimeUnit.SECONDS);
         scheduler.scheduleAtFixedRate(() -> api.getClients().forEach(CallToken::checkToken), 1, 600, TimeUnit.SECONDS);
         scheduler.scheduleAtFixedRate(() -> {
+            UnwantedGuest.checkGuests();
             Utils.checkInfo(api);
             ClientHelpReminder.unlockChannel();
             AfkMover.checkOnline();
