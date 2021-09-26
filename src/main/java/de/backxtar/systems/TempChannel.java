@@ -31,6 +31,7 @@ public class TempChannel {
         final Map<ChannelProperty, String> properties = new HashMap<>();
         properties.put(ChannelProperty.CHANNEL_FLAG_TEMPORARY, "1");
         properties.put(ChannelProperty.CPID, String.valueOf(e.getTargetChannelId()));
+        properties.put(ChannelProperty.CHANNEL_CODEC_QUALITY, "10");
         api.createChannel(channelName, properties);
         api.moveClient(client.getId(), api.getChannelByNameExact(channelName, true).getId());
         api.moveClient(api.whoAmI().getId(), api.getServerInfo().getDefaultChannelGroup());
