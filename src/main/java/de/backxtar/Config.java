@@ -46,7 +46,6 @@ public class Config {
         public boolean unwantedGuests = false;
         public int arcDpsChannelID = 0;
         public int dailiesChannelID = 0;
-        public int tempServerGroupID = 0;
         public String guildID;
         public String guildLeaderApiKey;
     }
@@ -173,9 +172,6 @@ public class Config {
                     break;
                 case "welcomeMessage": value = (String) cfg.get(key);
                     configData.welcomeMessage = Integer.parseInt(value);
-                    break;
-                case "tempFriendID": value = (String) cfg.get(key);
-                    configData.tempServerGroupID = Integer.parseInt(value);
                     break;
                 case "guildID": configData.guildID = (String) cfg.get(key);
                     break;
