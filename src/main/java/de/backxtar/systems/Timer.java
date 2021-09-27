@@ -66,14 +66,15 @@ public class Timer {
 
                 if (curTime >= endTime) {
                     String UID = resultSet.getString("clientIdentity");
+                    String name = resultSet.getString("name");
                     long id = resultSet.getLong("id");
-                    String message = "Dein Timer ist abgelaufen!";
+                    String message = "Dein Timer (" + name + ") ist abgelaufen!";
 
                     if (api.isClientOnline(UID)) api.pokeClient(api.getClientByUId(UID).getId(), message);
                     else api.sendOfflineMessage(UID, "Notification!", message);
 
-                    Object[] valuesDelete = {id, UID};
-                    SqlManager.delete("Timers", "id = ? AND clientIdentity = ?", valuesDelete);
+                    Object[] valuesDelete = {id, UID, name};
+                    SqlManager.delete("Timers", "id = ? AND clientIdentity = ? AND name = ?", valuesDelete);
                 }
             }
         } catch (SQLException e) {

@@ -24,8 +24,7 @@ public class UnwantedGuest {
             }
             if (isGuest && api.getClientInfo(client.getId()).getTimeConnected() >= 300000 &&
                     client.getChannelId() == defaultChannelID)
-                api.kickClientFromServer("Du warst als Gast fünf Minuten in der Lobby ohne gemoved zu werden " +
-                            "oder eine Servergruppe erhalten zu haben!", client.getId());
+                api.kickClientFromServer("Du warst als Gast 5 Minuten in der Lobby inaktiv!", client.getId());
         });
     }
 }

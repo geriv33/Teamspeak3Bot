@@ -26,10 +26,10 @@ public class ShowTimersCommand implements CommandInterface {
 
             while (resultSet.next()) {
                 Timestamp timestamp = resultSet.getTimestamp("timeStamp");
-                String code = resultSet.getString("code");
+                String name = resultSet.getString("name");
                 String[] dateTime = Timer.getValues(timestamp.toString());
                 builder.append(++count).append(". [b][color=" + colors.mainColor + "]").append(dateTime[0]).append(" ").append(dateTime[1]).append(" Uhr[/color][/b]")
-                        .append(" - [color=" + colors.secondColor + "][b]").append(code).append("[/b][/color]").append("\n");
+                        .append(" - [color=" + colors.secondColor + "][b]").append(name).append("[/b][/color]").append("\n");
             }
         } catch (SQLException e) {
             e.printStackTrace();

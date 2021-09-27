@@ -17,38 +17,43 @@ public class StartTimerCommand implements CommandInterface {
     @Override
     public void run(String cmdValue, TS3Api api, TextMessageEvent event, Client client) {
         if (cmdValue.isEmpty()) sendHelp(api, client);
-        String[] args = event.getMessage().split(" ");
-        if (args.length < 2 || args.length > 3) sendHelp(api, client);
-        String dateTime, code, timeStamp = null;
+        String message = event.getMessage(), dateTime, name, timeStamp;;
+
+        //!timer 2m Name
+        //!timer 30.06.2021-13:00 Name
+        String[] args = message.split(" ", 3);
+        if (args.length < 3) sendHelp(api, client);
+        String[] timeFormat = args[1].split("-");
 
         try {
-            if (args.length == 2) {
-                dateTime = args[1];
+            if (timeFormat.length < 2) {
+                dateTime = timeFormat[0];
+                name = args[2];
                 timeStamp = Timer.calcTimestamp(dateTime);
-            } else if (args.length == 3) {
-                dateTime = args[1] + " " + args[2];
+            } else {
+                dateTime = timeFormat[0] + " " + timeFormat[1];
+                name = args[2];
                 timeStamp = Timer.getTimestamp(dateTime);
             }
-            code = Timer.generateCode();
-            String[] fieldsInsert = {"clientIdentity", "timeStamp", "code"};
-            Object[] valuesInsert = {client.getUniqueIdentifier(), timeStamp, code};
-            if (timeStamp != null) SqlManager.insert("Timers", fieldsInsert, valuesInsert);
+            String[] fieldsInsert = {"clientIdentity", "timeStamp", "name"};
+            Object[] valuesInsert = {client.getUniqueIdentifier(), timeStamp, name};
+            SqlManager.insert("Timers", fieldsInsert, valuesInsert);
         } catch (NumberFormatException | ParseException | SQLException e) {
             sendHelp(api, client);
             return;
         }
         String[] values = Timer.getValues(timeStamp);
-        api.sendPrivateMessage(client.getId(), "[color=green]✔[/color] Dein Timer für den " +
-                "[color=" + colors.mainColor + "][b]" + values[0] + "[/b][/color] um " +
+        api.sendPrivateMessage(client.getId(), "[color=green]✔[/color] Dein [color=green][b]Timer " +
+                "(" + name + ")[/b][/color] für den [color=" + colors.mainColor + "][b]" + values[0] + "[/b][/color] um " +
                 "[color=" + colors.mainColor + "][b]" + values[1] + " Uhr[/b][/color] ist gestellt. " +
-                "TimerID: [color=" + colors.mainColor + "][b]" + code + "[/b][/color]");
+                "Timer: [color=" + colors.mainColor + "][b]" + name + "[/b][/color]");
     }
 
     @Override
     public void sendHelp(TS3Api api, Client client) {
         api.sendPrivateMessage(client.getId(),
                 "[color=red]✘[/color] Bitte benutze [b][color=" + Config.getColors().mainColor + "]" +
-                        "!timer 1h,2m[/color][/b] oder [b][color=" + Config.getColors().mainColor + "]" +
-                        "!timer 11.11.2011 13:30[/color][/b]!");
+                        "!timer 1h,2m name[/color][/b] oder [b][color=" + Config.getColors().mainColor + "]" +
+                        "!timer 11.11.2011-13:30 name[/color][/b]!");
     }
 }
