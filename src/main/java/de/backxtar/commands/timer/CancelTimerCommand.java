@@ -34,7 +34,7 @@ public class CancelTimerCommand implements CommandInterface {
 
             api.sendPrivateMessage(client.getId(), "[color=green]✔[/color] Dein Timer für den " +
                     "[color=" + colors.mainColor + "][b]" + dateTime[0] + "[/b][/color] um " +
-                    "[color=" + colors.mainColor + "][b]" + dateTime[1] + " Uhr[/b][/color] wurde gelöscht!");
+                    "[color=" + colors.mainColor + "][b]" + dateTime[1] + " Uhr[/b][/color] wurde abgebrochen!");
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -18,6 +18,7 @@ public class HelpCommand implements CommandInterface {
                 "╰ [color=" + colors.mainColor + "][b]!uid[/b][/color] ⎯  Zeigt Dir Deine [b]UID[/b] an\n" +
                 "╰ [color=" + colors.mainColor + "][b]!timer 1h,2m | 11.11.2011 13:30[/b][/color] ⎯  Startet einen [b]Timer[/b]\n" +
                 "╰ [color=" + colors.mainColor + "][b]!timers[/b][/color] ⎯  Zeigt Dir Deine [b]Timer[/b] an\n" +
+                "╰ [color=" + colors.mainColor + "][b]!cancel timerID[/b][/color] ⎯  Bricht Deinen [b]Timer[/b] ab\n" +
                 "╰ [color=" + colors.mainColor + "][b]!me[/b][/color] ⎯  Gibt Dir Deine [b]Gw2-Accountinformationen[/b] aus\n" +
                 "╰ [color=" + colors.mainColor + "][b]!wallet[/b][/color] ⎯  Zeigt Dir Deine [b]Gw2-Geldbörse[/b] an\n" +
                 "╰ [color=" + colors.mainColor + "][b]!bosses[/b][/color] ⎯  Zeigt Dir Deine [b]Gw2-Raid-Überischt[/b] an\n" +
