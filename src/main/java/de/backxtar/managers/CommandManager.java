@@ -10,6 +10,7 @@ import de.backxtar.commands.key.AddAPIKeyCommand;
 import de.backxtar.commands.key.RemoveAPIKeyCommand;
 import de.backxtar.commands.manage.HelpCommand;
 import de.backxtar.commands.manage.UIDCommand;
+import de.backxtar.commands.timer.CancelTimerCommand;
 import de.backxtar.commands.timer.ShowTimersCommand;
 import de.backxtar.commands.timer.StartTimerCommand;
 
@@ -31,6 +32,7 @@ public class CommandManager {
         this.commands.put("bosses", new BossesCommand());
         this.commands.put("timer", new StartTimerCommand());
         this.commands.put("timers", new ShowTimersCommand());
+        this.commands.put("cancel", new CancelTimerCommand());
         //this.commands.put("ufe", new UfeCommand());
     }
 

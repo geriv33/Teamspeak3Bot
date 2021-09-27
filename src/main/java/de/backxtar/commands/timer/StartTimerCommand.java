@@ -38,7 +38,7 @@ public class StartTimerCommand implements CommandInterface {
             return;
         }
         String[] values = Timer.getValues(timeStamp);
-        api.sendPrivateMessage(client.getId(), "[b]" + client.getNickname() + "[/b], Dein Timer für den " +
+        api.sendPrivateMessage(client.getId(), "[color=green]✔[/color] Dein Timer für den " +
                 "[color=" + colors.mainColor + "][b]" + values[0] + "[/b][/color] um " +
                 "[color=" + colors.mainColor + "][b]" + values[1] + " Uhr[/b][/color] ist gestellt. " +
                 "TimerID: [color=" + colors.mainColor + "][b]" + code + "[/b][/color]");
