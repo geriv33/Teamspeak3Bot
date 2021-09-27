@@ -14,12 +14,11 @@ import java.util.Map;
 public class TempChannel {
     private static final TS3Api api = DerGeraet.getInstance().api;
 
-    public static void createTempChannel(ClientMovedEvent e) {
+    public static void createTempChannel(ClientMovedEvent e, Client client) {
         if (Config.getConfigData().tempChannelList == null ||
             !Config.getConfigData().tempChannelList.contains(e.getTargetChannelId()))
             return;
 
-        Client client = api.getClientInfo(e.getClientId());
         ChannelInfo channelInfo = api.getChannelInfo(e.getTargetChannelId());
         String channelName = channelInfo.getName() + " #" + client.getNickname();
         int count = 0;

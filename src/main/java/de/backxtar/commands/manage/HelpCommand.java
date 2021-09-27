@@ -16,7 +16,6 @@ public class HelpCommand implements CommandInterface {
                 "╰ [color=" + colors.mainColor + "][b]!key yourAPIKey[/b][/color] ⎯  Speichert oder aktualisiert Deinen [b]Gw2-Key[/b]\n" +
                 "╰ [color=" + colors.mainColor + "][b]!keyremove[/b][/color] ⎯  Löscht Deinen [b]Gw2-Key[/b]\n" +
                 "╰ [color=" + colors.mainColor + "][b]!uid[/b][/color] ⎯  Zeigt Dir Deine [b]UID[/b] an\n" +
-                "╰ [color=" + colors.mainColor + "][b]!friend[/b][/color] ⎯  Gibt Gästen eine temp [b]Friend-Servergruppe[/b]\n" +
                 "╰ [color=" + colors.mainColor + "][b]!timer 1h,2m | 11.11.2011 13:30[/b][/color] ⎯  Startet einen [b]Timer[/b]\n" +
                 "╰ [color=" + colors.mainColor + "][b]!timers[/b][/color] ⎯  Zeigt Dir Deine [b]Timer[/b] an\n" +
                 "╰ [color=" + colors.mainColor + "][b]!me[/b][/color] ⎯  Gibt Dir Deine [b]Gw2-Accountinformationen[/b] aus\n" +

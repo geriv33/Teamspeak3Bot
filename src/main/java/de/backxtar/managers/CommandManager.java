@@ -8,7 +8,6 @@ import de.backxtar.commands.info.MeCommand;
 import de.backxtar.commands.info.WalletCommand;
 import de.backxtar.commands.key.AddAPIKeyCommand;
 import de.backxtar.commands.key.RemoveAPIKeyCommand;
-import de.backxtar.commands.manage.FriendCommand;
 import de.backxtar.commands.manage.HelpCommand;
 import de.backxtar.commands.manage.UIDCommand;
 import de.backxtar.commands.timer.ShowTimersCommand;
@@ -29,7 +28,6 @@ public class CommandManager {
         this.commands.put("uid", new UIDCommand());
         this.commands.put("me", new MeCommand());
         this.commands.put("wallet", new WalletCommand());
-        this.commands.put("friend", new FriendCommand());
         this.commands.put("bosses", new BossesCommand());
         this.commands.put("timer", new StartTimerCommand());
         this.commands.put("timers", new ShowTimersCommand());

@@ -3,7 +3,6 @@ package de.backxtar.managers;
 import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.api.event.*;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
-import com.github.theholywaffle.teamspeak3.api.wrapper.ClientInfo;
 import de.backxtar.Config;
 import de.backxtar.DerGeraet;
 import de.backxtar.events.OnClientJoin;
@@ -40,12 +39,14 @@ public class EventManager {
 
             @Override
             public void onClientJoin(ClientJoinEvent clientJoinEvent) {
+                String UID = clientJoinEvent.getUniqueClientIdentifier();
+
                 try {
-                    ClientInfo clientInfo = api.getClientInfo(clientJoinEvent.getClientId());
-                    if (clientInfo.isServerQueryClient()) return;
+                    if (!api.isClientOnline(UID) || api.getClientByUId(UID).isServerQueryClient()) return;
+                    Client client = api.getClientByUId(UID);
                     Utils.changeInfo();
-                    OnClientJoin.sendWelcome(clientJoinEvent);
-                    OnClientJoin.gw2ApiReminder(clientJoinEvent);
+                    OnClientJoin.sendWelcome(client);
+                    OnClientJoin.gw2ApiReminder(client);
                 } catch (Exception ignored) {}
             }
 
@@ -71,9 +72,15 @@ public class EventManager {
 
             @Override
             public void onClientMoved(ClientMovedEvent clientMovedEvent) {
-                ClientHelpReminder.doSupport(clientMovedEvent);
-                ClientHelpReminder.lockChannel(clientMovedEvent);
-                TempChannel.createTempChannel(clientMovedEvent);
+                int clientID = clientMovedEvent.getClientId();
+
+                try {
+                    if (!api.isClientOnline(clientID) || api.getClientInfo(clientID).isServerQueryClient()) return;
+                    Client client = api.getClientInfo(clientID);
+                    ClientHelpReminder.doSupport(clientMovedEvent, client);
+                    ClientHelpReminder.lockChannel(clientMovedEvent, client);
+                    TempChannel.createTempChannel(clientMovedEvent, client);
+                } catch (Exception ignored) {}
             }
 
             @Override

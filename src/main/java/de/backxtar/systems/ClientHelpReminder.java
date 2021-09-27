@@ -18,9 +18,8 @@ import java.util.Map;
 public class ClientHelpReminder {
     private static final TS3Api api = DerGeraet.getInstance().api;
 
-    public static void doSupport(ClientMovedEvent e) {
+    public static void doSupport(ClientMovedEvent e, Client client) {
         if (!Config.getConfigData().supportChannels.contains(e.getTargetChannelId())) return;
-        Client client = api.getClientInfo(e.getClientId());
 
         for (int serverGroup : client.getServerGroups()) {
             if (Config.getConfigData().supportGroups.contains(serverGroup))
@@ -52,9 +51,8 @@ public class ClientHelpReminder {
                 "wartet in [color=" + Config.getColors().mainColor + "][b]" + channelInfo.getName() + "[/b][/color] auf Hilfe!"));
     }
 
-    public static void lockChannel(ClientMovedEvent e) {
+    public static void lockChannel(ClientMovedEvent e, Client client) {
         if (!Config.getConfigData().supportChannels.contains(e.getTargetChannelId())) return;
-        Client client = api.getClientInfo(e.getClientId());
         boolean isSupporter = false;
         for (int serverGroup : client.getServerGroups()) {
             if (Config.getConfigData().supportGroups.contains(serverGroup))
