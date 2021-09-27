@@ -15,15 +15,14 @@ public class StartTimerCommand implements CommandInterface {
     private static final Config.Colors colors = Config.getColors();
 
     @Override
-    public void run(String cmdValue, TS3Api api, TextMessageEvent event, Client client) {
-        if (cmdValue.isEmpty()) sendHelp(api, client);
-        String message = event.getMessage(), dateTime, name, timeStamp;;
-
-        //!timer 2m Name
-        //!timer 30.06.2021-13:00 Name
-        String[] args = message.split(" ", 3);
-        if (args.length < 3) sendHelp(api, client);
+    public void run(String[] cmdValues, TS3Api api, TextMessageEvent event, Client client) {
+        if (cmdValues.length < 3) {
+            sendHelp(api, client);
+            return;
+        }
+        String[] args = event.getMessage().split(" ", 3);
         String[] timeFormat = args[1].split("-");
+        String dateTime, name, timeStamp;
 
         try {
             if (timeFormat.length < 2) {

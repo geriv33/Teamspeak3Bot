@@ -15,7 +15,7 @@ public class
 WalletCommand implements CommandInterface {
 
     @Override
-    public void run(String cmdValue, TS3Api api, TextMessageEvent event, Client client) {
+    public void run(String[] cmdValues, TS3Api api, TextMessageEvent event, Client client) {
         String[] gw2Values = CallToken.isValid(client);
         if (gw2Values == null) return;
 

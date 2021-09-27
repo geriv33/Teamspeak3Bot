@@ -10,13 +10,12 @@ import de.backxtar.gw2.CallToken;
 public class AddAPIKeyCommand implements CommandInterface {
 
     @Override
-    public void run(String cmdValue, TS3Api api, TextMessageEvent event, Client client) {
-        if (cmdValue.isEmpty()) {
+    public void run(String[] cmdValues, TS3Api api, TextMessageEvent event, Client client) {
+        if (cmdValues.length < 2) {
             sendHelp(api, client);
             return;
         }
-        String[] args = event.getMessage().split(" ");
-        CallToken.checkToken(client, args[1]);
+        CallToken.checkToken(client, cmdValues[1]);
     }
 
     @Override

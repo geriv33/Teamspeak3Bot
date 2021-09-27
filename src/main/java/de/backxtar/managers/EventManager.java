@@ -25,12 +25,6 @@ public class EventManager {
                 if (message.startsWith(Config.getConfigData().prefix)) {
                     String[] command = message.substring(Config.getConfigData().prefix.length()).split(" ");
 
-                    if (command.length < 2) {
-                        command = new String[2];
-                        command[0] = message.substring(Config.getConfigData().prefix.length());
-                        command[1] = "";
-                    }
-
                     if (!DerGeraet.getInstance().getCmdManager().runCmd(command, api, event, client))
                         api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Dieser Befehl ist mir nicht bekannt, [b]" + client.getNickname() + "[/b]!\n" +
                                 "Für eine Liste aller Commands gebe [color=" + Config.getColors().mainColor + "][b]!help[/b][/color] ein!");

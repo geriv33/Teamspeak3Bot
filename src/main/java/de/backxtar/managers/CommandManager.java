@@ -40,7 +40,7 @@ public class CommandManager {
         CommandInterface cmdInterface;
 
         if ((cmdInterface = this.commands.get(command[0].toLowerCase())) != null) {
-            cmdInterface.run(command[1], api, event, client);
+            cmdInterface.run(command, api, event, client);
             return true;
         }
         return false;

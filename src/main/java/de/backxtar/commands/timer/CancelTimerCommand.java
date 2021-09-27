@@ -16,13 +16,13 @@ public class CancelTimerCommand implements CommandInterface {
     private final Config.Colors colors = Config.getColors();
 
     @Override
-    public void run(String cmdValue, TS3Api api, TextMessageEvent event, Client client) {
-        if (cmdValue.isEmpty()) sendHelp(api, client);
-        String message = event.getMessage();
-        String[] init = message.split(" ");
+    public void run(String[] cmdValues, TS3Api api, TextMessageEvent event, Client client) {
+        if (cmdValues.length < 2) {
+            sendHelp(api, client);
+            return;
+        }
         //!cancel Test
-        if (init.length < 2) sendHelp(api, client);
-        String[] args = message.split(" ", 2);
+        String[] args = event.getMessage().split(" ", 2);
 
         try {
             String[] fields = {"timeStamp", "name"};

@@ -16,7 +16,7 @@ public class ShowTimersCommand implements CommandInterface {
     private static final Config.Colors colors = Config.getColors();
 
     @Override
-    public void run(String cmdValue, TS3Api api, TextMessageEvent event, Client client) {
+    public void run(String[] cmdValues, TS3Api api, TextMessageEvent event, Client client) {
         StringBuilder builder = new StringBuilder();
         int count = 0;
 

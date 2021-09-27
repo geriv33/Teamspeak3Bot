@@ -10,7 +10,7 @@ public class HelpCommand implements CommandInterface {
     private final Config.Colors colors = Config.getColors();
 
     @Override
-    public void run(String cmdValue, TS3Api api, TextMessageEvent event, Client client) {
+    public void run(String[] cmdValues, TS3Api api, TextMessageEvent event, Client client) {
         api.sendPrivateMessage(client.getId(), "\n" +
                         "Hier ist Deine angeforderte Hilfe, [b]" + client.getNickname() + "[/b]:\n" +
                 "╰ [color=" + colors.mainColor + "][b]!key yourAPIKey[/b][/color] ⎯  Speichert oder aktualisiert Deinen [b]Gw2-Key[/b]\n" +
