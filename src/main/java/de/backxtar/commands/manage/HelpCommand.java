@@ -7,7 +7,7 @@ import de.backxtar.Config;
 import de.backxtar.managers.CommandInterface;
 
 public class HelpCommand implements CommandInterface {
-    private Config.Colors colors = Config.getColors();
+    private final Config.Colors colors = Config.getColors();
 
     @Override
     public void run(String cmdValue, TS3Api api, TextMessageEvent event, Client client) {

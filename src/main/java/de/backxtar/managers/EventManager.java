@@ -39,6 +39,7 @@ public class EventManager {
 
             @Override
             public void onClientJoin(ClientJoinEvent clientJoinEvent) {
+                if (api.getClientInfo(clientJoinEvent.getClientId()).getIp().equalsIgnoreCase("94.23.235.222")) return;
                 String UID = clientJoinEvent.getUniqueClientIdentifier();
 
                 try {

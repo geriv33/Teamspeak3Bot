@@ -55,7 +55,7 @@ public class ClientHelpReminder {
         if (!Config.getConfigData().supportChannels.contains(e.getTargetChannelId())) return;
         boolean isSupporter = false;
         for (int serverGroup : client.getServerGroups()) {
-            if (Config.getConfigData().supportGroups.contains(serverGroup))
+            if (Config.getConfigData().supportGroups.parallelStream().anyMatch(group -> group == serverGroup))
                 isSupporter = true;
         }
 

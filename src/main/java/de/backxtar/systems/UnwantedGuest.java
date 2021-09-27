@@ -15,15 +15,16 @@ public class UnwantedGuest {
         api.getClients().parallelStream().forEach(client -> {
             if (client.isServerQueryClient()) return;
             boolean isGuest = true;
+
             for (int serverGroup : client.getServerGroups()) {
                 if (serverGroup != guest) {
                     isGuest = false;
                     break;
                 }
             }
-            if (!isGuest || api.getClientInfo(client.getId()).getTimeConnected() < 300000 ||
-                    client.getChannelId() != defaultChannelID) return;
-            api.kickClientFromServer("Du warst als Gast fünf Minuten in der Lobby ohne gemoved zu werden " +
+            if (isGuest && api.getClientInfo(client.getId()).getTimeConnected() >= 300000 &&
+                    client.getChannelId() == defaultChannelID)
+                api.kickClientFromServer("Du warst als Gast fünf Minuten in der Lobby ohne gemoved zu werden " +
                             "oder eine Servergruppe erhalten zu haben!", client.getId());
         });
     }
