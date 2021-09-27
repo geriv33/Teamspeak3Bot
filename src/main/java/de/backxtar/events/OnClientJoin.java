@@ -25,7 +25,8 @@ public class OnClientJoin {
         for (int serverGroup : client.getServerGroups()) {
             if (serverGroup == guest) {
                 api.sendPrivateMessage(client.getId(),
-                        "\nBist du ein Freund der Gilde? Dann warte in einem [color=" + colors.mainColor + "][b]Support-Channel[/b][/color] auf Hilfe! " +
+                        "\nBist du ein Freund der Gilde? Dann warte in einem [color=" + colors.mainColor + "][b]Support-Channel[/b][/color] auf Hilfe!\n" +
+                                "Bitte beachte, dass Du nach 5 Minuten vom Server geworfen wirst, wenn Du keine Server-Gruppe hast und Dich in der Lobby befindest!\n" +
                                 "\nBist du Mitglied der Gilde? Gebe [color=" + colors.mainColor + "][b]!key youAPIKey[/b][/color] ein!\n" +
                                 "\nDu kannst hier einen [b][color=red]Gw2-Key[/color][b] erstellen: https://account.arena.net/applications");
                 return;
