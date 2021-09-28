@@ -5,6 +5,7 @@ import com.github.theholywaffle.teamspeak3.api.event.TextMessageEvent;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
 import de.backxtar.Config;
 import de.backxtar.managers.CommandInterface;
+import de.backxtar.managers.CommandManager;
 import de.backxtar.managers.SqlManager;
 import de.backxtar.systems.Timer;
 
@@ -22,7 +23,7 @@ public class CancelTimerCommand implements CommandInterface {
             return;
         }
         //!cancel Test
-        String[] args = event.getMessage().split(" ", 2);
+        String[] args = CommandManager.splitArgs(event.getMessage(), 2);
 
         try {
             String[] fields = {"timeStamp", "name"};

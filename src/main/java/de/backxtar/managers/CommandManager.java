@@ -45,4 +45,8 @@ public class CommandManager {
         }
         return false;
     }
+
+    public static String[] splitArgs(String message, int values) {
+        return message.split(" ", values);
+    }
 }

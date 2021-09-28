@@ -5,6 +5,7 @@ import com.github.theholywaffle.teamspeak3.api.event.TextMessageEvent;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
 import de.backxtar.Config;
 import de.backxtar.managers.CommandInterface;
+import de.backxtar.managers.CommandManager;
 import de.backxtar.managers.SqlManager;
 import de.backxtar.systems.Timer;
 
@@ -20,7 +21,7 @@ public class StartTimerCommand implements CommandInterface {
             sendHelp(api, client);
             return;
         }
-        String[] args = event.getMessage().split(" ", 3);
+        String[] args = CommandManager.splitArgs(event.getMessage(), 3);
         String[] timeFormat = args[1].split("-");
         String dateTime, name, timeStamp;
 
