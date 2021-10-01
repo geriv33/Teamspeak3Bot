@@ -107,6 +107,7 @@ public class DerGeraet {
             ExchangeCheck.checkExchange();
             ArcDpsCheck.checkArcDpsVersion();
             DailyCheck.checkDailies();
+            GuildInfo.loadGuildInfo();
         }, 1, 300, TimeUnit.SECONDS);
         scheduler.scheduleAtFixedRate(() -> api.getClients().forEach(CallToken::checkToken), 1, 600, TimeUnit.SECONDS);
     }
