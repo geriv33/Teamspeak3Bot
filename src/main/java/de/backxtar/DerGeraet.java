@@ -33,7 +33,7 @@ public class DerGeraet {
 
     public DerGeraet() throws IOException, TS3Exception, SQLException, ClassNotFoundException {
         ts3Bot = this;
-        this.scheduler = Executors.newScheduledThreadPool(5);
+        this.scheduler = Executors.newScheduledThreadPool(4);
         final TS3Config config = new TS3Config();
         Config.loadConfig();
         logger.info(Config.getFile().getName() + " loaded.");
@@ -94,23 +94,21 @@ public class DerGeraet {
     private void scheduleTasks() {
         scheduler.scheduleAtFixedRate(AfkMover::checkAfk, 1, 1, TimeUnit.SECONDS);
         scheduler.scheduleAtFixedRate(() -> {
-            ExchangeCheck.checkExchange();
-            ArcDpsCheck.checkArcDpsVersion();
-            DailyCheck.checkDailies();
-        }, 1, 300, TimeUnit.SECONDS);
-        scheduler.scheduleAtFixedRate(() -> {
             ClientDescCheck.descChange();
             GuildSync.syncRights();
-            GuildInfo.loadGuildInfo();
-        },1, 300, TimeUnit.SECONDS);
-        scheduler.scheduleAtFixedRate(() -> api.getClients().forEach(CallToken::checkToken), 1, 600, TimeUnit.SECONDS);
-        scheduler.scheduleAtFixedRate(() -> {
             UnwantedGuest.checkGuests();
             Utils.checkInfo(api);
             ClientHelpReminder.unlockChannel();
             AfkMover.checkOnline();
             Timer.checkTimers();
-            }, 1, 60, TimeUnit.SECONDS);
+        }, 1, 60, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(() -> {
+            ClientDescCheck.descChange();
+            ExchangeCheck.checkExchange();
+            ArcDpsCheck.checkArcDpsVersion();
+            DailyCheck.checkDailies();
+        }, 1, 300, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(() -> api.getClients().forEach(CallToken::checkToken), 1, 600, TimeUnit.SECONDS);
     }
 
     public static DerGeraet getInstance() {
