@@ -33,10 +33,10 @@ public class EventManager {
 
             @Override
             public void onClientJoin(ClientJoinEvent clientJoinEvent) {
-                if (api.getClientInfo(clientJoinEvent.getClientId()).getIp().equalsIgnoreCase("94.23.235.222")) return;
-                String UID = clientJoinEvent.getUniqueClientIdentifier();
-
                 try {
+                    if (api.getClientInfo(clientJoinEvent.getClientId()).getIp().equalsIgnoreCase("94.23.235.222")) return;
+                    String UID = clientJoinEvent.getUniqueClientIdentifier();
+
                     if (!api.isClientOnline(UID) || api.getClientByUId(UID).isServerQueryClient()) return;
                     Client client = api.getClientByUId(UID);
                     Utils.changeInfo();
@@ -75,7 +75,8 @@ public class EventManager {
                     ClientHelpReminder.doSupport(clientMovedEvent, client);
                     ClientHelpReminder.lockChannel(clientMovedEvent, client);
                     TempChannel.createTempChannel(clientMovedEvent, client);
-                } catch (Exception ignored) {}
+                } catch (Exception ignored) {
+                }
             }
 
             @Override
