@@ -33,7 +33,7 @@ public class DerGeraet {
 
     public DerGeraet() throws IOException, TS3Exception, SQLException, ClassNotFoundException {
         ts3Bot = this;
-        this.scheduler = Executors.newScheduledThreadPool(4);
+        this.scheduler = Executors.newScheduledThreadPool(5);
         final TS3Config config = new TS3Config();
         Config.loadConfig();
         logger.info(Config.getFile().getName() + " loaded.");
@@ -96,6 +96,8 @@ public class DerGeraet {
         scheduler.scheduleAtFixedRate(() -> {
             ClientDescCheck.descChange();
             GuildSync.syncRights();
+        },1, 60, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(() -> {
             UnwantedGuest.checkGuests();
             Utils.checkInfo(api);
             ClientHelpReminder.unlockChannel();
@@ -103,7 +105,6 @@ public class DerGeraet {
             Timer.checkTimers();
         }, 1, 60, TimeUnit.SECONDS);
         scheduler.scheduleAtFixedRate(() -> {
-            ClientDescCheck.descChange();
             ExchangeCheck.checkExchange();
             ArcDpsCheck.checkArcDpsVersion();
             DailyCheck.checkDailies();
