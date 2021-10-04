@@ -44,9 +44,9 @@ public class AfkMover {
                 long[] duration = getTime(System.currentTimeMillis() - dataHashMap.get(client.getUniqueIdentifier()).timestamp);
                 String time = (duration[2] > 0 ? duration[2] + "h " : "") +
                         (duration[1] > 0 ? duration[1] + "min " : "") + String.format("%02d", duration[0]) + " sec.";
-                api.sendPrivateMessage(client.getId(), "Deine AFK-Zeit betrug: " +
+                api.sendPrivateMessage(client.getId(), "Your AFK time was: " +
                         "[color=" + Config.getColors().mainColor + "][b]" + time + "[/b][/color]. " +
-                        "Dein voheriger Channel: [color=" + Config.getColors().mainColor + "][b]" +
+                        "Your previous channel:: [color=" + Config.getColors().mainColor + "][b]" +
                         dataHashMap.get(client.getUniqueIdentifier()).channelName + "[/b][/color].");
 
                 boolean exists = api.getChannels().parallelStream().anyMatch(channel ->

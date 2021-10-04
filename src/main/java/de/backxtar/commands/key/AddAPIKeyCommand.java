@@ -21,6 +21,6 @@ public class AddAPIKeyCommand implements CommandInterface {
     @Override
     public void sendHelp(TS3Api api, Client client) {
         api.sendPrivateMessage(client.getId(),
-                "[color=red]✘[/color] Bitte benutze [b][color=" + Config.getColors().mainColor + "]!key yourKey[/color][/b]!");
+                "[color=red]✘[/color] Please use [b][color=" + Config.getColors().mainColor + "]@key yourKey[/color][/b]!");
     }
 }

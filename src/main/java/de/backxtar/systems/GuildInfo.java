@@ -60,12 +60,12 @@ public class GuildInfo {
 
         return "[center][img]http://i.epvpimg.com/otBNbab.png[/img]\n" +
                 "[size=11][color=#806BE3][b]" + guild.name + " [" + guild.tag + "] (" + guild.level + ")[/b][/color][/size]" +
-                "\n\n[size=10][color=" + Config.getColors().secondColor + "][b]Ankündigung:[/b][/color]\n" + guild.motd +
+                "\n\n[size=10][color=" + Config.getColors().secondColor + "][b]announcement:[/b][/color]\n" + guild.motd +
                 "\n\n" + memberIcon + " [size=10][color=" + Config.getColors().secondColor + "][b]Members:[/b][/color] " + guild.member_count + "/" + guild.member_capacity +
-                "\n" + aetheriumIcon + " [size=10][color=" + Config.getColors().secondColor + "][b]Ätherium:[/b][/color] " + guild.aetherium +
-                "\n" + favorIcon + " [size=10][color=" + Config.getColors().secondColor + "][b]Gunst:[/b][/color] " + guild.favor +
-                "\n" + influenceIcon + " [size=10][color=" + Config.getColors().secondColor + "][b]Einfluss:[/b][/color] " + guild.influence +
-                "\n" + resonanceIcon + " [size=10][color=" + Config.getColors().secondColor + "][b]Resonanz:[/b][/color] " + guild.resonance + "[/size]";
+                "\n" + aetheriumIcon + " [size=10][color=" + Config.getColors().secondColor + "][b]Etherium:[/b][/color] " + guild.aetherium +
+                "\n" + favorIcon + " [size=10][color=" + Config.getColors().secondColor + "][b]Favor:[/b][/color] " + guild.favor +
+                "\n" + influenceIcon + " [size=10][color=" + Config.getColors().secondColor + "][b]Influence:[/b][/color] " + guild.influence +
+                "\n" + resonanceIcon + " [size=10][color=" + Config.getColors().secondColor + "][b]Resonance:[/b][/color] " + guild.resonance + "[/size]";
     }
 
     private static StringBuilder getRanks(List<CallGuild.GWCallGuildMembers> members, String rank) {
@@ -84,7 +84,7 @@ public class GuildInfo {
                 if (count > 0) builder.append("\n");
             }
         }
-        if (builder.toString().isEmpty()) builder.append("Keine");
+        if (builder.toString().isEmpty()) builder.append("None");
         return builder;
     }
 }

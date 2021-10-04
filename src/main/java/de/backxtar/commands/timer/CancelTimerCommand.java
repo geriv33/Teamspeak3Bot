@@ -22,7 +22,7 @@ public class CancelTimerCommand implements CommandInterface {
             sendHelp(api, client);
             return;
         }
-        //!cancel Test
+        //@cancel Test
         String[] args = CommandManager.splitArgs(event.getMessage(), 2);
 
         try {
@@ -31,7 +31,7 @@ public class CancelTimerCommand implements CommandInterface {
             ResultSet resultSet = SqlManager.select(fields, "Timers", "clientIdentity = ? AND name = ?", values);
 
             if (!resultSet.next()) {
-                api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Dieser [b][color=red]Timer[/color][/b] " + "existiert nicht!");
+                api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] This [b][color=red]Timer[/color][/b] " + "Does not exsist!");
                 return;
             }
             Timestamp timestamp = resultSet.getTimestamp("timeStamp");
@@ -39,9 +39,9 @@ public class CancelTimerCommand implements CommandInterface {
             String[] dateTime = Timer.getValues(timestamp.toString());
             SqlManager.delete("Timers", "clientIdentity = ? AND name = ?", values);
 
-            api.sendPrivateMessage(client.getId(), "[color=green]✔[/color] Dein [color=green][b]Timer (" + name + ")[/b][/color] für den " +
-                    "[color=" + colors.mainColor + "][b]" + dateTime[0] + "[/b][/color] um " +
-                    "[color=" + colors.mainColor + "][b]" + dateTime[1] + " Uhr[/b][/color] wurde abgebrochen!");
+            api.sendPrivateMessage(client.getId(), "[color=green]✔[/color] Your [color=green][b]Timer (" + name + ")[/b][/color] for the " +
+                    "[color=" + colors.mainColor + "][b]" + dateTime[0] + "[/b][/color] around " +
+                    "[color=" + colors.mainColor + "][b]" + dateTime[1] + " Uhr[/b][/color] has been canceled!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -50,7 +50,7 @@ public class CancelTimerCommand implements CommandInterface {
     @Override
     public void sendHelp(TS3Api api, Client client) {
         api.sendPrivateMessage(client.getId(),
-                "[color=red]✘[/color] Bitte benutze [b][color=" + Config.getColors().mainColor + "]" +
-                        "!cancel name[/color][/b]!");
+                "[color=red]✘[/color] Please use [b][color=" + Config.getColors().mainColor + "]" +
+                        "@cancel name[/color][/b]!");
     }
 }

@@ -43,17 +43,17 @@ public class StartTimerCommand implements CommandInterface {
             return;
         }
         String[] values = Timer.getValues(timeStamp);
-        api.sendPrivateMessage(client.getId(), "[color=green]✔[/color] Dein [color=green][b]Timer " +
-                "(" + name + ")[/b][/color] für den [color=" + colors.mainColor + "][b]" + values[0] + "[/b][/color] um " +
-                "[color=" + colors.mainColor + "][b]" + values[1] + " Uhr[/b][/color] ist gestellt. " +
+        api.sendPrivateMessage(client.getId(), "[color=green]✔[/color] Your [color=green][b]Timer " +
+                "(" + name + ")[/b][/color]  for  [color=" + colors.mainColor + "][b]" + values[0] + "[/b][/color] the " +
+                "[color=" + colors.mainColor + "][b]" + values[1] + " clock[/b][/color] has been set. " +
                 "Timer: [color=" + colors.mainColor + "][b]" + name + "[/b][/color]");
     }
 
     @Override
     public void sendHelp(TS3Api api, Client client) {
         api.sendPrivateMessage(client.getId(),
-                "[color=red]✘[/color] Bitte benutze [b][color=" + Config.getColors().mainColor + "]" +
-                        "!timer 1h,2m name[/color][/b] oder [b][color=" + Config.getColors().mainColor + "]" +
-                        "!timer 11.11.2011-13:30 name[/color][/b]!");
+                "[color=red]✘[/color] Please use [b][color=" + Config.getColors().mainColor + "]" +
+                        "@timer 1h,2m name[/color][/b] oder [b][color=" + Config.getColors().mainColor + "]" +
+                        "@timer 11.11.2011-13:30 name[/color][/b]!");
     }
 }

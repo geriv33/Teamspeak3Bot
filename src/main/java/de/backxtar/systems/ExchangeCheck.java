@@ -47,8 +47,8 @@ public class ExchangeCheck {
         String desc = "[center][size=11][URL=client://" + api.whoAmI().getId() + "/"
                 + api.whoAmI().getUniqueIdentifier()+ "]Message me![/URL][/size]" +
                 "\n[img]" + urlTP + "[/img]\n" +
-                "[size=11][b]100[/b][img]" + urlGem + "[/img] entsprechen: " + resultExchange + "\n" +
-                "[b]100[/b][img]" + urlGold + "[/img] entsprechen: [b]" + coins.quantity + "[/b][img]" + urlGem + "[/img]";
+                "[size=11][b]100[/b][img]" + urlGem + "[/img] correspond: " + resultExchange + "\n" +
+                "[b]100[/b][img]" + urlGold + "[/img] correspond: [b]" + coins.quantity + "[/b][img]" + urlGem + "[/img]";
         if (api.getChannelInfo(Config.getConfigData().tradingPostChannelID).getDescription().equalsIgnoreCase(desc)) return;
         api.editChannel(Config.getConfigData().tradingPostChannelID, ChannelProperty.CHANNEL_DESCRIPTION, desc);
     }

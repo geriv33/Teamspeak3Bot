@@ -23,8 +23,8 @@ public class DailyCheck {
     private static final Provisioner_Agents provisioner_agents = new Provisioner_Agents();
 
     private static class Provisioner_Agents {
-        List<String> names = Arrays.asList("Skritt", "Quartier", "Aym", "Eve",
-                "Legion", "Synergetik", "Natomi", "Rakatin", "Vorratshelfer");
+        List<String> names = Arrays.asList("Skritt", "Quartermaster", "Aym", "Eve",
+                "Legion", "Synergetics", "Natomi", "Rakatin", "Supply Assistant");
         List<String> location = Arrays.asList("[&BAwEAAA=]", "[&BP4EAAA=]", "[&BIYDAAA=]", "[&BLsEAAA=]", "[&BKgDAAA=]",
                 "[&BLYEAAA=]", "[&BN4HAAA=]", "[&BNYHAAA=]", "[&BMwHAAA=]");
     }
@@ -104,7 +104,7 @@ public class DailyCheck {
         List<String> recFractals = splitDailies(daileNames, 5);
 
         builder.append("[size=11][color=" + colors.mainColor + "][b]")
-                .append(!tomorrow ? "Dailies von heute:" : "Dailies von morgen:")
+                .append(!tomorrow ? "Dailies from today:" : "Tomorrow's dailies:")
                 .append("[/b][/color][/size]\n\n");
 
         builder.append("[size=10][color=" + colors.secondColor + "][b]PvE Dailies:\n")
@@ -131,7 +131,7 @@ public class DailyCheck {
         }
         builder.append("\n\n");
 
-        builder.append("[size=10][color=" + colors.secondColor + "][b]Fraktal Dailies:\n")
+        builder.append("[size=10][color=" + colors.secondColor + "][b]Fractal Dailies:\n")
                 .append("[/b][/color][/size][size=9]");
         for (int i = 0; i < dailyFractals.size(); i++) {
             builder.append("[size=9]").append(dailyFractals.get(i)).append("[/size]");
@@ -139,7 +139,7 @@ public class DailyCheck {
         }
         builder.append("\n\n");
 
-        builder.append("[size=10][color=" + colors.secondColor + "][b]Empfohlene Fraktale:\n")
+        builder.append("[size=10][color=" + colors.secondColor + "][b]Recommended fractals:\n")
                 .append("[/b][/color][/size][size=9]");
         for (int i = 0; i < recFractals.size(); i++) {
             builder.append("[size=9]").append(recFractals.get(i)).append("[/size]");
@@ -152,16 +152,16 @@ public class DailyCheck {
                 .append(Gw2Utils.formatDailyStrike(strikes.strike));
         builder.append("[/size]\n\n");
 
-        builder.append("[size=10][color=" + colors.secondColor + "][b]Daily Pakt-Vorratsnetz-Agenten:\n")
+        builder.append("[size=10][color=" + colors.secondColor + "][b]Daily Pact Supply Network Agents:\n")
                 .append("[/b][/color][/size] [size=9]").append(getLocations(supply));
         builder.append("[/size]\n\n");
 
         builder.append("[size=10][color=" + colors.secondColor + "][b]Profit:\n")
                 .append("[/b][/color][/size] [size=9]")
-                .append("[URL=https://wiki.guildwars2.com/wiki/Map_bonus_reward/profit]Map Belohnungen[/URL][/size]");
+                .append("[URL=https://wiki.guildwars2.com/wiki/Map_bonus_reward/profit]Map Bonus Reward[/URL][/size]");
         builder.append("[/size]\n\n");
 
-        builder.append("[size=10][color=" + colors.secondColor + "][b]Fraktions Versorger:[/b][/color][/size]\n")
+        builder.append("[size=10][color=" + colors.secondColor + "][b]Faction supplier:[/b][/color][/size]\n")
                 .append("[size=9]").append(getProvisioners()).append("[/size]");
 
         return builder;

@@ -37,7 +37,7 @@ public class CallWallet {
             Type callWallet = new TypeToken<ArrayList<GWCallWallet>>() {}.getType();
             return gson.<ArrayList<GWCallWallet>>fromJson(json, callWallet);
         } catch (Exception e) {
-            api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Ups, da funktioniert etwas nicht!");
+            api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Oops, something's not working!");
             return null;
         }
     }

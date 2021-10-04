@@ -31,7 +31,7 @@ public class CallBosses {
             Type type = new TypeToken<List<String>>() {}.getType();
             return gson.fromJson(json, type);
         } catch (Exception e) {
-            api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Ups, da funktioniert etwas nicht!");
+            api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Oops, something's not working!");
             return null;
         }
     }

@@ -25,7 +25,7 @@ public class UnwantedGuest {
 
             if (isGuest && api.getClientInfo(client.getId()).getTimeConnected() >= 300000 &&
                     client.getChannelId() == defaultChannelID) {
-                api.kickClientFromServer("Du warst als Gast 5 Minuten in der Lobby inaktiv!", client.getId());
+                api.kickClientFromServer("You were inactive as a guest in the lobby for 5 minutes!", client.getId());
             }
         });
     }

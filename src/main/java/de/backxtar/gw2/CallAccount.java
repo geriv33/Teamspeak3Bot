@@ -64,7 +64,7 @@ public class CallAccount {
         try {
             return gson.fromJson(json, GWCallAccount.class);
         } catch (Exception e) {
-            api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Ups, da funktioniert etwas nicht!");
+            api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Oops, something's not working!");
             return null;
         }
     }

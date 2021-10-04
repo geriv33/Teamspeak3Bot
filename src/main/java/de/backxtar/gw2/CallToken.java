@@ -55,18 +55,18 @@ public class CallToken {
                     if (api.isClientOnline(client.getUniqueIdentifier())) {
                         api.sendPrivateMessage(client.getId(),
                                 "\n" +
-                                        "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][/b] ist nicht mehr gültig oder " +
-                                        "hat nicht alle Berechtigungen.\n" +
-                                        "Du kannst hier einen neuen Gw2-Key erstellen:\n" +
+                                		"[color=red] ✘ [/color] Your [b] [color=red] Gw2-Key [/color] [/b] is no longer valid or" +
+                                		"does not have all permissions. \n" +
+                                		"You can create a new Gw2 key here: \n" +
                                         "https://account.arena.net/applications");
                         return;
                     }
                     api.sendOfflineMessage(client.getUniqueIdentifier(),
                             "\n" +
-                                    "Gw2_Key ungültig!",
-                            "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][/b] ist nicht mehr gültig oder " +
-                                    "hat nicht alle Berechtigungen.\n" +
-                                    "Du kannst hier einen neuen Gw2-Key erstellen:\n" +
+                            		"Gw2_Key invalid!",
+                            "[color=red] ✘ [/color] Your [b] [color=red] Gw2-Key [/color] [/b] is no longer valid or\n" +
+                            		"does not have all permissions. \n" +
+                            		"You can create a new Gw2 key here: \n" +
                                     "https://account.arena.net/applications");
                 }
             }
@@ -88,7 +88,7 @@ public class CallToken {
                 if (resultSet.getString("GW2_Key").equalsIgnoreCase(apiKey)) {
                     api.sendPrivateMessage(client.getId(),
                             "\n" +
-                                    "[color=red]✘[/color] Dieser [b][color=red]Gw2-Key[/color][/b] ist bereits hinterlegt.");
+                    		"[color=red] ✘ [/color] This [b] [color=red] Gw2 key [/color] [/b] is already stored.");
                     return;
                 }
                 token = getGWCallToken(apiKey);
@@ -103,7 +103,7 @@ public class CallToken {
 
                     api.sendPrivateMessage(client.getId(),
                             "\n" +
-                                    "[color=green]✔[/color] Dein [b][color=green]Gw2-Key[/color][/b] wurde aktualisiert.\n" +
+                            		"[color=green] ✔ [/color] Your [b] [color=green] Gw2-Key [/color] [/b] has been updated. \n" +
                                     "Gw2-Account: " + account.name);
                     return;
                 }
@@ -120,16 +120,16 @@ public class CallToken {
 
                     api.sendPrivateMessage(client.getId(),
                             "\n" +
-                                    "[color=green]✔[/color] Dein [b][color=green]Gw2-Key[/color][/b] wurde hinterlegt.\n" +
+                            		"[color=green] ✔ [/color] Your [b] [color=green] Gw2-Key [/color] [/b] has been removed. \n" +
                                     "Gw2-Account: " + account.name);
                     return;
                 }
             }
             api.sendPrivateMessage(client.getId(),
                     "\n" +
-                            "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][/b] ist nicht gültig oder " +
-                            "hat nicht alle Berechtigungen.\n" +
-                            "Du kannst hier einen neuen Gw2-Key erstellen:\n" +
+                    		"[color=red] ✘ [/color] Your [b] [color=red] Gw2-Key [/color] [/b] is not valid or" +
+                    		"does not have all permissions. \n" +
+                    		 "You can create a new Gw2 key here: \n" +
                             "https://account.arena.net/applications");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -155,7 +155,7 @@ public class CallToken {
                 else {
                     api.sendPrivateMessage(client.getId(),
                             "\n" +
-                                    "[color=red]✘[/color] Dein [b][color=red]Gw2-Key[/color][/b] ist ungültig oder hat nicht alle Berechtigungen.");
+                    		"[color=red] ✘ [/color] Your [b] [color=red] Gw2-Key [/color] [/b] is invalid or does not have all permissions.");
                     return null;
                 }
             }
@@ -164,7 +164,7 @@ public class CallToken {
         }
         api.sendPrivateMessage(client.getId(),
                 "\n" +
-                "[color=red]✘[/color] Du hast noch keinen [b][color=red]Gw2-Key[/color][/b] hinterlegt.");
+        		"[color=red] ✘ [/color] You have not yet stored a [b] [color=red] Gw2 key [/color] [/ b].");
         return null;
     }
 }

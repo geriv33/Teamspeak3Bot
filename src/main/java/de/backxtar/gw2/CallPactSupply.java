@@ -20,7 +20,7 @@ public class CallPactSupply {
 
         while (fails != maxFails) {
             try {
-                json = Gw2Utils.getJson("https://api.aurora-theogenia.de/pactsupply/?lang=de" + request);
+                json = Gw2Utils.getJson("https://aurora-theogenia.de/api/pactsupply/?lang=en" + request);
                 fails = 3;
             } catch (IOException e) {
                 if (++fails == 3) e.printStackTrace();

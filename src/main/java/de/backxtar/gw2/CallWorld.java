@@ -38,7 +38,7 @@ public class CallWorld {
             Type callWorld = new TypeToken<ArrayList<GWCallWorld>>() {}.getType();
             return gson.<ArrayList<GWCallWorld>>fromJson(json, callWorld);
         } catch (Exception e) {
-            api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Ups, da funktioniert etwas nicht!");
+            api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Oops, something's not working!");
             return null;
         }
     }

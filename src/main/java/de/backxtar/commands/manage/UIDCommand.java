@@ -10,8 +10,8 @@ public class UIDCommand implements CommandInterface {
 
     @Override
     public void run(String[] cmdValues, TS3Api api, TextMessageEvent event, Client client) {
-        api.sendPrivateMessage(client.getId(), "[b]" + client.getNickname() + "[/b], deine [b]UID[/b] ist: " +
+        api.sendPrivateMessage(client.getId(), "[b]" + client.getNickname() + "[/b], Your [b]UID[/b] is: " +
                 "[color=" + Config.getColors().mainColor + "][b]" + client.getUniqueIdentifier() + "[/b][/color]\n" +
-                "Diese [b]UID[/b] wird für das Forum benötigt.");
+                "The [b]UID[/b] is required for the forum.");
     }
 }

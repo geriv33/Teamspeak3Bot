@@ -35,10 +35,10 @@ public class ShowTimersCommand implements CommandInterface {
             e.printStackTrace();
         }
         if (count == 0) {
-            api.sendPrivateMessage(client.getId(), "Keine laufende Timer!");
+            api.sendPrivateMessage(client.getId(), "No active timers found!");
             return;
         }
         api.sendPrivateMessage(client.getId(), "[b]" + client.getNickname() + "[/b], " +
-                "hier sind Deine Timer:\n" + builder);
+                "here are your timers:\n" + builder);
     }
 }

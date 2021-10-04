@@ -26,8 +26,8 @@ public class EventManager {
                     String[] command = message.substring(Config.getConfigData().prefix.length()).split(" ");
 
                     if (!DerGeraet.getInstance().getCmdManager().runCmd(command, api, event, client))
-                        api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Dieser Befehl ist mir nicht bekannt, [b]" + client.getNickname() + "[/b]!\n" +
-                                "Für eine Liste aller Commands gebe [color=" + Config.getColors().mainColor + "][b]!help[/b][/color] ein!");
+                        api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] I am not aware of this Command, [b]" + client.getNickname() + "[/b]@\n" +
+                                "For a list of all commands, type @help [color=" + Config.getColors().mainColor + "][b]!help[/b][/color] ein!");
                 }
             }
 
@@ -41,7 +41,6 @@ public class EventManager {
                     Client client = api.getClientByUId(UID);
                     Utils.changeInfo();
                     OnClientJoin.sendWelcome(client);
-                    OnClientJoin.gw2ApiReminder(client);
                 } catch (Exception ignored) {}
             }
 

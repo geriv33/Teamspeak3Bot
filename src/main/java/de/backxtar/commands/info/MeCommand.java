@@ -39,28 +39,28 @@ public class MeCommand implements CommandInterface {
         StringBuilder accessBuilder = getBuilder(account, 2);
 
         if (guildBuilder == null || accessBuilder == null) {
-            api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Ups, da funktioniert etwas nicht!");
+            api.sendPrivateMessage(client.getId(), "[color=red]✘[/color] Oops, something's not working!");
             return;
         }
         api.sendPrivateMessage(client.getId(),
                 "\n" +
-                        "Hier sind Deine Account-Informationen, [b]" + client.getNickname() + "[/b]:\n" +
+                        "Here is your Account Information!, [b]" + client.getNickname() + "[/b]:\n" +
                         "╰ [color=" + colors.mainColor + "][b]Gw2-Account:[/b][/color] " + account.name + "\n" +
-                        "╰ [color=" + colors.mainColor + "][b]Erstellt:[/b][/color] " + getDate(account.created) + "\n" +
-                        "╰ [color=" + colors.mainColor + "][b]Spielzeit:[/b][/color] " + getAge(account.age) + "\n" +
-                        "╰ [color=" + colors.mainColor + "][b]Inhalte:[/b][/color] " + accessBuilder + "\n" +
+                        "╰ [color=" + colors.mainColor + "][b]Created:[/b][/color] " + getDate(account.created) + "\n" +
+                        "╰ [color=" + colors.mainColor + "][b]Playtime:[/b][/color] " + getAge(account.age) + "\n" +
+                        "╰ [color=" + colors.mainColor + "][b]Content:[/b][/color] " + accessBuilder + "\n" +
                         "╰ [color=" + colors.mainColor + "][b]Server:[/b][/color] " + world.name + " [" + world.population + "]\n" +
-                        "╰ [color=" + colors.mainColor + "][b]Kommandeur:[/b][/color] " + (account.commander ? "Ja" : "Nein") + "\n" +
-                        (account.guilds.length > 0 ? "╰ [color=" + colors.mainColor + "][b]Gilden:[/b][/color] " + guildBuilder + "\n" : "") +
-                        "╰ [color=" + colors.mainColor + "][b]Fraktal Level:[/b][/color] " + account.fractal_level + "\n" +
-                        "╰ [color=" + colors.mainColor + "][b]WvW-Rang:[/b][/color] " + account.wvw_rank + "\n" +
-                        "╰ [color=" + colors.mainColor + "][b]PvP-Rang:[/b][/color] " + pvp.pvp_rank + "\n" +
-                        "╰ [color=" + colors.mainColor + "][b]PvP-Rangpunkte:[/b][/color] " + pvp.pvp_rank_points + "\n" +
-                        "╰ [color=" + colors.mainColor + "][b]PvP-Siege:[/b][/color] " + pvp.aggregate.wins + "\n" +
-                        "╰ [color=" + colors.mainColor + "][b]PvP-Niederlagen:[/b][/color] " + pvp.aggregate.losses + "\n" +
-                        "╰ [color=" + colors.mainColor + "][b]PvP-Desertionen:[/b][/color] " + pvp.aggregate.desertions + "\n" +
-                        "╰ [color=" + colors.mainColor + "][b]Tägliche-AP:[/b][/color] " + account.daily_ap + "\n" +
-                        "╰ [color=" + colors.mainColor + "][b]Monatliche-AP:[/b][/color] " + account.monthly_ap);
+                        "╰ [color=" + colors.mainColor + "][b]Commander:[/b][/color] " + (account.commander ? "Yes" : "No") + "\n" +
+                        (account.guilds.length > 0 ? "╰ [color=" + colors.mainColor + "][b]Guilds:[/b][/color] " + guildBuilder + "\n" : "") +
+                        "╰ [color=" + colors.mainColor + "][b]Fractal Level:[/b][/color] " + account.fractal_level + "\n" +
+                        "╰ [color=" + colors.mainColor + "][b]WvW-Rank:[/b][/color] " + account.wvw_rank + "\n" +
+                        "╰ [color=" + colors.mainColor + "][b]PvP-Rank:[/b][/color] " + pvp.pvp_rank + "\n" +
+                        "╰ [color=" + colors.mainColor + "][b]PvP-Rank-Points:[/b][/color] " + pvp.pvp_rank_points + "\n" +
+                        "╰ [color=" + colors.mainColor + "][b]PvP-Wins:[/b][/color] " + pvp.aggregate.wins + "\n" +
+                        "╰ [color=" + colors.mainColor + "][b]PvP-Losses:[/b][/color] " + pvp.aggregate.losses + "\n" +
+                        "╰ [color=" + colors.mainColor + "][b]PvP-desertions:[/b][/color] " + pvp.aggregate.desertions + "\n" +
+                        "╰ [color=" + colors.mainColor + "][b]Daily-AP:[/b][/color] " + account.daily_ap + "\n" +
+                        "╰ [color=" + colors.mainColor + "][b]Monthly-AP:[/b][/color] " + account.monthly_ap);
     }
 
     private StringBuilder getBuilder(CallAccount.GWCallAccount account, int mode) {
@@ -120,8 +120,8 @@ public class MeCommand implements CommandInterface {
         minutes %= 60;
         hours %= 24;
 
-        return (days > 0 ? days + " Tage, " : "") +
-                (hours > 0 ? hours + " Stunden, " : "") +
-                (minutes > 0 ? minutes + " Minuten" : "");
+        return (days > 0 ? days + " Days, " : "") +
+                (hours > 0 ? hours + " Hours, " : "") +
+                (minutes > 0 ? minutes + " Minutes" : "");
     }
 }

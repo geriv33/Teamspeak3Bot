@@ -14,8 +14,8 @@ import java.util.List;
 public class BossesCommand implements CommandInterface {
     private final String[] bosses = {"vale_guardian", "gorseval", "sabetha", "slothasor", "bandit_trio", "matthias", "keep_construct", "xera", "cairn", "mursaat_overseer", "samarog", "deimos", "soulless_horror", "statues_of_grenth", "voice_in_the_void", "conjured_amalgamate", "twin_largos", "qadim", "adina", "sabir", "qadim_the_peerless"};
     private final String[] events = {"spirit_woods", "escort", "twisted_castle", "river_of_souls", "gate"};
-    private final String[] bossTranslations = {"Tal-Wächter", "Gorseval", "Sabetha", "Faultierion", "Banditen-Trio", "Matthias", "Festenkonstrukt", "Xera", "Cairn", "Mursaat-Aufseher", "Samarog", "Deimos", "Desmina", "Statuen des Grenth", "Dhuum", "Beschworene Verschmelzung", "Zwillings-Largos", "Qadim", "Kardinal Adina", "Kardinal Sabir", "Qadim der Unvergleichliche"};
-    private final String[] eventTranslations = {"Geisterlauf", "Belagert die Festung", "Verdrehtes Schloss", "Fluss der Seelen", "Tore von Ahdashim"};
+    private final String[] bossTranslations = {"vale_guardian", "gorseval", "sabetha", "slothasor", "bandit_trio", "matthias", "keep_construct", "xera", "cairn", "mursaat_overseer", "samarog", "deimos", "soulless_horror", "statues_of_grenth", "voice_in_the_void", "conjured_amalgamate", "twin_largos", "qadim", "adina", "sabir", "qadim_the_peerless"};
+    private final String[] eventTranslations = {"spirit_woods", "escort", "twisted_castle", "river_of_souls", "gate"};
     private Config.Colors colors = Config.getColors();
 
     @Override
@@ -47,56 +47,56 @@ public class BossesCommand implements CommandInterface {
 
         conditions[0] = (raidBosses.contains(bosses[0]) && raidBosses.contains(events[0])
                 && raidBosses.contains(bosses[1]) && raidBosses.contains(bosses[2])) ?
-                "[color=green]✔[/color] Geistertal:" :
-                "[color=red]✘[/color] Geistertal:";
+                "[color=green]✔[/color] Spirit Vale:" :
+                "[color=red]✘[/color] Spirit Vale:";
         conditions[1] = (raidBosses.contains(bosses[3]) && raidBosses.contains(bosses[4])
                 && raidBosses.contains(bosses[5])) ?
-                "[color=green]✔[/color] Erlösungspass:" :
-                "[color=red]✘[/color] Erlösungspass:";
+                "[color=green]✔[/color] Salvation Pass:" :
+                "[color=red]✘[/color] Salvation Pass:";
         conditions[2] = (raidBosses.contains(events[1]) && raidBosses.contains(bosses[6])
                 && raidBosses.contains(events[2]) && raidBosses.contains(bosses[7])) ?
-                "[color=green]✔[/color] Festung der Treuen:" :
-                "[color=red]✘[/color] Festung der Treuen:";
+                "[color=green]✔[/color] Stronghold of the Faithful:" :
+                "[color=red]✘[/color] Stronghold of the Faithful:";
         conditions[3] = (raidBosses.contains(bosses[8]) && raidBosses.contains(bosses[9])
                 && raidBosses.contains(bosses[10]) && raidBosses.contains(bosses[11])) ?
-                "[color=green]✔[/color] Bastion der Bußfertigen:" :
-                "[color=red]✘[/color] Bastion der Bußfertigen:";
+                "[color=green]✔[/color] Bastion of the Penitent:" :
+                "[color=red]✘[/color] Bastion of the Penitent:";
         conditions[4] = (raidBosses.contains(bosses[12]) && raidBosses.contains(events[3])
                 && raidBosses.contains(bosses[13]) && raidBosses.contains(bosses[14])) ?
-                "[color=green]✔[/color] Halle der Ketten:" :
-                "[color=red]✘[/color] Halle der Ketten:";
+                "[color=green]✔[/color] Hall of Chains:" :
+                "[color=red]✘[/color] Hall of Chains:";
         conditions[5] = (raidBosses.contains(bosses[15]) && raidBosses.contains(bosses[16])
                 && raidBosses.contains(bosses[17])) ?
-                "[color=green]✔[/color] Mythenschreiber-Wagnis:" :
-                "[color=red]✘[/color] Mythenschreiber-Wagnis:";
+                "[color=green]✔[/color] Mythwright Gambit:" :
+                "[color=red]✘[/color] Mythwright Gambit:";
         conditions[6] = (raidBosses.contains(events[4]) && raidBosses.contains(bosses[18])
                 && raidBosses.contains(bosses[19]) && raidBosses.contains(bosses[20])) ?
-                "[color=green]✔[/color] Schlüssel von Ahdashim:" :
-                "[color=red]✘[/color] Schlüssel von Ahdashim:";
+                "[color=green]✔[/color] The Key of Ahdashim:" :
+                "[color=red]✘[/color] The Key of Ahdashim:";
 
         boolean singleBoss = counters[0] <= 1;
         boolean singleEvent = counters[1] <= 1;
         
         if (counters[0] != 0 && counters[1] != 0) {
-            conditions[7] = "[b]" + client.getNickname() + "[/b], Dir " + (singleBoss ? "fehlt" : "fehlen") + " " +
-                    "[b][color=" + colors.mainColor + "]" + counters[0] + " " + (singleBoss ? "Boss" : "Bosse") + "[/color][/b] " +
+            conditions[7] = "[b]" + client.getNickname() + "[/b], Dir " + (singleBoss ? "missing" : "miss") + " " +
+                    "[b][color=" + colors.mainColor + "]" + counters[0] + " " + (singleBoss ? "Boss" : "Bosses") + "[/color][/b] " +
                     "und [b][color=" + colors.mainColor + "]" + counters[1] + " " + (singleEvent ? "Event" : "Events") + "[/color][/b] für die Woche.";
         } else if (counters[0] != 0 && counters[1] == 0) {
-            conditions[7] = "[b]" + client.getNickname() + "[/b], Dir " + (singleBoss ? "fehlt" : "fehlen") + " " +
-                    "[b][color=" + colors.mainColor + "]" + counters[0] + " " + (singleBoss ? "Boss" : "Bosse") + "[/color][/b] " +
+            conditions[7] = "[b]" + client.getNickname() + "[/b], Dir " + (singleBoss ? "missing" : "miss") + " " +
+                    "[b][color=" + colors.mainColor + "]" + counters[0] + " " + (singleBoss ? "Boss" : "Bosses") + "[/color][/b] " +
                     "für die Woche.";
         } else if (counters[0] == 0 && counters[1] != 0) {
-            conditions[7] = "[b]" + client.getNickname() + "[/b], Dir " + (singleEvent ? "fehlt" : "fehlen") + " " +
+            conditions[7] = "[b]" + client.getNickname() + "[/b], Dir " + (singleEvent ? "missing" : "miss") + " " +
                     "[b][color=" + colors.mainColor + "]" + counters[1] + " " + (singleEvent ? "Event" : "Events") + "[/color][/b] " +
                     "für die Woche.";
         } else if (counters[0] == 0 && counters[1] == 0) {
-            conditions[7] = "[b]" + client.getNickname() + "[/b], Du hast einen [b][color=" + colors.mainColor + "]Fullclear[/color][/b]!";
+            conditions[7] = "[b]" + client.getNickname() + "[/b], You have a [b][color=" + colors.mainColor + "]Fullclear[/color][/b]!";
         }
         api.sendPrivateMessage(client.getId(), buildMessage(gw2Values[1], conditions, raidBoss, raidEvent));
     }
 
     private String buildMessage(String accountName, String[] conditions, List<String> raidBoss, List<String> raidEvent) {
-        return "\nRaid-Zusammenfassung für [b]" + accountName + "[/b]:" +
+        return "\nRaid summary for [b]" + accountName + "[/b]:" +
                 "\n" + conditions[7] +
                 "\n\n" + conditions[0] + "\n╰ " + raidBoss.get(0) + "\n╰ " + raidEvent.get(0) + "\n╰ " + raidBoss.get(1) + "\n╰ " + raidBoss.get(2) +
                 "\n\n" + conditions[1] + "\n╰ " + raidBoss.get(3) + "\n╰ " + raidBoss.get(4) + "\n╰ " + raidBoss.get(5) +

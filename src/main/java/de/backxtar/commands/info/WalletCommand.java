@@ -30,7 +30,7 @@ WalletCommand implements CommandInterface {
         }
 
         api.sendPrivateMessage(client.getId(),
-                "\nHier ist deine Geldbörse, [b]" + client.getNickname() + "[/b]\n\n" +
+                "\nHere is your wallet, [b]" + client.getNickname() + "[/b]\n\n" +
                 "[color=" + Config.getColors().mainColor + "][b]Gw2-Account:[/b][/color] " + gw2Values[1] + "\n" + currencies);
     }
 }

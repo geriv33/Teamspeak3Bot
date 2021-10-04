@@ -23,8 +23,8 @@ public class RemoveAPIKeyCommand implements CommandInterface {
             if (resultSet.next()) {
                 Object[] valuesDelete = {client.getUniqueIdentifier()};
                 SqlManager.delete("API_Keys", "clientIdentity = ?", valuesDelete);
-                output = "\n[color=green]✔[/color] Dein [b][color=green]Gw2-Key[/color][b] wurde entfernt.";
-            } else output = "\n[color=red]✘[/color] Kein [b][color=green]Gw2-Key[/color][b] vorhanden.";
+                output = "\n[color=green]✔[/color] Your [b][color=green]Gw2-Key[/color][b] has been removed.";
+            } else output = "\n[color=red]✘[/color] No [b][color=green]Gw2-Key[/color][b] available.";
         } catch (SQLException e) {
             e.printStackTrace();
         }

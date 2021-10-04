@@ -39,16 +39,16 @@ public class ClientHelpReminder {
                 }
             }
         }
-        String sendHelp = clients.size() > 0 ? "Momentan " + (clients.size() > 1 ? "sind" : "ist") +
+        String sendHelp = clients.size() > 0 ? "Momentan " + (clients.size() > 1 ? "are ":" is") +
                         " [color=" + Config.getColors().mainColor + "][b]" + clients.size() + " Supporter[/b][/color] online! " +
-                        "Es wird sich sofort jemand um Dich kümmern!" :
-                        "Momentan ist leider [color=" + Config.getColors().mainColor + "][b]kein Supporter[/b][/color] online. " +
-                        "Bitte komme zu einem späteren Zeitpunkt wieder!";
+                        "Support will Help you immediately!" :
+                        "Unfortunately at the moment there is [color=" + Config.getColors().mainColor + "][b]No Supporter[/b][/color] online. " +
+                        "Please come back at a later date!";
         api.sendPrivateMessage(client.getId(), sendHelp);
 
         clients.parallelStream().forEach(supporter -> api.sendPrivateMessage(supporter.getId(),
                 "[color=" + Config.getColors().mainColor + "][b]" + client.getNickname() + "[/b][/color] " +
-                "wartet in [color=" + Config.getColors().mainColor + "][b]" + channelInfo.getName() + "[/b][/color] auf Hilfe!"));
+                "waiting in [color=" + Config.getColors().mainColor + "][b]" + channelInfo.getName() + "[/b][/color] for help!"));
     }
 
     public static void lockChannel(ClientMovedEvent e, Client client) {
@@ -59,12 +59,12 @@ public class ClientHelpReminder {
                 isSupporter = true;
         }
 
-        if (!api.getChannelInfo(e.getTargetChannelId()).getName().contains("(taken)") && isSupporter) {
+        if (!api.getChannelInfo(e.getTargetChannelId()).getName().contains("(Teamspeak & Discord)") && isSupporter) {
             ChannelInfo channelInfo = api.getChannelInfo(e.getTargetChannelId());
 
             final Map<ChannelProperty, String> properties = new HashMap<>();
-            properties.put(ChannelProperty.CHANNEL_NAME, channelInfo.getName() + " (taken)");
-            properties.put(ChannelProperty.CHANNEL_PASSWORD, "Vagina!");
+            properties.put(ChannelProperty.CHANNEL_NAME, channelInfo.getName() + " (Teamspeak & Discord)");
+            properties.put(ChannelProperty.CHANNEL_PASSWORD, "");
 
             api.editChannel(e.getTargetChannelId(), properties);
         }
@@ -75,8 +75,8 @@ public class ClientHelpReminder {
             ChannelInfo channelInfo = api.getChannelInfo(channelID);
             Channel channel = api.getChannelByNameExact(channelInfo.getName(), true);
 
-            if (channel.getTotalClients() <= 0 && channelInfo.getName().contains("(taken)")) {
-                String channelName = channelInfo.getName().replace(" (taken)", "");
+            if (channel.getTotalClients() <= 0 && channelInfo.getName().contains("(Teamspeak & Discord)")) {
+                String channelName = channelInfo.getName().replace(" (Teamspeak & Discord)", "");
 
                 final Map<ChannelProperty, String> properties = new HashMap<>();
                 properties.put(ChannelProperty.CHANNEL_NAME, channelName);

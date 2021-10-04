@@ -46,118 +46,118 @@ public class Gw2Utils {
         switch (id) {
             case 1 : long[] coins = getCoins(amount);
                 currency = "╰ [color=" + colors.mainColor + "][b]Coins:[/b][/color] " + (coins[2] > 0 ? "[b]" + coins[2] + "[/b] Gold, " : "") +
-                        (coins[1] > 0 ? "[b]" + coins[1] + "[/b] Silber, " : "") +
-                        (coins[0] > 0 ? "[b]" + coins[0] + "[/b] Kupfer" : "");
+                        (coins[1] > 0 ? "[b]" + coins[1] + "[/b] Silver, " : "") +
+                        (coins[0] > 0 ? "[b]" + coins[0] + "[/b] Copper" : "");
                 break;
             case 2 : currency = "╰ [color=" + colors.mainColor + "][b]Karma:[/b][/color] " + amount;
                 break;
-            case 3 : currency = "╰ [color=" + colors.mainColor + "][b]Lorbeeren:[/b][/color] " + amount;
+            case 3 : currency = "╰ [color=" + colors.mainColor + "][b]Laurels:[/b][/color] " + amount;
                 break;
-            case 4 : currency = "╰ [color=" + colors.mainColor + "][b]Edelsteine:[/b][/color] " + amount;
+            case 4 : currency = "╰ [color=" + colors.mainColor + "][b]Gems:[/b][/color] " + amount;
                 break;
-            case 5 : currency = "╰ [color=" + colors.mainColor + "][b]Ascalonische Tränen:[/b][/color] " + amount;
+            case 5 : currency = "╰ [color=" + colors.mainColor + "][b]Ascalonian Tears:[/b][/color] " + amount;
                 break;
-            case 6 : currency = "╰ [color=" + colors.mainColor + "][b]Scherben des Zhaitan:[/b][/color] " + amount;
+            case 6 : currency = "╰ [color=" + colors.mainColor + "][b]Shard of Zhaitan:[/b][/color] " + amount;
                 break;
-            case 7 : currency = "╰ [color=" + colors.mainColor + "][b]Fraktal-Relikte:[/b][/color] " + amount;
+            case 7 : currency = "╰ [color=" + colors.mainColor + "][b]Fractal Relics:[/b][/color] " + amount;
                 break;
-            case 9 : currency = "╰ [color=" + colors.mainColor + "][b]Beetletuns Siegel:[/b][/color] " + amount;
+            case 9 : currency = "╰ [color=" + colors.mainColor + "][b]Seal of Beetletun:[/b][/color] " + amount;
                 break;
-            case 10 : currency = "╰ [color=" + colors.mainColor + "][b]Manifeste des Maulwetariats:[/b][/color] " + amount;
+            case 10 : currency = "╰ [color=" + colors.mainColor + "][b]Manifesto of the Moletariate:[/b][/color] " + amount;
                 break;
-            case 11 : currency = "╰ [color=" + colors.mainColor + "][b]Tödliche Blüten:[/b][/color] " + amount;
+            case 11 : currency = "╰ [color=" + colors.mainColor + "][b]Deadly Blooms:[/b][/color] " + amount;
                 break;
-            case 12 : currency = "╰ [color=" + colors.mainColor + "][b]Symbole Kodas:[/b][/color] " + amount;
+            case 12 : currency = "╰ [color=" + colors.mainColor + "][b]Symbols of Koda:[/b][/color] " + amount;
                 break;
-            case 13 : currency = "╰ [color=" + colors.mainColor + "][b]Flammen-Legion-Charr-Schnitzereien:[/b][/color] " + amount;
+            case 13 : currency = "╰ [color=" + colors.mainColor + "][b]Flame Legion Charr Carving:[/b][/color] " + amount;
                 break;
-            case 14 : currency = "╰ [color=" + colors.mainColor + "][b]Wissenskristalle:[/b][/color] " + amount;
+            case 14 : currency = "╰ [color=" + colors.mainColor + "][b]Knowledge Crystals:[/b][/color] " + amount;
                 break;
-            case 15 : currency = "╰ [color=" + colors.mainColor + "][b]Ehrenabzeichen:[/b][/color] " + amount;
+            case 15 : currency = "╰ [color=" + colors.mainColor + "][b]Badge of Honor:[/b][/color] " + amount;
                 break;
-            case 16 : currency = "╰ [color=" + colors.mainColor + "][b]Gilden-Belobigungen:[/b][/color] " + amount;
+            case 16 : currency = "╰ [color=" + colors.mainColor + "][b]Guild Commendation:[/b][/color] " + amount;
                 break;
-            case 18 : currency = "╰ [color=" + colors.mainColor + "][b]Transmutation-Ladungen:[/b][/color] " + amount;
+            case 18 : currency = "╰ [color=" + colors.mainColor + "][b]Transmutation Charges:[/b][/color] " + amount;
                 break;
-            case 19 : currency = "╰ [color=" + colors.mainColor + "][b]Luftschiff-Teile:[/b][/color] " + amount;
+            case 19 : currency = "╰ [color=" + colors.mainColor + "][b]Airship Parts:[/b][/color] " + amount;
                 break;
-            case 20 : currency = "╰ [color=" + colors.mainColor + "][b]Ley-Linien-Kristalle:[/b][/color] " + amount;
+            case 20 : currency = "╰ [color=" + colors.mainColor + "][b]Ley-Line Crystals:[/b][/color] " + amount;
                 break;
-            case 22 : currency = "╰ [color=" + colors.mainColor + "][b]Aurilliumklumpen:[/b][/color] " + amount;
+            case 22 : currency = "╰ [color=" + colors.mainColor + "][b]Lumps of Aurillium:[/b][/color] " + amount;
                 break;
-            case 23 : currency = "╰ [color=" + colors.mainColor + "][b]Geister-Scherben:[/b][/color] " + amount;
+            case 23 : currency = "╰ [color=" + colors.mainColor + "][b]Spirit Shards:[/b][/color] " + amount;
                 break;
-            case 24 : currency = "╰ [color=" + colors.mainColor + "][b]Makelloses Fraktal-Relikte:[/b][/color] " + amount;
+            case 24 : currency = "╰ [color=" + colors.mainColor + "][b]Pristine Fractal Relic:[/b][/color] " + amount;
                 break;
-            case 25 : currency = "╰ [color=" + colors.mainColor + "][b]Geoden:[/b][/color] " + amount;
+            case 25 : currency = "╰ [color=" + colors.mainColor + "][b]Geodes:[/b][/color] " + amount;
                 break;
-            case 26 : currency = "╰ [color=" + colors.mainColor + "][b]WvW-Gefecht-Tickets:[/b][/color] " + amount;
+            case 26 : currency = "╰ [color=" + colors.mainColor + "][b]WvW Skirmish Claim Tickets:[/b][/color] " + amount;
                 break;
-            case 27 : currency = "╰ [color=" + colors.mainColor + "][b]Banditen-Wappen:[/b][/color] " + amount;
+            case 27 : currency = "╰ [color=" + colors.mainColor + "][b]Bandit Crest:[/b][/color] " + amount;
                 break;
-            case 28 : currency = "╰ [color=" + colors.mainColor + "][b]Magnetitscherben:[/b][/color] " + amount;
+            case 28 : currency = "╰ [color=" + colors.mainColor + "][b]Magnetite Shard:[/b][/color] " + amount;
                 break;
-            case 29 : currency = "╰ [color=" + colors.mainColor + "][b]Versorger-Marken:[/b][/color] " + amount;
+            case 29 : currency = "╰ [color=" + colors.mainColor + "][b]Provisioner Token:[/b][/color] " + amount;
                 break;
-            case 30 : currency = "╰ [color=" + colors.mainColor + "][b]PvP-Liga-Tickets:[/b][/color] " + amount;
+            case 30 : currency = "╰ [color=" + colors.mainColor + "][b]PvP-Leauge-Tickets:[/b][/color] " + amount;
                 break;
-            case 31 : currency = "╰ [color=" + colors.mainColor + "][b]Beweise der Heldentaten:[/b][/color] " + amount;
+            case 31 : currency = "╰ [color=" + colors.mainColor + "][b]Proof of Heroics:[/b][/color] " + amount;
                 break;
-            case 32 : currency = "╰ [color=" + colors.mainColor + "][b]Aufgestiegene Scherben des Ruhms:[/b][/color] " + amount;
+            case 32 : currency = "╰ [color=" + colors.mainColor + "][b]Ascended Shard of Glory:[/b][/color] " + amount;
                 break;
-            case 33 : currency = "╰ [color=" + colors.mainColor + "][b]Entfesselte Magie:[/b][/color] " + amount;
+            case 33 : currency = "╰ [color=" + colors.mainColor + "][b]Unbound Magic:[/b][/color] " + amount;
                 break;
-            case 34 : currency = "╰ [color=" + colors.mainColor + "][b]Handelsverträge:[/b][/color] " + amount;
+            case 34 : currency = "╰ [color=" + colors.mainColor + "][b]Trade Contract:[/b][/color] " + amount;
                 break;
-            case 35 : currency = "╰ [color=" + colors.mainColor + "][b]Elegie-Mosaike:[/b][/color] " + amount;
+            case 35 : currency = "╰ [color=" + colors.mainColor + "][b]Elegy Mosaic:[/b][/color] " + amount;
                 break;
-            case 36 : currency = "╰ [color=" + colors.mainColor + "][b]Zeugnisse von Heldentaten:[/b][/color] " + amount;
+            case 36 : currency = "╰ [color=" + colors.mainColor + "][b]Testimony of Heroics:[/b][/color] " + amount;
                 break;
-            case 37 : currency = "╰ [color=" + colors.mainColor + "][b]Erhabene-Schlüssel:[/b][/color] " + amount;
+            case 37 : currency = "╰ [color=" + colors.mainColor + "][b]Exalted Key:[/b][/color] " + amount;
                 break;
-            case 38 : currency = "╰ [color=" + colors.mainColor + "][b]Macheten:[/b][/color] " + amount;
+            case 38 : currency = "╰ [color=" + colors.mainColor + "][b]Machetes:[/b][/color] " + amount;
                 break;
-            case 39 : currency = "╰ [color=" + colors.mainColor + "][b]Gaets-Kristalle:[/b][/color] " + amount;
+            case 39 : currency = "╰ [color=" + colors.mainColor + "][b]Gaeting Crystal:[/b][/color] " + amount;
                 break;
-            case 40 : currency = "╰ [color=" + colors.mainColor + "][b]Banditen-Dietriche:[/b][/color] " + amount;
+            case 40 : currency = "╰ [color=" + colors.mainColor + "][b]Bandit Skeleton Key:[/b][/color] " + amount;
                 break;
-            case 41 : currency = "╰ [color=" + colors.mainColor + "][b]Pakt-Brechstangen:[/b][/color] " + amount;
+            case 41 : currency = "╰ [color=" + colors.mainColor + "][b]Pact Crowbar:[/b][/color] " + amount;
                 break;
-            case 42 : currency = "╰ [color=" + colors.mainColor + "][b]Phiolen Chak-Säure:[/b][/color] " + amount;
+            case 42 : currency = "╰ [color=" + colors.mainColor + "][b]Vial of Chak Acid:[/b][/color] " + amount;
                 break;
-            case 43 : currency = "╰ [color=" + colors.mainColor + "][b]Zephyriten-Dietriche:[/b][/color] " + amount;
+            case 43 : currency = "╰ [color=" + colors.mainColor + "][b]Zephyrite Lockpick:[/b][/color] " + amount;
                 break;
-            case 44 : currency = "╰ [color=" + colors.mainColor + "][b]Schlüssel des Händlers:[/b][/color] " + amount;
+            case 44 : currency = "╰ [color=" + colors.mainColor + "][b]Trader's Key:[/b][/color] " + amount;
                 break;
-            case 45 : currency = "╰ [color=" + colors.mainColor + "][b]Flüchtige Magie:[/b][/color] " + amount;
+            case 45 : currency = "╰ [color=" + colors.mainColor + "][b]Volatile Magic:[/b][/color] " + amount;
                 break;
-            case 46 : currency = "╰ [color=" + colors.mainColor + "][b]PvP-Turnier-Gutscheine:[/b][/color] " + amount;
+            case 46 : currency = "╰ [color=" + colors.mainColor + "][b]PvP Tournament Voucher:[/b][/color] " + amount;
                 break;
-            case 47 : currency = "╰ [color=" + colors.mainColor + "][b]Renn-Medaillen:[/b][/color] " + amount;
+            case 47 : currency = "╰ [color=" + colors.mainColor + "][b]Racing Medallion:[/b][/color] " + amount;
                 break;
-            case 49 : currency = "╰ [color=" + colors.mainColor + "][b]Nebelgeborenere Schlüssel:[/b][/color] " + amount;
+            case 49 : currency = "╰ [color=" + colors.mainColor + "][b]Mistborn Key:[/b][/color] " + amount;
                 break;
-            case 50 : currency = "╰ [color=" + colors.mainColor + "][b]Festmarken:[/b][/color] " + amount;
+            case 50 : currency = "╰ [color=" + colors.mainColor + "][b]Festival Token:[/b][/color] " + amount;
                 break;
-            case 51 : currency = "╰ [color=" + colors.mainColor + "][b]Lager-Schlüssel:[/b][/color] " + amount;
+            case 51 : currency = "╰ [color=" + colors.mainColor + "][b]Cache Key:[/b][/color] " + amount;
                 break;
-            case 52 : currency = "╰ [color=" + colors.mainColor + "][b]Rote Propheten-Scherben:[/b][/color] " + amount;
+            case 52 : currency = "╰ [color=" + colors.mainColor + "][b]Red Prophet Shard:[/b][/color] " + amount;
                 break;
-            case 53 : currency = "╰ [color=" + colors.mainColor + "][b]Grüne Propheten-Scherben:[/b][/color] " + amount;
+            case 53 : currency = "╰ [color=" + colors.mainColor + "][b]Green Prophet Shard:[/b][/color] " + amount;
                 break;
-            case 54 : currency = "╰ [color=" + colors.mainColor + "][b]Blauer Propheten-Kristalle:[/b][/color] " + amount;
+            case 54 : currency = "╰ [color=" + colors.mainColor + "][b]Blue Prophet Crystal:[/b][/color] " + amount;
                 break;
-            case 55 : currency = "╰ [color=" + colors.mainColor + "][b]Grüner Propheten-Kristalle:[/b][/color] " + amount;
+            case 55 : currency = "╰ [color=" + colors.mainColor + "][b]Green Prophet Crystal:[/b][/color] " + amount;
                 break;
-            case 56 : currency = "╰ [color=" + colors.mainColor + "][b]Roter Propheten-Kristalle:[/b][/color] " + amount;
+            case 56 : currency = "╰ [color=" + colors.mainColor + "][b]Red Prophet Crystal:[/b][/color] " + amount;
                 break;
-            case 57 : currency = "╰ [color=" + colors.mainColor + "][b]Blaue Propheten-Scherben:[/b][/color] " + amount;
+            case 57 : currency = "╰ [color=" + colors.mainColor + "][b]Blue Prophet Shard:[/b][/color] " + amount;
                 break;
-            case 58 : currency = "╰ [color=" + colors.mainColor + "][b]Kriegs-Vorräte:[/b][/color] " + amount;
+            case 58 : currency = "╰ [color=" + colors.mainColor + "][b]War Supplies:[/b][/color] " + amount;
                 break;
-            case 59 : currency = "╰ [color=" + colors.mainColor + "][b]Instabile Fraktal-Essenzen:[/b][/color] " + amount;
+            case 59 : currency = "╰ [color=" + colors.mainColor + "][b]Unstable Fractal Essence:[/b][/color] " + amount;
                 break;
-            case 60 : currency = "╰ [color=" + colors.mainColor + "][b]Tyrianische Verteidigungssiegel:[/b][/color] " + amount;
+            case 60 : currency = "╰ [color=" + colors.mainColor + "][b]Tyrian Defense Seal:[/b][/color] " + amount;
                 break;
         }
         return currency;
@@ -186,68 +186,68 @@ public class Gw2Utils {
             case "19":
             case "28":
             case "52":
-                formatted = input.substring(32) + " - Vulkanisch";
+                formatted = input.substring(32) + " - Volcanic";
                 break;
             case "2" :
             case "36":
             case "44":
             case "62":
-                formatted = input.substring(32) + " - Nicht kategorisiert";
+                formatted = input.substring(32) + " - Un-Catagorized";
                 break;
             case "3" :
             case "27":
             case "51":
             case "68":
-                formatted = input.substring(32) + " - Schneeblind";
+                formatted = input.substring(32) + " - Snowblind Fractal";
                 break;
             case "4" :
             case "31":
             case "57":
             case "66":
-                formatted = input.substring(32) + " - Urbanes Schlachtfeld";
+                formatted = input.substring(32) + " - Urban Battleground ";
                 break;
             case "5" :
             case "17":
             case "32":
             case "56":
-                formatted = input.substring(32) + " - Sumpfland";
+                formatted = input.substring(32) + " - Swampland";
                 break;
             case "6" :
             case "21":
             case "47":
             case "69":
-                formatted = input.substring(32) + " - Felswand";
+                formatted = input.substring(32) + " - Cliffside";
                 break;
             case "7" :
             case "26":
             case "61":
-                formatted = input.substring(32) + " - Unterwasserruinen";
+                formatted = input.substring(32) + " - Aquatic Ruins";
                 break;
             case "8" :
             case "29":
             case "53":
-                formatted = input.substring(32) + " - Untergrundeinrichtung";
+                formatted = input.substring(32) + " - Underground Facility ";
                 break;
             case "9" :
             case "22":
             case "39":
             case "58":
-                formatted = input.substring(32) + " - Feuriger Hochofen";
+                formatted = input.substring(32) + " - Molten Furnace ";
                 break;
             case "10":
             case "40":
             case "70":
-                formatted = input.substring(32) + " - Feuriger Boss";
+                formatted = input.substring(32) + " - Molten Boss ";
                 break;
             case "11":
             case "33":
             case "67":
-                formatted = input.substring(32) + " - Tiefenstein";
+                formatted = input.substring(32) + " - Deepstone";
                 break;
             case "12":
             case "37":
             case "54":
-                formatted = input.substring(32) + " - Riff der Sirene";
+                formatted = input.substring(32) + " - Siren's Reef";
                 break;
             case "13":
             case "30":
@@ -259,45 +259,45 @@ public class Gw2Utils {
             case "46":
             case "65":
             case "71":
-                formatted = input.substring(32) + " - Ätherklinge";
+                formatted = input.substring(32) + " - Aetherblade";
                 break;
             case "15":
             case "34":
             case "43":
             case "55":
             case "64":
-                formatted = input.substring(32) + " - Thaumanova-Reaktor";
+                formatted = input.substring(32) + " - Thaumanova-Reactor";
                 break;
             case "16":
             case "41":
             case "59":
-                formatted = input.substring(32) + " - Zwielichtoase";
+                formatted = input.substring(32) + " - Twilight Oasis ";
                 break;
             case "18":
             case "42":
             case "72":
-                formatted = input.substring(32) + " - Kapitän Mai Trin Boss";
+                formatted = input.substring(32) + " - Captain Mai Trin Boss";
                 break;
             case "20":
             case "35":
             case "45":
             case "60":
-                formatted = input.substring(32) + " - Solider Ozean";
+                formatted = input.substring(32) + " - Solid Ocean";
                 break;
             case "23":
             case "48":
             case "73":
-                formatted = input.substring(32) + " - Albtraum";
+                formatted = input.substring(32) + " - Nightmare";
                 break;
             case "24":
             case "49":
             case "74":
-                formatted = input.substring(32) + " - Zerschmettertes Observatorium";
+                formatted = input.substring(32) + " - Shattered Observatory";
                 break;
             case "25":
             case "50":
             case "75":
-                formatted = input.substring(32) + " - Sunqua-Gipfel";
+                formatted = input.substring(32) + " - Sunqua-Peak";
                 break;
             default :
         }
@@ -309,67 +309,67 @@ public class Gw2Utils {
 
         switch (input.substring(13)) {
             case "Aquatic Ruins" :
-                formatted = "76 - Unterwasserruinen";
+                formatted = "76 - Aquatic Ruins";
                 break;
             case "Swampland" :
-                formatted = "89 - Sumpfland";
+                formatted = "89 - Swampland";
                 break;
             case "Siren's Reef" :
-                formatted = "78 - Riff der Sirene";
+                formatted = "78 - Siren's Reefe";
                 break;
             case "Uncategorized" :
-                formatted = "91 - Nicht kategorisiert";
+                formatted = "91 - Uncategorized";
                 break;
             case "Solid Ocean" :
-                formatted = "80 - Solider Ozean";
+                formatted = "80 - Solid Ocean";
                 break;
             case "Underground Facility" :
-                formatted = "81 - Untergrundeinrichtung";
+                formatted = "81 - Underground Facility";
                 break;
             case "Thaumanova Reactor" :
-                formatted = "82 - Thaumanova-Reaktor";
+                formatted = "82 - Thaumanova Reactor";
                 break;
             case "Molten Furnace" :
-                formatted = "83 - Feuriger Hochofen";
+                formatted = "83 - Molten Furnace";
                 break;
             case "Deepstone" :
-                formatted = "84 - Tiefenstein";
+                formatted = "84 - Deepstone";
                 break;
             case "Urban Battleground" :
-                formatted = "85 - Urbanes Schlachtfeld";
+                formatted = "85 - Urban Battleground";
                 break;
             case "Snowblind" :
-                formatted = "93 - Schneeblind";
+                formatted = "93 - Snowblind";
                 break;
             case "Twilight Oasis" :
-                formatted = "87 - Zwielichtoase";
+                formatted = "87 - Twilight Oasis";
                 break;
             case "Chaos" :
                 formatted = "97 - Chaos";
                 break;
             case "Molten Boss" :
-                formatted = "90 - Feuriger Boss";
+                formatted = "90 - Molten Boss";
                 break;
             case "Volcanic" :
-                formatted = "92 - Vulkanisch";
+                formatted = "92 - Volcanic";
                 break;
             case "Cliffside" :
-                formatted = "94 - Felswand";
+                formatted = "94 - Cliffside";
                 break;
             case "Captain Mai Trin Boss" :
-                formatted = "95 - Kapitän Mai Trin Boss";
+                formatted = "95 - Captain Mai Trin Boss";
                 break;
             case "Aetherblade" :
-                formatted = "96 - Ätherklinge";
+                formatted = "96 - Aetherblade";
                 break;
             case "Nightmare" :
-                formatted = "98 - Albtraum";
+                formatted = "98 - Nightmare";
                 break;
             case "Shattered Observatory" :
-                formatted = "99 - Zerschmettertes Observatorium";
+                formatted = "99 - Shattered Observatory\"";
                 break;
             case "Sunqua Peak" :
-                formatted = "100 - Sunqua-Gipfel";
+                formatted = "100 - Sunqua Peak";
                 break;
             default: formatted = input;
         }
@@ -381,22 +381,22 @@ public class Gw2Utils {
 
         switch (input) {
             case "boneskinner":
-                formatted = "Knochenhäuter";
+                formatted = "boneskinner";
                 break;
             case "fraenir_of_jormag":
-                formatted = "Fraenir Jormags";
+                formatted = "fraenir_of_jormag";
                 break;
             case "icebrood_construct":
-                formatted = "Zittergipfel-Pass";
+                formatted = "icebrood_construct";
                 break;
             case "voice_of_the_fallen":
-                formatted = "Stimme der Gefallenen und Klaue der Gefallenen";
+                formatted = "voice_of_the_fallen";
                 break;
             case "whisper_of_jormag":
-                formatted = "Geflüster des Jormag";
+                formatted = "whisper_of_jormag";
                 break;
             case "cold_war":
-                formatted = "Kalter Krieg";
+                formatted = "cold_war";
                 break;
             default:
         }
@@ -408,505 +408,505 @@ public class Gw2Utils {
 
         switch (input) {
             case "Daily Ascalonian Catacombs":
-                formatted = "Tägliche Erforschung: Katakomben von Ascalon";
+                formatted = "Daily Ascalonian Catacombs";
                 break;
             case "Daily Caudecus's Manor":
-                formatted = "Tägliche Erforschung: Caudecus' Anwesen";
+                formatted = "Daily Caudecus's Manor";
                 break;
             case "Daily Twilight Arbor":
-                formatted = "Tägliche Erforschung: Zwielichtgarten";
+                formatted = "Daily Twilight Arbor";
                 break;
             case "Daily Sorrow's Embrace":
-                formatted = "Tägliche Erforschung: Umarmung der Betrübnis";
+                formatted = "Daily Sorrow's Embrace";
                 break;
             case "Daily Citadel of Flame":
-                formatted = "Tägliche Erforschung: Flammenzitadelle";
+                formatted = "Daily Citadel of Flame";
                 break;
             case "Daily Honor of the Waves":
-                formatted = "Tägliche Erforschung: Zierde der Wogen";
+                formatted = "Daily Honor of the Waves";
                 break;
             case "Daily Crucible of Eternity":
-                formatted = "Tägliche Erforschung: Schmelztiegel der Ewigkeit";
+                formatted = "TDaily Crucible of Eternity";
                 break;
             case "Daily Ruined City of Arah":
-                formatted = "Tägliche Erforschung: Ruinenstadt Arah";
+                formatted = "Daily Ruined City of Arah";
                 break;
             case "Daily Ascalon Forager":
-                formatted = "Täglicher Erntearbeiter von Ascalon";
+                formatted = "Daily Ascalon Forager";
                 break;
             case "Daily Ascalon Lumberer":
-                formatted = "Täglicher Holzfäller von Ascalon";
+                formatted = "Daily Ascalon Lumberer";
                 break;
             case "Daily Ascalon Miner":
-                formatted = "Täglicher Bergarbeiter von Ascalon";
+                formatted = "Daily Ascalon Miner";
                 break;
             case "Daily Kryta Forager":
-                formatted = "Täglicher Erntearbeiter von Kryta";
+                formatted = "Daily Kryta Forager";
                 break;
             case "Daily Kryta Lumberer":
-                formatted = "Täglicher Holzfäller von Kryta";
+                formatted = "Daily Kryta Lumberer";
                 break;
             case "Daily Kryta Miner":
-                formatted = "Täglicher Bergarbeiter von Kryta";
+                formatted = "Daily Kryta Miner";
                 break;
             case "Daily Maguuma Jungle Forager":
-                formatted = "Täglicher Erntearbeiter des Maguuma-Dschungels";
+                formatted = "Daily Maguuma Jungle Forager";
                 break;
             case "Daily Maguuma Jungle Lumberer":
-                formatted = "Täglicher Holzfäller des Maguuma-Dschungels";
+                formatted = "Daily Maguuma Jungle Lumberer";
                 break;
             case "Daily Maguuma Jungle Miner":
-                formatted = "Täglicher Bergarbeiter des Maguuma-Dschungels";
+                formatted = "Daily Maguuma Jungle Miner";
                 break;
             case "Daily Maguuma Wastes Forager":
-                formatted = "Täglicher Erntearbeiter der Maguuma-Einöde";
+                formatted = "Daily Maguuma Wastes Forager";
                 break;
             case "Daily Maguuma Wastes Lumberer":
-                formatted = "Täglicher Holzfäller der Maguuma-Einöde";
+                formatted = "Daily Maguuma Wastes Lumberer";
                 break;
             case "Daily Maguuma Wastes Miner":
-                formatted = "Täglicher Bergarbeiter der Maguuma-Einöde";
+                formatted = "Daily Maguuma Wastes Miner";
                 break;
             case "Daily Orr Forager":
-                formatted = "Täglicher Erntearbeiter von Orr";
+                formatted = "Daily Orr Forager";
                 break;
             case "Daily Orr Lumberer":
-                formatted = "Täglicher Holzfäller von Orr";
+                formatted = "Daily Orr Lumberer";
                 break;
             case "Daily Orr Miner":
-                formatted = "Täglicher Bergarbeiter von Orr";
+                formatted = "Daily Orr Miner";
                 break;
             case "Daily Shiverpeaks Forager":
-                formatted = "Täglicher Erntearbeiter der Zittergipfel";
+                formatted = "Daily Shiverpeaks Forager";
                 break;
             case "Daily Shiverpeaks Lumberer":
-                formatted = "Täglicher Holzfäller der Zittergipfel";
+                formatted = "Daily Shiverpeaks Lumberer";
                 break;
             case "Daily Shiverpeaks Miner":
-                formatted = "Täglicher Bergarbeiter der Zittergipfel";
+                formatted = "Daily Shiverpeaks Miner";
                 break;
             case "Daily Heart of Maguuma Forager":
-                formatted = "Täglicher Sammler: Herz von Maguuma";
+                formatted = "Daily Heart of Maguuma Forager";
                 break;
             case "Daily Heart of Maguuma Lumberer":
-                formatted = "Täglicher Holzfäller: Herz von Maguuma";
+                formatted = "Daily Heart of Maguuma Lumberer";
                 break;
             case "Daily Heart of Maguuma Miner":
-                formatted = "Täglicher Bergarbeiter: Herz von Maguuma";
+                formatted = "Daily Heart of Maguuma Miner";
                 break;
             case "Daily Desert Forager":
-                formatted = "Täglicher Erntearbeiter der Wüste";
+                formatted = "Daily Desert Forager";
                 break;
             case "Daily Desert Lumberer":
-                formatted = "Täglicher Holzfäller der Wüste";
+                formatted = "Daily Desert Lumberer";
                 break;
             case "Daily Desert Miner":
-                formatted = "Täglicher Bergarbeiter der Wüste";
+                formatted = "Daily Desert Miner";
                 break;
             // Renown Hearts
             case "Daily Elon Riverlands Taskmaster":
-                formatted = "Täglicher Meister der Aufgaben der Elon-Flusslande";
+                formatted = "Daily Elon Riverlands Taskmaster";
                 break;
             case "Daily Desolation Taskmaster":
                 formatted = "Täglicher Meister der Aufgaben des Ödlandes";
                 break;
             // World Bosses
             case "Daily Claw of Jormag":
-                formatted = "Tägliche Klaue von Jormag";
+                formatted = "Daily Claw of Jormag";
                 break;
             case "Daily Demolisher":
-                formatted = "Täglicher Zerstörer";
+                formatted = "Daily Demolisher";
                 break;
             case "Daily Fire Elemental":
-                formatted = "Täglicher Feuer-Elementar";
+                formatted = "Daily Fire Elemental";
                 break;
             case "Daily Frozen Maw":
-                formatted = "Täglicher Gefrorener Schlund";
+                formatted = "Daily Frozen Maw";
                 break;
             case "Daily Great Jungle Wurm":
-                formatted = "Täglicher Großer Dschungelwurm";
+                formatted = "Daily Great Jungle Wurm";
                 break;
             case "Daily Hound Master":
-                formatted = "Täglicher Meister der Hunde";
+                formatted = "Daily Hound Master";
                 break;
             case "Daily Inquest Golem Mark II":
-                formatted = "Täglicher Inquestur-Golem Typ II";
+                formatted = "Daily Inquest Golem Mark II";
                 break;
             case "Daily Megadestroyer":
-                formatted = "Täglicher Mega-Zerstörer";
+                formatted = "Daily Megadestroyer";
                 break;
             case "Daily Shadow Behemoth":
-                formatted = "Täglicher Schatten-Behemoth";
+                formatted = "Daily Shadow Behemoth";
                 break;
             case "Daily Shatterer":
-                formatted = "Täglicher Zerschmetterer";
+                formatted = "Daily Shatterer";
                 break;
             // Other
             case "Daily Activity Participation":
-                formatted = "Täglicher Aktivitäts-Teilnehmer";
+                formatted = "Daily Activity Participation";
                 break;
             case "Daily Mystic Forger":
-                formatted = "Täglicher mystischer Schmied";
+                formatted = "Daily Mystic Forger";
                 break;
             // Adventures
             case "Daily Adventure: A Fungus Among Us":
-                formatted = "Tägliches Abenteuer: Pöse Pilze!";
+                formatted = "Daily Adventure: A Fungus Among Us";
                 break;
             case "Daily Adventure: Beetle Feast":
-                formatted = "Tägliches Abenteuer: Käferschmaus";
+                formatted = "Daily Adventure: Beetle Feast";
                 break;
             case "Daily Adventure: Bugs in the Branches":
-                formatted = "Tägliches Abenteuer: Käfer im Geäst";
+                formatted = "Daily Adventure: Bugs in the Branches";
                 break;
             case "Daily Adventure: Drone Race":
-                formatted = "Tägliches Abenteuer: Drohnen-Rennen";
+                formatted = "Daily Adventure: Drone Race";
                 break;
             case "Daily Adventure: Fallen Masks":
-                formatted = "Tägliches Abenteuer: Gefallenen-Masken";
+                formatted = "Daily Adventure: Fallen Masks";
                 break;
             case "Daily Adventure: Flying Circus":
-                formatted = "Tägliches Abenteuer: Schauflug";
+                formatted = "Daily Adventure: Flying Circus";
                 break;
             case "Daily Adventure: Haywire Punch-o-Matic Battle":
-                formatted = "Tägliches Abenteuer: Kampf als durchdrehender Haudrauf-o-Mat";
+                formatted = "Daily Adventure: Haywire Punch-o-Matic Battle";
                 break;
             case "Daily Adventure: On Wings of Gold":
-                formatted = "Tägliches Abenteuer: Auf goldenen Schwingen";
+                formatted = "Daily Adventure: On Wings of Gold";
                 break;
             case "Daily Adventure: Salvage Pit":
-                formatted = "Tägliches Abenteuer: Bergungsmaterial-Grube";
+                formatted = "Daily Adventure: Salvage Pit";
                 break;
             case "Daily Adventure: Sanctum Scramble":
-                formatted = "Tägliches Abenteuer: Rauferei am Refugium";
+                formatted = "Daily Adventure: Sanctum Scramble";
                 break;
             case "Daily Adventure: Scrap Rifle Field Test":
-                formatted = "Tägliches Abenteuer: Schrottgewehr-Feldversuch";
+                formatted = "Daily Adventure: Scrap Rifle Field Test";
                 break;
             case "Daily Adventure: Shooting Gallery":
-                formatted = "Tägliches Abenteuer: Schießbude";
+                formatted = "Daily Adventure: Shooting Gallery";
                 break;
             case "Daily Adventure: Tendril Torchers":
-                formatted = "Tägliches Abenteuer: Rankenbrenner";
+                formatted = "Daily Adventure: Tendril Torchers";
                 break;
             case "Daily Adventure: The Floor Is Lava?":
-                formatted = "Tägliches Abenteuer: Der Boden besteht aus Lava?";
+                formatted = "Daily Adventure: The Floor Is Lava?";
                 break;
             case "Daily Adventure: The Ley-Line Run":
-                formatted = "Tägliches Abenteuer: Das Ley-Linien-Rennen";
+                formatted = "Daily Adventure: The Ley-Line Run\"";
                 break;
             case "Daily Desert Adventurer":
-                formatted = "Täglicher Abenteurer der Wüste";
+                formatted = "Daily Desert Adventurer";
                 break;
             //Vistas
             case "Daily Ascalon Vista Viewer":
-                formatted = "Täglicher Panorama-Genießer von Ascalon";
+                formatted = "Daily Ascalon Vista Viewer";
                 break;
             case "Daily Kryta Vista Viewer":
-                formatted = "Täglicher Panorama-Genießer von Kryta";
+                formatted = "Daily Kryta Vista Viewer";
                 break;
             case "Daily Maguuma Vista Viewer":
-                formatted = "Täglicher Panorama-Genießer von Maguuma";
+                formatted = "Daily Maguuma Vista Viewer";
                 break;
             case "Daily Maguuma Wastes Vista Viewer":
-                formatted = "Täglicher Panorama-Genießer der Maguuma-Einöde";
+                formatted = "Daily Maguuma Wastes Vista Viewer";
                 break;
             case "Daily Orr Vista Viewer":
-                formatted = "Täglicher Panorama-Genießer von Orr";
+                formatted = "Daily Orr Vista Viewer";
                 break;
             case "Daily Shiverpeaks Vista Viewer":
-                formatted = "Täglicher Panorama-Genießer der Zittergipfel";
+                formatted = "Daily Shiverpeaks Vista Viewer";
                 break;
             case "Daily Heart of Maguuma Vista Viewer":
-                formatted = "Täglicher Panorama-Genießer: Herz von Maguuma";
+                formatted = "Daily Heart of Maguuma Vista Viewer";
                 break;
             case "Daily Desert Vista Viewer":
-                formatted = "Täglicher Panorama-Genießer der Wüste";
+                formatted = "Daily Desert Vista Viewer";
                 break;
             // Jumping Puzzle
             case "Daily Antre of Adjournment Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Der Abgrund des Plünderers";
+                formatted = "Daily Antre of Adjournment Jumping Puzzle";
                 break;
             case "Daily Behem Gauntlet Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Behem-Spießrutenlauf";
+                formatted = "Daily Behem Gauntlet Jumping Puzzle";
                 break;
             case "Daily Branded Mine Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Die Gebrandmarkte Mine";
+                formatted = "Daily Branded Mine Jumping Puzzle";
                 break;
             case "Daily Buried Archives Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Verschüttete Archive";
+                formatted = "Daily Buried Archives Jumping Puzzle";
                 break;
             case "Daily Chaos Crystal Cavern Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Die Chaoskristallhöhle";
+                formatted = "Daily Chaos Crystal Cavern Jumping Puzzle";
                 break;
             case "Daily Coddler's Cove Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Knuddlerbucht";
+                formatted = "Daily Coddler's Cove Jumping Puzzle";
                 break;
             case "Daily Collapsed Observatory Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Das eingestürzte Observatorium";
+                formatted = "Daily Collapsed Observatory Jumping Puzzle";
                 break;
             case "Daily Conundrum Cubed Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Zwickmühle hoch drei";
+                formatted = "Daily Conundrum Cubed Jumping Puzzl";
                 break;
             case "Daily Crash Site Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Absturzstelle";
+                formatted = "Daily Crash Site Jumping Puzzle";
                 break;
             case "Daily Craze's Folly Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Crazes Torheit";
+                formatted = "Daily Craze's Folly Jumping Puzzle";
                 break;
             case "Daily Crimson Plateau Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Purpur-Plateau";
+                formatted = "Daily Crimson Plateau Jumping Puzzle";
                 break;
             case "Daily Dark Reverie Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Finsterer Tagtraum";
+                formatted = "Daily Dark Reverie Jumping Puzzle";
                 break;
             case "Daily Demongrub Pits Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Dämonenraupen-Gruben";
+                formatted = "Daily Demongrub Pits Jumping Puzzle";
                 break;
             case "Daily Fawcett's Bounty Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Fawcetts Beute";
+                formatted = "Daily Fawcett's Bounty Jumping Puzzle";
                 break;
             case "Daily Goemm's Lab Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Goemms Labor";
+                formatted = "Daily Goemm's Lab Jumping Puzzle";
                 break;
             case "Daily Grendich Gamble Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Grendich-Spiel";
+                formatted = "Daily Grendich Gamble Jumping Puzzle";
                 break;
             case "Daily Griffonrook Run Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Greifenturmstrecke";
+                formatted = "Daily Griffonrook Run Jumping Puzzle";
                 break;
             case "Daily Hexfoundry Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Fluchgießerei Abgedreht";
+                formatted = "Daily Hexfoundry Jumping Puzzle";
                 break;
             case "Daily Hidden Garden Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Verborgener Garten";
+                formatted = "Daily Hidden Garden Jumping Puzzle";
                 break;
             case "Daily King Jalis's Refuge Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: König Jalis' Zuflucht";
+                formatted = "Daily King Jalis's Refuge Jumping Puzzle";
                 break;
             case "Daily Loreclaw Expanse Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Sagenklauen-Weite";
+                formatted = "Daily Loreclaw Expanse Jumping Puzzle";
                 break;
             case "Daily Morgan's Leap Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Morgans Sprung";
+                formatted = "Daily Morgan's Leap Jumping Puzzle";
                 break;
             case "Daily Only Zuhl Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Nur Zuhl";
+                formatted = "Daily Only Zuhl Jumping Puzzle";
                 break;
             case "Daily Pig Iron Quarry Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Die Roheisen-Grube";
+                formatted = "Daily Pig Iron Quarry Jumping Puzzle";
                 break;
             case "Daily Portmatt's Lab Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Professor Portmatts Labor";
+                formatted = "Daily Portmatt's Lab Jumping Puzzle";
                 break;
             case "Daily Scavenger's Chasm Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Der Abgrund des Plünderers";
+                formatted = "Daily Scavenger's Chasm Jumping Puzzle";
                 break;
             case "Daily Shaman's Rookery Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Schamanen-Kolonie";
+                formatted = "Daily Shaman's Rookery Jumping Puzzle";
                 break;
             case "Daily Shattered Ice Ruins Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Die Zerschmetterten Eisruinen";
+                formatted = "Daily Shattered Ice Ruins Jumping Puzzle";
                 break;
             case "Daily Skipping Stones Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Steine hüpfen lassen";
+                formatted = "Daily Skipping Stones Jumping Puzzle";
                 break;
             case "Daily Spekks's Lab Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Spekks Labor";
+                formatted = "Daily Spekks's Lab Jumping Puzzle";
                 break;
             case "Daily Spelunker's Delve Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Höhlenforscher-Senke";
+                formatted = "Daily Spelunker's Delve Jumping Puzzlee";
                 break;
             case "Daily Swashbuckler's Cove Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Die Säbelrassler-Bucht";
+                formatted = "Daily Swashbuckler's Cove Jumping Puzzlet";
                 break;
             case "Daily Tribulation Caverns Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Trübsalriss-Höhlen";
+                formatted = "Daily Tribulation Caverns Jumping Puzzle";
                 break;
             case "Daily Tribulation Rift Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Trübsalriss";
+                formatted = "Daily Tribulation Rift Jumping Puzzle";
                 break;
             case "Daily Under New Management Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Unter neuer Leitung";
+                formatted = "Daily Under New Management Jumping Puzzle";
                 break;
             case "Daily Urmaug's Secret Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Urmaugs Geheimnis";
+                formatted = "Daily Urmaug's Secret Jumping Puzzle";
                 break;
             case "Daily Vizier's Tower Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Der Turm des Wesirs";
+                formatted = "Daily Vizier's Tower Jumping Puzzle";
                 break;
             case "Daily Wall Breach Blitz Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Wallbrecherblitz";
+                formatted = "Daily Wall Breach Blitz Jumping Puzzle";
                 break;
             case "Daily Weyandt's Revenge Jumping Puzzle":
-                formatted = "Tägliches Sprungrätsel: Weyandts Rache";
+                formatted = "Daily Weyandt's Revenge Jumping Puzzle";
                 break;
             // Events
             case "Daily Blazeridge Steppes Event Completer":
-                formatted = "Tägliche Event-Koryphäe der Flammenkamm-Steppe";
+                formatted = "Daily Blazeridge Steppes Event Completer";
                 break;
             case "Daily Bloodtide Coast Event Completer":
-                formatted = "Tägliche Event-Koryphäe der Blutstrom-Küste";
+                formatted = "Daily Bloodtide Coast Event Completer";
                 break;
             case "Daily Brisban Wildlands Event Completer":
-                formatted = "Tägliche Event-Koryphäe der Brisban-Wildnis";
+                formatted = "Daily Brisban Wildlands Event Completer";
                 break;
             case "Daily Caledon Forest Event Completer":
-                formatted = "Tägliche Event-Koryphäe des Caledon-Walds";
+                formatted = "Daily Caledon Forest Event Completer";
                 break;
             case "Daily Cursed Shore Event Completer":
-                formatted = "Tägliche Event-Koryphäe der Fluchküste";
+                formatted = "Daily Cursed Shore Event Completer";
                 break;
             case "Daily Diessa Plateau Event Completer":
-                formatted = "Tägliche Event-Koryphäe des Diessa-Plateaus";
+                formatted = "Daily Diessa Plateau Event Completer";
                 break;
             case "Daily Dredgehaunt Cliffs Event Completer":
-                formatted = "Tägliche Event-Koryphäe der Schauflerschreck-Klippen";
+                formatted = "Daily Dredgehaunt Cliffs Event Completer";
                 break;
             case "Daily Dry Top Event Completer":
-                formatted = "Tägliche Event-Koryphäe der Trockenkuppe";
+                formatted = "Daily Dry Top Event Completer";
                 break;
             case "Daily Fields of Ruin Event Completer":
-                formatted = "Tägliche Event-Koryphäe der Felder der Verwüstung";
+                formatted = "Daily Fields of Ruin Event Completer";
                 break;
             case "Daily Fireheart Rise Event Completer":
-                formatted = "Tägliche Event-Koryphäe der Feuerherzhügel";
+                formatted = "Daily Fireheart Rise Event Completer";
                 break;
             case "Daily Frostgorge Sound Event Completer":
-                formatted = "Tägliche Event-Koryphäe des Eisklamm-Sunds";
+                formatted = "Daily Frostgorge Sound Event Completer";
                 break;
             case "Daily Gendarran Fields Event Completer":
-                formatted = "Tägliche Event-Koryphäe der Gendarran-Felder";
+                formatted = "Daily Gendarran Fields Event Completer";
                 break;
             case "Daily Harathi Hinterlands Event Completer":
-                formatted = "Tägliche Event-Koryphäe des Harathi-Hinterlands";
+                formatted = "Daily Harathi Hinterlands Event Completer";
                 break;
             case "Daily Iron Marches Event Completer":
-                formatted = "Tägliche Event-Koryphäe der Eisenmark";
+                formatted = "Daily Iron Marches Event Completer";
                 break;
             case "Daily Kessex Hills Event Completer":
-                formatted = "Tägliche Event-Koryphäe der Kessex-Hügel";
+                formatted = "Daily Kessex Hills Event Completer";
                 break;
             case "Daily Lornar's Pass Event Completer":
-                formatted = "Tägliche Event-Koryphäe von Lornars Pass";
+                formatted = "Daily Lornar's Pass Event Completer";
                 break;
             case "Daily Malchor's Leap Event Completer":
-                formatted = "Tägliche Event-Koryphäe von Malchors Sprung";
+                formatted = "Daily Malchor's Leap Event Completer";
                 break;
             case "Daily Metrica Province Event Completer":
-                formatted = "Tägliche Event-Koryphäe der Provinz Metrica";
+                formatted = "Daily Metrica Province Event Completer";
                 break;
             case "Daily Mount Maelstrom Event Completer":
-                formatted = "Tägliche Event-Koryphäe des Mahlstromgipfels";
+                formatted = "Daily Mount Maelstrom Event Completer";
                 break;
             case "Daily Plains of Ashford Event Completer":
-                formatted = "Tägliche Event-Koryphäe der Ebenen von Aschfurt";
+                formatted = "Daily Plains of Ashford Event Completer";
                 break;
             case "Daily Queensdale Event Completer":
-                formatted = "Tägliche Event-Koryphäe des Königintals";
+                formatted = "Daily Queensdale Event Completer";
                 break;
             case "Daily Silverwastes Event Completer":
-                formatted = "Tägliche Event-Koryphäe der Silberwüste";
+                formatted = "Daily Silverwastes Event Completer";
                 break;
             case "Daily Snowden Drifts Event Completer":
-                formatted = "Tägliche Event-Koryphäe der Schneekuhlenhöhen";
+                formatted = "Daily Snowden Drifts Event Completer";
                 break;
             case "Daily Southsun Cove Event Completer":
-                formatted = "Tägliche Event-Koryphäe der Südlicht-Bucht";
+                formatted = "Daily Southsun Cove Event Completer";
                 break;
             case "Daily Sparkfly Fen Event Completer":
-                formatted = "Tägliche Event-Koryphäe des Funkenschwärmersumpfs";
+                formatted = "Daily Sparkfly Fen Event Completer";
                 break;
             case "Daily Straits of Devastation Event Completer":
-                formatted = "Tägliche Event-Koryphäe der Meerenge der Verwüstung";
+                formatted = "Daily Straits of Devastation Event Completer";
                 break;
             case "Daily Timberline Falls Event Completer":
-                formatted = "Tägliche Event-Koryphäe der Baumgrenzen-Fälle";
+                formatted = "Daily Timberline Falls Event Completer";
                 break;
             case "Daily Wayfarer Foothills Event Completer":
-                formatted = "Tägliche Event-Koryphäe der Wanderer-Hügel";
+                formatted = "Daily Wayfarer Foothills Event Completer";
                 break;
             case "Daily Verdant Brink Event Completer":
-                formatted = "Tägliche Event-Koryphäe: Grasgrüne Schwelle";
+                formatted = "Daily Verdant Brink Event Completer";
                 break;
             case "Daily Auric Basin Event Completer":
-                formatted = "Tägliche Event-Koryphäe: Güldener Talkessel";
+                formatted = "Daily Auric Basin Event Completer";
                 break;
             case "Daily Tangled Depths Event Completer":
-                formatted = "Tägliche Event-Koryphäe: Verschlungene Tiefen";
+                formatted = "Daily Tangled Depths Event Completer";
                 break;
             case "Daily Dragon's Stand Event Completer":
-                formatted = "Tägliche Event-Koryphäe: Drachensturz";
+                formatted = "Daily Dragon's Stand Event Completer";
                 break;
             case "Daily Crystal Oasis Event Completer":
-                formatted = "Tägliche Event-Koryphäe: Kristall Oase";
+                formatted = "Daily Crystal Oasis Event Completer";
                 break;
             case "Daily Desert Highlands Event Completer":
-                formatted = "Tägliche Event-Koryphäe: Wüsten-Hochland";
+                formatted = "Daily Desert Highlands Event Completer";
                 break;
             case "Daily Elon Riverlands Event Completer":
-                formatted = "Tägliche Event-Koryphäe: Elon-Flusslande";
+                formatted = "Daily Elon Riverlands Event Completer\"";
                 break;
             case "Daily Desolation Event Completer":
-                formatted = "Tägliche Event-Koryphäe: Ödland";
+                formatted = "Daily Desolation Event Completer";
                 break;
             case "Daily Vabbi Event Completer":
-                formatted = "Tägliche Event-Koryphäe: Vabbi";
+                formatted = "Daily Vabbi Event Completer";
                 break;
             // Bounties
             case "Daily Crystal Oasis Bounty Hunter":
-                formatted = "Tägliche Kopfgeldjäger der Kristalloase";
+                formatted = "Daily Crystal Oasis Bounty Hunter";
                 break;
             case "Daily Desert Highlands Bounty Hunter":
-                formatted = "Täglicher Kopfgeldjäger des Wüsten-Hochlands";
+                formatted = "Daily Desert Highlands Bounty Hunter";
                 break;
             case "Daily Elon Riverlands Bounty Hunter":
-                formatted = "Täglicher Kopfgeldjäger der Elon-Flusslande";
+                formatted = "Daily Elon Riverlands Bounty Hunter";
                 break;
             case "Daily Desolation Bounty Hunter":
-                formatted = "Täglicher Kopfgeldjäger des Ödlands";
+                formatted = "Daily Desolation Bounty Hunter";
                 break;
             case "Daily Vabbian Bounty Hunter":
-                formatted = "Täglicher Kopfgeldjäger von Vaabi";
+                formatted = "Daily Vabbian Bounty Hunter";
                 break;
             // Minidungeons
             case "Daily Bad Neighborhood Minidungeon":
-                formatted = "Tägliches Mini-Verlies: Miese Nachbarschaft";
+                formatted = "Daily Bad Neighborhood Minidungeon";
                 break;
             case "Daily Don't Touch the Shiny Minidungeon":
-                formatted = "Tägliches Mini-Verlies: Finger weg vom Glänzigen";
+                formatted = "Daily Don't Touch the Shiny Minidungeon";
                 break;
             case "Daily Forgotten Stream Minidungeon":
-                formatted = "Tägliches Mini-Verlies: Der vergessene Fluss";
+                formatted = "Daily Forgotten Stream Minidungeon";
                 break;
             case "Daily Forsaken Fortune Minidungeon":
-                formatted = "Tägliches Mini-Verlies: Verdammte Schätze";
+                formatted = "Daily Forsaken Fortune Minidungeon";
                 break;
             case "Daily Goff's Loot Minidungeon":
-                formatted = "Tägliches Mini-Verlies: Goffs Beute";
+                formatted = "Daily Goff's Loot Minidungeon";
                 break;
             case "Daily Grounded Minidungeon":
-                formatted = "Tägliches Mini-Verlies: Geerdet";
+                formatted = "Daily Grounded Minidungeon";
                 break;
             case "Daily Magellan's Memento Minidungeon":
-                formatted = "Tägliches Mini-Verlies: Magellans Andenken";
+                formatted = "Daily Magellan's Memento Minidungeon";
                 break;
             case "Daily Rebel's Seclusion Minidungeon":
-                formatted = "Tägliches Mini-Verlies: Unterschlupf der Rebellen";
+                formatted = "Daily Rebel's Seclusion Minidungeon";
                 break;
             case "Daily Ship of Sorrows Minidungeon":
-                formatted = "Tägliches Mini-Verlies: Schiff des Leids";
+                formatted = "Daily Ship of Sorrows Minidungeon";
                 break;
             case "Daily Tears of Itlaocol Minidungeon":
-                formatted = "Tägliches Mini-Verlies: Die Tränen Itlaocols";
+                formatted = "Daily Tears of Itlaocol Minidungeon";
                 break;
             case "Daily The Long Way Around Minidungeon":
-                formatted = "Tägliches Mini-Verlies: Ein großer Umweg";
+                formatted = "Daily The Long Way Around Minidungeon";
                 break;
             case "Daily Vexa's Lab Minidungeon":
-                formatted = "Tägliches Mini-Verlies: Vexas Labor";
+                formatted = "Daily Vexa's Lab Minidungeon";
                 break;
             case "Daily Windy Cave Treasure Minidungeon":
-                formatted = "Tägliches Mini-Verlies: Schatz der Zugigen Höhle";
+                formatted = "Daily Windy Cave Treasure Minidungeon";
                 break;
             default: formatted = input;
         }
@@ -918,62 +918,62 @@ public class Gw2Utils {
 
         switch (input) {
             case "Daily PvP Matches Played in Unranked or Ranked Arena":
-                formatted = "Tägliche PvP-Matches in Arena mit oder ohne Rangwertung";
+                formatted = "Daily PvP Matches Played in Unranked or Ranked Arena";
                 break;
             case "Daily PvP Player Kills":
-                formatted = "Tägliche PvP-Spielersiege";
+                formatted = "Daily PvP Player Kills";
                 break;
             case "Daily PvP Rank Points":
-                formatted = "Tägliche PvP-Rangpunkte";
+                formatted = "Daily PvP Rank Points";
                 break;
             case "Daily PvP Rated Game Winner":
-                formatted = "Täglicher Gewinner eines bewerteten PvP-Spiels";
+                formatted = "Daily PvP Rated Game Winner";
                 break;
             case "Daily PvP Reward Earner":
-                formatted = "Täglicher PvP-Belohnungsmeister";
+                formatted = "Daily PvP Reward Earnerr";
                 break;
             case "Daily PvP Tournament Participator":
-                formatted = "Täglicher Teilnehmer an einem PvP-Turnier";
+                formatted = "Daily PvP Tournament Participator";
                 break;
             case "Daily Top Stats":
-                formatted = "Tägliche Top-Stats";
+                formatted = "Daily Top Stats";
                 break;
             // WvW
             case "Daily Mists Guard Killer":
-                formatted = "Täglicher Nebelwachen-Schlächter";
+                formatted = "Daily Mists Guard Killer";
                 break;
             case "Daily WvW Big Spender":
-                formatted = "Täglicher WvW-Spendierer";
+                formatted = "Daily WvW Big Spender";
                 break;
             case "Daily WvW Camp Capturer":
-                formatted = "Täglicher WvW-Lager-Eroberer";
+                formatted = "Daily WvW Camp Capturer";
                 break;
             case "Daily WvW Caravan Disruptor":
-                formatted = "Täglicher WvW-Karawanen-Zerstörer";
+                formatted = "Daily WvW Caravan Disruptor";
                 break;
             case "Daily WvW Invasion Defender":
-                formatted = "Täglicher WvW-Invasions-Abwehrer";
+                formatted = "Daily WvW Invasion Defender";
                 break;
             case "Daily WvW Keep Capturer":
-                formatted = "Täglicher WvW-Festeneroberer";
+                formatted = "Daily WvW Keep Capturer";
                 break;
             case "Daily WvW Land Claimer":
-                formatted = "Täglicher WvW-Land-Beansprucher";
+                formatted = "Daily WvW Land Claimer";
                 break;
             case "Daily WvW Objective Defender":
-                formatted = "Täglicher WvW-Zielobjekt-Verteidiger";
+                formatted = "Daily WvW Objective Defenderr";
                 break;
             case "Daily WvW Tower Capturer":
-                formatted = "Täglicher WvW-Turm-Eroberer";
+                formatted = "Daily WvW Tower Capturer";
                 break;
             case "Daily WvW World Ranker":
-                formatted = "Täglicher WvW-Weltrang-Stürmer";
+                formatted = "Daily WvW World Ranker";
                 break;
             case "Daily WvW Master of Monuments":
-                formatted = "Täglicher Meister der Monumente";
+                formatted = "Daily WvW Master of Monuments";
                 break;
             case "Daily WvW Veteran Creature Slayer":
-                formatted = "Täglicher Bezwinger von WvW-Veteran-Kreaturen";
+                formatted = "Daily WvW Veteran Creature Slayer";
                 break;
         }
         return formatted;
